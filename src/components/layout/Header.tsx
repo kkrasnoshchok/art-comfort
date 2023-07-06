@@ -1,31 +1,68 @@
-import * as React from 'react';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 
-import UnstyledLink from '@/components/links/UnstyledLink';
+import { HeaderLink } from '@/components/buttons/HeaderLink';
+import NextImage from '@/components/NextImage';
 
-const links = [
-  { href: '/', label: 'Route 1' },
-  { href: '/', label: 'Route 2' },
+import logo from '@/assets/logo.png';
+
+const Hrefs = {
+  about: '#about',
+  services: '#services',
+  projects: '#projects',
+  team: '#team',
+  jobs: '#jobs',
+  cerfitications: '#certifications',
+  contacts: '#contacts',
+} as const;
+
+type Href = (typeof Hrefs)[keyof typeof Hrefs];
+
+const headerLinks = [
+  { href: Hrefs.about, title: 'About' },
+  { href: Hrefs.services, title: 'Services' },
+  { href: Hrefs.projects, title: 'Projects' },
+  { href: Hrefs.team, title: 'Team' },
+  { href: Hrefs.jobs, title: 'Job offers' },
+  { href: Hrefs.cerfitications, title: 'Certifications' },
+  { href: Hrefs.contacts, title: 'Contacts' },
 ];
 
 export default function Header() {
+  const [activeLink, setActiveLink] = useState<Href>('#about');
   return (
-    <header className='sticky top-0 z-50 bg-white'>
-      <div className='layout flex h-14 items-center justify-between'>
-        <UnstyledLink href='/' className='font-bold hover:text-gray-600'>
-          Home
-        </UnstyledLink>
-        <nav>
-          <ul className='flex items-center justify-between space-x-4'>
-            {links.map(({ href, label }) => (
-              <li key={`${href}${label}`}>
-                <UnstyledLink href={href} className='hover:text-gray-600'>
-                  {label}
-                </UnstyledLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <motion.header className='fixed top-0 flex w-full items-center justify-between bg-white bg-opacity-25 p-6 backdrop-blur-sm'>
+      {/* Logo */}
+      <a href='#'>
+        <div className='mb-3 flex items-center'>
+          <NextImage
+            src={logo}
+            alt='logo'
+            width={120}
+            height={120}
+            className='absolute '
+          />
+        </div>
+      </a>
+      {/* Nav */}
+      <nav className='flex items-center gap-8'>
+        {headerLinks
+          .filter((l) => l.title !== 'Contacts')
+          .map((link) => (
+            <HeaderLink
+              key={link.href}
+              onClick={() => setActiveLink(link.href)}
+              active={activeLink === link.href}
+              {...link}
+            />
+          ))}
+        <motion.a
+          className='ml-8 rounded-full border-2 border-white bg-black px-6 py-3 text-white'
+          href={headerLinks[headerLinks.length - 1].href}
+        >
+          {headerLinks[headerLinks.length - 1].title}
+        </motion.a>
+      </nav>
+    </motion.header>
   );
 }
