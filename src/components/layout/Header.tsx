@@ -1,5 +1,5 @@
+/* eslint-disable no-console */
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 
 import { HeaderLink } from '@/components/buttons/HeaderLink';
 import NextImage from '@/components/NextImage';
@@ -16,7 +16,7 @@ const Hrefs = {
   contacts: '#contacts',
 } as const;
 
-type Href = (typeof Hrefs)[keyof typeof Hrefs];
+// type Href = (typeof Hrefs)[keyof typeof Hrefs];
 
 const headerLinks = [
   { href: Hrefs.about, title: 'About' },
@@ -29,7 +29,7 @@ const headerLinks = [
 ];
 
 export default function Header() {
-  const [activeLink, setActiveLink] = useState<Href>('#about');
+  // const [activeLink, setActiveLink] = useState<Href>('#about');
   return (
     <motion.header className='fixed top-0 flex w-full items-center justify-between bg-white bg-opacity-25 p-6 backdrop-blur-sm'>
       {/* Logo */}
@@ -51,8 +51,12 @@ export default function Header() {
           .map((link) => (
             <HeaderLink
               key={link.href}
-              onClick={() => setActiveLink(link.href)}
-              active={activeLink === link.href}
+              onClick={() => {
+                console.log(`console logging`);
+              }}
+              // onClick={() => setActiveLink(link.href)}
+
+              // active={activeLink === link.href}
               {...link}
             />
           ))}

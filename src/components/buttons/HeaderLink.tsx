@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
 
 type HeaderLinkProps = {
   href: string;
@@ -7,14 +6,10 @@ type HeaderLinkProps = {
   onClick: (
     e: React.MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>
   ) => void;
-  active?: boolean;
+  // active?: boolean;
 };
 
-export const HeaderLink = ({
-  title,
-  active,
-  ...props
-}: HeaderLinkProps): ReactNode => (
+export const HeaderLink = ({ title, ...props }: HeaderLinkProps) => (
   <motion.a
     whileHover={{
       scale: 1.1,

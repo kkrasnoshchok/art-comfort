@@ -15,7 +15,7 @@ export default async (_req: NextApiRequest, res: NextApiResponse) => {
       to: 'krasnoshchokvadim@gmail.com',
       subject: 'Hello world',
       react: EmailTemplate({ firstName: 'John' }) as
-        | ReactElement<any, string | JSXElementConstructor<any>>
+        | ReactElement<unknown, string | JSXElementConstructor<unknown>>
         | null
         | undefined,
     });
