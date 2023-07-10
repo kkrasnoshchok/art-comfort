@@ -16,7 +16,7 @@ export const HeaderLink = ({ title, ...props }: HeaderLinkProps) => (
       borderColor: '#000000',
       color: '#1e272e',
     }}
-    className='rounded- border-b-2 border-transparent px-2'
+    className='border-b-2 border-transparent px-2'
     {...props}
   >
     {title}

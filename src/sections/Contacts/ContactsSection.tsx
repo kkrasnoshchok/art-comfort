@@ -1,3 +1,114 @@
+import { zodResolver } from '@hookform/resolvers/zod';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { z } from 'zod';
+
+import clsxm from '@/lib/clsxm';
+
+const getRequiredError = (field: string) => `${field} is required`;
+
+const ContactsForm = z
+  .object({
+    name: z.string().min(1, getRequiredError('name')),
+    email: z.string().email().min(1, getRequiredError('email')),
+    phone: z.string().min(1, getRequiredError('phone')),
+    message: z.string(),
+  })
+  .required();
+
+type ContactsFormType = z.infer<typeof ContactsForm>;
+
 export const ContactsSection = () => {
-  return <section id='contacts' className='h-screen w-screen bg-amber-100' />;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm<ContactsFormType>({
+    resolver: zodResolver(ContactsForm),
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+    shouldUnregister: true,
+  });
+
+  const onSubmit: SubmitHandler<ContactsFormType> = (_) => {
+    // console.log(`values _> ${JSON.stringify(values)}`);
+    // console.log(`errors -> ${JSON.stringify(errors)}`);
+    setValue('name', '');
+    setValue('email', '');
+    setValue('phone', '');
+    setValue('message', '');
+  };
+
+  return (
+    <section id='contacts' className='w-screen px-6 pb-12 pt-28'>
+      <h1>Contact us</h1>
+      <div className='mt-6 flex w-full'>
+        <div className='w-1/3'>
+          <p className='text-lg font-semibold'>Залишити заявку</p>
+          <div className='mt-6 flex w-full flex-col items-start gap-2'>
+            <input
+              className={clsxm([
+                'w-10/12 border border-stone-400',
+                errors.name?.message && 'border-red-500 text-red-500',
+              ])}
+              type='text'
+              id='name'
+              placeholder='Імʼя'
+              {...register('name')}
+            />
+            {errors.name && (
+              <p className='my-0 py-0 text-sm text-red-500'>
+                {errors.name.message}
+              </p>
+            )}
+            <input
+              className={clsxm([
+                'w-10/12 border border-stone-400',
+                errors.email?.message && 'border-red-500 text-red-500',
+              ])}
+              type='email'
+              id='email'
+              placeholder='Email'
+              {...register('email')}
+            />
+            {errors.email && (
+              <p className='my-0 py-0 text-sm text-red-500'>
+                {errors.email.message}
+              </p>
+            )}
+            <input
+              className={clsxm([
+                'w-10/12 border border-stone-400',
+                errors.phone?.message && 'border-red-500 text-red-500',
+              ])}
+              type='tel'
+              id='phone'
+              placeholder='Телефон'
+              {...register('phone')}
+            />
+            {errors.phone && (
+              <p className='my-0 py-0 text-sm text-red-500'>
+                {errors.phone.message}
+              </p>
+            )}
+            <textarea
+              placeholder='Повідомлення'
+              className='rows w-10/12 resize-none border border-stone-400'
+              rows={10}
+              {...register('message')}
+            />
+            <input type='file' id='file' />
+            <button
+              onClick={handleSubmit(onSubmit)}
+              className='mt-2 rounded-lg border px-6 py-2'
+            >
+              Send
+            </button>
+          </div>
+        </div>
+        {/* Map */}
+        <div className='flex flex-1 bg-slate-500' />
+      </div>
+    </section>
+  );
 };

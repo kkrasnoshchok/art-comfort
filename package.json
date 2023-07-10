@@ -10,6 +10,7 @@
     "lint:fix": "eslint src --fix && yarn format",
     "lint:strict": "eslint --max-warnings=10 src",
     "typecheck": "tsc --noEmit --incremental false",
+    "precommit": "echo 'running linters :)' && yarn lint && echo 'seems like suceed :))' && echo 'running typecheck!!!' && yarn typecheck && echo 'you are free to commit these changes yung boy'",
     "test:watch": "jest --watch",
     "test": "jest",
     "format": "prettier -w .",
@@ -18,14 +19,18 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.1.1",
     "clsx": "^1.2.1",
     "framer-motion": "^10.12.18",
     "next": "^13.4.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.45.1",
     "react-icons": "^4.9.0",
+    "react-uploader": "^3.37.0",
     "resend": "^0.16.0",
-    "tailwind-merge": "^1.13.0"
+    "tailwind-merge": "^1.13.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.3.0",

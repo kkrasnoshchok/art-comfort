@@ -6,12 +6,12 @@ import { Resend } from 'resend';
 import { EmailTemplate } from '../../components/email/EmailTemplate';
 
 // const resend = new Resend(process.env.RESEND_API_KEY);
-const resend = new Resend('re_BnRstoDQ_EDBPGTbko634bHzmdPjNNPW7');
+const resend = new Resend('re_MGCca8vQ_DjuNdpJ7sEiXnz2U2yNEaMo2');
 
 export default async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
     const data = await resend.emails.send({
-      from: 'email@art.comfort.com',
+      from: 'Art-Comfort Website <email@art-comfort.com>',
       to: 'krasnoshchokvadim@gmail.com',
       subject: 'Hello world',
       react: EmailTemplate({ firstName: 'John' }) as
