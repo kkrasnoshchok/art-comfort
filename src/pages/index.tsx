@@ -14,7 +14,6 @@ const HomePage = () => (
   <Layout>
     <Seo />
     <main>
-      {/* Header */}
       <Header />
       <AboutSection />
       <ServicesSection />
