@@ -1,8 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/router';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import clsxm from '@/lib/clsxm';
+
+import { en, ua } from '@/locales';
 
 const getRequiredError = (field: string) => `${field} is required`;
 
@@ -18,6 +21,8 @@ const ContactsForm = z
 type ContactsFormType = z.infer<typeof ContactsForm>;
 
 export const ContactsSection = () => {
+  const { locale } = useRouter();
+  const t = locale === 'en' ? en : ua;
   const {
     register,
     handleSubmit,
@@ -41,10 +46,10 @@ export const ContactsSection = () => {
 
   return (
     <section id='contacts' className='w-screen px-6 pb-12 pt-28'>
-      <h1>Contact us</h1>
+      <h1>{t.contacts.title}</h1>
       <div className='mt-6 flex w-full'>
         <div className='w-1/3'>
-          <p className='text-lg font-semibold'>Залишити заявку</p>
+          <p className='text-lg font-semibold'>{t.contacts.subtitle}</p>
           <div className='mt-6 flex w-full flex-col items-start gap-2'>
             <input
               className={clsxm([
@@ -53,7 +58,7 @@ export const ContactsSection = () => {
               ])}
               type='text'
               id='name'
-              placeholder='Імʼя'
+              placeholder={t.contacts.nameInputPlaceholder}
               {...register('name')}
             />
             {errors.name && (
@@ -68,7 +73,7 @@ export const ContactsSection = () => {
               ])}
               type='email'
               id='email'
-              placeholder='Email'
+              placeholder={t.contacts.emailInputPlaceholder}
               {...register('email')}
             />
             {errors.email && (
@@ -83,7 +88,7 @@ export const ContactsSection = () => {
               ])}
               type='tel'
               id='phone'
-              placeholder='Телефон'
+              placeholder={t.contacts.phoneInputPlaceholder}
               {...register('phone')}
             />
             {errors.phone && (
@@ -92,17 +97,16 @@ export const ContactsSection = () => {
               </p>
             )}
             <textarea
-              placeholder='Повідомлення'
+              placeholder={t.contacts.messageInputPlaceholder}
               className='rows w-10/12 resize-none border border-stone-400'
               rows={10}
               {...register('message')}
             />
-            <input type='file' id='file' />
             <button
               onClick={handleSubmit(onSubmit)}
               className='mt-2 rounded-lg border px-6 py-2'
             >
-              Send
+              {t.contacts.sendEmailButtonLabel}
             </button>
           </div>
         </div>
