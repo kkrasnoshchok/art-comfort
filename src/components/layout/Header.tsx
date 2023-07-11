@@ -8,7 +8,7 @@ import NextImage from '@/components/NextImage';
 
 import logo from '@/assets/logo.png';
 import { UsaIcon } from '@/assets/svgs/UsaIcon';
-import { en, ua } from '@/locales';
+import { useI18n } from '@/utils';
 
 const Hrefs = {
   about: '#about',
@@ -22,7 +22,7 @@ const Hrefs = {
 
 export default function Header() {
   const router = useRouter();
-  const t = router.locale === 'en' ? en : ua;
+  const { t } = useI18n();
 
   const onLocaleChange = (locale: 'ua' | 'en') => {
     router.push(router.pathname, router.asPath, { locale });

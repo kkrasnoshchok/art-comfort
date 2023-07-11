@@ -1,11 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/router';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import clsxm from '@/lib/clsxm';
 
-import { en, ua } from '@/locales';
+import { useI18n } from '@/utils';
 
 const getRequiredError = (field: string) => `${field} is required`;
 
@@ -21,8 +20,7 @@ const ContactsForm = z
 type ContactsFormType = z.infer<typeof ContactsForm>;
 
 export const ContactsSection = () => {
-  const { locale } = useRouter();
-  const t = locale === 'en' ? en : ua;
+  const { t } = useI18n();
   const {
     register,
     handleSubmit,
