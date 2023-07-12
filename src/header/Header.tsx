@@ -4,13 +4,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useMemo, useState } from 'react';
 
-import clsxm from '@/lib/clsxm';
-
-import { HeaderLink } from '@/components/buttons/HeaderLink';
 import NextImage from '@/components/NextImage';
 
 import logo from '@/assets/logo.png';
 import { UsaIcon } from '@/assets/svgs/UsaIcon';
+import { Link } from '@/header/components/Link';
+import { clsxm } from '@/utils';
 import { useI18n } from '@/utils';
 
 const Hrefs = {
@@ -47,7 +46,7 @@ const NavigationList = (props: NavigationListProps) => {
   return (
     <>
       {nav.links.map((link) => (
-        <HeaderLink
+        <Link
           key={link.href}
           onClick={() => {
             console.log(`console logging`);
@@ -72,7 +71,7 @@ const NavigationList = (props: NavigationListProps) => {
   );
 };
 
-export default function Header() {
+export const Header = () => {
   const router = useRouter();
   const { t } = useI18n();
   const [menuOpened, setMenuOpened] = useState(false);
@@ -203,4 +202,4 @@ export default function Header() {
       )}
     </AnimatePresence>
   );
-}
+};

@@ -1,17 +1,15 @@
-import Header from '@/components/layout/Header';
-import Layout from '@/components/layout/Layout';
-import Seo from '@/components/Seo';
-
 import { ContactsSection } from '@/contacts/sections';
+import { Header } from '@/header';
 import { AboutSection } from '@/sections/About';
 import { CertificationsSection } from '@/sections/Certifications';
 import { JobOffersSection } from '@/sections/JobOffers';
 import { ProjectsSection } from '@/sections/Projects';
 import { ServicesSection } from '@/sections/Services';
 import { TeamSection } from '@/sections/Team/TeamSection';
+import { Seo } from '@/seo';
 
 const HomePage = () => (
-  <Layout>
+  <>
     <Seo />
     <main>
       <Header />
@@ -23,7 +21,7 @@ const HomePage = () => (
       <CertificationsSection />
       <ContactsSection />
     </main>
-  </Layout>
+  </>
 );
 
 export default HomePage;

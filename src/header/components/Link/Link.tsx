@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-import clsxm from '@/lib/clsxm';
+import { clsxm } from '@/utils';
 
 type HeaderLinkProps = {
   href: string;
@@ -12,7 +12,7 @@ type HeaderLinkProps = {
   // active?: boolean;
 };
 
-export const HeaderLink = ({ title, className, ...props }: HeaderLinkProps) => (
+export const Link = ({ title, className, ...props }: HeaderLinkProps) => (
   <motion.a
     whileHover={{
       scale: 1.1,

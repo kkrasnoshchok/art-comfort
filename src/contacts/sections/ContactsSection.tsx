@@ -1,15 +1,16 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Upload } from 'antd';
+import { Alert, Button, Upload } from 'antd';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import clsxm from '@/lib/clsxm';
-
+import { clsxm } from '@/utils';
 import { useI18n } from '@/utils';
 
 export const ContactsSection = () => {
   const { locale } = useRouter();
+  const [formSent, setFormSent] = useState(false);
   const { t } = useI18n();
   const getRequiredError = (field: string) => {
     if (locale === 'ua') {
@@ -43,13 +44,23 @@ export const ContactsSection = () => {
     shouldUnregister: true,
   });
 
-  const onSubmit: SubmitHandler<ContactsFormType> = (_) => {
-    // console.log(`values _> ${JSON.stringify(values)}`);
-    // console.log(`errors -> ${JSON.stringify(errors)}`);
-    setValue('name', '');
-    setValue('email', '');
-    setValue('phone', '');
-    setValue('message', '');
+  const onSubmit: SubmitHandler<ContactsFormType> = async (values) => {
+    try {
+      const response = await fetch('/api/email', {
+        method: 'POST',
+        body: JSON.stringify({ ...values }),
+      });
+      // Emptying values
+      if (response.ok) {
+        setFormSent(true);
+        setValue('name', '');
+        setValue('email', '');
+        setValue('phone', '');
+        setValue('message', '');
+      }
+    } catch (error) {
+      console.log(`error -> ${error}`);
+    }
   };
 
   return (
@@ -63,6 +74,16 @@ export const ContactsSection = () => {
           {/* Form */}
           <p className='text-lg font-semibold'>{t.contacts.subtitle}</p>
           <div className='mt-6 flex w-full flex-col items-center gap-2 lg:items-start'>
+            {formSent && (
+              <Alert
+                className='mb-2 mr-6'
+                message='Ваш лист успішно надіслано!'
+                type='success'
+                closable
+                onClose={() => setFormSent(false)}
+                showIcon
+              />
+            )}
             <input
               className={clsxm([
                 'w-10/12 border border-stone-400',
@@ -135,7 +156,7 @@ export const ContactsSection = () => {
         </div>
       </div>
       {/* Map */}
-      <div className='mt-16 flex h-80 rounded-full bg-slate-200 lg:mt-0 lg:h-auto lg:flex-1'>
+      <div className='mt-16 flex h-80 rounded-3xl bg-slate-200 lg:mt-0 lg:h-auto lg:flex-1'>
         <iframe
           src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2537.8692753430482!2d30.358270321621863!3d50.499390702292644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cd2d5e855555%3A0x40150a97676ff1c7!2sTov%20%22Art-Komfort%22!5e0!3m2!1sru!2sat!4v1689071912467!5m2!1sru!2sat'
           width='100%'
