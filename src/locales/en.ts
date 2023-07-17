@@ -19,6 +19,9 @@ export const en = {
     phoneInputPlaceholder: 'Phone',
     messageInputPlaceholder: 'Message',
     sendEmailButtonLabel: 'Send',
+    inputError: 'is required',
+    emailInputError: 'Email is invalid',
+    uploadLabel: 'Upload Picture / Document',
   },
 
   // #endregion

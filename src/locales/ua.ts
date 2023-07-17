@@ -20,6 +20,9 @@ export const ua = {
     phoneInputPlaceholder: 'Телефон',
     messageInputPlaceholder: 'Повідомлення',
     sendEmailButtonLabel: 'Відправити',
+    inputError: 'Поле обовʼязкове',
+    emailInputError: 'Неправильний email',
+    uploadLabel: 'Завантажити документ / зображення',
   },
   // #endregion
 };
