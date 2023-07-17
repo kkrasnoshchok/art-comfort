@@ -13,7 +13,8 @@ export default async (_req: NextApiRequest, res: NextApiResponse) => {
       from: 'Art-Comfort Website <email@art-comfort.com>',
       to: 'krasnoshchokvadim@gmail.com',
       subject: 'Заявка з сайту Art-Comfort',
-      react: EmailTemplate({ ...JSON.parse(_req.body) }),
+      // attachments: reqBody.files,
+      react: EmailTemplate(JSON.parse(_req.body)),
     });
 
     res.status(200).json(data);

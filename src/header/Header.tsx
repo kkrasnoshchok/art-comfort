@@ -96,11 +96,11 @@ export const Header = () => {
   return (
     <AnimatePresence>
       <motion.header
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ translateY: -20 }}
+        animate={{ translateY: 0 }}
         exit={{ opacity: 0 }}
         className={clsxm([
-          'fixed top-0 flex h-24 w-full items-center justify-between bg-white bg-opacity-40 p-6 backdrop-blur-sm',
+          'fixed top-0 z-50 flex h-24 w-full items-center justify-between bg-white bg-opacity-40 p-6 backdrop-blur-sm',
         ])}
       >
         {/* Logo */}
