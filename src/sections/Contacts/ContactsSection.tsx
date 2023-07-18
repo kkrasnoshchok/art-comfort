@@ -38,6 +38,10 @@ export const ContactsSection = () => {
     const selectedFiles = event.target.files;
     const updatedFilesArray: FileObject[] = [];
 
+    if (!selectedFiles) {
+      return null;
+    }
+
     for (const file of selectedFiles) {
       const fileObject = await readFile(file);
       updatedFilesArray.push(fileObject);

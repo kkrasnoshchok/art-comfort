@@ -8,7 +8,7 @@ import NextImage from '@/components/NextImage';
 
 import logo from '@/assets/logo.png';
 import { UsaIcon } from '@/assets/svgs/UsaIcon';
-import { Link } from '@/header/components/Link';
+import { Link } from '@/components/header/components/Link';
 import { clsxm } from '@/utils';
 import { useI18n } from '@/utils';
 
