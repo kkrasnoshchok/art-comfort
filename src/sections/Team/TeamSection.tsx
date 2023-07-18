@@ -278,7 +278,7 @@ export const TeamSection = () => {
           <SwiperSlide key={index}>
             <div className='flex h-full w-full flex-col items-center rounded-3xl border-2 border-black bg-white'>
               <CiUser size='75%' />
-              <h1>{user.name}</h1>
+              <h2 className='text-center'>{user.name}</h2>
             </div>
           </SwiperSlide>
         ))}
