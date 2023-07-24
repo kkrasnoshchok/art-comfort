@@ -1,7 +1,6 @@
+import { motion } from 'framer-motion';
 import { useRef } from 'react';
-import { CiUser } from 'react-icons/ci';
-import { IoArrowBack, IoArrowForwardOutline } from 'react-icons/io5';
-import { A11y, EffectCoverflow, Navigation, Pagination } from 'swiper/modules';
+import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
@@ -245,53 +244,56 @@ const teamMock = [
 export const TeamSection = () => {
   const swiperRef = useRef<SwiperRef>(null);
   return (
-    <section
+    <motion.section
+      onViewportEnter={() => {
+        console.log(`on team section viewport enter`);
+      }}
       id='team'
-      className='relative flex h-screen w-screen flex-col py-24 pl-6 pr-10'
+      className='relative flex w-screen flex-col py-24 pl-6 pr-10'
     >
       <h1>Наша команда</h1>
-      <Swiper
-        ref={swiperRef}
-        effect='coverflow'
-        grabCursor={true}
-        centeredSlides={true}
-        loop={true}
-        slidesPerView={4}
-        navigation={{
-          nextEl: '.nav-next-el',
-          prevEl: '.nav-prev-el',
-        }}
-        pagination={{
-          el: '.nav-pagination-el',
-        }}
-        coverflowEffect={{
-          rotate: 10,
-          stretch: 0,
-          slideShadows: false,
-          depth: 100,
-          modifier: 2.5,
-        }}
-        modules={[EffectCoverflow, Pagination, Navigation, A11y]}
-        className='mt-20 h-full w-full'
-      >
-        {teamMock.map((user, index) => (
-          <SwiperSlide key={index}>
-            <div className='flex h-full w-full flex-col items-center rounded-3xl border-2 border-black bg-white'>
-              <CiUser size='75%' />
-              <h2 className='text-center'>{user.name}</h2>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <button className='nav-prev-el absolute bottom-1/2 left-24 z-10 flex h-16 w-16 translate-y-1/2 items-center justify-center rounded-xl border border-white bg-black shadow-2xl shadow-gray-950'>
-        <IoArrowBack size={24} color='white' />
-      </button>
-      <button className='nav-next-el absolute bottom-1/2 right-24 z-10 flex h-16 w-16 translate-y-1/2 items-center justify-center rounded-xl border border-white bg-black shadow-2xl shadow-gray-950'>
-        <IoArrowForwardOutline size={24} color='white' />
-      </button>
-      <div className='absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-row items-center justify-center gap-2 rounded-xl border p-2'>
-        <div className='nav-pagination-el' />
+      <div className='mt-8 flex h-full w-full flex-row gap-12'>
+        <div className='h-full w-2/4 flex-1'>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim
+            praesent elementum facilisis leo vel fringilla est ullamcorper. Orci
+            nulla pellentesque dignissim enim sit amet venenatis urna cursus. In
+            dictum non consectetur a erat nam. Pharetra pharetra massa massa
+            ultricies mi quis hendrerit dolor. Erat nam at lectus urna duis
+            convallis convallis tellus id. Felis donec et odio pellentesque diam
+            volutpat commodo sed egestas. Egestas egestas fringilla phasellus
+            faucibus scelerisque eleifend donec pretium. Duis ut diam quam nulla
+            porttitor massa id neque. At erat pellentesque adipiscing commodo
+            elit at. Sit amet est placerat in egestas erat imperdiet sed.
+            Vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras.
+          </p>
+          <button className='mt-8 border border-black px-12 py-4'>
+            Дізнатись більше
+          </button>
+        </div>
+        <div className='h-full w-4/6 flex-1'>
+          <Swiper
+            ref={swiperRef}
+            grabCursor={true}
+            loop={true}
+            slidesPerView={4}
+            autoplay
+            spaceBetween={24}
+            modules={[Pagination, Navigation, Autoplay, A11y]}
+            className='h-full w-full'
+          >
+            {teamMock.map((user, index) => (
+              <SwiperSlide key={index}>
+                <div className='flex h-full w-full flex-col bg-white'>
+                  <div className='h-56 w-56 bg-slate-400'></div>
+                  <h4 className='mb-2 mt-4'>{user.name}</h4>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
-    </section>
+    </motion.section>
   );
 };

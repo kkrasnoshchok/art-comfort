@@ -2,83 +2,25 @@
 import { Select } from 'antd';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
+import { NavigationList } from '@/components/header/components/NavigationList/NavigationList';
+import { Href, Hrefs } from '@/components/header/types';
 import NextImage from '@/components/NextImage';
 
 import logo from '@/assets/logo.png';
 import { UsaIcon } from '@/assets/svgs/UsaIcon';
-import { Link } from '@/components/header/components/Link';
-import { clsxm } from '@/utils';
-import { useI18n } from '@/utils';
-
-const Hrefs = {
-  about: '#about',
-  services: '#services',
-  projects: '#projects',
-  team: '#team',
-  jobs: '#jobs',
-  cerfitications: '#certifications',
-  contacts: '#contacts',
-} as const;
-
-type Href = (typeof Hrefs)[keyof typeof Hrefs];
-
-type NavigationListProps = {
-  nav: {
-    links: {
-      href: Href;
-      title: string;
-    }[];
-    contacts: {
-      href: Href;
-      title: string;
-    };
-  };
-  headerLinkClassName?: string;
-  contactsClassName?: string;
-  onLinkClick?: () => void;
-};
-
-const NavigationList = (props: NavigationListProps) => {
-  const { nav, contactsClassName, headerLinkClassName, onLinkClick } = props;
-
-  return (
-    <>
-      {nav.links.map((link) => (
-        <Link
-          key={link.href}
-          onClick={() => {
-            console.log(`console logging`);
-            onLinkClick && onLinkClick();
-          }}
-          className={headerLinkClassName}
-          {...link}
-        />
-      ))}
-      {/* Contacts Button */}
-      <motion.a
-        className={clsxm([
-          'ml-8 rounded-full border-2 border-white bg-black px-6 py-3 text-white transition-all hover:border-black hover:bg-white hover:text-black',
-          contactsClassName,
-        ])}
-        onClick={() => onLinkClick && onLinkClick()}
-        href={nav.contacts.href}
-      >
-        {nav.contacts.title}
-      </motion.a>
-    </>
-  );
-};
+import { clsxm, useI18n } from '@/utils';
 
 export const Header = () => {
+  const [activeLink, setActiveLink] = useState<Href>('#about');
   const router = useRouter();
-  const { t } = useI18n();
   const [menuOpened, setMenuOpened] = useState(false);
 
   const onLocaleChange = (locale: 'ua' | 'en') => {
     router.push(router.pathname, router.asPath, { locale });
   };
+  const { t } = useI18n();
 
   const links = useMemo(
     () => [
@@ -92,6 +34,39 @@ export const Header = () => {
     [t]
   );
   const contacts = { href: Hrefs.contacts, title: t.header.contactsLabel };
+
+  useEffect(() => {
+    // Intersection Observer configuration
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5, // 50% of the section needs to be visible
+    };
+
+    // Callback function when the section is intersecting
+    const handleIntersection: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveLink(entry.target.id);
+        }
+      });
+    };
+
+    // Create the Intersection Observer
+    const observer = new IntersectionObserver(
+      handleIntersection,
+      observerOptions
+    );
+
+    // Observe each section
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section) => observer.observe(section));
+
+    // Clean up the observer when the component unmounts
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <AnimatePresence>
@@ -125,6 +100,7 @@ export const Header = () => {
                 links,
                 contacts,
               }}
+              activeLink={activeLink}
             />
           </nav>
           {/* Language Select */}
@@ -196,6 +172,7 @@ export const Header = () => {
               contactsClassName='mt-auto mb-36 w-2/3 ml-0 sm:w-full justify-center items-center text-center'
               headerLinkClassName='text-2xl'
               onLinkClick={() => setMenuOpened(false)}
+              activeLink={activeLink}
             />
           </motion.nav>
         </AnimatePresence>

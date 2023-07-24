@@ -14,11 +14,6 @@ type HeaderLinkProps = {
 
 export const Link = ({ title, className, ...props }: HeaderLinkProps) => (
   <motion.a
-    whileHover={{
-      scale: 1.1,
-      borderColor: '#000000',
-      color: '#1e272e',
-    }}
     className={clsxm(['border-b-2 border-transparent px-2', className])}
     {...props}
   >

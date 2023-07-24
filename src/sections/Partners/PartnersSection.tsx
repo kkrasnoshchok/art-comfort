@@ -1,20 +1,20 @@
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 export const PartnersSection = () => {
   return (
-    <section id='#partners' className='my-24 flex w-screen flex-col px-6'>
-      <h1>Партнери</h1>
+    <article id='#partners' className='mt-24 flex w-screen flex-col px-6'>
+      {/* <h1>Партнери</h1> */}
       <Swiper
         grabCursor
-        modules={[Autoplay]}
+        modules={[Autoplay, EffectFade]}
         centeredSlides
         loop
         slidesPerView={5}
         autoplay={{
           delay: 2000,
         }}
-        className='mt-20 flex h-full w-full'
+        className='mt-12 flex h-full w-full'
       >
         {Array(15)
           .fill(0)
@@ -24,6 +24,6 @@ export const PartnersSection = () => {
             </SwiperSlide>
           ))}
       </Swiper>
-    </section>
+    </article>
   );
 };

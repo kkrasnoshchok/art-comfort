@@ -20,8 +20,8 @@ const HomePage = () => (
       <Header />
       <AboutSection />
       <ServicesSection />
-      <PartnersSection />
       <ProjectsSection />
+      <PartnersSection />
       <TeamSection />
       <JobOffersSection />
       <CertificationsSection />
