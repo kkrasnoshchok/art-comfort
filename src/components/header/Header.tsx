@@ -46,8 +46,9 @@ export const Header = () => {
     // Callback function when the section is intersecting
     const handleIntersection: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
+        console.log(`entry target id ->${entry.target.id}`);
         if (entry.isIntersecting) {
-          setActiveLink(entry.target.id);
+          setActiveLink(entry.target.id as Href);
         }
       });
     };

@@ -1,6 +1,6 @@
 export const ContributionSection = () => {
   return (
-    <section id='#contribution' className='flex w-screen flex-col px-6 py-24'>
+    <article id='contribution' className='flex w-screen flex-col px-6 py-24'>
       <h1>Вклад в перемогу України</h1>
       <div className='h-10/12 mt-12 flex'>
         <div className='p mr-4 flex flex-1 flex-col'>
@@ -63,6 +63,6 @@ export const ContributionSection = () => {
         </div>
         <div className='flex-1 rounded-lg bg-slate-200' />
       </div>
-    </section>
+    </article>
   );
 };

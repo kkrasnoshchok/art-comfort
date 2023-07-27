@@ -3,24 +3,22 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 export const PartnersSection = () => {
   return (
-    <article id='#partners' className='mt-24 flex w-screen flex-col px-6'>
+    <article id='#partners' className='flex w-screen flex-col px-12'>
       {/* <h1>Партнери</h1> */}
       <Swiper
         grabCursor
         modules={[Autoplay, EffectFade]}
-        centeredSlides
         loop
-        slidesPerView={5}
-        autoplay={{
-          delay: 2000,
-        }}
-        className='mt-12 flex h-full w-full'
+        centeredSlides
+        slidesPerView={4}
+        autoplay={{ delay: 2000 }}
+        className='ml-6 mt-12 flex h-full w-full'
       >
         {Array(15)
           .fill(0)
           .map((_, idx) => (
             <SwiperSlide key={idx}>
-              <div className='h-24 w-48 border border-slate-300 bg-slate-50' />
+              <div className='h-24 w-48 rounded-lg border bg-slate-100' />
             </SwiperSlide>
           ))}
       </Swiper>

@@ -245,9 +245,6 @@ export const TeamSection = () => {
   const swiperRef = useRef<SwiperRef>(null);
   return (
     <motion.section
-      onViewportEnter={() => {
-        console.log(`on team section viewport enter`);
-      }}
       id='team'
       className='relative flex w-screen flex-col py-24 pl-6 pr-10'
     >

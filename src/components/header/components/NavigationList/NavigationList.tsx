@@ -37,7 +37,6 @@ export const NavigationList = (props: NavigationListProps) => {
         <Link
           key={link.href}
           onClick={() => {
-            console.log(`console logging`);
             onLinkClick && onLinkClick();
           }}
           className={clsxm([
@@ -57,7 +56,7 @@ export const NavigationList = (props: NavigationListProps) => {
           'ml-8 rounded-full border-2 border-white bg-black px-6 py-3 text-white transition-all hover:border-black hover:bg-white hover:text-black',
           contactsClassName,
           `#${activeLink}` === '#contacts' &&
-            'border-green-950 bg-green-200 text-green-950',
+            'border-black bg-white text-black',
         ])}
         onClick={() => onLinkClick && onLinkClick()}
         href={nav.contacts.href}
