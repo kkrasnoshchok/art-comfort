@@ -2,10 +2,8 @@ import { Header } from '@/components';
 
 import {
   AboutSection,
-  CertificationsSection,
   ContactsSection,
   ContributionSection,
-  JobOffersSection,
   PartnersSection,
   ProjectsSection,
   ServicesSection,
@@ -23,8 +21,8 @@ const HomePage = () => (
       <ProjectsSection />
       <PartnersSection />
       <TeamSection />
-      <JobOffersSection />
-      <CertificationsSection />
+      {/* <JobOffersSection /> */}
+      {/* <CertificationsSection /> */}
       <ContributionSection />
       <ContactsSection />
     </main>

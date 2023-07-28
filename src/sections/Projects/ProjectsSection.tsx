@@ -112,7 +112,7 @@ export const ProjectsSection = () => {
                     <strong>Year:</strong> {project.year}
                   </p>
                 </div>
-                <p className='pointer-events-none absolute -bottom-4 left-0 flex items-start justify-center rounded-lg bg-slate-500 px-4 py-12 text-white opacity-0 transition-all duration-500 group-hover:bottom-0 group-hover:opacity-100'>
+                <p className='pointer-events-none absolute -bottom-4 left-0 flex items-start justify-center rounded-lg bg-slate-100 bg-opacity-40 px-4 py-12 text-slate-950 opacity-0 backdrop-blur-xl transition-all duration-500 group-hover:bottom-0 group-hover:opacity-100'>
                   {project.details}
                 </p>
               </div>
