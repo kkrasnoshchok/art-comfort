@@ -1,3 +1,6 @@
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+
 import { clsxm } from '@/utils';
 
 type Service = {
@@ -50,33 +53,64 @@ const services: Service[] = [
 ];
 
 export const ServicesSection = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
     <section id='services' className='flex w-screen flex-col px-6 py-16 pt-24'>
-      <h1>Послуги</h1>
-      <div className='mt-4 flex flex-col gap-24'>
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+      >
+        Послуги
+      </motion.h1>
+      <motion.div
+        ref={ref}
+        className='mt-4 flex flex-col gap-24'
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
+      >
         {services.slice(0, 3).map((service, index) => (
-          <div
+          <motion.div
             key={index}
             className={clsxm([
               'flex w-full flex-1 flex-row p-4',
               index % 2 === 0 ? 'text-left' : 'flex-row-reverse text-right',
             ])}
+            initial={{ opacity: 0, x: index % 2 === 0 ? 200 : -200 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{
+              duration: 0.8,
+              delay: 0.2 + index * 0.5,
+              ease: 'easeOut',
+            }}
           >
             <div
               className={clsxm('flex-1', [index % 2 === 0 ? 'pr-12' : 'pl-12'])}
             >
-              <h2 className='text-xl font-bold'>{service.title}</h2>
-              <p>{service.description}</p>
+              <motion.h2 className='text-xl font-bold'>
+                {service.title}
+              </motion.h2>
+              <motion.p>{service.description}</motion.p>
             </div>
-            <div
+            <motion.div
               className={clsxm(['mt-12 h-96  w-96 bg-slate-200 px-96'])}
-            ></div>
-          </div>
+            ></motion.div>
+          </motion.div>
         ))}
-      </div>
-      <div className='mt-24 flex w-full items-center justify-center'>
+      </motion.div>
+      <motion.div
+        className='mt-24 flex w-full items-center justify-center'
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
+      >
         <button className='border px-16 py-4'>Discover more services</button>
-      </div>
+      </motion.div>
     </section>
   );
 };

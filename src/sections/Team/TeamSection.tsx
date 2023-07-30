@@ -249,7 +249,7 @@ export const TeamSection = () => {
       className='relative flex w-screen flex-col py-24 pl-6 pr-10'
     >
       <h1>Наша команда</h1>
-      <div className='mt-8 flex h-full w-full flex-row gap-12'>
+      <div className='mt-8 flex h-full w-full flex-col gap-12 sm:flex-row'>
         <div className='h-full w-2/4 flex-1'>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -269,7 +269,7 @@ export const TeamSection = () => {
             Дізнатись більше
           </button>
         </div>
-        <div className='h-full w-4/6 flex-1'>
+        <div className='h-full flex-1 sm:w-4/6'>
           <Swiper
             ref={swiperRef}
             grabCursor={true}

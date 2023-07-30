@@ -1,5 +1,7 @@
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
+import { useEffect } from 'react';
 import CountUp from 'react-countup';
+import { useInView } from 'react-intersection-observer';
 
 type Project = {
   title: string;
@@ -62,36 +64,56 @@ const mockStatistics: Statistics[] = [
 ];
 
 export const ProjectsSection = () => {
+  // Use the Intersection Observer hook
+  const controls = useAnimation();
+  const { ref, inView } = useInView({
+    // triggerOnce: true, // Animate only once on enter
+    threshold: 0.2, // Trigger animation when 20% of the section is visible
+  });
+
+  const fadeInAnimation = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+
+  const slideUpAnimation = {
+    hidden: { y: 30 },
+    visible: { y: 0 },
+  };
+
+  // useEffect to trigger animations when inView changes
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    } else {
+      controls.start('hidden');
+    }
+  }, [controls, inView]);
+
   return (
     <section
       id='projects'
       className='flex h-screen w-screen flex-col px-6 pb-4 pt-24'
+      ref={ref}
     >
-      <h1>Знакові Проєкти</h1>
+      <motion.h1
+        initial={{ opacity: 0 }}
+        animate={{ opacity: inView ? 1 : 0 }}
+        transition={{ duration: 0.8 }}
+        className='text-4xl font-bold'
+      >
+        Знакові Проєкти
+      </motion.h1>
       {/* Projects container */}
-      {/* <div className='mt-4 grid h-full min-h-screen w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
-        {mockProjects.map((project, index) => {
-          const size = index === 0 ? 'big' : 'small';
-          return (
-            <div
-              key={index}
-              className={clsxm([
-                'group relative rounded-lg bg-gray-100 p-4',
-                size === 'big' && 'md:row-span-2 lg:row-span-3',
-              ])}
-            >
-              <div className='pointer-events-none absolute inset-0 flex h-full flex-col items-center rounded-lg bg-gray-800 text-white opacity-0 transition-opacity duration-700 group-hover:opacity-95'>
-                <h2 className='mb-2 text-xl font-semibold'>{project.title}</h2>
-                <p className='mb-2'>
-                  <strong>Year:</strong> {project.year}
-                </p>
-                <p className='text-xl'>{project.details}</p>
-              </div>
-            </div>
-          );
-        })}
-      </div> */}
-      <div className='mt-8 grid flex-1 grid-cols-1 gap-4 px-6 md:grid-cols-2 lg:grid-cols-3'>
+      <motion.div
+        className='mt-8 grid flex-1 grid-cols-1 gap-4 px-6 md:grid-cols-2 lg:grid-cols-3'
+        initial={{ opacity: 0, y: 30 }}
+        animate={{
+          opacity: inView ? 1 : 0,
+          y: inView ? 0 : 30,
+        }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
         {mockProjects.map((project, index) => {
           const size = index === 0 ? 'big' : 'small';
           return (
@@ -119,12 +141,25 @@ export const ProjectsSection = () => {
             </div>
           );
         })}
-      </div>
-      <div className='mt-8 px-6'>
+      </motion.div>
+      <motion.div
+        className='mt-8 px-6'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: inView ? 1 : 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+      >
         <button className='border px-12 py-4 text-xl'>See all projects</button>
-      </div>
+      </motion.div>
       {/* Statistics Container */}
-      <div className='mt-12 grid grid-cols-1 gap-4 px-6 md:grid-cols-3'>
+      <motion.div
+        className='mt-12 grid grid-cols-1 gap-4 px-6 md:grid-cols-3'
+        initial={{ opacity: 0, y: 30 }}
+        animate={{
+          opacity: inView ? 1 : 0,
+          y: inView ? 0 : 30,
+        }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
         {mockStatistics.map((statistic, index) => (
           <div
             key={index}
@@ -144,7 +179,7 @@ export const ProjectsSection = () => {
             <h3 className='mt-2 text-xl font-semibold'>{statistic.name}</h3>
           </div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

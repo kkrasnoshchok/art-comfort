@@ -2,7 +2,7 @@ export const ContributionSection = () => {
   return (
     <article id='contribution' className='flex w-screen flex-col px-6 py-24'>
       <h1>Вклад в перемогу України</h1>
-      <div className='h-10/12 mt-12 flex'>
+      <div className='h-10/12 mt-12 flex flex-col sm:flex-row'>
         <div className='p mr-4 flex flex-1 flex-col'>
           <p className='rounded-lg border-2 p-4'>
             В першу чергу хочу подякувати всім нашим Захисникам та Захисницям,

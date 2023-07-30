@@ -28,8 +28,8 @@ export const Header = () => {
       { href: Hrefs.services, title: t.header.servicesLabel },
       { href: Hrefs.projects, title: t.header.projectsLabel },
       { href: Hrefs.team, title: t.header.teamLabel },
-      { href: Hrefs.jobs, title: t.header.jobsLabel },
-      { href: Hrefs.cerfitications, title: t.header.certificationsLabel },
+      // { href: Hrefs.jobs, title: t.header.jobsLabel },
+      // { href: Hrefs.cerfitications, title: t.header.certificationsLabel },
     ],
     [t]
   );
@@ -46,7 +46,6 @@ export const Header = () => {
     // Callback function when the section is intersecting
     const handleIntersection: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
-        console.log(`entry target id ->${entry.target.id}`);
         if (entry.isIntersecting) {
           setActiveLink(entry.target.id as Href);
         }
