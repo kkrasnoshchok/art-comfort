@@ -1,16 +1,55 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Alert, Button, Upload } from 'antd';
+import { Alert } from 'antd';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { clsxm } from '@/utils';
 import { useI18n } from '@/utils';
 
+type FileObject = {
+  filename: string;
+  content: ArrayBuffer | null;
+};
+
+const readFile = async (file: File): Promise<FileObject> => {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const content = reader.result as ArrayBuffer;
+      const fileObject: FileObject = { filename: file.name, content };
+      resolve(fileObject);
+    };
+    reader.readAsArrayBuffer(file);
+  });
+};
+
 export const ContactsSection = () => {
   const { locale } = useRouter();
   const [formSent, setFormSent] = useState(false);
+  const [filesArray, setFilesArray] = useState<
+    { filename: string; content: string | ArrayBuffer | null }[]
+  >([]);
+
+  console.log(filesArray);
+
+  const handleFileSelect = async (event: ChangeEvent<HTMLInputElement>) => {
+    const selectedFiles = event.target.files;
+    const updatedFilesArray: FileObject[] = [];
+
+    if (!selectedFiles) {
+      return null;
+    }
+
+    for (const file of selectedFiles) {
+      const fileObject = await readFile(file);
+      updatedFilesArray.push(fileObject);
+    }
+
+    setFilesArray([...filesArray, ...updatedFilesArray]);
+  };
+
   const { t } = useI18n();
   const getRequiredError = (field: string) => {
     if (locale === 'ua') {
@@ -48,8 +87,9 @@ export const ContactsSection = () => {
     try {
       const response = await fetch('/api/email', {
         method: 'POST',
-        body: JSON.stringify({ ...values }),
+        body: JSON.stringify({ ...values, files: filesArray }),
       });
+
       // Emptying values
       if (response.ok) {
         setFormSent(true);
@@ -135,16 +175,18 @@ export const ContactsSection = () => {
               rows={10}
               {...register('message')}
             />
-            <div className='w-2nd mt-6 flex items-start justify-center'>
-              <Upload
-                maxCount={3}
-                listType='picture'
-                onChange={(data) => {
-                  console.log(`on change -> ${JSON.stringify(data, null, 2)}`);
-                }}
-              >
-                <Button>{t.contacts.uploadLabel}</Button>
-              </Upload>
+            <div className='mt-6 flex flex-col items-start justify-center'>
+              <input
+                type='file'
+                multiple
+                onChange={(e) => handleFileSelect(e)}
+              />
+              {filesArray.length > 0 &&
+                filesArray.map((file, index) => (
+                  <p key={index}>
+                    File {index + 1}: {file.filename}
+                  </p>
+                ))}
             </div>
             <button
               onClick={handleSubmit(onSubmit)}

@@ -1,0 +1,9 @@
+export { AboutSection } from '@/sections/About';
+export { CertificationsSection } from '@/sections/Certifications';
+export { ContactsSection } from '@/sections/Contacts';
+export { ContributionSection } from '@/sections/Contribution';
+export { JobOffersSection } from '@/sections/JobOffers';
+export { PartnersSection } from '@/sections/Partners';
+export { ProjectsSection } from '@/sections/Projects';
+export { ServicesSection } from '@/sections/Services';
+export { TeamSection } from '@/sections/Team';

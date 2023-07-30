@@ -1,11 +1,14 @@
-import { ContactsSection } from '@/contacts/sections';
-import { Header } from '@/header';
-import { AboutSection } from '@/sections/About';
-import { CertificationsSection } from '@/sections/Certifications';
-import { JobOffersSection } from '@/sections/JobOffers';
-import { ProjectsSection } from '@/sections/Projects';
-import { ServicesSection } from '@/sections/Services';
-import { TeamSection } from '@/sections/Team/TeamSection';
+import { Header } from '@/components';
+
+import {
+  AboutSection,
+  ContactsSection,
+  ContributionSection,
+  PartnersSection,
+  ProjectsSection,
+  ServicesSection,
+  TeamSection,
+} from '@/sections';
 import { Seo } from '@/seo';
 
 const HomePage = () => (
@@ -16,9 +19,11 @@ const HomePage = () => (
       <AboutSection />
       <ServicesSection />
       <ProjectsSection />
+      <PartnersSection />
       <TeamSection />
-      <JobOffersSection />
-      <CertificationsSection />
+      {/* <JobOffersSection /> */}
+      {/* <CertificationsSection /> */}
+      <ContributionSection />
       <ContactsSection />
     </main>
   </>
