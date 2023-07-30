@@ -272,10 +272,10 @@ export const TeamSection = () => {
         <div className='h-full flex-1 sm:w-4/6'>
           <Swiper
             ref={swiperRef}
-            grabCursor={true}
-            loop={true}
-            slidesPerView={4}
+            grabCursor
+            loop
             autoplay
+            slidesPerView={4}
             spaceBetween={24}
             modules={[Pagination, Navigation, Autoplay, A11y]}
             className='h-full w-full'

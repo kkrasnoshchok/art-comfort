@@ -1,5 +1,5 @@
 import { motion, useAnimation } from 'framer-motion';
-import { useEffect } from 'react';
+import { Ref, useEffect } from 'react';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 
@@ -70,16 +70,6 @@ export const ProjectsSection = () => {
     // triggerOnce: true, // Animate only once on enter
     threshold: 0.2, // Trigger animation when 20% of the section is visible
   });
-
-  const fadeInAnimation = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
-
-  const slideUpAnimation = {
-    hidden: { y: 30 },
-    visible: { y: 0 },
-  };
 
   // useEffect to trigger animations when inView changes
   useEffect(() => {
@@ -168,7 +158,7 @@ export const ProjectsSection = () => {
             <CountUp useEasing start={0} end={statistic.value} duration={2.5}>
               {({ countUpRef, start }) => (
                 <motion.h1
-                  ref={countUpRef}
+                  ref={countUpRef as Ref<HTMLHeadingElement>}
                   className='text-gray-800'
                   onViewportEnter={() => {
                     start();

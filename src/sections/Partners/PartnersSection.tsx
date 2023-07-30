@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 export const PartnersSection = () => {
   return (
     <article id='#partners' className='flex w-screen flex-col px-12'>
-      {/* <h1>Партнери</h1> */}
       <Swiper
         grabCursor
         modules={[Autoplay, EffectFade]}
