@@ -20,7 +20,7 @@ export const AboutSection = () => {
   return (
     <section
       id='about'
-      className='flex h-screen w-screen flex-col items-center justify-center px-6 py-24 lg:flex-row'
+      className='flex w-screen flex-col items-center justify-center px-6 py-24 lg:h-screen lg:flex-row'
       ref={ref}
     >
       <motion.div
@@ -70,7 +70,7 @@ export const AboutSection = () => {
         variants={slideInRightAnimation}
         transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
       >
-        <motion.div className='h-full w-4/5 rounded-3xl bg-blue-300 backdrop-blur-3xl lg:h-4/5'></motion.div>
+        <motion.div className='mt-12 aspect-square w-full rounded-3xl bg-gradient-to-b from-blue-300 to-pink-300 lg:mt-0 lg:h-4/5' />
       </motion.div>
     </section>
   );

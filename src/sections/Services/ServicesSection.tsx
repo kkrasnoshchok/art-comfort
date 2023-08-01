@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-import { clsxm } from '@/utils';
+import { clsxm, useBreakpoint } from '@/utils';
 
 type Service = {
   title: string;
@@ -58,8 +58,13 @@ export const ServicesSection = () => {
     threshold: 0.1,
   });
 
+  const { isLg } = useBreakpoint('lg');
+
   return (
-    <section id='services' className='flex w-screen flex-col px-6 py-16 pt-24'>
+    <section
+      id='services'
+      className={clsxm(['flex w-screen flex-col px-6 py-24', isLg && 'py-24'])}
+    >
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -69,7 +74,7 @@ export const ServicesSection = () => {
       </motion.h1>
       <motion.div
         ref={ref}
-        className='mt-4 flex flex-col gap-24'
+        className={clsxm(['mt-4 flex flex-col', isLg && 'gap-24'])}
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
@@ -79,7 +84,13 @@ export const ServicesSection = () => {
             key={index}
             className={clsxm([
               'flex w-full flex-1 flex-row p-4',
-              index % 2 === 0 ? 'text-left' : 'flex-row-reverse text-right',
+              isLg
+                ? index % 2 === 0
+                  ? 'text-left'
+                  : 'flex-row-reverse text-right'
+                : null,
+              isLg ? 'flex-row' : 'flex-col',
+              'items-center justify-center',
             ])}
             initial={{ opacity: 0, x: index % 2 === 0 ? 200 : -200 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -90,7 +101,10 @@ export const ServicesSection = () => {
             }}
           >
             <div
-              className={clsxm('flex-1', [index % 2 === 0 ? 'pr-12' : 'pl-12'])}
+              className={clsxm([
+                'flex-1',
+                isLg ? (index % 2 === 0 ? 'pr-12' : 'pl-12') : null,
+              ])}
             >
               <motion.h2 className='text-xl font-bold'>
                 {service.title}
@@ -98,13 +112,16 @@ export const ServicesSection = () => {
               <motion.p>{service.description}</motion.p>
             </div>
             <motion.div
-              className={clsxm(['mt-12 h-96  w-96 bg-slate-200 px-96'])}
-            ></motion.div>
+              className={clsxm([
+                'mt-4 aspect-square w-full border border-slate-300 bg-slate-100',
+                isLg && 'mt-0 h-96 w-96 px-96',
+              ])}
+            />
           </motion.div>
         ))}
       </motion.div>
       <motion.div
-        className='mt-24 flex w-full items-center justify-center'
+        className={clsxm(['mt-8 flex w-full items-center justify-center'])}
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}

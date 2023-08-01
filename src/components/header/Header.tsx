@@ -87,7 +87,7 @@ export const Header = () => {
                 alt='logo'
                 width={120}
                 height={120}
-                className='absolute '
+                className='absolute'
               />
             </div>
           </a>

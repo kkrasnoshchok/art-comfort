@@ -1,4 +1,5 @@
 import { Header } from '@/components';
+import { StatisticsContainer } from '@/components/header/components/Statistics/StatisticsContainer';
 
 import {
   AboutSection,
@@ -19,6 +20,7 @@ const HomePage = () => (
       <AboutSection />
       <ServicesSection />
       <ProjectsSection />
+      <StatisticsContainer />
       <PartnersSection />
       <TeamSection />
       {/* <JobOffersSection /> */}

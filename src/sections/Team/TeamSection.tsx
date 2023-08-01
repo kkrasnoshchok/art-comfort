@@ -8,6 +8,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
+import { clsxm, useBreakpoint } from '@/utils';
+
 const teamMock = [
   {
     id: 1,
@@ -243,6 +245,7 @@ const teamMock = [
 
 export const TeamSection = () => {
   const swiperRef = useRef<SwiperRef>(null);
+  const { isLg } = useBreakpoint('lg');
   return (
     <motion.section
       id='team'
@@ -250,7 +253,7 @@ export const TeamSection = () => {
     >
       <h1>Наша команда</h1>
       <div className='mt-8 flex h-full w-full flex-col gap-12 sm:flex-row'>
-        <div className='h-full w-2/4 flex-1'>
+        <div className={clsxm(['h-full flex-1', isLg && 'w-2/4'])}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim
@@ -275,7 +278,7 @@ export const TeamSection = () => {
             grabCursor
             loop
             autoplay
-            slidesPerView={4}
+            slidesPerView={isLg ? 4 : 2}
             spaceBetween={24}
             modules={[Pagination, Navigation, Autoplay, A11y]}
             className='h-full w-full'
@@ -283,8 +286,13 @@ export const TeamSection = () => {
             {teamMock.map((user, index) => (
               <SwiperSlide key={index}>
                 <div className='flex h-full w-full flex-col bg-white'>
-                  <div className='h-56 w-56 bg-slate-400'></div>
-                  <h4 className='mb-2 mt-4'>{user.name}</h4>
+                  <div
+                    className={clsxm([
+                      isLg && 'h-56 w-56',
+                      'aspect-square w-full border border-slate-500 bg-slate-200',
+                    ])}
+                  />
+                  <h4 className='mb-2 mt-4 text-gray-700'>{user.name}</h4>
                 </div>
               </SwiperSlide>
             ))}

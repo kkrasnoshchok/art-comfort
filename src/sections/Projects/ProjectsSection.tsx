@@ -1,7 +1,8 @@
 import { motion, useAnimation } from 'framer-motion';
-import { Ref, useEffect } from 'react';
-import CountUp from 'react-countup';
+import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+
+import { clsxm, useBreakpoint } from '@/utils';
 
 type Project = {
   title: string;
@@ -42,32 +43,11 @@ const mockProjects: Project[] = [
   },
 ];
 
-type Statistics = {
-  name: string;
-  value: number;
-};
-
-const mockStatistics: Statistics[] = [
-  {
-    name: 'Years of Experience',
-    value: 10,
-  },
-  {
-    name: 'Projects Completed',
-    value: 50,
-  },
-  {
-    name: 'Clients Served',
-    value: 100,
-  },
-  // Add more statistics as needed
-];
-
 export const ProjectsSection = () => {
-  // Use the Intersection Observer hook
+  const { isLg } = useBreakpoint('lg');
   const controls = useAnimation();
   const { ref, inView } = useInView({
-    // triggerOnce: true, // Animate only once on enter
+    triggerOnce: true, // Animate only ornce on enter
     threshold: 0.2, // Trigger animation when 20% of the section is visible
   });
 
@@ -83,20 +63,23 @@ export const ProjectsSection = () => {
   return (
     <section
       id='projects'
-      className='flex h-screen w-screen flex-col px-6 pb-4 pt-24'
+      className={clsxm([
+        'flex w-screen flex-col px-6 pb-4 pt-24',
+        isLg && 'h-screen',
+      ])}
       ref={ref}
     >
       <motion.h1
         initial={{ opacity: 0 }}
         animate={{ opacity: inView ? 1 : 0 }}
         transition={{ duration: 0.8 }}
-        className='text-4xl font-bold'
+        className='font-bold'
       >
         Знакові Проєкти
       </motion.h1>
       {/* Projects container */}
       <motion.div
-        className='mt-8 grid flex-1 grid-cols-1 gap-4 px-6 md:grid-cols-2 lg:grid-cols-3'
+        className='relative mt-8 grid flex-1 grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'
         initial={{ opacity: 0, y: 30 }}
         animate={{
           opacity: inView ? 1 : 0,
@@ -109,13 +92,18 @@ export const ProjectsSection = () => {
           return (
             <div
               key={index}
-              className={`relative rounded-lg bg-slate-100 p-4 ${
+              className={`border bg-slate-100 p-4 ${
                 size === 'big' ? 'lg:row-span-2' : ''
               } group`}
             >
               <div className='flex h-full flex-col items-start justify-end'>
                 {/* Image */}
-                <div className='flex h-full w-full flex-1 rounded-lg bg-slate-700'></div>
+                <div
+                  className={clsxm([
+                    isLg && 'h-full flex-1',
+                    'flex aspect-square w-full border border-slate-500 bg-slate-300',
+                  ])}
+                ></div>
                 <div className='mt-8'>
                   <h2 className='mb-2 text-xl font-semibold'>
                     {project.title}
@@ -124,7 +112,7 @@ export const ProjectsSection = () => {
                     <strong>Year:</strong> {project.year}
                   </p>
                 </div>
-                <p className='pointer-events-none absolute -bottom-4 left-0 flex items-start justify-center rounded-lg bg-slate-100 bg-opacity-40 px-4 py-12 text-slate-950 opacity-0 backdrop-blur-xl transition-all duration-500 group-hover:bottom-0 group-hover:opacity-100'>
+                <p className='pointer-events-none absolute -bottom-4 left-0 flex items-start justify-center rounded-sm bg-slate-100 bg-opacity-40 px-4 py-8 text-slate-950 opacity-0 backdrop-blur-xl transition-all duration-500 group-hover:bottom-0 group-hover:opacity-100'>
                   {project.details}
                 </p>
               </div>
@@ -133,43 +121,14 @@ export const ProjectsSection = () => {
         })}
       </motion.div>
       <motion.div
-        className='mt-8 px-6'
+        className='mt-4'
         initial={{ opacity: 0 }}
         animate={{ opacity: inView ? 1 : 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
-        <button className='border px-12 py-4 text-xl'>See all projects</button>
+        <button className='border px-8 py-2 text-lg'>See all projects</button>
       </motion.div>
       {/* Statistics Container */}
-      <motion.div
-        className='mt-12 grid grid-cols-1 gap-4 px-6 md:grid-cols-3'
-        initial={{ opacity: 0, y: 30 }}
-        animate={{
-          opacity: inView ? 1 : 0,
-          y: inView ? 0 : 30,
-        }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        {mockStatistics.map((statistic, index) => (
-          <div
-            key={index}
-            className='flex flex-col items-center justify-center rounded-lg bg-slate-100 p-4'
-          >
-            <CountUp useEasing start={0} end={statistic.value} duration={2.5}>
-              {({ countUpRef, start }) => (
-                <motion.h1
-                  ref={countUpRef as Ref<HTMLHeadingElement>}
-                  className='text-gray-800'
-                  onViewportEnter={() => {
-                    start();
-                  }}
-                />
-              )}
-            </CountUp>
-            <h3 className='mt-2 text-xl font-semibold'>{statistic.name}</h3>
-          </div>
-        ))}
-      </motion.div>
     </section>
   );
 };
