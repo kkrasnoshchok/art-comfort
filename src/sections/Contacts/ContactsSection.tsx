@@ -106,7 +106,7 @@ export const ContactsSection = () => {
   return (
     <section
       id='contacts'
-      className='flex w-screen flex-col py-24 pl-6 pr-10 lg:flex-row'
+      className='flex w-screen flex-col px-6 py-24 lg:flex-row'
     >
       <div className='flex w-full flex-col items-center lg:w-1/3 lg:items-start'>
         <h1>{t.contacts.title}</h1>
@@ -126,7 +126,7 @@ export const ContactsSection = () => {
             )}
             <input
               className={clsxm([
-                'w-10/12 border border-slate-300',
+                'w-full border border-slate-300 lg:w-10/12',
                 errors.name?.message && 'border-red-500 text-red-500',
               ])}
               type='text'
@@ -141,7 +141,7 @@ export const ContactsSection = () => {
             )}
             <input
               className={clsxm([
-                'w-10/12 border border-slate-300',
+                'w-full border border-slate-300 lg:w-10/12',
                 errors.email?.message && 'border-red-500 text-red-500',
               ])}
               type='email'
@@ -156,7 +156,7 @@ export const ContactsSection = () => {
             )}
             <input
               className={clsxm([
-                'w-10/12 border border-slate-300',
+                'w-full border border-slate-300 lg:w-10/12',
                 errors.phone?.message && 'border-red-500 text-red-500',
               ])}
               type='tel'
@@ -171,11 +171,11 @@ export const ContactsSection = () => {
             )}
             <textarea
               placeholder={t.contacts.messageInputPlaceholder}
-              className='rows w-10/12 resize-none border border-slate-300'
+              className='rows w-full resize-none border border-slate-300 lg:w-10/12'
               rows={10}
               {...register('message')}
             />
-            <div className='mt-6 flex flex-col items-start justify-center'>
+            <div className='mt-2 flex flex-col items-start justify-center lg:mt-6'>
               <input
                 type='file'
                 multiple
@@ -190,7 +190,7 @@ export const ContactsSection = () => {
             </div>
             <button
               onClick={handleSubmit(onSubmit)}
-              className='mt-6 border border-slate-200 px-12 py-2'
+              className='mt-4 border border-slate-200 px-12 py-2 lg:mt-6'
             >
               {t.contacts.sendEmailButtonLabel}
             </button>
@@ -198,7 +198,7 @@ export const ContactsSection = () => {
         </div>
       </div>
       {/* Map */}
-      <div className='mt-16 flex h-80 border border-slate-300 bg-slate-200 lg:mt-0 lg:h-auto lg:flex-1'>
+      <div className='mt-8 flex aspect-square w-full border border-slate-300 bg-slate-200 lg:mt-0 lg:h-auto lg:flex-1'>
         <iframe
           src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2537.8692753430482!2d30.358270321621863!3d50.499390702292644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cd2d5e855555%3A0x40150a97676ff1c7!2sTov%20%22Art-Komfort%22!5e0!3m2!1sru!2sat!4v1689071912467!5m2!1sru!2sat'
           width='100%'

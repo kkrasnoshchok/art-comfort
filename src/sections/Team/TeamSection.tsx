@@ -245,15 +245,29 @@ const teamMock = [
 
 export const TeamSection = () => {
   const swiperRef = useRef<SwiperRef>(null);
+  const { is2xl } = useBreakpoint('2xl');
+  const { isXl } = useBreakpoint('xl');
   const { isLg } = useBreakpoint('lg');
+  const { isMd } = useBreakpoint('md');
+
+  const getSlidesPerView = () => {
+    if (is2xl) {
+      return 4;
+    }
+    if (isMd || isLg || isXl) {
+      return 3;
+    }
+    return 2;
+  };
+
   return (
     <motion.section
       id='team'
-      className='relative flex w-screen flex-col py-24 pl-6 pr-10'
+      className='relative flex w-screen flex-col px-6 py-24'
     >
       <h1>Наша команда</h1>
-      <div className='mt-8 flex h-full w-full flex-col gap-12 sm:flex-row'>
-        <div className={clsxm(['h-full flex-1', isLg && 'w-2/4'])}>
+      <div className='mt-8 flex h-full w-full flex-col gap-12 lg:flex-row'>
+        <div className={clsxm(['h-full flex-1 lg:w-2/4'])}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim
@@ -272,13 +286,13 @@ export const TeamSection = () => {
             Дізнатись більше
           </button>
         </div>
-        <div className='h-full flex-1 sm:w-4/6'>
+        <div className='h-full flex-1 lg:w-4/6'>
           <Swiper
             ref={swiperRef}
             grabCursor
             loop
             autoplay
-            slidesPerView={isLg ? 4 : 2}
+            slidesPerView={getSlidesPerView()}
             spaceBetween={24}
             modules={[Pagination, Navigation, Autoplay, A11y]}
             className='h-full w-full'
@@ -288,8 +302,7 @@ export const TeamSection = () => {
                 <div className='flex h-full w-full flex-col bg-white'>
                   <div
                     className={clsxm([
-                      isLg && 'h-56 w-56',
-                      'aspect-square w-full border border-slate-500 bg-slate-200',
+                      'aspect-square w-full border border-slate-500 bg-slate-200 lg:h-56 lg:w-56 lg:portrait:h-48 lg:portrait:w-48',
                     ])}
                   />
                   <h4 className='mb-2 mt-4 text-gray-700'>{user.name}</h4>

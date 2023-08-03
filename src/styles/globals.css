@@ -5,6 +5,7 @@
 :root {
   scroll-behavior: smooth;
   max-width: 100%;
+  box-sizing: border-box;
   overflow-x: hidden;
   /* #region  /**=========== Primary Color =========== */
   /* !STARTERCONF Customize these variable, copy and paste from /styles/colors.css for list of colors */

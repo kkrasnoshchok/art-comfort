@@ -1,15 +1,14 @@
-import { clsxm, useBreakpoint } from '@/utils';
+import { clsxm } from '@/utils';
 
 export const ContributionSection = () => {
-  const { isLg } = useBreakpoint('lg');
   return (
     <article
       id='contribution'
-      className={clsxm(['flex w-screen flex-col px-6 py-16', isLg && 'py-24'])}
+      className={clsxm(['flex w-screen flex-col px-6 py-16 lg:py-24'])}
     >
       <h1>Вклад в перемогу України</h1>
-      <div className='h-10/12 mt-12 flex flex-col sm:flex-row'>
-        <div className={clsxm(['p flex flex-1 flex-col', isLg && 'mr-4'])}>
+      <div className='h-10/12 mt-12 flex flex-col lg:flex-row portrait:flex-col'>
+        <div className={clsxm(['p flex flex-1 flex-col lg:mr-4'])}>
           <p className='rounded-lg border-2 p-4'>
             В першу чергу хочу подякувати всім нашим Захисникам та Захисницям,
             які ціною власного життя і здоров`я наближають перемогу України, та
@@ -69,8 +68,7 @@ export const ContributionSection = () => {
         </div>
         <div
           className={clsxm([
-            'mt-4 aspect-square w-full bg-slate-200',
-            isLg && 'mt-0 flex-1',
+            'mt-4 aspect-square w-full bg-slate-200 md:aspect-video lg:mt-0 lg:flex-1 portrait:mt-4',
           ])}
         />
       </div>
