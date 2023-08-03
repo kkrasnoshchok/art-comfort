@@ -101,7 +101,7 @@ export const ProjectsSection = () => {
                 <div
                   className={clsxm([
                     isLg && 'h-full flex-1',
-                    'flex aspect-square w-full border border-slate-500 bg-slate-300',
+                    'flex aspect-video w-full border border-slate-500 bg-slate-300',
                   ])}
                 ></div>
                 <div className='mt-8'>
@@ -112,9 +112,10 @@ export const ProjectsSection = () => {
                     <strong>Year:</strong> {project.year}
                   </p>
                 </div>
-                <p className='pointer-events-none absolute -bottom-4 left-0 flex items-start justify-center rounded-sm bg-slate-100 bg-opacity-40 px-4 py-8 text-slate-950 opacity-0 backdrop-blur-xl transition-all duration-500 group-hover:bottom-0 group-hover:opacity-100'>
+                {/* TODO: Rework the logics */}
+                {/* <p className='pointer-events-none absolute -bottom-4 left-0 flex items-start justify-center rounded-sm bg-slate-100 bg-opacity-40 px-4 py-8 text-slate-950 opacity-0 backdrop-blur-xl transition-all duration-500 group-hover:bottom-0 group-hover:opacity-100'>
                   {project.details}
-                </p>
+                </p> */}
               </div>
             </div>
           );

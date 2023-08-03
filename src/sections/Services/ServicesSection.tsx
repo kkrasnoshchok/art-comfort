@@ -63,7 +63,10 @@ export const ServicesSection = () => {
   return (
     <section
       id='services'
-      className={clsxm(['flex w-screen flex-col px-6 py-24', isLg && 'py-24'])}
+      className={clsxm([
+        'flex w-screen flex-col py-24 pl-6 pr-10',
+        isLg && 'py-24',
+      ])}
     >
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
@@ -74,7 +77,7 @@ export const ServicesSection = () => {
       </motion.h1>
       <motion.div
         ref={ref}
-        className={clsxm(['mt-4 flex flex-col', isLg && 'gap-24'])}
+        className={clsxm(['mt-4 flex flex-col gap-8', isLg && 'gap-24'])}
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
@@ -83,7 +86,7 @@ export const ServicesSection = () => {
           <motion.div
             key={index}
             className={clsxm([
-              'flex w-full flex-1 flex-row p-4',
+              'flex w-full flex-1 flex-row',
               isLg
                 ? index % 2 === 0
                   ? 'text-left'

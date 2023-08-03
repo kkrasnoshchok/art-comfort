@@ -20,7 +20,7 @@ export const AboutSection = () => {
   return (
     <section
       id='about'
-      className='flex w-screen flex-col items-center justify-center px-6 py-24 lg:h-screen lg:flex-row'
+      className='flex w-screen flex-col items-center justify-center py-24 pl-6 pr-10 lg:h-screen lg:flex-row'
       ref={ref}
     >
       <motion.div
