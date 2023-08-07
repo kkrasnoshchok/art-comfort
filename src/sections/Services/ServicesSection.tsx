@@ -64,10 +64,18 @@ export const ServicesSection = () => {
             <motion.div
               key={index}
               className={clsxm([
-                'flex w-full flex-1 flex-col justify-center lg:flex-row',
+                'flex w-full flex-1 flex-col justify-center',
+                index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse',
               ])}
             >
-              <div className={clsxm(['flex-1 lg:pr-12'])}>
+              <div
+                className={clsxm([
+                  'flex-1',
+                  index % 2 === 0
+                    ? 'text-left lg:pr-12'
+                    : 'text-right lg:pl-12',
+                ])}
+              >
                 <motion.h2 className='text-lg font-bold'>
                   {service.title}
                 </motion.h2>

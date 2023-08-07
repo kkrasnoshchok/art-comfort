@@ -14,6 +14,12 @@ export default async (_req: NextApiRequest, res: NextApiResponse) => {
       to: 'krasnoshchokvadim@gmail.com',
       subject: 'Заявка з сайту Art-Comfort',
       // attachments: reqBody.files,
+      // attachments: [
+      //   {
+      //     filename: 'example',
+      //     path: '../../assets/Orexov Сірі Схеми',
+      //   },
+      // ],
       react: EmailTemplate(JSON.parse(_req.body)),
     });
 
