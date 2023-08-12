@@ -9,15 +9,15 @@ type Statistics = {
 
 const mockStatistics: Statistics[] = [
   {
-    name: 'Years of Experience',
+    name: 'Років досвіду',
     value: 10,
   },
   {
-    name: 'Projects Completed',
+    name: 'Успішно завершених проєктів',
     value: 50,
   },
   {
-    name: 'Clients Served',
+    name: 'Постійних клієнтів',
     value: 100,
   },
   // Add more statistics as needed

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { useRef } from 'react';
 import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
@@ -8,6 +9,16 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
+import team0 from '@/assets/Team_0.jpeg';
+import team1 from '@/assets/Team_1.jpeg';
+import team2 from '@/assets/Team_2.jpeg';
+import team3 from '@/assets/Team_3.jpeg';
+import team4 from '@/assets/Team_4.jpeg';
+import team5 from '@/assets/Team_5.jpeg';
+import team6 from '@/assets/Team_6.jpeg';
+import team7 from '@/assets/Team_7.jpeg';
+import team8 from '@/assets/Team_8.jpeg';
+import team9 from '@/assets/Team_9.jpeg';
 import { clsxm, useBreakpoint } from '@/utils';
 
 const teamMock = [
@@ -33,6 +44,7 @@ const teamMock = [
       catchPhrase: 'Multi-layered client-server neural-net',
       bs: 'harness real-time e-markets',
     },
+    url: team0,
   },
   {
     id: 2,
@@ -56,6 +68,7 @@ const teamMock = [
       catchPhrase: 'Proactive didactic contingency',
       bs: 'synergize scalable supply-chains',
     },
+    url: team1,
   },
   {
     id: 3,
@@ -79,6 +92,7 @@ const teamMock = [
       catchPhrase: 'Face to face bifurcated interface',
       bs: 'e-enable strategic applications',
     },
+    url: team2,
   },
   {
     id: 4,
@@ -102,6 +116,7 @@ const teamMock = [
       catchPhrase: 'Multi-tiered zero tolerance productivity',
       bs: 'transition cutting-edge web services',
     },
+    url: team3,
   },
   {
     id: 5,
@@ -125,6 +140,7 @@ const teamMock = [
       catchPhrase: 'User-centric fault-tolerant solution',
       bs: 'revolutionize end-to-end systems',
     },
+    url: team4,
   },
   {
     id: 6,
@@ -148,6 +164,7 @@ const teamMock = [
       catchPhrase: 'Synchronised bottom-line interface',
       bs: 'e-enable innovative applications',
     },
+    url: team5,
   },
   {
     id: 7,
@@ -171,6 +188,7 @@ const teamMock = [
       catchPhrase: 'Configurable multimedia task-force',
       bs: 'generate enterprise e-tailers',
     },
+    url: team6,
   },
   {
     id: 8,
@@ -194,6 +212,7 @@ const teamMock = [
       catchPhrase: 'Implemented secondary concept',
       bs: 'e-enable extensible e-tailers',
     },
+    url: team7,
   },
   {
     id: 9,
@@ -217,6 +236,7 @@ const teamMock = [
       catchPhrase: 'Switchable contextually-based project',
       bs: 'aggregate real-time technologies',
     },
+    url: team8,
   },
   {
     id: 10,
@@ -240,6 +260,7 @@ const teamMock = [
       catchPhrase: 'Centralized empowering task-force',
       bs: 'target end-to-end models',
     },
+    url: team9,
   },
 ];
 
@@ -268,6 +289,10 @@ export const TeamSection = () => {
       <h1>Наша команда</h1>
       <div className='mt-8 flex h-full w-full flex-col gap-12 lg:flex-row'>
         <div className={clsxm(['h-full flex-1 lg:w-2/4'])}>
+          <p className='bg-black text-white'>
+            Тут має бути гарний текст з описом дружньої команди
+          </p>
+          <br />
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim
@@ -302,9 +327,17 @@ export const TeamSection = () => {
                 <div className='flex h-full w-full flex-col bg-white'>
                   <div
                     className={clsxm([
-                      'aspect-square w-full border border-slate-500 bg-slate-200 lg:h-56 lg:w-56 lg:portrait:h-48 lg:portrait:w-48',
+                      'aspect-square w-full border border-slate-500 bg-slate-950 lg:h-56 lg:w-56 lg:portrait:h-48 lg:portrait:w-48',
                     ])}
-                  />
+                  >
+                    <Image
+                      src={user.url}
+                      alt='alt'
+                      width={100}
+                      height={100}
+                      className='aspect-square h-full w-full opacity-80'
+                    />
+                  </div>
                   <h4 className='mb-2 mt-4 text-gray-700'>{user.name}</h4>
                 </div>
               </SwiperSlide>

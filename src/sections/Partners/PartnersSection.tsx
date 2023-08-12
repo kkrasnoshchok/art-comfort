@@ -1,7 +1,72 @@
 import { Autoplay, EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { FacebookIcon } from '@/assets/svgs/Facebook';
+import { RedditIcon } from '@/assets/svgs/RedditIcon';
 import { clsxm, useBreakpoint } from '@/utils';
+
+const mockPartners = [
+  {
+    Icon: RedditIcon,
+    alt: 'Reddit Icon',
+  },
+  {
+    Icon: FacebookIcon,
+    alt: 'Facebook Icon',
+  },
+  {
+    Icon: RedditIcon,
+    alt: 'Reddit Icon',
+  },
+  {
+    Icon: FacebookIcon,
+    alt: 'Facebook Icon',
+  },
+  {
+    Icon: RedditIcon,
+    alt: 'Reddit Icon',
+  },
+  {
+    Icon: RedditIcon,
+    alt: 'Reddit Icon',
+  },
+  {
+    Icon: FacebookIcon,
+    alt: 'Facebook Icon',
+  },
+  {
+    Icon: RedditIcon,
+    alt: 'Reddit Icon',
+  },
+  {
+    Icon: FacebookIcon,
+    alt: 'Facebook Icon',
+  },
+  {
+    Icon: RedditIcon,
+    alt: 'Reddit Icon',
+  },
+  {
+    Icon: RedditIcon,
+    alt: 'Reddit Icon',
+  },
+  {
+    Icon: FacebookIcon,
+    alt: 'Facebook Icon',
+  },
+  {
+    Icon: RedditIcon,
+    alt: 'Reddit Icon',
+  },
+  {
+    Icon: FacebookIcon,
+    alt: 'Facebook Icon',
+  },
+  {
+    Icon: RedditIcon,
+    alt: 'Reddit Icon',
+  },
+];
 
 export const PartnersSection = () => {
   const { isXl } = useBreakpoint('xl');
@@ -29,6 +94,10 @@ export const PartnersSection = () => {
         'mt-8 flex w-screen flex-col items-center justify-center lg:px-12',
       ])}
     >
+      <h3>
+        Тут буде така каруселька з логотипами партнерів, які по дефолту
+        чорно-білі, а по наведенню стають кольоровими
+      </h3>
       <Swiper
         grabCursor
         modules={[Autoplay, EffectFade]}
@@ -41,7 +110,7 @@ export const PartnersSection = () => {
           'flex h-full w-full items-center justify-center lg:mt-12',
         ])}
       >
-        {Array(15)
+        {/* {Array(15)
           .fill(0)
           .map((_, idx) => (
             <SwiperSlide key={idx}>
@@ -51,7 +120,18 @@ export const PartnersSection = () => {
                 ])}
               />
             </SwiperSlide>
-          ))}
+          ))} */}
+        {mockPartners.map((Element, idx) => (
+          <SwiperSlide key={idx}>
+            <div
+              className={clsxm([
+                'flex aspect-video w-full items-center justify-center lg:h-24 lg:w-48 lg:portrait:w-36',
+              ])}
+            >
+              <Element.Icon />
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </article>
   );

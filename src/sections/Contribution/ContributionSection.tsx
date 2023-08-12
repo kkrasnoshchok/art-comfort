@@ -68,9 +68,13 @@ export const ContributionSection = () => {
         </div>
         <div
           className={clsxm([
-            'mt-4 aspect-square w-full bg-slate-200 md:aspect-video lg:mt-0 lg:flex-1 portrait:mt-4',
+            'mt-4 flex aspect-square w-full items-center justify-center bg-slate-200 md:aspect-video lg:mt-0 lg:flex-1 portrait:mt-4',
           ])}
-        />
+        >
+          <p className='bg-white text-xl'>
+            Тут буде фотка / фотки з гуманітарною та військовою допомогою
+          </p>
+        </div>
       </div>
     </article>
   );
