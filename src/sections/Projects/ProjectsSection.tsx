@@ -1,11 +1,18 @@
 import { motion } from 'framer-motion';
+import Image, { StaticImageData } from 'next/image';
 
+import coolingSystem from '@/assets/Projects_1.jpg';
+import hvacRetrofitting from '@/assets/Projects_2.jpg';
+import industrialEnhancement from '@/assets/Projects_3.jpg';
+import smartThermostat from '@/assets/Projects_4.jpg';
+import emergencyRepair from '@/assets/Projects_5.jpg';
 import { clsxm } from '@/utils';
 
 type Project = {
   title: string;
   year: string;
   details: string;
+  url: StaticImageData;
 };
 
 const mockProjects: Project[] = [
@@ -14,30 +21,35 @@ const mockProjects: Project[] = [
     year: '2022',
     details:
       'Installed energy-efficient cooling systems for residential buildings, ensuring comfortable living environments during hot summers.',
+    url: coolingSystem,
   },
   {
     title: 'Commercial HVAC Retrofitting',
     year: '2023',
     details:
       'Upgraded the HVAC systems of multiple commercial buildings, resulting in reduced energy consumption and lower operating costs.',
+    url: hvacRetrofitting,
   },
   {
     title: 'Industrial Ventilation Enhancement',
     year: '2021',
     details:
       'Implemented advanced ventilation solutions for industrial facilities, improving air quality and worker safety.',
+    url: industrialEnhancement,
   },
   {
     title: 'Smart Thermostat Integration',
     year: '2023',
     details:
       'Integrated smart thermostat technology into various properties, enabling remote temperature control and energy optimization.',
+    url: smartThermostat,
   },
   {
     title: 'Emergency HVAC Repair',
     year: '2022',
     details:
       'Provided emergency repair services for HVAC systems, minimizing downtime and restoring indoor comfort quickly.',
+    url: emergencyRepair,
   },
 ];
 
@@ -55,9 +67,15 @@ export const ProjectsSection = () => (
             <div className='flex h-full flex-col items-start'>
               <div
                 className={clsxm([
-                  'flex aspect-video w-full border border-slate-500 bg-slate-300',
+                  'flex aspect-video w-full border border-slate-500 bg-slate-950',
                 ])}
-              />
+              >
+                <Image
+                  src={project.url}
+                  className='aspect-video h-full w-full object-cover opacity-40 transition-all group-hover:opacity-100'
+                  alt={project.title}
+                />
+              </div>
               <div className='flex flex-1 items-end'>
                 <div className='mt-8'>
                   <h2 className='mb-2 text-xl font-semibold'>
