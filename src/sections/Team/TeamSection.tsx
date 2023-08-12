@@ -281,13 +281,6 @@ export const TeamSection = () => {
     return 2;
   };
 
-  const teamMockWithUrls = teamMock.map((user, index) => ({
-    ...user,
-    url: `@/assets/Team_${index}.jpeg`,
-  }));
-
-  console.log(`mock urls ->${JSON.stringify(teamMockWithUrls, null, 2)}`);
-
   return (
     <motion.section
       id='team'

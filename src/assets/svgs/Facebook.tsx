@@ -1,4 +1,4 @@
-export const FacebooIcon = () => {
+export const FacebookIcon = () => {
   const blue = 'fill-slate-950 transition-all group-hover:fill-[#004f9d]';
   return (
     <svg

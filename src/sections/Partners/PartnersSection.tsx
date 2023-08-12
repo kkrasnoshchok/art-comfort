@@ -1,7 +1,7 @@
 import { Autoplay, EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { FacebooIcon } from '@/assets/svgs/Facebook';
+import { FacebookIcon } from '@/assets/svgs/Facebook';
 import { RedditIcon } from '@/assets/svgs/RedditIcon';
 import { clsxm, useBreakpoint } from '@/utils';
 
@@ -11,7 +11,7 @@ const mockPartners = [
     alt: 'Reddit Icon',
   },
   {
-    Icon: FacebooIcon,
+    Icon: FacebookIcon,
     alt: 'Facebook Icon',
   },
   {
@@ -19,27 +19,7 @@ const mockPartners = [
     alt: 'Reddit Icon',
   },
   {
-    Icon: FacebooIcon,
-    alt: 'Facebook Icon',
-  },
-  {
-    Icon: RedditIcon,
-    alt: 'Reddit Icon',
-  },
-  {
-    Icon: RedditIcon,
-    alt: 'Reddit Icon',
-  },
-  {
-    Icon: FacebooIcon,
-    alt: 'Facebook Icon',
-  },
-  {
-    Icon: RedditIcon,
-    alt: 'Reddit Icon',
-  },
-  {
-    Icon: FacebooIcon,
+    Icon: FacebookIcon,
     alt: 'Facebook Icon',
   },
   {
@@ -51,7 +31,7 @@ const mockPartners = [
     alt: 'Reddit Icon',
   },
   {
-    Icon: FacebooIcon,
+    Icon: FacebookIcon,
     alt: 'Facebook Icon',
   },
   {
@@ -59,7 +39,27 @@ const mockPartners = [
     alt: 'Reddit Icon',
   },
   {
-    Icon: FacebooIcon,
+    Icon: FacebookIcon,
+    alt: 'Facebook Icon',
+  },
+  {
+    Icon: RedditIcon,
+    alt: 'Reddit Icon',
+  },
+  {
+    Icon: RedditIcon,
+    alt: 'Reddit Icon',
+  },
+  {
+    Icon: FacebookIcon,
+    alt: 'Facebook Icon',
+  },
+  {
+    Icon: RedditIcon,
+    alt: 'Reddit Icon',
+  },
+  {
+    Icon: FacebookIcon,
     alt: 'Facebook Icon',
   },
   {
