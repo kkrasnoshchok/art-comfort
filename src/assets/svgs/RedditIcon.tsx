@@ -2,8 +2,8 @@ export const RedditIcon = () => {
   const orange = 'fill-slate-950 transition-all group-hover:fill-[#FF4500]';
   return (
     <svg
-      height='180px'
-      width='180px'
+      height='80px'
+      width='80px'
       version='1.1'
       id='Layer_1'
       viewBox='0 0 2500 810'

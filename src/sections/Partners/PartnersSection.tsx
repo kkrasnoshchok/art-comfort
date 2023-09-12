@@ -90,14 +90,8 @@ export const PartnersSection = () => {
   return (
     <article
       id='#partners'
-      className={clsxm([
-        'mt-8 flex w-screen flex-col items-center justify-center lg:px-12',
-      ])}
+      className={clsxm(['flex w-screen flex-col items-center justify-center'])}
     >
-      <h3>
-        Тут буде така каруселька з логотипами партнерів, які по дефолту
-        чорно-білі, а по наведенню стають кольоровими
-      </h3>
       <Swiper
         grabCursor
         modules={[Autoplay, EffectFade]}
@@ -110,17 +104,6 @@ export const PartnersSection = () => {
           'flex h-full w-full items-center justify-center lg:mt-12',
         ])}
       >
-        {/* {Array(15)
-          .fill(0)
-          .map((_, idx) => (
-            <SwiperSlide key={idx}>
-              <div
-                className={clsxm([
-                  'aspect-video w-full border bg-slate-100 lg:h-24 lg:w-48 lg:portrait:w-36',
-                ])}
-              />
-            </SwiperSlide>
-          ))} */}
         {mockPartners.map((Element, idx) => (
           <SwiperSlide key={idx}>
             <div

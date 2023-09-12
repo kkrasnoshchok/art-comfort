@@ -3,7 +3,6 @@ type EmailTemplateProps = {
   email: string;
   phone: string;
   message?: string;
-  // files?: File
 };
 
 export const EmailTemplate = (props: EmailTemplateProps): JSX.Element => {
@@ -12,7 +11,6 @@ export const EmailTemplate = (props: EmailTemplateProps): JSX.Element => {
     <div>
       <h1>Ми отримали нове повідомлення від {email}!</h1>
       <hr />
-      <h3></h3>
       <p>
         Імʼя: <strong>{name}</strong>
       </p>

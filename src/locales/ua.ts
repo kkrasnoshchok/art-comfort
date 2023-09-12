@@ -5,7 +5,7 @@ export const ua = {
     servicesLabel: 'Послуги',
     projectsLabel: 'Проєкти',
     teamLabel: 'Команда',
-    jobsLabel: 'Вакансії',
+    vacanciesLabel: 'Вакансії',
     certificationsLabel: 'Ліцензії',
     contactsLabel: 'Звʼязатись з нами',
   },

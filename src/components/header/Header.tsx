@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { Select } from 'antd';
 import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 
@@ -28,6 +29,7 @@ export const Header = () => {
       { href: Hrefs.services, title: t.header.servicesLabel },
       { href: Hrefs.projects, title: t.header.projectsLabel },
       { href: Hrefs.team, title: t.header.teamLabel },
+      { href: Hrefs.vacancies, title: t.header.vacanciesLabel },
       // { href: Hrefs.jobs, title: t.header.jobsLabel },
       // { href: Hrefs.cerfitications, title: t.header.certificationsLabel },
     ],
@@ -80,7 +82,7 @@ export const Header = () => {
       >
         {/* Logo */}
         <div className={clsxm(['flex', menuOpened && ''])}>
-          <a href='#'>
+          <Link href='/'>
             <div className='mb-3 flex items-center'>
               <NextImage
                 src={logo}
@@ -90,7 +92,7 @@ export const Header = () => {
                 className='absolute'
               />
             </div>
-          </a>
+          </Link>
         </div>
         <div className={clsxm(['flex items-center gap-4'])}>
           {/* Nav */}
@@ -108,7 +110,7 @@ export const Header = () => {
             size='large'
             className='w-16'
             defaultValue={router.locale}
-            showArrow={false}
+            suffixIcon={null}
             listItemHeight={28}
             bordered
             options={[

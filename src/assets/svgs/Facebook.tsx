@@ -2,8 +2,8 @@ export const FacebookIcon = () => {
   const blue = 'fill-slate-950 transition-all group-hover:fill-[#004f9d]';
   return (
     <svg
-      width='800px'
-      height='800px'
+      width='80px'
+      height='80px'
       viewBox='0 -171.95 426.4 426.4'
       id='Layer_1'
       className='group'

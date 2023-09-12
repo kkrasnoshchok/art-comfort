@@ -13,39 +13,25 @@ type FileObject = {
   content: ArrayBuffer | null;
 };
 
-const readFile = async (file: File): Promise<FileObject> => {
-  return new Promise((resolve) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const content = reader.result as ArrayBuffer;
-      const fileObject: FileObject = { filename: file.name, content };
-      resolve(fileObject);
-    };
-    reader.readAsArrayBuffer(file);
-  });
-};
+export type FilesArray = FileObject[];
 
 export const ContactsSection = () => {
   const { locale } = useRouter();
   const [formSent, setFormSent] = useState(false);
-  const [filesArray, setFilesArray] = useState<
-    { filename: string; content: string | ArrayBuffer | null }[]
-  >([]);
+  const [filesArray, setFilesArray] = useState<FilesArray>([]);
+  const filesFormData = new FormData();
 
   const handleFileSelect = async (event: ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = event.target.files;
-    const updatedFilesArray: FileObject[] = [];
+    console.log('selected files', selectedFiles);
 
     if (!selectedFiles) {
       return null;
     }
 
     for (const file of selectedFiles) {
-      const fileObject = await readFile(file);
-      updatedFilesArray.push(fileObject);
+      filesFormData.append('file', file);
     }
-
-    setFilesArray([...filesArray, ...updatedFilesArray]);
   };
 
   const { t } = useI18n();
@@ -76,6 +62,11 @@ export const ContactsSection = () => {
     setValue,
   } = useForm<ContactsFormType>({
     resolver: zodResolver(ContactsForm),
+    defaultValues: {
+      email: 'krasnos@gmail.com',
+      name: 'Vadym',
+      phone: '+4360606060606',
+    },
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
@@ -85,9 +76,8 @@ export const ContactsSection = () => {
     try {
       const response = await fetch('/api/email', {
         method: 'POST',
-        body: JSON.stringify({ ...values, files: filesArray }),
+        body: filesFormData,
       });
-
       // Emptying values
       if (response.ok) {
         setFormSent(true);

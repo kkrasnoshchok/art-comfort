@@ -6,6 +6,7 @@ export const Hrefs = {
   jobs: '#jobs',
   cerfitications: '#certifications',
   contacts: '#contacts',
+  vacancies: '/vacancies',
 } as const;
 
 export type Href = (typeof Hrefs)[keyof typeof Hrefs];
