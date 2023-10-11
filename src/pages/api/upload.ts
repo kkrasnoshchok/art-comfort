@@ -1,11 +1,12 @@
 // pages/api/upload.js
 import formidable from 'formidable';
+import IncomingForm from 'formidable/Formidable';
 import fs from 'fs/promises';
 import { NextApiRequest, NextApiResponse } from 'next';
 import path from 'path';
 import { Resend } from 'resend';
 
-import { EmailTemplate } from '@/email/templates/EmailTemplate';
+import { EmailTemplate } from '@/components/EmailTemplate';
 
 const resend = new Resend('re_7Pe1qjn7_NytZ1gHqxejeJjqPsxorYN2f');
 
@@ -13,6 +14,12 @@ export const config = {
   api: {
     bodyParser: false,
   },
+};
+
+type ReturnFile = {
+  content?: string | Buffer;
+  filename?: string | false | undefined;
+  path?: string;
 };
 
 const upload = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -23,48 +30,23 @@ const upload = async (req: NextApiRequest, res: NextApiResponse) => {
     multiples: true,
   });
 
-  type ReturnFile = {
-    content?: string | Buffer;
-    filename?: string | false | undefined;
-    path?: string;
-  };
-
   try {
-    const formData: {
-      fields: unknown;
-      files: ReturnFile[];
-      pathes: { path: string }[];
-    } = await new Promise((resolve, reject) => {
-      const filesData: ReturnFile[] = [];
-      const pathes: { path: string }[] = [];
-      form.parse(req, async (err, fields, files) => {
-        if (err) reject(err);
-        if (files.files) {
-          for (const file of files.files) {
-            const content = await fs.readFile(file.filepath);
-            filesData.push({
-              filename: file.originalFilename as string,
-              content: content,
-            });
-            pathes.push({
-              path: file.filepath,
-            });
-          }
-          resolve({ fields, files: filesData, pathes });
-        }
-      });
+    const formData = await getFormData({
+      form,
+      req,
     });
 
+    // Sending an email
     const data = await resend.emails.send({
       from: 'Art-Comfort Website <email@art-comfort.com>',
       to: 'krasnoshchokvadim@gmail.com',
       subject: 'Заявка з сайту Art-Comfort',
       attachments: formData.files,
       react: EmailTemplate({
-        email: 'krasnoshchokvadim@gmail.com',
-        name: 'vadym',
-        phone: '+546045450340',
-        message: 'lol',
+        email: formData.fields.email,
+        name: formData.fields.name,
+        phone: formData.fields.phone,
+        message: formData.fields.message,
       }),
     });
 
@@ -77,11 +59,65 @@ const upload = async (req: NextApiRequest, res: NextApiResponse) => {
       message: `Files uploaded successfully: ${data.id}`,
     });
   } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json({ message: `Error uploading files -> ${error.message}` });
+    res.status(500).json({
+      message: `Error uploading files -> ${(error as Error).message}`,
+    });
   }
 };
 
 export default upload;
+
+type GetFormDataFunctionInputType = {
+  form: IncomingForm;
+  req: NextApiRequest;
+};
+
+type GetFormDataFunctionReturnType = {
+  fields: {
+    name: string;
+    email: string;
+    phone: string;
+    message: string;
+  };
+  files: ReturnFile[];
+  pathes: { path: string }[];
+};
+
+type GetFormDataFunctionType = (
+  props: GetFormDataFunctionInputType
+) => Promise<GetFormDataFunctionReturnType>;
+
+const getFormData: GetFormDataFunctionType = async ({ form, req }) =>
+  await new Promise((resolve, reject) => {
+    const filesData: ReturnFile[] = [];
+    const pathes: { path: string }[] = [];
+    form.parse(req, async (err, fields, files) => {
+      if (err) reject(err);
+      if (files.files) {
+        if (Array.isArray(files.files)) {
+          for (const file of files.files) {
+            const content = await fs.readFile(file.filepath);
+            filesData.push({
+              filename: file.originalFilename as string,
+              content: content,
+            });
+            pathes.push({
+              path: file.filepath,
+            });
+          }
+        } else {
+          const file: formidable.File = files.files;
+          const content = await fs.readFile(file.filepath);
+          filesData.push({
+            filename: file.originalFilename as string,
+            content: content,
+          });
+          pathes.push({
+            path: file.filepath,
+          });
+        }
+
+        resolve({ fields, files: filesData, pathes });
+      }
+    });
+  });

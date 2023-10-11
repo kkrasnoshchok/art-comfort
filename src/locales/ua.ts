@@ -19,6 +19,7 @@ export const ua = {
     emailInputPlaceholder: 'Email',
     phoneInputPlaceholder: 'Телефон',
     messageInputPlaceholder: 'Повідомлення',
+    coverLetterInputPlaceholder: 'Супровідний лист / Повідомлення',
     sendEmailButtonLabel: 'Відправити',
     inputError: 'Поле обовʼязкове',
     emailInputError: 'Неправильний email',

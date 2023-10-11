@@ -1,36 +1,25 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Alert } from 'antd';
 import { useRouter } from 'next/router';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { GoogleMap } from '@/pages/contacts/components/GoogleMap';
 import { clsxm } from '@/utils';
 import { useI18n } from '@/utils';
 
-type FileObject = {
-  filename: string;
-  content: ArrayBuffer | null;
-};
-
-export type FilesArray = FileObject[];
-
 export const ContactsSection = () => {
   const { locale } = useRouter();
-  const [formSent, setFormSent] = useState(false);
-  const [filesArray, setFilesArray] = useState<FilesArray>([]);
-  const filesFormData = new FormData();
+  const [formStatus, setFormStatus] = useState<
+    'idle' | 'loading' | 'error' | 'success'
+  >('idle');
+  const [selectedFiles, setSelectedFiles] = useState<FileList | never[]>([]);
+  const fileRef = useRef<HTMLInputElement>(null);
 
-  const handleFileSelect = async (event: ChangeEvent<HTMLInputElement>) => {
-    const selectedFiles = event.target.files;
-    console.log('selected files', selectedFiles);
-
-    if (!selectedFiles) {
-      return null;
-    }
-
-    for (const file of selectedFiles) {
-      filesFormData.append('file', file);
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setSelectedFiles(e.target.files);
     }
   };
 
@@ -62,31 +51,47 @@ export const ContactsSection = () => {
     setValue,
   } = useForm<ContactsFormType>({
     resolver: zodResolver(ContactsForm),
-    defaultValues: {
-      email: 'krasnos@gmail.com',
-      name: 'Vadym',
-      phone: '+4360606060606',
-    },
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
   });
 
   const onSubmit: SubmitHandler<ContactsFormType> = async (values) => {
+    setFormStatus('loading');
+    const formData = new FormData();
+    for (let i = 0; i < selectedFiles.length; i++) {
+      formData.append('files', selectedFiles[i]);
+    }
+    for (const valueKey in values) {
+      formData.append(valueKey, values[valueKey as keyof typeof values]);
+    }
+
     try {
-      const response = await fetch('/api/email', {
+      const response = await fetch('/api/upload', {
         method: 'POST',
-        body: filesFormData,
+        body: formData,
       });
-      // Emptying values
+
       if (response.ok) {
-        setFormSent(true);
+        setFormStatus('success');
+        setTimeout(() => {
+          setFormStatus('idle');
+        }, 2000);
         setValue('name', '');
         setValue('email', '');
         setValue('phone', '');
         setValue('message', '');
+        if (fileRef.current?.value) {
+          fileRef.current.value = '';
+        }
+      } else {
+        console.error('Error uploading files');
       }
     } catch (error) {
+      setFormStatus('error');
+      setTimeout(() => {
+        setFormStatus('idle');
+      }, 2000);
       const tError = error as Error;
       throw new Error(tError.message, { cause: tError.cause });
     }
@@ -103,13 +108,13 @@ export const ContactsSection = () => {
           {/* Form */}
           <p className='text-lg font-semibold'>{t.contacts.subtitle}</p>
           <div className='mt-6 flex w-full flex-col items-center gap-2 lg:items-start'>
-            {formSent && (
+            {formStatus === 'success' && (
               <Alert
                 className='mb-2 mr-6'
                 message='Ваш лист успішно надіслано!'
                 type='success'
                 closable
-                onClose={() => setFormSent(false)}
+                onClose={() => setFormStatus('idle')}
                 showIcon
               />
             )}
@@ -166,38 +171,25 @@ export const ContactsSection = () => {
             />
             <div className='mt-2 flex flex-col items-start justify-center lg:mt-6'>
               <input
+                ref={fileRef}
                 type='file'
                 multiple
-                onChange={(e) => handleFileSelect(e)}
+                onChange={(e) => handleFileChange(e)}
               />
-              {filesArray.length > 0 &&
-                filesArray.map((file, index) => (
-                  <p key={index}>
-                    File {index + 1}: {file.filename}
-                  </p>
-                ))}
             </div>
             <button
               onClick={handleSubmit(onSubmit)}
               className='mt-4 border border-slate-200 px-12 py-2 lg:mt-6'
             >
-              {t.contacts.sendEmailButtonLabel}
+              {formStatus === 'loading' && 'Loading...'}
+              {formStatus === 'success' && 'Form sent !'}
+              {formStatus === 'idle' && t.contacts.sendEmailButtonLabel}
             </button>
           </div>
         </div>
       </div>
       {/* Map */}
-      <div className='mt-8 flex aspect-square w-full border border-slate-300 bg-slate-200 lg:mt-0 lg:aspect-video lg:h-auto lg:flex-1'>
-        <iframe
-          src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2537.8692753430482!2d30.358270321621863!3d50.499390702292644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cd2d5e855555%3A0x40150a97676ff1c7!2sTov%20%22Art-Komfort%22!5e0!3m2!1sru!2sat!4v1689071912467!5m2!1sru!2sat'
-          width='100%'
-          height='100%'
-          style={{ border: 0 }}
-          allowFullScreen={false}
-          loading='lazy'
-          referrerPolicy='no-referrer-when-downgrade'
-        />
-      </div>
+      <GoogleMap />
     </section>
   );
 };

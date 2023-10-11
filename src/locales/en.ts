@@ -18,6 +18,7 @@ export const en = {
     emailInputPlaceholder: 'Email',
     phoneInputPlaceholder: 'Phone',
     messageInputPlaceholder: 'Message',
+    coverLetterInputPlaceholder: 'Cover Letter / Message',
     sendEmailButtonLabel: 'Send',
     inputError: 'is required',
     emailInputError: 'Email is invalid',
