@@ -98,6 +98,5 @@ export const ProjectsSection = () => (
     <motion.div className='mt-4'>
       <button className='border px-8 py-2 text-lg'>See all projects</button>
     </motion.div>
-    {/* Statistics Container */}
   </section>
 );

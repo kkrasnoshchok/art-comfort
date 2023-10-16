@@ -7,10 +7,10 @@ type Statistics = {
   value: number;
 };
 
-const mockStatistics: Statistics[] = [
+const statistics: Statistics[] = [
   {
     name: 'Років досвіду',
-    value: 10,
+    value: 16,
   },
   {
     name: 'Успішно завершених проєктів',
@@ -20,12 +20,11 @@ const mockStatistics: Statistics[] = [
     name: 'Постійних клієнтів',
     value: 100,
   },
-  // Add more statistics as needed
 ];
 
 export const StatisticsContainer = () => (
   <motion.div className='mt-12 grid grid-cols-1 gap-4 px-6 md:grid-cols-3'>
-    {mockStatistics.map((statistic, index) => (
+    {statistics.map((statistic, index) => (
       <div
         key={index}
         className='flex flex-col items-center justify-center border border-slate-300 bg-slate-100 bg-opacity-50 p-4'

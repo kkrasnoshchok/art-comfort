@@ -327,7 +327,6 @@ export const VacanciesPage = () => {
           </motion.div>
         </motion.div>
       )}
-
       <motion.div
         className={`h-screen w-screen ${
           selectedVacancy?.id ? 'bg-blue-100 opacity-10' : 'bg-white'

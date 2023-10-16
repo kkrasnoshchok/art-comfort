@@ -2,12 +2,12 @@ import { Layout } from '@/components/layout';
 import { StatisticsContainer } from '@/components/statistics';
 
 import { ContactsSection } from '@/pages/contacts';
+import { NewsSection } from '@/pages/news/section';
 import { ProjectsSection } from '@/pages/projects/ProjectsSection';
 import { ServicesSection } from '@/pages/services/ServicesSection';
 import { AboutSection } from '@/sections/About';
-import { ContributionSection } from '@/sections/Contribution';
 import { PartnersSection } from '@/sections/Partners';
-import { TeamSection } from '@/sections/Reviews/ReviewsSection';
+import { TeamSection } from '@/sections/Team';
 import { Seo } from '@/seo';
 
 const HomePage = () => (
@@ -22,7 +22,8 @@ const HomePage = () => (
       <PartnersSection />
       <TeamSection />
       {/* <CertificationsSection /> */}
-      <ContributionSection />
+      {/* <ContributionSection /> */}
+      <NewsSection />
       <ContactsSection />
     </main>
   </Layout>

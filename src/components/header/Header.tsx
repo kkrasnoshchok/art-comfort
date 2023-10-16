@@ -6,12 +6,24 @@ import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 
 import { NavigationList } from '@/components/header/components/NavigationList/NavigationList';
-import { Href, Hrefs } from '@/components/header/types';
 import NextImage from '@/components/NextImage';
 
 import logo from '@/assets/logo.png';
 import { UsaIcon } from '@/assets/svgs/UsaIcon';
 import { clsxm, useI18n } from '@/utils';
+
+export const Hrefs = {
+  about: '#about',
+  services: '#services',
+  projects: '#projects',
+  team: '#team',
+  jobs: '#jobs',
+  cerfitications: '#certifications',
+  contacts: '#contacts',
+  vacancies: '/vacancies',
+} as const;
+
+export type Href = (typeof Hrefs)[keyof typeof Hrefs];
 
 export const Header = () => {
   const [activeLink, setActiveLink] = useState<Href>('#about');

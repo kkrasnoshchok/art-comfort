@@ -267,15 +267,13 @@ const teamMock = [
 export const TeamSection = () => {
   const swiperRef = useRef<SwiperRef>(null);
   const { is2xl } = useBreakpoint('2xl');
-  const { isXl } = useBreakpoint('xl');
-  const { isLg } = useBreakpoint('lg');
   const { isMd } = useBreakpoint('md');
 
   const getSlidesPerView = () => {
     if (is2xl) {
       return 4;
     }
-    if (isMd || isLg || isXl) {
+    if (isMd) {
       return 3;
     }
     return 2;
@@ -307,9 +305,6 @@ export const TeamSection = () => {
             elit at. Sit amet est placerat in egestas erat imperdiet sed.
             Vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras.
           </p>
-          <button className='mt-8 border border-black px-12 py-4'>
-            Дізнатись більше
-          </button>
         </div>
         <div className='h-full flex-1 lg:w-4/6'>
           <Swiper
