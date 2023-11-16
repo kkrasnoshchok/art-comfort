@@ -36,6 +36,7 @@
     "resend": "^0.16.0",
     "swiper": "^10.0.4",
     "tailwind-merge": "^1.13.0",
+    "ts-toolbelt": "^9.6.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {

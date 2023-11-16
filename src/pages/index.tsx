@@ -1,5 +1,7 @@
 import { ToastContainer } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.min.css';
+
 import { Layout } from '@/components/layout';
 import { StatisticsContainer } from '@/components/statistics';
 
