@@ -3,6 +3,7 @@ import { Alert } from 'antd';
 import { useRouter } from 'next/router';
 import { ChangeEvent, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { z } from 'zod';
 
 import { GoogleMap } from '@/pages/contacts/components/GoogleMap';
@@ -85,7 +86,7 @@ export const ContactsSection = () => {
           fileRef.current.value = '';
         }
       } else {
-        console.error('Error uploading files');
+        toast.error('Error uploading files');
       }
     } catch (error) {
       setFormStatus('error');

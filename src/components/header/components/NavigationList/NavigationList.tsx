@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
 import { Link } from '@/components/header/components/Link';
-import { Href } from '@/components/header/types';
+import { Href } from '@/components/header/Header';
 
 import { clsxm } from '@/utils';
 

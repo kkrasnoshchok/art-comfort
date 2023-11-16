@@ -53,7 +53,7 @@ export const NewsSection = () => {
           >
             {/* News */}
             <div className='flex flex-1 flex-col'>
-              <h2 className='mb-2 text-xl font-semibold'>{item.title}</h2>
+              <h2 className='h3 mb-2'>{item.title}</h2>
               <p className='mb-2 italic'>{item.date.format('DD.MM.YYYY')}</p>
               <p>{item.description}</p>
               <Link href={`/news/${item.id}`}>

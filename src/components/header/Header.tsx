@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Select } from 'antd';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
