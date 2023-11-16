@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify';
+
 import { Layout } from '@/components/layout';
 import { StatisticsContainer } from '@/components/statistics';
 
@@ -14,6 +16,7 @@ const HomePage = () => (
   <Layout>
     <Seo />
     <main>
+      <ToastContainer autoClose={3000} position='bottom-right' />
       <AboutSection />
       <PartnersSection />
       <ServicesSection />

@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { ChangeEvent, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { RxCross2 } from 'react-icons/rx';
+import { toast } from 'react-toastify';
 import baseColors from 'tailwindcss/colors';
 import { z } from 'zod';
 
@@ -179,7 +180,7 @@ export const VacanciesPage = () => {
       formData.append('files', selectedFiles[i]);
     }
     for (const valueKey in values) {
-      formData.append(valueKey, values[valueKey]);
+      formData.append(valueKey, values[valueKey as keyof ContactsFormType]);
     }
 
     try {
@@ -189,7 +190,7 @@ export const VacanciesPage = () => {
       });
 
       if (response.ok) {
-        console.log('Files uploaded successfully');
+        toast.success('Files uploaded successfully');
         setFormSent(true);
         setValue('name', '');
         setValue('email', '');
@@ -199,7 +200,7 @@ export const VacanciesPage = () => {
           fileRef.current.value = '';
         }
       } else {
-        console.error('Error uploading files');
+        toast.error('Error uploading files');
       }
     } catch (error) {
       const tError = error as Error;

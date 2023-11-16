@@ -72,13 +72,15 @@ type GetFormDataFunctionInputType = {
   req: NextApiRequest;
 };
 
+type FormFields = {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+};
+
 type GetFormDataFunctionReturnType = {
-  fields: {
-    name: string;
-    email: string;
-    phone: string;
-    message: string;
-  };
+  fields: FormFields;
   files: ReturnFile[];
   pathes: { path: string }[];
 };
@@ -117,7 +119,11 @@ const getFormData: GetFormDataFunctionType = async ({ form, req }) =>
           });
         }
 
-        resolve({ fields, files: filesData, pathes });
+        resolve({
+          fields: fields as unknown as FormFields,
+          files: filesData,
+          pathes,
+        });
       }
     });
   });
