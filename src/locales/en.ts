@@ -6,6 +6,7 @@ export const en = {
     projectsLabel: 'Projects',
     teamLabel: 'Team',
     vacanciesLabel: 'Vacancies',
+    newsLabel: 'News',
     certificationsLabel: 'Certifications',
     contactsLabel: 'Contact us',
   },

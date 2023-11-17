@@ -6,7 +6,7 @@ import bgPath from '@/assets/About_Us_Background.jpg';
 export const AboutSection = () => (
   <section
     id='about'
-    className='flex w-screen flex-col items-center justify-center px-6 py-24 md:flex-row portrait:flex-col'
+    className='flex w-full flex-col items-center justify-center px-6 py-24 md:flex-row portrait:flex-col'
   >
     <motion.div className='flex-1 md:pr-4'>
       <h1 className='bg-gradient-to-r from-pink-700 to-blue-700 bg-clip-text text-transparent md:text-2xl lg:text-4xl'>

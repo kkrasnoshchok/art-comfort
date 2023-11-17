@@ -13,6 +13,7 @@ type Props = O.Either<
     disabled?: boolean;
     size?: ButtonSize;
     theme?: ButtonTheme;
+    href?: string;
     label: string;
     Icon: ReactNode;
   },
@@ -20,12 +21,13 @@ type Props = O.Either<
 >;
 
 const buttonBaseStyles =
-  'cursor-pointer rounded-2xl transition-all active:scale-95';
+  'cursor-pointer rounded-2xl transition-all hover:scale-95 active:scale-90';
 
 export const Button = (props: Props) => {
   const {
     size = 'medium',
     theme = 'primary',
+    href,
     Icon,
     label,
     onClick,
@@ -59,13 +61,13 @@ export const Button = (props: Props) => {
   const getButtonThemeStyles = useCallback(() => {
     switch (theme) {
       case 'primary':
-        return 'bg-primary-default hover:bg-primary-defaultStrong active:bg-grayscale-header active:border-primary-bgStrong border-4 border-transparent';
+        return 'bg-primary-default hover:bg-primary-defaultStrong active:bg-grayscale-header active:border-primary-bgStrong border-2 border-transparent';
       case 'secondary':
-        return 'border-2 border-primary-default';
+        return 'border-2 border-primary-default hover:border-primary-defaultStrong active:border-primary-bg active:border-primary-bgStrong';
       case 'subtle':
-        return 'border-2 border-grayscale-line';
+        return 'border-2 border-grayscale-line hover:bg-primary-defaultStrong active:bg-grayscale-header active:border-primary-bgStrong';
       case 'ghost':
-        return 'hover:bg-grayscale-bg';
+        return 'p-0';
     }
   }, [theme]);
 
@@ -83,7 +85,8 @@ export const Button = (props: Props) => {
   }, [theme]);
 
   return (
-    <motion.button
+    <motion.a
+      href={href}
       className={clsxm(
         buttonBaseStyles,
         getButtonSizeStyles(),
@@ -106,6 +109,6 @@ export const Button = (props: Props) => {
           {label}
         </p>
       )}
-    </motion.button>
+    </motion.a>
   );
 };

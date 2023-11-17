@@ -67,10 +67,7 @@ const services: Service[] = [
 
 export const ServicesSection = () => {
   return (
-    <section
-      id='services'
-      className={clsxm(['flex w-screen flex-col px-6 py-24'])}
-    >
+    <section id='services' className='flex w-full flex-col px-6 py-24'>
       <motion.h1 className='md:text-2xl'>Послуги</motion.h1>
       <motion.div className={clsxm(['mt-4 flex flex-col gap-8 lg:gap-24'])}>
         {services.slice(0, 3).map((service, index) => {

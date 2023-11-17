@@ -282,7 +282,7 @@ export const TeamSection = () => {
   return (
     <motion.section
       id='team'
-      className='relative flex w-screen flex-col px-6 py-24'
+      className='relative flex w-full flex-col px-6 py-24'
     >
       <h1>Наша команда</h1>
       <div className='mt-8 flex h-full w-full flex-col gap-12 lg:flex-row'>
