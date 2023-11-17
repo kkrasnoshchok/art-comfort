@@ -54,10 +54,7 @@ const mockProjects: Project[] = [
 ];
 
 export const ProjectsSection = () => (
-  <section
-    id='projects'
-    className={clsxm(['flex w-screen flex-col px-6 pb-4 pt-24'])}
-  >
+  <section id='projects' className='flex w-full flex-col px-6 pb-4 pt-24'>
     <motion.h1 className='font-bold'>Знакові Проєкти</motion.h1>
     {/* Projects container */}
     <motion.div className='relative mt-8 grid flex-1 grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>

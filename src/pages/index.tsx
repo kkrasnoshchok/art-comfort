@@ -17,20 +17,22 @@ import { Seo } from '@/seo';
 const HomePage = () => (
   <Layout>
     <Seo />
-    <main>
-      <ToastContainer autoClose={3000} position='bottom-right' />
-      <AboutSection />
-      <PartnersSection />
-      <ServicesSection />
-      <ProjectsSection />
-      <StatisticsContainer />
-      <PartnersSection />
-      <TeamSection />
-      {/* <CertificationsSection /> */}
-      {/* <ContributionSection /> */}
-      <NewsSection />
-      <ContactsSection />
-    </main>
+    <div className='flex w-full justify-center'>
+      <main className='flex w-11/12 flex-col items-center justify-center'>
+        <ToastContainer autoClose={3000} position='bottom-right' />
+        <AboutSection />
+        <PartnersSection />
+        <ServicesSection />
+        <ProjectsSection />
+        <StatisticsContainer />
+        <PartnersSection />
+        <TeamSection />
+        {/* <CertificationsSection /> */}
+        {/* <ContributionSection /> */}
+        <NewsSection />
+        <ContactsSection />
+      </main>
+    </div>
   </Layout>
 );
 

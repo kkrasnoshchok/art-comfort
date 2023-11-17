@@ -1,20 +1,17 @@
-import { motion } from 'framer-motion';
-
-import { Link } from '@/components/header/components/Link';
 import { Href } from '@/components/header/Header';
 
+import { Button } from '@/ui/Button';
 import { clsxm } from '@/utils';
+
+type TLink = {
+  href: Href;
+  title: string;
+};
 
 type NavigationListProps = {
   nav: {
-    links: {
-      href: Href;
-      title: string;
-    }[];
-    contacts: {
-      href: Href;
-      title: string;
-    };
+    links: TLink[];
+    contacts: TLink;
   };
   headerLinkClassName?: string;
   contactsClassName?: string;
@@ -23,46 +20,32 @@ type NavigationListProps = {
 };
 
 export const NavigationList = (props: NavigationListProps) => {
-  const {
-    nav,
-    contactsClassName,
-    headerLinkClassName,
-    onLinkClick,
-    activeLink,
-  } = props;
+  const { nav, contactsClassName, onLinkClick, activeLink } = props;
 
   return (
     <>
       {nav.links.map((link) => (
-        <Link
+        <Button
+          href={link.href}
           key={link.href}
           onClick={() => {
             onLinkClick && onLinkClick();
           }}
-          className={clsxm([
-            headerLinkClassName,
-            //       borderColor: '#000000',
-            // color: '#1e272e',
-            'transition-all hover:scale-110 hover:border-stone-950 hover:text-stone-950',
-            `#${activeLink}` === link.href &&
-              'scale-110 border-stone-950 text-stone-950',
-          ])}
-          {...link}
+          theme={`#${activeLink}` === link.href ? 'primary' : 'secondary'}
+          label={link.title}
         />
       ))}
       {/* Contacts Button */}
-      <motion.a
-        className={clsxm([
-          'ml-8 rounded-full border-2 border-white bg-black px-6 py-3 text-white transition-all hover:border-black hover:bg-white hover:text-black',
-          contactsClassName,
-          `#${activeLink}` === '#contacts' &&
-            'border-black bg-white text-black',
-        ])}
-        onClick={() => onLinkClick && onLinkClick()}
+      <Button
         href={nav.contacts.href}
-      >
-        {nav.contacts.title}
-      </motion.a>
+        key={nav.contacts.href}
+        onClick={() => {
+          onLinkClick && onLinkClick();
+        }}
+        theme={`#${activeLink}` === nav.contacts.href ? 'primary' : 'secondary'}
+        label={nav.contacts.title}
+        className={clsxm(['ml-16', contactsClassName])}
+      />
     </>
   );
 };

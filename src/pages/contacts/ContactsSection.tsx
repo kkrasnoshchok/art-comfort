@@ -101,7 +101,7 @@ export const ContactsSection = () => {
   return (
     <section
       id='contacts'
-      className='flex w-screen flex-col px-6 py-24 lg:flex-row'
+      className='flex w-full flex-col px-6 py-24 lg:flex-row'
     >
       <div className='flex w-full flex-col items-center lg:w-1/3 lg:items-start'>
         <h1>{t.contacts.title}</h1>

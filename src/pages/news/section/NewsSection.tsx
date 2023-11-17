@@ -42,7 +42,7 @@ export const mockNews: {
 
 export const NewsSection = () => {
   return (
-    <section id='#news' className='flex w-screen flex-col px-6 py-24'>
+    <section id='#news' className='flex w-full flex-col px-6 py-24'>
       <h1>News Section</h1>
       {/* News Container */}
       <div className='relative mt-4 flex-1'>
