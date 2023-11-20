@@ -101,7 +101,7 @@ export const PartnersSection = () => {
         spaceBetween={24}
         autoplay={{ delay: 2000 }}
         className={clsxm([
-          'flex h-full w-full items-center justify-center lg:mt-12',
+          'border-primary-bg flex h-full w-11/12 items-center justify-center rounded-2xl border-2',
         ])}
       >
         {mockPartners.map((Element, idx) => (
