@@ -1,11 +1,9 @@
-import { Select } from 'antd';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 
 import { NavigationList } from '@/components/header/components/NavigationList/NavigationList';
 
-import { UsaIcon } from '@/assets/svgs/UsaIcon';
 import { Button } from '@/ui/Button';
 import { clsxm, useI18n } from '@/utils';
 
@@ -105,35 +103,35 @@ export const Header = () => {
             />
           </nav>
           {/* Language Select */}
-          <Select
-            size='middle'
-            className='bg-transparent'
-            defaultValue={router.locale}
-            suffixIcon={null}
-            listItemHeight={16}
-            bordered
-            options={[
-              {
-                label: (
-                  <div className='flex h-full w-full flex-col items-center justify-center'>
-                    <div className='h-3 w-8 bg-blue-600' />
-                    <div className='h-3 w-8 bg-yellow-300' />
-                  </div>
-                ),
-                value: 'ua',
-              },
-              {
-                label: (
-                  <div className='flex h-full w-full flex-col items-center justify-center'>
-                    <UsaIcon size={32} />
-                  </div>
-                ),
-
-                value: 'en',
-              },
-            ]}
-            onChange={(value) => onLocaleChange(value as 'ua' | 'en')}
-          />
+          <div className='flex flex-row items-center'>
+            <Button
+              labelClassName={clsxm(
+                'text-sm text-primary-bg',
+                router.locale === 'ua' && 'text-grayscale-header'
+              )}
+              label='UA'
+              theme='ghost'
+              onClick={() => {
+                if (router.locale === 'en') {
+                  onLocaleChange('ua');
+                }
+              }}
+            />
+            <div className='text-grayscale-headerWeak mx-1 text-sm'>/</div>
+            <Button
+              labelClassName={clsxm(
+                'text-sm text-primary-bg',
+                router.locale === 'en' && 'text-grayscale-header'
+              )}
+              label='EN'
+              theme='ghost'
+              onClick={() => {
+                if (router.locale === 'ua') {
+                  onLocaleChange('en');
+                }
+              }}
+            />
+          </div>
           {/* Burger Button */}
           <Button
             onClick={() => setMenuOpened((prev) => !prev)}

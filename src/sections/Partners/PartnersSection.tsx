@@ -99,9 +99,9 @@ export const PartnersSection = () => {
         slidesPerView={getSlidesPerView()}
         centeredSlides
         spaceBetween={24}
-        autoplay={{ delay: 2000 }}
+        autoplay={{ delay: 3000 }}
         className={clsxm([
-          'border-primary-bg flex h-full w-11/12 items-center justify-center rounded-2xl border-2',
+          'border-primary-bg flex h-full w-11/12 items-center justify-center rounded-2xl border-2 bg-gray-50 bg-opacity-25 shadow-lg',
         ])}
       >
         {mockPartners.map((Element, idx) => (

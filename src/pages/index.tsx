@@ -3,13 +3,11 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 import { Layout } from '@/components/layout';
-import { StatisticsContainer } from '@/components/statistics';
 
 import { ContactsSection } from '@/pages/contacts';
 import { NewsSection } from '@/pages/news/section';
 import { ProjectsSection } from '@/pages/projects/ProjectsSection';
 import { ServicesSection } from '@/pages/services/ServicesSection';
-import { PartnersSection } from '@/sections/Partners';
 import { TeamSection } from '@/sections/Team';
 import { WelcomeSection } from '@/sections/Welcome';
 import { Seo } from '@/seo';
@@ -23,8 +21,6 @@ const HomePage = () => (
         <WelcomeSection />
         <ServicesSection />
         <ProjectsSection />
-        <StatisticsContainer />
-        <PartnersSection />
         <TeamSection />
         {/* <CertificationsSection /> */}
         {/* <ContributionSection /> */}

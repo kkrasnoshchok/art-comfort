@@ -2,11 +2,14 @@ import { motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
 import { FaArrowRight } from 'react-icons/fa';
 
+import { StatisticsContainer } from '@/components/statistics';
+
 import coolingSystem from '@/assets/Projects_1.jpg';
 import hvacRetrofitting from '@/assets/Projects_2.jpg';
 import industrialEnhancement from '@/assets/Projects_3.jpg';
 import smartThermostat from '@/assets/Projects_4.jpg';
 import emergencyRepair from '@/assets/Projects_5.jpg';
+import { PartnersSection } from '@/sections/Partners';
 import { Button } from '@/ui/Button';
 import { clsxm } from '@/utils';
 
@@ -127,6 +130,10 @@ export const ProjectsSection = () => (
           }}
         />
       </motion.div>
+    </div>
+    <StatisticsContainer />
+    <div className='mt-8'>
+      <PartnersSection />
     </div>
   </motion.section>
 );
