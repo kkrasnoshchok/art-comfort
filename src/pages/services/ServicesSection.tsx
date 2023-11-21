@@ -1,9 +1,12 @@
 import { motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
+import { useState } from 'react';
+import { FaArrowRight } from 'react-icons/fa';
 
 import equipmentSale from '@/assets/Climate_Control_Equipment_Sale.png';
 import airConditioningDesign from '@/assets/Design_Of_Air_Conditioning_and_Ventilation_Systems.jpg';
 import selectionAndDelivery from '@/assets/Selection_And_Delivery.jpg';
+import { Button } from '@/ui/Button';
 import { clsxm } from '@/utils';
 
 type Service = {
@@ -66,52 +69,97 @@ const services: Service[] = [
 ];
 
 export const ServicesSection = () => {
+  const [activeService, setActiveService] = useState<Service>(services[0]);
   return (
-    <section id='services' className='flex w-full flex-col px-6 py-24'>
-      <motion.h1 className='md:text-2xl'>Послуги</motion.h1>
-      <motion.div className={clsxm(['mt-4 flex flex-col gap-8 lg:gap-24'])}>
-        {services.slice(0, 3).map((service, index) => {
-          return (
-            <motion.div
-              key={index}
-              className={clsxm([
-                'flex w-full flex-1 flex-col justify-center',
-                index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse',
-              ])}
-            >
-              <div
-                className={clsxm([
-                  'flex-1',
-                  index % 2 === 0
-                    ? 'text-left lg:pr-12'
-                    : 'text-right lg:pl-12',
-                ])}
-              >
-                <motion.h2 className='text-lg font-bold'>
-                  {service.title}
-                </motion.h2>
-                <motion.p className='mt-2'>{service.description}</motion.p>
-              </div>
-              <div
-                className={clsxm([
-                  'mt-4 aspect-video w-full border border-slate-300 bg-slate-950 md:aspect-auto md:h-48 lg:mt-0 lg:h-96 lg:flex-1 portrait:h-48',
-                ])}
-              >
-                <Image
-                  src={service.url}
-                  className='h-full w-full object-cover opacity-70'
-                  alt={service.description}
-                />
-              </div>
-            </motion.div>
-          );
-        })}
-      </motion.div>
-      <motion.div
-        className={clsxm(['mt-8 flex w-full items-center justify-center'])}
+    // flex w-screen flex-col items-center px-6 pb-8 pt-24
+    <section
+      id='services'
+      className={clsxm(
+        'flex w-screen flex-col items-center justify-center py-12',
+        'from-primary-bgStrong to-secondary-bgStrong bg-gradient-to-tr'
+      )}
+    >
+      <div
+        className={clsxm(
+          'grid w-11/12 grid-cols-2 overflow-hidden',
+          'border-primary-bg rounded-[36px] border-2 bg-gray-50 bg-opacity-25 shadow-xl backdrop-blur-2xl'
+        )}
       >
-        <button className='border px-16 py-4'>Discover more services</button>
-      </motion.div>
+        {/* Left */}
+        <motion.div className='p-8'>
+          <motion.h1 className='h1 text-primary-default'>Послуги</motion.h1>
+          <motion.div className='mt-8 flex flex-col gap-y-4'>
+            {services.slice(0, 5).map((service) => {
+              const isActive = activeService.title === service.title;
+              return (
+                <div
+                  key={service.title}
+                  className={clsxm(
+                    'flex cursor-pointer flex-row items-center justify-between',
+                    'border-primary-default rounded-2xl border-2 p-4 transition duration-500',
+                    'hover:shadow-primary-default hover:scale-[1.01] hover:shadow-sm',
+                    'active:scale-[0.99]',
+                    isActive && 'bg-primary-default border-primary-bg'
+                  )}
+                  onClick={() => setActiveService(service)}
+                >
+                  <p
+                    className={clsxm(
+                      'p text-primary-defaultStrong transition-colors',
+                      isActive && 'text-primary-bg'
+                    )}
+                  >
+                    {service.title}
+                  </p>
+                  <Button
+                    Icon={
+                      <FaArrowRight
+                        color={
+                          isActive
+                            ? 'rgba(36, 84, 116, 1)' // primary-default
+                            : 'rgba(235, 237, 241, 1)' // primary-bg
+                        }
+                        size={16}
+                      />
+                    }
+                    size='small'
+                    className={clsxm(
+                      'rounded-full px-2 py-2',
+                      isActive && 'bg-primary-bg hover:bg-primary-bg'
+                    )}
+                    onClick={() => {
+                      setActiveService(service);
+                    }}
+                  />
+                </div>
+              );
+            })}
+          </motion.div>
+          <Button
+            label='Дізнатись більше'
+            onClick={() => null}
+            size='medium'
+            theme='primary'
+            className='mt-8 inline-flex'
+          />
+        </motion.div>
+        {/* Right */}
+        <motion.div className='bg-primary-defaultStrong relative z-10 flex flex-1 flex-col justify-between rounded-[36px] p-8'>
+          <motion.h2 className='h2 text-primary-bg'>
+            {activeService.title}
+          </motion.h2>
+          <p className='text-primary-bg self-end justify-self-end'>
+            {activeService.description}
+          </p>
+          <motion.div className='absolute left-0 top-0 -z-10 h-full w-full'>
+            <Image
+              src={activeService.url}
+              className='h-full w-full rounded-[36px] object-cover opacity-10'
+              alt={activeService.description}
+            />
+          </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 };

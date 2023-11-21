@@ -21,7 +21,7 @@ type Props = O.Either<
 >;
 
 const buttonBaseStyles =
-  'cursor-pointer rounded-2xl transition-all hover:scale-95 active:scale-90';
+  'inline-flex cursor-pointer rounded-2xl transition-all hover:scale-95 active:scale-90';
 
 export const Button = (props: Props) => {
   const {
