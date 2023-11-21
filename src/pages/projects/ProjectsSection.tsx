@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
+import { FaArrowRight } from 'react-icons/fa';
 
 import coolingSystem from '@/assets/Projects_1.jpg';
 import hvacRetrofitting from '@/assets/Projects_2.jpg';
 import industrialEnhancement from '@/assets/Projects_3.jpg';
 import smartThermostat from '@/assets/Projects_4.jpg';
 import emergencyRepair from '@/assets/Projects_5.jpg';
+import { Button } from '@/ui/Button';
 import { clsxm } from '@/utils';
 
 type Project = {
@@ -54,46 +56,77 @@ const mockProjects: Project[] = [
 ];
 
 export const ProjectsSection = () => (
-  <section id='projects' className='flex w-full flex-col px-6 pb-4 pt-24'>
-    <motion.h1 className='font-bold'>Знакові Проєкти</motion.h1>
-    {/* Projects container */}
-    <motion.div className='relative mt-8 grid flex-1 grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
-      {mockProjects.map((project, index) => {
-        return (
-          <div key={index} className='group border bg-slate-100 p-4'>
-            <div className='flex h-full flex-col items-start'>
+  <motion.section
+    id='projects'
+    className='from-primary-bgStrong to-secondary-bgStrong flex w-screen flex-col items-center bg-gradient-to-b pb-4 pt-16'
+  >
+    <div className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-xl backdrop-blur-2xl'>
+      <motion.h1 className='h1 text-primary-default'>Знакові Проєкти</motion.h1>
+      {/* Projects container */}
+      <motion.div className='relative mt-8 grid flex-1 grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+        {mockProjects.map((project, index) => {
+          return (
+            <div
+              key={index}
+              className={clsxm(
+                'relative flex h-full flex-col items-start overflow-hidden rounded-2xl bg-slate-100',
+                'group transition-transform hover:scale-[1.01]'
+              )}
+            >
+              {/* Project Image */}
               <div
                 className={clsxm([
-                  'flex aspect-video w-full border border-slate-500 bg-slate-950',
+                  'bg-primary-defaultStrong flex aspect-square w-full border-slate-500',
                 ])}
               >
                 <Image
                   src={project.url}
-                  className='aspect-video h-full w-full object-cover opacity-40 transition-all group-hover:opacity-100'
+                  className={clsxm(
+                    'aspect-square h-full w-full object-cover',
+                    'opacity-20 transition-opacity group-hover:opacity-10'
+                  )}
                   alt={project.title}
                 />
               </div>
-              <div className='flex flex-1 items-end'>
-                <div className='mt-8'>
-                  <h2 className='mb-2 text-xl font-semibold'>
-                    {project.title}
-                  </h2>
-                  <p className='mb-2'>
-                    <strong>Year:</strong> {project.year}
-                  </p>
-                </div>
+              {/* Project Title */}
+              <div className='absolute top-1/2 w-full -translate-y-1/2 px-8'>
+                <h4 className='h3 text-primary-bg mb-2 text-center font-normal'>
+                  {project.title}
+                </h4>
               </div>
-              {/* TODO: Rework the logics */}
-              {/* <p className='pointer-events-none absolute -bottom-4 left-0 flex items-start justify-center rounded-sm bg-slate-100 bg-opacity-40 px-4 py-8 text-slate-950 opacity-0 backdrop-blur-xl transition-all duration-500 group-hover:bottom-0 group-hover:opacity-100'>
-                  {project.details}
-                </p> */}
+              {/* Project Description */}
+              <div
+                className={clsxm(
+                  'bg-primary-bg absolute -bottom-4 w-11/12 cursor-pointer self-center rounded-2xl px-4 py-4 opacity-0',
+                  'flex flex-row items-center justify-between',
+                  'transition-all hover:scale-[0.98] active:scale-95 group-hover:bottom-4 group-hover:opacity-100'
+                )}
+              >
+                <p className='h4 text-primary-defaultStrong font-semibold'>
+                  Дізнатись більше
+                </p>
+                <Button
+                  Icon={<FaArrowRight color='rgba(52, 76, 114, 1)' size={16} />}
+                  size='small'
+                  theme='subtle'
+                  className={clsxm('rounded-full px-2 py-2')}
+                  onClick={() => {
+                    // setActiveService(service);
+                  }}
+                />
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </motion.div>
-    <motion.div className='mt-4'>
-      <button className='border px-8 py-2 text-lg'>See all projects</button>
-    </motion.div>
-  </section>
+          );
+        })}
+      </motion.div>
+      <motion.div className='mt-4'>
+        <Button
+          label='Подивитись на всі проєкти'
+          onClick={() => {
+            // open all projects
+          }}
+        />
+      </motion.div>
+    </div>
+  </motion.section>
 );

@@ -48,7 +48,7 @@ export const WelcomeSection = () => {
   return (
     <section
       id='about'
-      className='from-primary-bgStrong to-secondary-bgStrong flex w-screen flex-col items-center bg-gradient-to-br px-6 pb-8 pt-24'
+      className='from-primary-bgStrong to-secondary-bgStrong flex w-screen flex-col items-center bg-gradient-to-b px-6 pb-8 pt-24'
       ref={sectionRef}
     >
       <motion.header

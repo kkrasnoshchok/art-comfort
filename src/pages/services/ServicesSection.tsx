@@ -76,7 +76,7 @@ export const ServicesSection = () => {
       id='services'
       className={clsxm(
         'flex w-screen flex-col items-center justify-center py-12',
-        'from-primary-bgStrong to-secondary-bgStrong bg-gradient-to-tr'
+        'to-primary-bgStrong from-secondary-bgStrong bg-gradient-to-b'
       )}
     >
       <div
