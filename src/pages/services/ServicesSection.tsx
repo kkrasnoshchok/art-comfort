@@ -95,11 +95,12 @@ export const ServicesSection = () => {
                 <div
                   key={service.title}
                   className={clsxm(
-                    'flex cursor-pointer flex-row items-center justify-between',
+                    'services-card flex cursor-pointer flex-row items-center justify-between',
                     'border-primary-default rounded-2xl border-2 p-4 transition duration-500',
                     'hover:shadow-primary-default hover:scale-[1.01] hover:shadow-sm',
                     'active:scale-[0.99]',
-                    isActive && 'bg-primary-default border-primary-bg'
+                    isActive &&
+                      'bg-primary-default border-primary-bg services-card--active'
                   )}
                   onClick={() => setActiveService(service)}
                 >
