@@ -283,10 +283,10 @@ export const TeamSection = () => {
   return (
     <motion.section
       id='team'
-      className='from-primary-bgStrong to-secondary-bgStrong flex w-screen items-center justify-center bg-gradient-to-t py-12'
+      className='from-primary-bgStrong to-secondary-bgStrong flex w-screen items-center justify-center bg-gradient-to-t pt-12'
     >
       <motion.div className='flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg'>
-        <h1>Наша команда</h1>
+        <h1 className='h1 text-primary-defaultStrong'>Наша команда</h1>
         <div className='mt-8 flex h-full w-full flex-col gap-12 lg:flex-row'>
           <Swiper
             ref={swiperRef}

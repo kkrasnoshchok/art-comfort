@@ -71,7 +71,6 @@ const services: Service[] = [
 export const ServicesSection = () => {
   const [activeService, setActiveService] = useState<Service>(services[0]);
   return (
-    // flex w-screen flex-col items-center px-6 pb-8 pt-24
     <section
       id='services'
       className={clsxm(

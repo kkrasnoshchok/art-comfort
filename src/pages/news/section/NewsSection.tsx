@@ -1,7 +1,7 @@
 import dayjs, { Dayjs } from 'dayjs';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 
+import { Button } from '@/ui/Button';
 import { clsxm } from '@/utils';
 
 export const mockNews: {
@@ -42,45 +42,61 @@ export const mockNews: {
 
 export const NewsSection = () => {
   return (
-    <section id='#news' className='flex w-full flex-col px-6 py-24'>
-      <h1>News Section</h1>
-      {/* News Container */}
-      <div className='relative mt-4 flex-1'>
-        {mockNews.map((item, index) => (
-          <div
-            key={index}
-            className='group mt-4 flex flex-row border bg-slate-100 p-4'
-          >
-            {/* News */}
-            <div className='flex flex-1 flex-col'>
-              <h2 className='h3 mb-2'>{item.title}</h2>
-              <p className='mb-2 italic'>{item.date.format('DD.MM.YYYY')}</p>
-              <p>{item.description}</p>
-              <Link href={`/news/${item.id}`}>
-                <motion.button className='mt-4 border px-8 py-2 transition-all hover:border-zinc-100 hover:bg-slate-950 hover:text-zinc-100'>
-                  See details
-                </motion.button>
-              </Link>
-            </div>
-            {/* Image */}
+    <motion.section
+      id='#news'
+      className='from-primary-bgStrong to-secondary-bgStrong flex w-screen  flex-col items-center bg-gradient-to-b pt-12'
+    >
+      <div className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-xl backdrop-blur-2xl'>
+        <h1 className='h1 text-primary-defaultStrong'>Новини</h1>
+        {/* News Container */}
+        <div className='relative mt-4 flex-1'>
+          {mockNews.map((item, index) => (
             <div
-              className={clsxm([
-                'ml-4 flex aspect-video w-60 border border-slate-500 bg-slate-950',
-                // w-full
-              ])}
+              key={index}
+              className='border-primary-defaultWeak group mt-4 flex flex-row rounded-3xl border-2 bg-gray-50 bg-opacity-50 p-4'
             >
-              {/* <Image
+              {/* News */}
+              <div className='flex flex-1 flex-col'>
+                <h3 className='h3 text-primary-defaultStrong'>{item.title}</h3>
+                <p className='text-primary-defaultWeak mb-2 italic'>
+                  {item.date.format('DD.MM.YYYY')}
+                </p>
+                <p className='p text-primary-default'>{item.description}</p>
+                <div>
+                  <Button
+                    label='Дізнатись деталі'
+                    href={`/news/${item.id}`}
+                    theme='primary'
+                    size='medium'
+                    className='mt-4'
+                  />
+                </div>
+                {/* <Link href={`/news/${item.id}`}>
+                  <motion.button className='mt-4 border px-8 py-2 transition-all hover:border-zinc-100 hover:bg-slate-950 hover:text-zinc-100'>
+                    See details
+                  </motion.button>
+                </Link> */}
+              </div>
+              {/* Image */}
+              <div
+                className={clsxm(
+                  'bg-primary-defaultStrong ml-4 flex aspect-video w-60 rounded-2xl border border-slate-500'
+                )}
+              >
+                {/* <Image
                 src={project.url}
                 className='aspect-video h-full w-full object-cover opacity-40 transition-all group-hover:opacity-100'
                 alt={project.title}
               /> */}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        <motion.div className='mt-8'>
+          <Button label='Подивитись всі новини' href='/news' />
+          {/* <button className='border px-8 py-2 text-lg'>See all news</button> */}
+        </motion.div>
       </div>
-      <motion.div className='mt-4'>
-        <button className='border px-8 py-2 text-lg'>See all news</button>
-      </motion.div>
-    </section>
+    </motion.section>
   );
 };
