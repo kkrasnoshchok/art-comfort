@@ -61,7 +61,7 @@ export const ProjectsSection = () => {
   return (
     <motion.section
       id='projects'
-      className='from-primary-bgStrong to-secondary-bgStrong flex w-screen flex-col items-center bg-gradient-to-b pb-4 pt-16'
+      className='from-primary-bgStrong to-secondary-bgStrong flex w-screen flex-col items-center bg-gradient-to-b pt-16'
     >
       <div className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-xl backdrop-blur-2xl'>
         <motion.h1 className='h1 text-primary-default'>
@@ -136,7 +136,7 @@ export const ProjectsSection = () => {
         </motion.div>
       </div>
       <StatisticsContainer />
-      <div className='mt-8'>
+      <div className='mt-12'>
         <PartnersSection />
       </div>
     </motion.section>

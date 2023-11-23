@@ -23,7 +23,7 @@ const statistics: Statistics[] = [
 ];
 
 export const StatisticsContainer = () => (
-  <motion.div className='mt-8 grid w-11/12 grid-cols-1 gap-4 md:grid-cols-3'>
+  <motion.div className='mt-12 grid w-11/12 grid-cols-1 gap-4 md:grid-cols-3'>
     {statistics.map((statistic, index) => (
       <div
         key={index}

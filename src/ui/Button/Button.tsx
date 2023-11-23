@@ -6,21 +6,18 @@ import { ButtonSize, ButtonTheme } from '@/ui/Button/types';
 import { clsxm } from '@/utils';
 
 type Props = O.Either<
-  O.Either<
-    {
-      onClick: () => void;
-      className?: string;
-      labelClassName?: string;
-      disabled?: boolean;
-      size?: ButtonSize;
-      theme?: ButtonTheme;
-      href: string;
-      label: string;
-      Icon: ReactNode;
-    },
-    'Icon' | 'label'
-  >,
-  'href' | 'onClick'
+  {
+    className?: string;
+    labelClassName?: string;
+    disabled?: boolean;
+    size?: ButtonSize;
+    theme?: ButtonTheme;
+    href?: string;
+    onClick?: () => void;
+    label: string;
+    Icon: ReactNode;
+  },
+  'Icon' | 'label'
 >;
 
 const buttonBaseStyles =

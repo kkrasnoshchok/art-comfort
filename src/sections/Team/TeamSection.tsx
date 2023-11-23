@@ -309,7 +309,7 @@ export const TeamSection = () => {
                     <Image
                       src={user.url}
                       alt='alt'
-                      className='aspect-square h-full w-full rounded-xl opacity-40 transition-opacity group-hover:opacity-10'
+                      className='aspect-square h-full w-full rounded-xl opacity-60 transition-opacity group-hover:opacity-10'
                     />
                   </div>
                   <div

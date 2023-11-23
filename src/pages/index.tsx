@@ -1,5 +1,4 @@
 import { ReactNode, useState } from 'react';
-import AnimatedCursor from 'react-animated-cursor';
 import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -29,7 +28,7 @@ const HomePage = () => {
         <div className='flex w-full justify-center'>
           <main className='flex w-11/12 flex-col items-center justify-center'>
             {/* React Animated Cursor Initialisation */}
-            <AnimatedCursor
+            {/* <AnimatedCursor
               innerSize={36}
               outerSize={36}
               color='rgba(249, 231, 238, 1)'
@@ -62,10 +61,7 @@ const HomePage = () => {
                   children: <p className='text-primary-bg p'>Обрати</p>,
                 },
               ]}
-            >
-              {/* {customChildrenValue} */}
-              {/* <div>Хочете дізнатись більше?</div> */}
-            </AnimatedCursor>
+            /> */}
             {/* React Toastify Initialistaion */}
             <ToastContainer autoClose={3000} position='bottom-right' />
             <WelcomeSection />

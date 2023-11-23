@@ -1,4 +1,4 @@
-import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
@@ -20,19 +20,7 @@ const offerOptions = [
 
 export const WelcomeSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const { scrollY } = useScroll();
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [sectionHeight, setSectionHeight] = useState(0);
-
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    console.log('Page scroll: ', latest);
-  });
-
-  useEffect(() => {
-    if (sectionRef.current) {
-      setSectionHeight(sectionRef.current.clientHeight);
-    }
-  }, []);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -48,7 +36,7 @@ export const WelcomeSection = () => {
   return (
     <section
       id='about'
-      className='from-primary-bgStrong to-secondary-bgStrong flex w-screen flex-col items-center bg-gradient-to-b px-6 pb-8 pt-24'
+      className='from-primary-bgStrong to-secondary-bgStrong flex w-screen flex-col items-center bg-gradient-to-b pt-24'
       ref={sectionRef}
     >
       <motion.header
