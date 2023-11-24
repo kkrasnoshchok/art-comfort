@@ -1,10 +1,12 @@
-import { Alert } from 'antd';
 import { Formik } from 'formik';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { ChangeEvent, useRef, useState } from 'react';
+import { toast } from 'react-toastify';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
+
+import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { GoogleMap } from '@/pages/contacts/components/GoogleMap';
 import { Button } from '@/ui/Button';
@@ -13,9 +15,7 @@ import { useI18n } from '@/utils';
 
 export const ContactsSection = () => {
   const { locale } = useRouter();
-  const [formStatus, setFormStatus] = useState<
-    'idle' | 'loading' | 'error' | 'success'
-  >('idle');
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<FileList | never[]>([]);
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -45,60 +45,48 @@ export const ContactsSection = () => {
     })
     .required();
 
-  // const onSubmit: SubmitHandler<ContactsFormType> = async (values) => {
-  //   setFormStatus('loading');
-  //   const formData = new FormData();
-  //   for (let i = 0; i < selectedFiles.length; i++) {
-  //     formData.append('files', selectedFiles[i]);
-  //   }
-  //   for (const valueKey in values) {
-  //     formData.append(valueKey, values[valueKey as keyof typeof values]);
-  //   }
-
-  //   try {
-  //     const response = await fetch('/api/upload', {
-  //       method: 'POST',
-  //       body: formData,
-  //     });
-
-  //     if (response.ok) {
-  //       setFormStatus('success');
-  //       setTimeout(() => {
-  //         setFormStatus('idle');
-  //       }, 2000);
-  //       setValue('name', '');
-  //       setValue('email', '');
-  //       setValue('phone', '');
-  //       setValue('message', '');
-  //       if (fileRef.current?.value) {
-  //         fileRef.current.value = '';
-  //       }
-  //     } else {
-  //       toast.error('Error uploading files');
-  //     }
-  //   } catch (error) {
-  //     setFormStatus('error');
-  //     setTimeout(() => {
-  //       setFormStatus('idle');
-  //     }, 2000);
-  //     const tError = error as Error;
-  //     throw new Error(tError.message, { cause: tError.cause });
-  //   }
-  // };
-
   return (
-    <motion.section
-      id='contacts'
-      className='from-primary-bgStrong to-secondary-bgStrong flex w-screen items-center justify-center bg-gradient-to-t pb-24 pt-12'
-    >
-      <motion.div className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg lg:flex-row'>
+    <SectionWrapper sectionProps={{ id: 'contacts' }}>
+      <motion.div className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-md lg:flex-row'>
         <div className='flex w-full flex-col items-center lg:w-1/3 lg:items-start'>
           <h1>{t.contacts.title}</h1>
           <div className='mt-6 flex w-full flex-col items-center lg:items-start'>
             {/* Form */}
             <Formik
-              onSubmit={(values) => {
-                console.log('onSubmit');
+              validateOnBlur={hasSubmitted}
+              validateOnChange={hasSubmitted}
+              onSubmit={async (values, helpers) => {
+                setHasSubmitted(true);
+                const formData = new FormData();
+                for (let i = 0; i < selectedFiles.length; i++) {
+                  formData.append('files', selectedFiles[i]);
+                }
+                for (const valueKey in values) {
+                  formData.append(
+                    valueKey,
+                    values[valueKey as keyof typeof values]
+                  );
+                }
+
+                try {
+                  const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData,
+                  });
+
+                  if (response.ok) {
+                    toast.success('success');
+                    helpers.resetForm();
+                    if (fileRef.current?.value) {
+                      fileRef.current.value = '';
+                    }
+                  } else {
+                    toast.error('Error uploading files');
+                  }
+                } catch (error) {
+                  const tError = error as Error;
+                  throw new Error(tError.message, { cause: tError.cause });
+                }
               }}
               initialValues={{
                 name: '',
@@ -110,7 +98,7 @@ export const ContactsSection = () => {
             >
               {({
                 values,
-                handleBlur,
+                isSubmitting,
                 handleSubmit,
                 handleChange,
                 setFieldValue,
@@ -118,17 +106,7 @@ export const ContactsSection = () => {
               }) => (
                 <>
                   <p className='text-lg font-semibold'>{t.contacts.subtitle}</p>
-                  <div className='mt-6 flex w-full flex-col items-center gap-2 lg:items-start'>
-                    {formStatus === 'success' && (
-                      <Alert
-                        className='mb-2 mr-6'
-                        message='Ваш лист успішно надіслано!'
-                        type='success'
-                        closable
-                        onClose={() => setFormStatus('idle')}
-                        showIcon
-                      />
-                    )}
+                  <div className='mt-6 flex w-full flex-col gap-4'>
                     <Input
                       label='Name'
                       name='name'
@@ -136,29 +114,42 @@ export const ContactsSection = () => {
                       value={values.name}
                       onChange={handleChange}
                       className='w-10/12'
+                      disabled={isSubmitting}
                       error={errors.name}
+                      success={
+                        !!(!errors.name && values.name.length && hasSubmitted)
+                      }
                     />
                     <Input
                       label='Email'
                       name='email'
                       onClear={() => setFieldValue('email', '')}
                       value={values.email}
+                      disabled={isSubmitting}
                       onChange={handleChange}
                       className='w-10/12'
                       error={errors.email}
+                      success={
+                        !!(!errors.email && values.email.length && hasSubmitted)
+                      }
                     />
                     <Input
                       label='Phone'
                       name='phone'
                       onClear={() => setFieldValue('phone', '')}
                       value={values.phone}
+                      disabled={isSubmitting}
                       onChange={handleChange}
                       className='w-10/12'
                       error={errors.phone}
+                      success={
+                        !!(!errors.phone && values.phone.length && hasSubmitted)
+                      }
                     />
                     <Input
                       label='Message'
                       name='message'
+                      disabled={isSubmitting}
                       type='textarea'
                       rows={10}
                       onClear={() => setFieldValue('message', '')}
@@ -166,6 +157,13 @@ export const ContactsSection = () => {
                       className='w-10/12'
                       value={values.message}
                       onChange={handleChange}
+                      success={
+                        !!(
+                          !errors.message &&
+                          values.message.length &&
+                          hasSubmitted
+                        )
+                      }
                     />
                     <div className='mt-2 flex w-10/12 flex-col items-start justify-center'>
                       <input
@@ -175,13 +173,15 @@ export const ContactsSection = () => {
                         onChange={(e) => handleFileChange(e)}
                       />
                     </div>
-                    <Button
-                      onClick={() => handleSubmit()}
-                      label='Send'
-                      size='medium'
-                      theme='primary'
-                      className='mt-8'
-                    />
+                    <div>
+                      <Button
+                        onClick={() => handleSubmit()}
+                        label='Send'
+                        size='medium'
+                        theme='primary'
+                        className='mt-8'
+                      />
+                    </div>
                   </div>
                 </>
               )}
@@ -191,6 +191,6 @@ export const ContactsSection = () => {
         {/* Map */}
         <GoogleMap />
       </motion.div>
-    </motion.section>
+    </SectionWrapper>
   );
 };

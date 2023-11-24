@@ -9,6 +9,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
+import { SectionWrapper } from '@/components/sectionWrapper';
+
 import team0 from '@/assets/Team_0.jpeg';
 import team1 from '@/assets/Team_1.jpeg';
 import team2 from '@/assets/Team_2.jpeg';
@@ -281,11 +283,8 @@ export const TeamSection = () => {
   };
 
   return (
-    <motion.section
-      id='team'
-      className='from-primary-bgStrong to-secondary-bgStrong flex w-screen items-center justify-center bg-gradient-to-t pt-12'
-    >
-      <motion.div className='flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg'>
+    <SectionWrapper sectionProps={{ id: '#team' }} className='pb-0'>
+      <motion.div className='flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-lg'>
         <h1 className='h1 text-primary-defaultStrong'>Наша команда</h1>
         <div className='mt-8 flex h-full w-full flex-col gap-12 lg:flex-row'>
           <Swiper
@@ -348,6 +347,6 @@ export const TeamSection = () => {
           </Swiper>
         </div>
       </motion.div>
-    </motion.section>
+    </SectionWrapper>
   );
 };

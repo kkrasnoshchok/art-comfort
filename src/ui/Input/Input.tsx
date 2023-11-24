@@ -3,6 +3,7 @@ import {
   ElementType,
   InputHTMLAttributes,
   TextareaHTMLAttributes,
+  useRef,
   useState,
 } from 'react';
 import { RxCross2 } from 'react-icons/rx';
@@ -55,28 +56,33 @@ export const Input = (props: Props) => {
     inputClassName = '',
     ...inputProps
   } = props;
+  const inputRef = useRef<HTMLInputElement>(null);
   const [isInputFocused, setInputFocused] = useState(false);
 
   return (
-    <>
+    <div>
       <div
         className={clsxm(
           'bg-grayscale-bg rounded-2xl border-2 border-transparent px-4 py-3 transition-[border]',
           isInputFocused && 'border-grayscale-header',
-          disabled && '',
-          error && '',
-          success && '',
+          disabled && 'cursor-not-allowed opacity-50',
+          error && 'border-danger-defaultStrong bg-danger-bg',
+          success && 'border-success-defaultStrong bg-success-bg',
           className
         )}
+        onClick={() => inputRef.current?.focus()}
       >
         {/* Label */}
         {label && (
           <p
             className={clsxm(
-              'absolute transition-all',
+              'absolute z-0 transition-all',
               !isInputFocused && inputProps.value && 'opacity-0',
-              isInputFocused && 'text-grayscale-label -translate-y-2 text-xs'
+              isInputFocused && 'text-grayscale-label -translate-y-2 text-xs',
+              error && 'text-danger-default',
+              success && 'text-success-default'
             )}
+            onClick={() => inputRef.current?.focus()}
           >
             {label}
           </p>
@@ -85,11 +91,13 @@ export const Input = (props: Props) => {
           {LeftIcon && <LeftIcon />}
           {type === 'input' && (
             <input
+              ref={inputRef}
               onFocus={() => setInputFocused(true)}
               onBlur={() => setInputFocused(false)}
               className={clsxm(
                 'flex-1 bg-transparent pr-2 outline-none transition-transform',
                 isInputFocused && 'translate-y-1.5',
+                disabled && 'pointer-events-none cursor-not-allowed',
                 inputClassName
               )}
               {...(inputProps as HTMLInputProps)}
@@ -121,8 +129,13 @@ export const Input = (props: Props) => {
           )}
         </div>
       </div>
-      {/* Hint */}
+      {/* Hint / Error */}
       {hint && <p className='p text-sm'>{hint}</p>}
-    </>
+      {error && (
+        <p className='p text-danger-defaultStrong mt-1 text-sm font-medium'>
+          {error}
+        </p>
+      )}
+    </div>
   );
 };

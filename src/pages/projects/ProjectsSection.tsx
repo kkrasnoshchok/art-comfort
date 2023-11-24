@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
 
+import { SectionWrapper } from '@/components/sectionWrapper';
 import { StatisticsContainer } from '@/components/statistics';
 
 import coolingSystem from '@/assets/Projects_1.jpg';
@@ -59,9 +60,10 @@ const mockProjects: Project[] = [
 
 export const ProjectsSection = () => {
   return (
-    <motion.section
-      id='projects'
-      className='from-primary-bgStrong to-secondary-bgStrong flex w-screen flex-col items-center bg-gradient-to-b pt-16'
+    <SectionWrapper
+      sectionProps={{ id: '#news' }}
+      className='flex flex-col items-center pb-0'
+      innerClassName='bg-gradient-to-b'
     >
       <div className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-xl backdrop-blur-2xl'>
         <motion.h1 className='h1 text-primary-default'>
@@ -139,6 +141,6 @@ export const ProjectsSection = () => {
       <div className='mt-12'>
         <PartnersSection />
       </div>
-    </motion.section>
+    </SectionWrapper>
   );
 };

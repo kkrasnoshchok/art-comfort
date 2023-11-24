@@ -1,6 +1,8 @@
 import dayjs, { Dayjs } from 'dayjs';
 import { motion } from 'framer-motion';
 
+import { SectionWrapper } from '@/components/sectionWrapper';
+
 import { Button } from '@/ui/Button';
 import { clsxm } from '@/utils';
 
@@ -42,9 +44,10 @@ export const mockNews: {
 
 export const NewsSection = () => {
   return (
-    <motion.section
-      id='#news'
-      className='from-primary-bgStrong to-secondary-bgStrong flex w-screen  flex-col items-center bg-gradient-to-b pt-12'
+    <SectionWrapper
+      sectionProps={{ id: '#news' }}
+      className='pb-0'
+      innerClassName='bg-gradient-to-b'
     >
       <div className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-xl backdrop-blur-2xl'>
         <h1 className='h1 text-primary-defaultStrong'>Новини</h1>
@@ -97,6 +100,6 @@ export const NewsSection = () => {
           {/* <button className='border px-8 py-2 text-lg'>See all news</button> */}
         </motion.div>
       </div>
-    </motion.section>
+    </SectionWrapper>
   );
 };
