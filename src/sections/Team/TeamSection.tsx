@@ -283,7 +283,7 @@ export const TeamSection = () => {
   };
 
   return (
-    <SectionWrapper sectionProps={{ id: '#team' }} className='pb-0'>
+    <SectionWrapper sectionProps={{ id: 'team' }} className='pb-0'>
       <motion.div className='flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-lg'>
         <h1 className='h1 text-primary-defaultStrong'>Наша команда</h1>
         <div className='mt-8 flex h-full w-full flex-col gap-12 lg:flex-row'>

@@ -45,7 +45,7 @@ export const mockNews: {
 export const NewsSection = () => {
   return (
     <SectionWrapper
-      sectionProps={{ id: '#news' }}
+      sectionProps={{ id: 'news' }}
       className='pb-0'
       innerClassName='bg-gradient-to-b'
     >

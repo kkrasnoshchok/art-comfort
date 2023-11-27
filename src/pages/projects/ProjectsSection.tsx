@@ -61,7 +61,7 @@ const mockProjects: Project[] = [
 export const ProjectsSection = () => {
   return (
     <SectionWrapper
-      sectionProps={{ id: '#news' }}
+      sectionProps={{ id: 'projects' }}
       className='flex flex-col items-center pb-0'
       innerClassName='bg-gradient-to-b'
     >

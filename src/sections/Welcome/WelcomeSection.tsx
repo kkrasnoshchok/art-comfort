@@ -1,43 +1,28 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import NextImage from '@/components/NextImage';
+import { SectionWrapper } from '@/components/sectionWrapper';
 
 import logo from '@/assets/logo.png';
 import { PartnersSection } from '@/sections/Partners';
+import { Button } from '@/ui/Button';
 import { clsxm } from '@/utils';
 
-const offerOptions = [
-  'Проектування систем кондиціонування та вентиляції',
-  'Підбір і доставка кондиціонерів',
-  'Продаж кліматичного обладнання',
-  'Демонтажні роботи',
-  'Сервісне обслуговування систем кондиціонування',
-  'Монтажні та пуско-налагоджувальні роботи',
-  'Гарантійний і післягарантійний ремонт',
-];
-
 export const WelcomeSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
+  const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setActiveIndex((prev) => {
-        if (offerOptions.length - 1 === prev) {
-          return 0;
-        }
-        return prev + 1;
-      });
-    }, 2000);
-    return () => clearInterval(intervalId);
-  }, []);
+    if (videoRef.current) {
+      videoRef.current.loop = true;
+      videoRef.current?.play();
+    }
+  }, [videoRef]);
   return (
-    <section
-      id='about'
-      className='from-primary-bgStrong to-secondary-bgStrong flex w-screen flex-col items-center bg-gradient-to-b pt-24'
-      ref={sectionRef}
+    <SectionWrapper
+      sectionProps={{ id: 'about' }}
+      className='relative mt-0 flex aspect-video w-screen flex-col items-center pb-0 pt-0'
+      innerClassName='bg-gradient-to-b'
     >
       <motion.header
         initial={{ translateY: -20 }}
@@ -59,7 +44,7 @@ export const WelcomeSection = () => {
       </motion.header>
       <div className='mt-16 flex w-11/12 flex-1 flex-col items-center justify-center'>
         {/* Animated Text */}
-        <div className='relative flex h-10 flex-row items-center justify-center'>
+        {/* <div className='relative flex h-10 flex-row items-center justify-center'>
           {offerOptions.map((offer, index) => (
             <motion.div
               key={offer}
@@ -74,24 +59,50 @@ export const WelcomeSection = () => {
               </motion.h1>
             </motion.div>
           ))}
+        </div> */}
+        <div
+          onMouseEnter={() => {
+            if (videoRef.current) {
+              videoRef.current?.pause();
+            }
+          }}
+          onMouseLeave={() => {
+            if (videoRef.current) {
+              videoRef.current?.play();
+            }
+          }}
+          className={clsxm(
+            'flex flex-col items-center justify-center',
+            'border-primary-bg rounded-2xl border-2 bg-gray-50 bg-opacity-25 p-8 shadow-sm backdrop-blur-sm',
+            'transition-transform hover:scale-105 hover:shadow-xl hover:backdrop-blur-lg'
+          )}
+        >
+          <h1 className='h1 text-primary-defaultStrong'>
+            Досліджуйте мистецтво комфорту разом з нами
+          </h1>
+          <Button
+            className='mt-12'
+            href='#services'
+            label='Розпочати дослідження'
+            theme='secondary'
+          />
         </div>
-        {/* Together with */}
-        <div className=' from-primary-default to-secondary-default mt-8 inline-block rounded-2xl bg-gradient-to-r p-1'>
-          <div className='bg-primary-bg w-full rounded-xl border-2 bg-clip-border p-2'>
-            <span className='h3 text-primary-default'>разом з</span>{' '}
-            <span className='h2 to-secondary-default from-primary-default ml-2 bg-gradient-to-r  bg-clip-text text-transparent'>
-              Art Comfort
-            </span>
-          </div>
-        </div>
-        <motion.p className='p text-primary-defaultStrong mt-8 md:pr-4'>
-          Створення середовищ спокою: Де точність клімату поєднується з
-          особистим комфортом.
-        </motion.p>
       </div>
-      <div className='mt-16'>
+      <div className='mb-12'>
         <PartnersSection />
       </div>
-    </section>
+      <div className='from-primary-bgStrong to-secondary-bgStrong absolute left-0 top-0 -z-[5] h-full w-full bg-gradient-to-b'>
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          controls={false}
+          className='h-full w-full opacity-40'
+        >
+          <source src='/video.mp4' type='video/mp4' />
+          Your browser doesnt support the video tag
+        </video>
+      </div>
+    </SectionWrapper>
   );
 };

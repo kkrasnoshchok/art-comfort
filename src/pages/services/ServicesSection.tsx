@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
+
+import { SectionWrapper } from '@/components/sectionWrapper';
 
 import equipmentSale from '@/assets/Climate_Control_Equipment_Sale.png';
 import airConditioningDesign from '@/assets/Design_Of_Air_Conditioning_and_Ventilation_Systems.jpg';
@@ -70,14 +72,29 @@ const services: Service[] = [
 
 export const ServicesSection = () => {
   const [activeService, setActiveService] = useState<Service>(services[0]);
+
+  const renderRightContent = useCallback(
+    () => (
+      <motion.div className='bg-primary-defaultStrong relative z-10 flex flex-1 flex-col justify-between rounded-[36px] p-8'>
+        <motion.h2 className='h2 text-primary-bg'>
+          {activeService.title}
+        </motion.h2>
+        <p className='text-primary-bg self-end justify-self-end'>
+          {activeService.description}
+        </p>
+        <motion.div className='absolute left-0 top-0 -z-10 h-full w-full'>
+          <Image
+            src={activeService.url}
+            className='h-full w-full rounded-[36px] object-cover opacity-10'
+            alt={activeService.description}
+          />
+        </motion.div>
+      </motion.div>
+    ),
+    [activeService]
+  );
   return (
-    <section
-      id='services'
-      className={clsxm(
-        'flex w-screen flex-col items-center justify-center pt-12',
-        'to-primary-bgStrong from-secondary-bgStrong bg-gradient-to-b'
-      )}
-    >
+    <SectionWrapper sectionProps={{ id: 'services' }} className='pb-0'>
       <div
         className={clsxm(
           'grid w-11/12 grid-cols-2 overflow-hidden',
@@ -144,22 +161,8 @@ export const ServicesSection = () => {
           />
         </motion.div>
         {/* Right */}
-        <motion.div className='bg-primary-defaultStrong relative z-10 flex flex-1 flex-col justify-between rounded-[36px] p-8'>
-          <motion.h2 className='h2 text-primary-bg'>
-            {activeService.title}
-          </motion.h2>
-          <p className='text-primary-bg self-end justify-self-end'>
-            {activeService.description}
-          </p>
-          <motion.div className='absolute left-0 top-0 -z-10 h-full w-full'>
-            <Image
-              src={activeService.url}
-              className='h-full w-full rounded-[36px] object-cover opacity-10'
-              alt={activeService.description}
-            />
-          </motion.div>
-        </motion.div>
+        {renderRightContent()}
       </div>
-    </section>
+    </SectionWrapper>
   );
 };
