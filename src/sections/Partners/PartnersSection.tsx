@@ -108,7 +108,7 @@ export const PartnersSection = () => {
           <SwiperSlide key={idx}>
             <div
               className={clsxm([
-                'flex aspect-video w-full items-center justify-center lg:h-24 lg:w-48 lg:portrait:w-36',
+                'swiper-element flex aspect-video w-full items-center justify-center lg:h-24 lg:w-48 lg:portrait:w-36',
               ])}
             >
               <Element.Icon />

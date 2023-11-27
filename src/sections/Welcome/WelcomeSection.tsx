@@ -32,7 +32,7 @@ export const WelcomeSection = () => {
       >
         <div
           className={clsxm([
-            'flex cursor-pointer transition-transform hover:scale-105',
+            'header-logo flex cursor-pointer transition-transform hover:scale-105',
           ])}
         >
           <Link href='#'>

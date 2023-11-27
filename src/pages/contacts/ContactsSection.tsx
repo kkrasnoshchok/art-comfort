@@ -171,6 +171,7 @@ export const ContactsSection = () => {
                         type='file'
                         multiple
                         onChange={(e) => handleFileChange(e)}
+                        className='input-file'
                       />
                     </div>
                     <div>

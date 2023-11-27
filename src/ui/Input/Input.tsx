@@ -63,7 +63,7 @@ export const Input = (props: Props) => {
     <div>
       <div
         className={clsxm(
-          'bg-grayscale-bg rounded-2xl border-2 border-transparent px-4 py-3 transition-[border]',
+          'base-input bg-grayscale-bg rounded-2xl border-2 border-transparent px-4 py-3 transition-[border]',
           isInputFocused && 'border-grayscale-header',
           disabled && 'cursor-not-allowed opacity-50',
           error && 'border-danger-defaultStrong bg-danger-bg',

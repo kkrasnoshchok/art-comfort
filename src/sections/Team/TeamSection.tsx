@@ -299,7 +299,7 @@ export const TeamSection = () => {
           >
             {teamMock.map((user, index) => (
               <SwiperSlide key={index}>
-                <div className='group relative flex h-full w-full flex-col items-center justify-center'>
+                <div className='team-element group relative flex h-full w-full flex-col items-center justify-center'>
                   <div
                     className={clsxm([
                       'bg-primary-defaultStrong aspect-square w-full rounded-2xl',
