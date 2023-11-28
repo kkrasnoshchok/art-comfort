@@ -1,1 +1,2 @@
-export const ContactsPage = () => <div>Contacts Page</div>;
+const ContactsPage = () => <div>Contacts Page</div>;
+export default ContactsPage;

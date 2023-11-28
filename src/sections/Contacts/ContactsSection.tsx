@@ -8,10 +8,11 @@ import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { GoogleMap } from '@/pages/contacts/components/GoogleMap';
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
 import { useI18n } from '@/utils';
+
+import { GoogleMap } from './components/GoogleMap';
 
 export const ContactsSection = () => {
   const { locale } = useRouter();

@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 
 import { Layout } from '@/components/layout';
 
-import { mockNews } from '@/pages/news/section/NewsSection';
+import { mockNews } from '@/sections/News/NewsSection';
 
-export const Page = () => {
+const Page = () => {
   const { query, back } = useRouter();
   const singleNews = mockNews.find((element) => element.id === query.slug);
   return (
@@ -29,3 +29,5 @@ export const Page = () => {
     </Layout>
   );
 };
+
+export default Page;
