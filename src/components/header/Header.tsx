@@ -1,14 +1,9 @@
-import { Select } from 'antd';
-import { AnimatePresence, motion } from 'framer-motion';
-import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 
 import { NavigationList } from '@/components/header/components/NavigationList/NavigationList';
-import NextImage from '@/components/NextImage';
 
-import logo from '@/assets/logo.png';
-import { UsaIcon } from '@/assets/svgs/UsaIcon';
 import { Button } from '@/ui/Button';
 import { clsxm, useI18n } from '@/utils';
 
@@ -89,119 +84,103 @@ export const Header = () => {
   }, []);
 
   return (
-    <AnimatePresence>
-      <motion.header
-        initial={{ translateY: -20 }}
-        animate={{ translateY: 0 }}
-        exit={{ opacity: 0 }}
-        className='fixed top-8 z-50 flex h-24 w-full items-center justify-center bg-opacity-25'
-      >
-        <motion.div className='bg-primary-bgStrong relative flex w-11/12 items-center justify-between rounded-2xl p-6 backdrop-blur-3xl'>
-          {/* Logo */}
-          <div className={clsxm(['flex', menuOpened && ''])}>
-            <Link href='/'>
-              <div className='mb-3 flex items-center'>
-                <NextImage
-                  src={logo}
-                  alt='logo'
-                  width={120}
-                  height={120}
-                  className='absolute'
-                />
-              </div>
-            </Link>
-          </div>
-          <div className={clsxm(['flex items-center gap-4'])}>
-            {/* Nav */}
-            <nav className='hidden items-center gap-8 xl:flex'>
-              <NavigationList
-                nav={{
-                  links: baseLinks,
-                  contacts,
-                }}
-                activeLink={activeLink}
-              />
-            </nav>
-            {/* Language Select */}
-            <Select
-              size='large'
-              className='w-16'
-              defaultValue={router.locale}
-              suffixIcon={null}
-              listItemHeight={28}
-              bordered
-              options={[
-                {
-                  label: (
-                    <div className='flex h-full w-full flex-col items-center justify-center'>
-                      <div className='h-3 w-8 bg-blue-600' />
-                      <div className='h-3 w-8 bg-yellow-300' />
-                    </div>
-                  ),
-                  value: 'ua',
-                },
-                {
-                  label: (
-                    <div className='flex h-full w-full flex-col items-center justify-center'>
-                      <UsaIcon size={32} />
-                    </div>
-                  ),
-
-                  value: 'en',
-                },
-              ]}
-              onChange={(value) => onLocaleChange(value as 'ua' | 'en')}
+    <motion.header
+      initial={{ translateY: -20 }}
+      animate={{ translateY: 0 }}
+      exit={{ opacity: 0 }}
+      className='fixed bottom-4 z-50 flex w-full items-center justify-center'
+    >
+      <motion.div className='bg-primary-bgStrong relative flex items-center justify-center rounded-2xl px-4 py-2 backdrop-blur-3xl'>
+        <div className={clsxm(['flex items-center gap-4'])}>
+          {/* Nav */}
+          <nav className='hidden items-center gap-8 xl:flex'>
+            <NavigationList
+              nav={{
+                links: baseLinks,
+                contacts,
+              }}
+              activeLink={activeLink}
             />
-            {/* Burger Button */}
+          </nav>
+          {/* Language Select */}
+          <div className='flex flex-row items-center'>
             <Button
-              onClick={() => setMenuOpened((prev) => !prev)}
-              theme='ghost'
-              className={clsxm(
-                'border-primary-default hover:border-primary-bgStrong group flex h-10 w-10 flex-col items-center justify-center gap-1 rounded-full border-2 transition-all',
-                menuOpened && 'bg-primary-default'
+              labelClassName={clsxm(
+                'text-sm text-primary-bg',
+                router.locale === 'ua' && 'text-grayscale-header'
               )}
-              Icon={
-                <>
-                  <div
-                    className={clsxm([
-                      'bg-primary-default group-hover:bg-primary-bgStrong h-0.5 w-5 rounded-xl transition-all',
-                      menuOpened &&
-                        't-2/4 l-2/4 bg-primary-bg group-hover:bg-primary-bg absolute rotate-45',
-                    ])}
-                  />
-                  <div
-                    className={clsxm([
-                      'bg-primary-default group-hover:bg-primary-bgStrong h-0.5 w-5 rounded-xl transition-all',
-                      menuOpened && 'hidden',
-                    ])}
-                  />
-                  <div
-                    className={clsxm([
-                      'bg-primary-default group-hover:bg-primary-bgStrong h-0.5 w-5 rounded-xl transition-all',
-                      menuOpened &&
-                        't-2/4 l-2/4 bg-primary-bg group-hover:bg-primary-bg absolute -rotate-45',
-                    ])}
-                  />
-                </>
-              }
+              label='UA'
+              theme='ghost'
+              onClick={() => {
+                if (router.locale === 'en') {
+                  onLocaleChange('ua');
+                }
+              }}
+            />
+            <div className='text-grayscale-headerWeak mx-1 text-sm'>/</div>
+            <Button
+              labelClassName={clsxm(
+                'text-sm text-primary-bg',
+                router.locale === 'en' && 'text-grayscale-header'
+              )}
+              label='EN'
+              theme='ghost'
+              onClick={() => {
+                if (router.locale === 'ua') {
+                  onLocaleChange('en');
+                }
+              }}
             />
           </div>
-          {menuOpened && (
-            <motion.nav
-              animate={{ translateX: menuOpened ? 0 : 120 }}
-              className='bg-primary-bg absolute right-0 top-28 z-50 flex w-full flex-col items-center justify-start gap-8 rounded-lg p-2 pt-6 sm:w-72 sm:items-end'
-            >
-              <NavigationList
-                nav={{ links: advancedLinks, contacts }}
-                contactsClassName='mt-auto w-2/3 ml-0 sm:w-full justify-center items-center text-center'
-                headerLinkClassName='text-xl'
-                onLinkClick={() => setMenuOpened(false)}
-                activeLink={activeLink}
-              />
-            </motion.nav>
-          )}
-        </motion.div>
-      </motion.header>
-    </AnimatePresence>
+          {/* Burger Button */}
+          <Button
+            onClick={() => setMenuOpened((prev) => !prev)}
+            theme='ghost'
+            className={clsxm(
+              'border-primary-bg hover:border-primary-bgStrong group flex h-7 w-7 flex-col items-center justify-center gap-0.5 rounded-full border-2 transition-all',
+              menuOpened && 'bg-primary-default'
+            )}
+            Icon={
+              <>
+                <div
+                  className={clsxm([
+                    'bg-primary-bg group-hover:bg-primary-bgStrong h-0.5 w-3 rounded-xl transition-all',
+                    menuOpened &&
+                      't-2/4 l-2/4 bg-primary-bg group-hover:bg-primary-bg absolute rotate-45',
+                  ])}
+                />
+                <div
+                  className={clsxm([
+                    'bg-primary-bg group-hover:bg-primary-bgStrong h-0.5 w-3 rounded-xl transition-all',
+                    menuOpened && 'hidden',
+                  ])}
+                />
+                <div
+                  className={clsxm([
+                    'bg-primary-bg group-hover:bg-primary-bgStrong h-0.5 w-3 rounded-xl transition-all',
+                    menuOpened &&
+                      't-2/4 l-2/4 bg-primary-bg group-hover:bg-primary-bg absolute -rotate-45',
+                  ])}
+                />
+              </>
+            }
+          />
+        </div>
+        {menuOpened && (
+          <motion.nav
+            animate={{ translateX: menuOpened ? 0 : 120 }}
+            className='bg-primary-defaultWeak absolute bottom-16 right-0 z-50 flex w-full flex-col items-center justify-start gap-4 rounded-lg p-6 sm:w-72 sm:items-end'
+          >
+            <NavigationList
+              nav={{ links: advancedLinks, contacts }}
+              contactsClassName='mt-4 w-2/3 ml-0 sm:w-full justify-center items-center text-center'
+              headerLinkClassName='text-xl'
+              onLinkClick={() => setMenuOpened(false)}
+              activeLink={activeLink}
+            />
+          </motion.nav>
+        )}
+      </motion.div>
+    </motion.header>
   );
 };

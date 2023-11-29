@@ -129,7 +129,7 @@ const vacancies: Vacancy[] = [
   },
 ];
 
-export const VacanciesPage = () => {
+const VacanciesPage = () => {
   const [formSent, setFormSent] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<FileList | never[]>([]);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -363,3 +363,5 @@ export const VacanciesPage = () => {
     </>
   );
 };
+
+export default VacanciesPage;

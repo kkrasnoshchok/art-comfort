@@ -9,6 +9,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
+import { SectionWrapper } from '@/components/sectionWrapper';
+
 import team0 from '@/assets/Team_0.jpeg';
 import team1 from '@/assets/Team_1.jpeg';
 import team2 from '@/assets/Team_2.jpeg';
@@ -19,6 +21,7 @@ import team6 from '@/assets/Team_6.jpeg';
 import team7 from '@/assets/Team_7.jpeg';
 import team8 from '@/assets/Team_8.jpeg';
 import team9 from '@/assets/Team_9.jpeg';
+import { Button } from '@/ui/Button';
 import { clsxm, useBreakpoint } from '@/utils';
 
 const teamMock = [
@@ -280,33 +283,10 @@ export const TeamSection = () => {
   };
 
   return (
-    <motion.section
-      id='team'
-      className='relative flex w-full flex-col px-6 py-24'
-    >
-      <h1>Наша команда</h1>
-      <div className='mt-8 flex h-full w-full flex-col gap-12 lg:flex-row'>
-        <div className={clsxm(['h-full flex-1 lg:w-2/4'])}>
-          <p className='bg-black text-white'>
-            Тут має бути гарний текст з описом дружньої команди
-          </p>
-          <br />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim
-            praesent elementum facilisis leo vel fringilla est ullamcorper. Orci
-            nulla pellentesque dignissim enim sit amet venenatis urna cursus. In
-            dictum non consectetur a erat nam. Pharetra pharetra massa massa
-            ultricies mi quis hendrerit dolor. Erat nam at lectus urna duis
-            convallis convallis tellus id. Felis donec et odio pellentesque diam
-            volutpat commodo sed egestas. Egestas egestas fringilla phasellus
-            faucibus scelerisque eleifend donec pretium. Duis ut diam quam nulla
-            porttitor massa id neque. At erat pellentesque adipiscing commodo
-            elit at. Sit amet est placerat in egestas erat imperdiet sed.
-            Vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras.
-          </p>
-        </div>
-        <div className='h-full flex-1 lg:w-4/6'>
+    <SectionWrapper sectionProps={{ id: 'team' }} className='pb-0'>
+      <motion.div className='flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-lg'>
+        <h1 className='h1 text-primary-defaultStrong'>Наша команда</h1>
+        <div className='mt-8 flex h-full w-full flex-col gap-12 lg:flex-row'>
           <Swiper
             ref={swiperRef}
             grabCursor
@@ -319,27 +299,54 @@ export const TeamSection = () => {
           >
             {teamMock.map((user, index) => (
               <SwiperSlide key={index}>
-                <div className='flex h-full w-full flex-col bg-white'>
+                <div className='team-element group relative flex h-full w-full flex-col items-center justify-center'>
                   <div
                     className={clsxm([
-                      'aspect-square w-full border border-slate-500 bg-slate-950 lg:h-56 lg:w-56 lg:portrait:h-48 lg:portrait:w-48',
+                      'bg-primary-defaultStrong aspect-square w-full rounded-2xl',
                     ])}
                   >
                     <Image
                       src={user.url}
                       alt='alt'
-                      width={100}
-                      height={100}
-                      className='aspect-square h-full w-full opacity-80'
+                      className='aspect-square h-full w-full rounded-xl opacity-60 transition-opacity group-hover:opacity-10'
                     />
                   </div>
-                  <h4 className='mb-2 mt-4 text-gray-700'>{user.name}</h4>
+                  <div
+                    className={clsxm(
+                      'absolute bottom-4 w-11/12',
+                      'pointer-events-none opacity-0 transition-opacity group-hover:pointer-events-auto group-hover:opacity-100',
+                      'bg-primary-bg rounded-lg p-2'
+                    )}
+                  >
+                    <div className='flex flex-row items-center'>
+                      <h4 className='text-primary-defaultStrong h4'>
+                        {user.name}
+                      </h4>
+                      <p className='p ml-2'> / CEO</p>
+                    </div>
+                    <div className='flex flex-row items-center'>
+                      <Button
+                        theme='ghost'
+                        href={`tel:${user.phone}`}
+                        className='text-primary-defaultStrong h4'
+                        label={user.phone}
+                      />
+                    </div>
+                    <div className='flex flex-row items-center'>
+                      <Button
+                        theme='ghost'
+                        href={`mailto:${user.email}`}
+                        className='text-primary-defaultStrong h4'
+                        label={user.email}
+                      />
+                    </div>
+                  </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
-      </div>
-    </motion.section>
+      </motion.div>
+    </SectionWrapper>
   );
 };

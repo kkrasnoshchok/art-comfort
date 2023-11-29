@@ -99,16 +99,16 @@ export const PartnersSection = () => {
         slidesPerView={getSlidesPerView()}
         centeredSlides
         spaceBetween={24}
-        autoplay={{ delay: 2000 }}
+        autoplay={{ delay: 3000 }}
         className={clsxm([
-          'flex h-full w-full items-center justify-center lg:mt-12',
+          'border-primary-bg flex h-full w-11/12 items-center justify-center rounded-2xl border-2 bg-gray-50 bg-opacity-25 shadow-lg',
         ])}
       >
         {mockPartners.map((Element, idx) => (
           <SwiperSlide key={idx}>
             <div
               className={clsxm([
-                'flex aspect-video w-full items-center justify-center lg:h-24 lg:w-48 lg:portrait:w-36',
+                'swiper-element flex aspect-video w-full items-center justify-center lg:h-24 lg:w-48 lg:portrait:w-36',
               ])}
             >
               <Element.Icon />

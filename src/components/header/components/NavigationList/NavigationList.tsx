@@ -31,8 +31,9 @@ export const NavigationList = (props: NavigationListProps) => {
           onClick={() => {
             onLinkClick && onLinkClick();
           }}
-          theme={`#${activeLink}` === link.href ? 'primary' : 'secondary'}
+          theme={`#${activeLink}` === link.href ? 'primary' : 'subtle'}
           label={link.title}
+          size='small'
         />
       ))}
       {/* Contacts Button */}
@@ -42,7 +43,8 @@ export const NavigationList = (props: NavigationListProps) => {
         onClick={() => {
           onLinkClick && onLinkClick();
         }}
-        theme={`#${activeLink}` === nav.contacts.href ? 'primary' : 'secondary'}
+        theme={`#${activeLink}` === nav.contacts.href ? 'primary' : 'subtle'}
+        size='small'
         label={nav.contacts.title}
         className={clsxm(['ml-16', contactsClassName])}
       />

@@ -7,13 +7,13 @@ import { clsxm } from '@/utils';
 
 type Props = O.Either<
   {
-    onClick: () => void;
     className?: string;
     labelClassName?: string;
     disabled?: boolean;
     size?: ButtonSize;
     theme?: ButtonTheme;
     href?: string;
+    onClick?: () => void;
     label: string;
     Icon: ReactNode;
   },
@@ -21,7 +21,7 @@ type Props = O.Either<
 >;
 
 const buttonBaseStyles =
-  'cursor-pointer rounded-2xl transition-all hover:scale-95 active:scale-90';
+  'inline-flex cursor-pointer rounded-2xl transition-all hover:scale-95 active:scale-90';
 
 export const Button = (props: Props) => {
   const {
@@ -65,7 +65,7 @@ export const Button = (props: Props) => {
       case 'secondary':
         return 'border-2 border-primary-default hover:border-primary-defaultStrong active:border-primary-bg active:border-primary-bgStrong';
       case 'subtle':
-        return 'border-2 border-grayscale-line hover:bg-primary-defaultStrong active:bg-grayscale-header active:border-primary-bgStrong';
+        return 'border-2 border-grayscale-line';
       case 'ghost':
         return 'p-0';
     }
@@ -78,7 +78,7 @@ export const Button = (props: Props) => {
       case 'secondary':
         return 'text-primary-default';
       case 'subtle':
-        return 'text-primary-default';
+        return 'text-grayscale-line';
       case 'ghost':
         return 'text-primary-default';
     }
