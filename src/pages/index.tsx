@@ -55,6 +55,30 @@ const HomePage = () => {
                   ),
                 },
                 {
+                  target: '.header-link',
+                  innerScale: 1.5,
+                  innerStyle: {
+                    border: '2px solid rgba(196, 12, 82, 1)',
+                    backgroundColor: 'rgba(52, 76, 114, 0.2)',
+                  },
+                },
+                {
+                  target: '.header-language-select',
+                  innerScale: 1.2,
+                  innerStyle: {
+                    border: '2px solid rgba(196, 12, 82, 1)',
+                    backgroundColor: 'rgba(52, 76, 114, 0.4)',
+                  },
+                },
+                {
+                  target: '.header-burger-menu',
+                  innerScale: 1.5,
+                  innerStyle: {
+                    border: '2px solid rgba(196, 12, 82, 1)',
+                    backgroundColor: 'rgba(52, 76, 114, 0.4)',
+                  },
+                },
+                {
                   target: '.swiper-element',
                   innerScale: 4.5,
                   innerStyle: {

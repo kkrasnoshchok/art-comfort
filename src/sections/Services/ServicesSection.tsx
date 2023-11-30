@@ -152,13 +152,6 @@ export const ServicesSection = () => {
               );
             })}
           </motion.div>
-          <Button
-            label='Дізнатись більше'
-            onClick={() => null}
-            size='medium'
-            theme='primary'
-            className='mt-8 inline-flex'
-          />
         </motion.div>
         {/* Right */}
         {renderRightContent()}

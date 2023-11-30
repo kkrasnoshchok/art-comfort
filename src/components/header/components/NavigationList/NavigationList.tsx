@@ -34,6 +34,7 @@ export const NavigationList = (props: NavigationListProps) => {
           theme={`#${activeLink}` === link.href ? 'primary' : 'subtle'}
           label={link.title}
           size='small'
+          className='header-link'
         />
       ))}
       {/* Contacts Button */}
@@ -46,7 +47,7 @@ export const NavigationList = (props: NavigationListProps) => {
         theme={`#${activeLink}` === nav.contacts.href ? 'primary' : 'subtle'}
         size='small'
         label={nav.contacts.title}
-        className={clsxm(['ml-16', contactsClassName])}
+        className={clsxm(['header-link ml-16', contactsClassName])}
       />
     </>
   );

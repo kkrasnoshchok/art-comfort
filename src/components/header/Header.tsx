@@ -109,6 +109,7 @@ export const Header = () => {
                 'text-sm text-primary-bg',
                 router.locale === 'ua' && 'text-grayscale-header'
               )}
+              className='header-language-select'
               label='UA'
               theme='ghost'
               onClick={() => {
@@ -123,6 +124,7 @@ export const Header = () => {
                 'text-sm text-primary-bg',
                 router.locale === 'en' && 'text-grayscale-header'
               )}
+              className='header-language-select'
               label='EN'
               theme='ghost'
               onClick={() => {
@@ -137,7 +139,7 @@ export const Header = () => {
             onClick={() => setMenuOpened((prev) => !prev)}
             theme='ghost'
             className={clsxm(
-              'border-primary-bg hover:border-primary-bgStrong group flex h-7 w-7 flex-col items-center justify-center gap-0.5 rounded-full border-2 transition-all',
+              'header-burger-menu border-primary-bg hover:border-primary-bgStrong group flex h-7 w-7 flex-col items-center justify-center gap-0.5 rounded-full border-2 transition-all',
               menuOpened && 'bg-primary-default'
             )}
             Icon={
