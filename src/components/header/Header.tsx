@@ -55,7 +55,7 @@ export const Header = () => {
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.5, // 50% of the section needs to be visible
+      threshold: 0.8, // 50% of the section needs to be visible
     };
 
     // Callback function when the section is intersecting
@@ -85,8 +85,12 @@ export const Header = () => {
 
   return (
     <motion.header
-      initial={{ translateY: -20 }}
-      animate={{ translateY: 0 }}
+      initial={{ translateY: 120, opacity: 0 }}
+      animate={{
+        translateY: 0,
+        opacity: 1,
+        transition: { delay: 1, duration: 0.8, type: 'spring' },
+      }}
       exit={{ opacity: 0 }}
       className='fixed bottom-4 z-50 flex w-full items-center justify-center'
     >

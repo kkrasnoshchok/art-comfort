@@ -1,5 +1,5 @@
 import dayjs, { Dayjs } from 'dayjs';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
 
@@ -43,13 +43,27 @@ export const mockNews: {
 ];
 
 export const NewsSection = () => {
+  const sectionVariants: Variants = {
+    hidden: { opacity: 0, y: 120 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
+    },
+  };
   return (
     <SectionWrapper
       sectionProps={{ id: 'news' }}
       className='pb-0'
       innerClassName='bg-gradient-to-b'
     >
-      <div className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-xl backdrop-blur-2xl'>
+      <motion.div
+        variants={sectionVariants}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ amount: 0.1, once: true }}
+        className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-xl backdrop-blur-2xl'
+      >
         <h1 className='h1 text-primary-defaultStrong'>Новини</h1>
         {/* News Container */}
         <div className='relative mt-4 flex-1'>
@@ -99,7 +113,7 @@ export const NewsSection = () => {
           <Button label='Подивитись всі новини' href='/news' />
           {/* <button className='border px-8 py-2 text-lg'>See all news</button> */}
         </motion.div>
-      </div>
+      </motion.div>
     </SectionWrapper>
   );
 };

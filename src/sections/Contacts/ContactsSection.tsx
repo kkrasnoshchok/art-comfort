@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { ChangeEvent, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -46,9 +46,24 @@ export const ContactsSection = () => {
     })
     .required();
 
+  const sectionVariants: Variants = {
+    hidden: { opacity: 0, y: 120 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
+    },
+  };
+
   return (
     <SectionWrapper sectionProps={{ id: 'contacts' }}>
-      <motion.div className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-md lg:flex-row'>
+      <motion.div
+        variants={sectionVariants}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ amount: 0.4, once: true }}
+        className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-md lg:flex-row'
+      >
         <div className='flex w-full flex-col items-center lg:w-1/3 lg:items-start'>
           <h1>{t.contacts.title}</h1>
           <div className='mt-6 flex w-full flex-col items-center lg:items-start'>

@@ -17,7 +17,7 @@ export const WelcomeSection = () => {
       videoRef.current.loop = true;
       videoRef.current?.play();
     }
-  }, [videoRef]);
+  }, [videoRef.current]);
   return (
     <SectionWrapper
       sectionProps={{ id: 'about' }}
@@ -25,8 +25,8 @@ export const WelcomeSection = () => {
       innerClassName='bg-gradient-to-b'
     >
       <motion.header
-        initial={{ translateY: -20 }}
-        animate={{ translateY: 0 }}
+        initial={{ translateY: -140, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1, transition: { delay: 0.5 } }}
         exit={{ opacity: 0 }}
         className='fixed top-4 z-50 flex w-screen items-center justify-center'
       >
@@ -43,24 +43,11 @@ export const WelcomeSection = () => {
         </div>
       </motion.header>
       <div className='mt-16 flex w-11/12 flex-1 flex-col items-center justify-center'>
-        {/* Animated Text */}
-        {/* <div className='relative flex h-10 flex-row items-center justify-center'>
-          {offerOptions.map((offer, index) => (
-            <motion.div
-              key={offer}
-              animate={{
-                opacity: index !== activeIndex ? 0 : 1,
-                translateY: index !== activeIndex ? 20 : 0,
-              }}
-              className={clsxm('absolute', index !== activeIndex && 'hidden')}
-            >
-              <motion.h1 className='text-primary-default w-screen text-center'>
-                {offer}
-              </motion.h1>
-            </motion.div>
-          ))}
-        </div> */}
-        <div
+        <motion.div
+          initial={{ translateY: -20, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1, transition: { delay: 0.8 } }}
+          exit={{ opacity: 0, translateY: 20 }}
+          whileHover={{ scale: 1.05 }}
           onMouseEnter={() => {
             if (videoRef.current) {
               videoRef.current?.pause();
@@ -73,8 +60,7 @@ export const WelcomeSection = () => {
           }}
           className={clsxm(
             'flex flex-col items-center justify-center',
-            'border-primary-bg rounded-2xl border-2 bg-gray-50 bg-opacity-25 p-8 shadow-sm backdrop-blur-sm',
-            'transition-transform hover:scale-105 hover:shadow-xl hover:backdrop-blur-lg'
+            'border-primary-bg rounded-2xl border-2 bg-gray-50 bg-opacity-25 p-8 shadow-sm backdrop-blur-sm'
           )}
         >
           <h1 className='h1 text-primary-defaultStrong'>
@@ -86,11 +72,16 @@ export const WelcomeSection = () => {
             label='Розпочати дослідження'
             theme='secondary'
           />
-        </div>
+        </motion.div>
       </div>
-      <div className='mb-12'>
+      <motion.div
+        initial={{ translateY: 20, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1, transition: { delay: 1 } }}
+        exit={{ opacity: 0, translateY: 20 }}
+        className='mb-12'
+      >
         <PartnersSection />
-      </div>
+      </motion.div>
       <div className='from-primary-bgStrong to-secondary-bgStrong absolute left-0 top-0 -z-[5] h-full w-full bg-gradient-to-b'>
         <video
           ref={videoRef}

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
 import { useCallback, useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
@@ -93,9 +93,25 @@ export const ServicesSection = () => {
     ),
     [activeService]
   );
+
+  const sectionVariants: Variants = {
+    hidden: { opacity: 0, y: 120 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
+    },
+    exit: { opacity: 0 },
+  };
+
   return (
     <SectionWrapper sectionProps={{ id: 'services' }} className='pb-0'>
-      <div
+      <motion.div
+        variants={sectionVariants}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ amount: 0.1, once: true }}
+        exit='exit'
         className={clsxm(
           'grid w-11/12 grid-cols-2 overflow-hidden',
           'border-primary-bg rounded-[36px] border-2 bg-gray-50 bg-opacity-25 shadow-xl backdrop-blur-2xl'
@@ -155,7 +171,7 @@ export const ServicesSection = () => {
         </motion.div>
         {/* Right */}
         {renderRightContent()}
-      </div>
+      </motion.div>
     </SectionWrapper>
   );
 };
