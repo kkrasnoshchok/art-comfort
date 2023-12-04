@@ -70,7 +70,10 @@ export const NewsSection = () => {
           {mockNews.map((item, index) => (
             <div
               key={index}
-              className='border-primary-defaultWeak group mt-4 flex flex-row rounded-3xl border-2 bg-gray-50 bg-opacity-50 p-4'
+              className={clsxm(
+                'group mt-4 flex flex-row rounded-3xl p-4',
+                'border-primary-defaultWeak border-2 bg-gray-50 bg-opacity-50'
+              )}
             >
               {/* News */}
               <div className='flex flex-1 flex-col'>

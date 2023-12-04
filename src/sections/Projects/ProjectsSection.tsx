@@ -110,10 +110,9 @@ export const ProjectsSection = () => {
             'grid-row grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
           )}
         >
-          {/* Main Project */}
           {mockProjects.map((project, index) => {
             return (
-              <motion.a
+              <motion.div
                 layoutId={`project-${slugify(project.title)}`}
                 key={index}
                 className={clsxm(
@@ -142,7 +141,7 @@ export const ProjectsSection = () => {
                     {project.title}
                   </h4>
                 </div>
-              </motion.a>
+              </motion.div>
             );
           })}
         </motion.div>

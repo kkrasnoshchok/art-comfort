@@ -292,12 +292,7 @@ export const TeamSection = () => {
   };
 
   return (
-    <SectionWrapper
-      sectionProps={{
-        id: 'team',
-      }}
-      className='pb-0'
-    >
+    <SectionWrapper sectionProps={{ id: 'team' }} className='pb-0'>
       <motion.div
         variants={sectionVariants}
         initial='hidden'
@@ -319,7 +314,13 @@ export const TeamSection = () => {
           >
             {teamMock.map((user, index) => (
               <SwiperSlide key={index}>
-                <div className='team-element group relative flex h-full w-full flex-col items-center justify-center'>
+                <div
+                  className={clsxm(
+                    'team-element group relative',
+                    'flex h-full w-full flex-col items-center justify-center',
+                    'transition-all hover:scale-[0.98] active:scale-[0.95]'
+                  )}
+                >
                   <div
                     className={clsxm([
                       'bg-primary-defaultStrong aspect-square w-full rounded-2xl',

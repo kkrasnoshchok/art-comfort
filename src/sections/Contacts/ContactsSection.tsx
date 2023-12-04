@@ -193,7 +193,7 @@ export const ContactsSection = () => {
                     <div>
                       <Button
                         onClick={() => handleSubmit()}
-                        label='Send'
+                        label='Надіслати'
                         size='medium'
                         theme='primary'
                         className='mt-8'
