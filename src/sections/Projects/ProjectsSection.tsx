@@ -87,6 +87,11 @@ export const ProjectsSection = () => {
     },
   };
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <SectionWrapper
       sectionProps={{ id: 'projects' }}
@@ -106,7 +111,7 @@ export const ProjectsSection = () => {
         {/* Projects container */}
         <motion.div
           className={clsxm(
-            'relative mt-8 flex-1 gap-6',
+            'relative mt-8 flex-1 gap-7',
             'grid-row grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
           )}
         >
@@ -116,21 +121,35 @@ export const ProjectsSection = () => {
                 layoutId={`project-${slugify(project.title)}`}
                 key={index}
                 className={clsxm(
-                  'project-card relative flex flex-col items-start overflow-hidden rounded-2xl bg-slate-100',
-                  'group transition-transform hover:scale-[1.01] active:scale-[0.98]'
+                  'project-card bg-primary-defaultStrong relative flex flex-col items-start overflow-hidden rounded-3xl',
+                  'group',
+                  index === 0 && 'col-span-2 row-span-2'
                 )}
+                variants={itemVariants}
+                initial='hidden'
+                whileInView='visible'
+                whileHover={{
+                  scale: 1.02,
+                  transition: { duration: 0.3, type: 'spring' },
+                }}
+                whileTap={{
+                  scale: 0.98,
+                  transition: { duration: 0.3, type: 'spring' },
+                }}
+                viewport={{ amount: 0.1, once: true }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
               >
                 {/* Project Image */}
                 <div
                   className={clsxm([
-                    'bg-primary-defaultStrong flex aspect-square w-full border-slate-500',
+                    'bg-primary-defaultStrong flex aspect-square h-full w-full border-slate-500',
                   ])}
                 >
                   <Image
                     src={project.url}
                     className={clsxm(
                       'aspect-square h-full w-full object-cover',
-                      'opacity-20 transition-opacity group-hover:opacity-10'
+                      'opacity-20 transition-all group-hover:scale-110 group-hover:opacity-10'
                     )}
                     alt={project.title}
                   />

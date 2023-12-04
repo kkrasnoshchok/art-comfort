@@ -51,6 +51,16 @@ export const NewsSection = () => {
       transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
     },
   };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
+    },
+  };
+
   return (
     <SectionWrapper
       sectionProps={{ id: 'news' }}
@@ -68,12 +78,17 @@ export const NewsSection = () => {
         {/* News Container */}
         <div className='relative mt-4 flex-1'>
           {mockNews.map((item, index) => (
-            <div
+            <motion.div
               key={index}
               className={clsxm(
                 'group mt-4 flex flex-row rounded-3xl p-4',
                 'border-primary-defaultWeak border-2 bg-gray-50 bg-opacity-50'
               )}
+              variants={itemVariants}
+              initial='hidden'
+              whileInView='visible'
+              viewport={{ amount: 0.5, once: true }}
+              transition={{ delay: 100 * index }}
             >
               {/* News */}
               <div className='flex flex-1 flex-col'>
@@ -109,7 +124,7 @@ export const NewsSection = () => {
                 alt={project.title}
               /> */}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
         <motion.div className='mt-8'>
