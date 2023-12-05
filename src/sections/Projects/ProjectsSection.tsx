@@ -1,63 +1,17 @@
 import { motion, Variants } from 'framer-motion';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
 import { StatisticsContainer } from '@/components/statistics';
 
-import coolingSystem from '@/assets/Projects_1.jpg';
-import hvacRetrofitting from '@/assets/Projects_2.jpg';
-import industrialEnhancement from '@/assets/Projects_3.jpg';
-import smartThermostat from '@/assets/Projects_4.jpg';
-import emergencyRepair from '@/assets/Projects_5.jpg';
 import { PartnersSection } from '@/sections/Partners';
 import { Button } from '@/ui/Button';
 import { clsxm } from '@/utils';
+import { projects } from '@/utils/projects.dataset';
 import { slugify } from '@/utils/slugify';
 
-type Project = {
-  title: string;
-  year: string;
-  details: string;
-  url: StaticImageData;
-};
-
-const mockProjects: Project[] = [
-  {
-    title: 'Residential Cooling System Installation',
-    year: '2022',
-    details:
-      'Installed energy-efficient cooling systems for residential buildings, ensuring comfortable living environments during hot summers.',
-    url: coolingSystem,
-  },
-  {
-    title: 'Commercial HVAC Retrofitting',
-    year: '2023',
-    details:
-      'Upgraded the HVAC systems of multiple commercial buildings, resulting in reduced energy consumption and lower operating costs.',
-    url: hvacRetrofitting,
-  },
-  {
-    title: 'Industrial Ventilation Enhancement',
-    year: '2021',
-    details:
-      'Implemented advanced ventilation solutions for industrial facilities, improving air quality and worker safety.',
-    url: industrialEnhancement,
-  },
-  {
-    title: 'Smart Thermostat Integration',
-    year: '2023',
-    details:
-      'Integrated smart thermostat technology into various properties, enabling remote temperature control and energy optimization.',
-    url: smartThermostat,
-  },
-  {
-    title: 'Emergency HVAC Repair',
-    year: '2022',
-    details:
-      'Provided emergency repair services for HVAC systems, minimizing downtime and restoring indoor comfort quickly.',
-    url: emergencyRepair,
-  },
-];
+const MotionLink = motion(Link);
 
 export const ProjectsSection = () => {
   const sectionVariants: Variants = {
@@ -115,10 +69,10 @@ export const ProjectsSection = () => {
             'grid-row grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
           )}
         >
-          {mockProjects.map((project, index) => {
+          {projects.slice(0, 5).map((project, index) => {
             return (
-              <motion.div
-                layoutId={`project-${slugify(project.title)}`}
+              <MotionLink
+                href={`projects/${slugify(project.title)}`}
                 key={index}
                 className={clsxm(
                   'project-card bg-primary-defaultStrong relative flex flex-col items-start overflow-hidden rounded-3xl',
@@ -160,17 +114,12 @@ export const ProjectsSection = () => {
                     {project.title}
                   </h4>
                 </div>
-              </motion.div>
+              </MotionLink>
             );
           })}
         </motion.div>
         <motion.div className='mt-4'>
-          <Button
-            label='Переглянути всі проєкти'
-            onClick={() => {
-              // open all projects
-            }}
-          />
+          <Button label='Переглянути всі проєкти' href='projects' />
         </motion.div>
       </motion.div>
       <motion.div
