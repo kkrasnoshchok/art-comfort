@@ -1,17 +1,12 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Alert } from 'antd';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/router';
-import { ChangeEvent, useRef, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { RxArrowUp } from 'react-icons/rx';
 import { RxCross2 } from 'react-icons/rx';
-import { toast } from 'react-toastify';
-import baseColors from 'tailwindcss/colors';
-import { z } from 'zod';
 
 import { Layout } from '@/components/layout';
 
-import { clsxm, useI18n } from '@/utils';
+import { Input } from '@/ui/Input';
+import { clsxm } from '@/utils';
 
 type Vacancy = {
   id: string;
@@ -20,6 +15,12 @@ type Vacancy = {
   shortDescription: string;
   longDescription: string;
 };
+
+const columns = [
+  { key: 'jobTitle', header: 'Назва Вакансії' },
+  { key: 'location', header: 'Локація' },
+  { key: 'shortDescription', header: 'Короткий опис' },
+];
 
 const vacancies: Vacancy[] = [
   {
@@ -130,220 +131,83 @@ const vacancies: Vacancy[] = [
 ];
 
 const VacanciesPage = () => {
-  const [formSent, setFormSent] = useState(false);
-  const [selectedFiles, setSelectedFiles] = useState<FileList | never[]>([]);
-  const fileRef = useRef<HTMLInputElement>(null);
+  const [sortedVacancies, setSortedVacancies] = useState<Vacancy[]>(vacancies);
+  const [sortField, setSortField] = useState<string | null>(null);
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setSelectedFiles(e.target.files);
-    }
-  };
-  const [selectedVacancy, setSelectedVacancy] = useState<Vacancy | null>(null);
-  const { locale } = useRouter();
-  const { t } = useI18n();
-  const getRequiredError = (field: string) => {
-    if (locale === 'ua') {
-      return t.contacts.inputError;
-    }
-    `${field}${t.contacts.inputError}`;
-  };
+  const handleSort = (field: string) => {
+    if (field === sortField) {
+      // Toggle sorting direction if sorting the same field
+      const direction = sortDirection === 'asc' ? 'desc' : 'asc';
+      setSortDirection(direction);
 
-  const ContactsForm = z
-    .object({
-      name: z.string().min(1, getRequiredError('Name')),
-      email: z
-        .string()
-        .email(t.contacts.emailInputError)
-        .min(1, getRequiredError('Email')),
-      phone: z.string().min(1, getRequiredError('Phone')),
-      message: z.string(),
-    })
-    .required();
+      const sorted = [...sortedVacancies].reverse();
+      setSortedVacancies(sorted);
+    } else {
+      // Sort a new field in ascending order
+      setSortField(field);
+      setSortDirection('asc');
 
-  type ContactsFormType = z.infer<typeof ContactsForm>;
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm<ContactsFormType>({
-    resolver: zodResolver(ContactsForm),
-    mode: 'onSubmit',
-    reValidateMode: 'onChange',
-    shouldUnregister: true,
-  });
-
-  const onSubmit: SubmitHandler<ContactsFormType> = async (values) => {
-    const formData = new FormData();
-    for (let i = 0; i < selectedFiles.length; i++) {
-      formData.append('files', selectedFiles[i]);
-    }
-    for (const valueKey in values) {
-      formData.append(valueKey, values[valueKey as keyof ContactsFormType]);
-    }
-
-    try {
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
+      const sorted = [...sortedVacancies].sort((a, b) => {
+        return a[field].localeCompare(b[field]);
       });
-
-      if (response.ok) {
-        toast.success('Files uploaded successfully');
-        setFormSent(true);
-        setValue('name', '');
-        setValue('email', '');
-        setValue('phone', '');
-        setValue('message', '');
-        if (fileRef.current?.value) {
-          fileRef.current.value = '';
-        }
-      } else {
-        toast.error('Error uploading files');
-      }
-    } catch (error) {
-      const tError = error as Error;
-      throw new Error(tError.message, { cause: tError.cause });
+      setSortedVacancies(sorted);
     }
   };
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+
+    const filteredVacancies = query
+      ? vacancies.filter((vacancy) =>
+          Object.values(vacancy).some((value) =>
+            value.toString().toLowerCase().includes(query.toLowerCase())
+          )
+        )
+      : vacancies;
+
+    const sorted = [...filteredVacancies].sort((a, b) => {
+      if (sortField) {
+        const comparison = a[sortField].localeCompare(b[sortField]);
+        return sortDirection === 'asc' ? comparison : -comparison;
+      }
+      return 0;
+    });
+
+    setSortedVacancies(sorted);
+  };
+
+  const handleRemoveSort = () => {
+    // Remove sorting field and direction
+    setSortField(null);
+    setSortDirection('asc');
+
+    const sorted = [...sortedVacancies].sort((a, b) => {
+      return a.id.localeCompare(b.id);
+    });
+
+    setSortedVacancies(sorted);
+  };
+
   return (
-    <>
-      {selectedVacancy && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0 }}
-          transition={{ ease: 'easeInOut', duration: 0.3 }}
-          className='absolute z-[100] flex w-screen items-center justify-center'
-        >
-          <motion.div className='relative my-12 flex w-4/6 flex-col items-center justify-center rounded-lg bg-white p-2 shadow-xl'>
-            <motion.div className='flex w-full flex-row items-center'>
-              <motion.div>
-                <motion.h2 className='text-2xl font-semibold'>
-                  {selectedVacancy.jobTitle}
-                </motion.h2>
-                <motion.p className='text-gray-500'>
-                  {selectedVacancy.location}
-                </motion.p>
-              </motion.div>
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                }}
-                className='ml-auto cursor-pointer rounded-full border border-red-500 p-2'
-                onClick={() => setSelectedVacancy(null)}
-              >
-                <RxCross2 size={32} color={baseColors.red[500]} />
-              </motion.div>
-            </motion.div>
-            <motion.div className='px-12 pb-4'>
-              <motion.div className='my-4 h-36 w-full rounded-lg bg-gray-400' />
-              <motion.p className='mt-2 text-gray-800'>
-                {selectedVacancy.longDescription}
-              </motion.p>
-              <motion.div>
-                <motion.h3 className='mt-8 text-xl font-semibold'>
-                  Apply for a job
-                </motion.h3>
-                <div className='mt-6 flex w-full flex-col items-center gap-2 lg:items-start'>
-                  {formSent && (
-                    <Alert
-                      className='mb-2 mr-6'
-                      message='Ваш лист успішно надіслано!'
-                      type='success'
-                      closable
-                      onClose={() => setFormSent(false)}
-                      showIcon
-                    />
-                  )}
-                  <input
-                    className={clsxm([
-                      'w-full border border-slate-300 lg:w-10/12',
-                      errors.name?.message && 'border-red-500 text-red-500',
-                    ])}
-                    type='text'
-                    id='name'
-                    placeholder={t.contacts.nameInputPlaceholder}
-                    {...register('name')}
-                  />
-                  {errors.name && (
-                    <p className='my-0 py-0 text-sm text-red-500'>
-                      {errors.name.message}
-                    </p>
-                  )}
-                  <input
-                    className={clsxm([
-                      'w-full border border-slate-300 lg:w-10/12',
-                      errors.email?.message && 'border-red-500 text-red-500',
-                    ])}
-                    type='email'
-                    id='email'
-                    placeholder={t.contacts.emailInputPlaceholder}
-                    {...register('email')}
-                  />
-                  {errors.email && (
-                    <p className='my-0 py-0 text-sm text-red-500'>
-                      {errors.email.message}
-                    </p>
-                  )}
-                  <input
-                    className={clsxm([
-                      'w-full border border-slate-300 lg:w-10/12',
-                      errors.phone?.message && 'border-red-500 text-red-500',
-                    ])}
-                    type='tel'
-                    id='phone'
-                    placeholder={t.contacts.phoneInputPlaceholder}
-                    {...register('phone')}
-                  />
-                  {errors.phone && (
-                    <p className='my-0 py-0 text-sm text-red-500'>
-                      {errors.phone.message}
-                    </p>
-                  )}
-                  <textarea
-                    placeholder={t.contacts.coverLetterInputPlaceholder}
-                    className='rows w-full resize-none border border-slate-300 lg:w-10/12'
-                    rows={6}
-                    {...register('message')}
-                  />
-                  <div className='mt-2 flex flex-col items-start justify-center lg:mt-6'>
-                    <input
-                      ref={fileRef}
-                      type='file'
-                      multiple
-                      onChange={(e) => handleFileChange(e)}
-                    />
-                  </div>
-                  <button
-                    onClick={handleSubmit(onSubmit)}
-                    className='mt-4 border border-slate-200 px-12 py-2 lg:mt-6'
-                  >
-                    {t.contacts.sendEmailButtonLabel}
-                  </button>
-                </div>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      )}
-      <motion.div
-        className={`h-screen w-screen ${
-          selectedVacancy?.id ? 'bg-blue-100 opacity-10' : 'bg-white'
-        }`}
+    <Layout>
+      <motion.section
+        className={clsxm(
+          'from-primary-bg to-secondary-bg flex min-h-screen flex-col bg-gradient-to-b px-16 py-12'
+        )}
       >
-        <Layout>
-          <motion.section className='w-screen px-6 py-24'>
-            <h1 className='mt-12'>Вакансії</h1>
-            <motion.div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+        <h1 className='h1 text-primary-defaultStrong'>Вакансії</h1>
+        <p className='p text-primary-defaultWeak mt-2 italic'>
+          Щоб відправити заявку, натисніть на обрану вакансію
+        </p>
+        {/* <motion.div className='mt-4 flex flex-col'>
               {vacancies.map((vacancy) => (
                 <motion.div
                   key={vacancy.id}
-                  className='mt-8 cursor-pointer rounded-lg bg-white p-4 shadow-lg'
+                  className='cursor-pointer rounded-lg'
                   whileHover={{ scale: 1.02 }}
                   transition={{ ease: 'easeInOut', duration: 1 }}
-                  onClick={() => setSelectedVacancy(vacancy)}
                 >
                   <motion.h2 className='text-xl font-semibold'>
                     {vacancy.jobTitle}
@@ -356,11 +220,85 @@ const VacanciesPage = () => {
                   </motion.p>
                 </motion.div>
               ))}
+            </motion.div> */}
+        <div className='mt-6 pb-64'>
+          <div className='flex flex-1 justify-end p-2'>
+            <Input
+              label='Пошук вакансії'
+              value={searchQuery}
+              onChange={(e) => handleSearch(e.target.value)}
+              withClear
+              onClear={() => handleSearch('')}
+              className='border-primary-defaultWeak border-2 bg-transparent'
+            />
+          </div>
+          <div className='border-primary-defaultStrong flex rounded-3xl border-2 p-2 shadow-lg'>
+            {columns.map((column) => (
+              <motion.div
+                key={column.key}
+                layoutId={column.key}
+                onClick={() => handleSort(column.key)}
+                className={clsxm(
+                  'vacancy-list-column flex flex-1 cursor-pointer flex-row items-center border-2 border-transparent p-2',
+                  'text-primary-defaultStrong hover:text-primary-defaultWeak',
+                  sortField === column.key &&
+                    'border-primary-defaultWeak bg-primary-bg rounded-2xl transition-all'
+                )}
+              >
+                {column.header}{' '}
+                {sortField === column.key && (
+                  <motion.div>
+                    <RxArrowUp
+                      size={24}
+                      className={clsxm(
+                        'ml-4',
+                        sortDirection === 'asc' && 'rotate-180'
+                      )}
+                    />
+                  </motion.div>
+                )}
+                {sortField === column.key && (
+                  <motion.div
+                    key='remove-sort'
+                    layoutId='remove-sort'
+                    className='mr-2 flex flex-1 justify-end'
+                  >
+                    <RxCross2
+                      size={24}
+                      onClick={handleRemoveSort}
+                      className='cursor-pointe'
+                    />
+                  </motion.div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+          {sortedVacancies.map((vacancy) => (
+            <motion.div
+              key={vacancy.id}
+              layoutId={vacancy.id}
+              className='vacancy-list-card pt-4'
+            >
+              <motion.div
+                className='border-primary-bgStrong group flex rounded-xl border-2 py-2 transition-all hover:scale-[1.005]'
+                // whileHover={{
+                //   scale: 1.02,
+                // }}
+              >
+                {columns.map((column) => (
+                  <motion.div
+                    key={column.key}
+                    className='flex-1 p-2 transition-all group-hover:font-semibold'
+                  >
+                    {vacancy[column.key]}
+                  </motion.div>
+                ))}
+              </motion.div>
             </motion.div>
-          </motion.section>
-        </Layout>
-      </motion.div>
-    </>
+          ))}
+        </div>
+      </motion.section>
+    </Layout>
   );
 };
 

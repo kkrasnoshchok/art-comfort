@@ -7,7 +7,7 @@ import { Layout } from '@/components/layout';
 
 import { Button } from '@/ui/Button';
 import { clsxm } from '@/utils';
-import { projects } from '@/utils/projects.dataset';
+import { projects } from '@/utils/dataset/projects.dataset';
 import { slugify } from '@/utils/slugify';
 
 const MotionLink = motion(Link);
@@ -37,8 +37,7 @@ const ProjectPage = () => {
           </motion.h1>
           <motion.div className='mt-8 pb-32'>
             {projects.map((project) => (
-              <MotionLink
-                href={`projects/${slugify(project.title)}`}
+              <motion.div
                 className='border-primary-defaultStrong mt-4 flex items-center rounded-3xl border-2 p-4 backdrop-blur-lg'
                 key={project.title}
                 variants={itemVariants}
@@ -56,7 +55,10 @@ const ProjectPage = () => {
                   </p>
                   <motion.p>{project.details}</motion.p>
                   <motion.div className='mt-4'>
-                    <Button label='Детальніше' />
+                    <Button
+                      href={`projects/${slugify(project.title)}`}
+                      label='Детальніше'
+                    />
                   </motion.div>
                 </motion.div>
                 <div
@@ -70,7 +72,7 @@ const ProjectPage = () => {
                     alt={project.title}
                   />
                 </div>
-              </MotionLink>
+              </motion.div>
             ))}
           </motion.div>
         </motion.div>

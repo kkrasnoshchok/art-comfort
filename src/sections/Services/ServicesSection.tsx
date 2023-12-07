@@ -129,11 +129,11 @@ export const ServicesSection = () => {
                   viewport={{ amount: 0.5, once: true }}
                   transition={{ delay: 100 * index }}
                   key={service.title}
-                  className='pt-4'
+                  className='services-card pt-4'
                 >
                   <div
                     className={clsxm(
-                      'services-card flex cursor-pointer flex-row items-center justify-between',
+                      'flex cursor-pointer flex-row items-center justify-between',
                       'border-primary-default rounded-2xl border-2 p-4 transition duration-500',
                       'hover:shadow-primary-default hover:scale-[1.01] hover:shadow-sm',
                       'active:scale-[0.99]',

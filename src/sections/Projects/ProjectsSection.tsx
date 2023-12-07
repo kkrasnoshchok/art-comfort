@@ -8,7 +8,7 @@ import { StatisticsContainer } from '@/components/statistics';
 import { PartnersSection } from '@/sections/Partners';
 import { Button } from '@/ui/Button';
 import { clsxm } from '@/utils';
-import { projects } from '@/utils/projects.dataset';
+import { projects } from '@/utils/dataset/projects.dataset';
 import { slugify } from '@/utils/slugify';
 
 const MotionLink = motion(Link);

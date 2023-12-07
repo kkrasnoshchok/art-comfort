@@ -14,15 +14,14 @@ export const Cursor = () => (
     clickables={[
       {
         target: '.header-logo',
-        innerScale: 4.5,
+        innerScale: 3.5,
         innerStyle: {
           border: '4px solid rgba(196, 12, 82, 1)',
           backgroundColor: 'rgba(52, 76, 114, 0.8)',
-          borderRadius: 48,
         },
         children: (
-          <p className='text-primary-bg text-center font-semibold'>
-            Повернутись на головну сторінку
+          <p className='text-primary-bg text-center text-xs font-semibold'>
+            На головну сторінку
           </p>
         ),
       },
@@ -51,74 +50,73 @@ export const Cursor = () => (
         },
       },
       {
-        target: '.swiper-element',
-        innerScale: 4.5,
-        innerStyle: {
-          border: '4px solid rgba(196, 12, 82, 1)',
-          backgroundColor: 'rgba(52, 76, 114, 0.8)',
-        },
-        children: (
-          <p className='text-primary-bg text-center font-semibold'>
-            Дізнатись більше про партнерів
-          </p>
-        ),
-      },
-      {
         target: 'a',
-        innerScale: 3.5,
-        innerStyle: {
-          backgroundColor: 'rgba(196, 12, 82, 1)',
-          border: '4px solid rgba(196, 12, 82, 1)',
-        },
-        children: <p className='text-primary-bg font-semibold'>Натиснути</p>,
-      },
-      {
-        target: '.services-card',
         innerScale: 2.5,
         innerStyle: {
           backgroundColor: 'rgba(196, 12, 82, 1)',
           border: '4px solid rgba(196, 12, 82, 1)',
         },
-        children: <p className='text-primary-bg p text-center'>Обрати</p>,
-      },
-      {
-        target: '.project-card',
-        innerScale: 3.5,
-        innerStyle: {
-          backgroundColor: 'rgba(196, 12, 82, 1)',
-          border: '4px solid rgba(196, 12, 82, 1)',
-        },
         children: (
-          <p className='text-primary-bg p text-center'>Дізнатись більше</p>
+          <p className='text-primary-bg text-xs font-semibold'>Натиснути</p>
         ),
       },
       {
-        target: '.team-element',
-        innerScale: 3.5,
-        innerStyle: {
-          backgroundColor: 'rgba(196, 12, 82, 1)',
-          border: '4px solid rgba(196, 12, 82, 1)',
-        },
-        children: <p className='text-primary-bg p text-center'>Звʼязатись</p>,
-      },
-      {
-        target: '.base-input',
+        target: '.services-card',
         innerScale: 2,
         innerStyle: {
           backgroundColor: 'rgba(196, 12, 82, 1)',
           border: '4px solid rgba(196, 12, 82, 1)',
         },
+        children: (
+          <p className='text-primary-bg p text-center text-sm'>Обрати</p>
+        ),
+      },
+      {
+        target: '.team-element',
+        innerScale: 2.4,
+        innerStyle: {
+          backgroundColor: 'rgba(196, 12, 82, 1)',
+        },
+        children: (
+          <p className='text-primary-bg p text-center text-xs'>Звʼязатись</p>
+        ),
+      },
+      {
+        target: '.base-input',
+        innerScale: 1.5,
+        innerStyle: {
+          backgroundColor: 'rgba(196, 12, 82, 1)',
+        },
       },
       {
         target: '.input-file',
-        innerScale: 4,
+        innerScale: 3,
         innerStyle: {
           backgroundColor: 'rgba(196, 12, 82, 1)',
-          border: '4px solid rgba(196, 12, 82, 1)',
         },
         children: (
-          <p className='text-primary-bg p text-center'>
-            Натисність щоб додати файл
+          <p className='text-primary-bg p text-center text-xs'>Додати файл</p>
+        ),
+      },
+      {
+        target: '.vacancy-list-column',
+        innerScale: 2,
+        innerStyle: {
+          backgroundColor: 'rgba(196, 12, 82, 1)',
+        },
+        children: (
+          <p className='text-primary-bg p text-center text-[10px]'>Сортувати</p>
+        ),
+      },
+      {
+        target: '.vacancy-list-card',
+        innerScale: 3,
+        innerStyle: {
+          backgroundColor: 'rgba(196, 12, 82, 1)',
+        },
+        children: (
+          <p className='text-primary-bg p text-center text-xs'>
+            Податись на вакансію
           </p>
         ),
       },

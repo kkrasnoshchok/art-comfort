@@ -10,13 +10,13 @@ import { clsxm, useI18n } from '@/utils';
 export const Hrefs = {
   about: '#about',
   services: '#services',
-  projects: '#projects',
+  projects: '/projects',
   team: '#team',
   jobs: '#jobs',
   cerfitications: '#certifications',
   contacts: '#contacts',
   vacancies: '/vacancies',
-  news: '#news',
+  news: '/news',
 } as const;
 
 export type Href = (typeof Hrefs)[keyof typeof Hrefs];
