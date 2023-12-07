@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { RxArrowUp } from 'react-icons/rx';
 import { RxCross2 } from 'react-icons/rx';
 
 import { Layout } from '@/components/layout';
 
+import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
 import { clsxm } from '@/utils';
 import {
@@ -18,6 +20,7 @@ import { slugify } from '@/utils/slugify';
 const MotionLink = motion(Link);
 
 const VacanciesPage = () => {
+  const { back } = useRouter();
   const [sortedVacancies, setSortedVacancies] = useState<Vacancy[]>(vacancies);
   const [sortField, setSortField] = useState<keyof Vacancy | null>(null);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
@@ -84,7 +87,10 @@ const VacanciesPage = () => {
           'from-primary-bg to-secondary-bg flex min-h-screen flex-col bg-gradient-to-b px-16 py-12'
         )}
       >
-        <h1 className='h1 text-primary-defaultStrong'>Вакансії</h1>
+        <motion.div>
+          <Button label='Повернутись на головну' onClick={back} />
+        </motion.div>
+        <h1 className='h1 text-primary-defaultStrong mt-4'>Вакансії</h1>
         <p className='p text-primary-defaultWeak mt-2 italic'>
           Щоб відправити заявку, натисніть на обрану вакансію
         </p>
@@ -119,7 +125,7 @@ const VacanciesPage = () => {
               className='border-primary-defaultWeak border-2 bg-transparent'
             />
           </div>
-          <div className='border-primary-defaultStrong flex rounded-3xl border-2 p-2 shadow-lg'>
+          <div className='border-primary-defaultStrong flex rounded-xl border-2 p-2 shadow-lg'>
             {vacanciesColumns.map((column) => (
               <motion.div
                 key={column.key}
@@ -169,12 +175,7 @@ const VacanciesPage = () => {
               layoutId={vacancy.id}
               className='vacancy-list-card block pt-4'
             >
-              <motion.div
-                className='border-primary-bgStrong group flex rounded-xl border-2 py-2 transition-all hover:scale-[1.005]'
-                // whileHover={{
-                //   scale: 1.02,
-                // }}
-              >
+              <motion.div className='border-primary-bgStrong group flex rounded-3xl border-2 p-2 transition-all hover:scale-[1.005]'>
                 {vacanciesColumns.map((column) => (
                   <motion.div
                     key={column.key}
