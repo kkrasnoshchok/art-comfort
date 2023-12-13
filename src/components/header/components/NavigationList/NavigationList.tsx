@@ -31,7 +31,7 @@ export const NavigationList = (props: NavigationListProps) => {
           onClick={() => {
             onLinkClick && onLinkClick();
           }}
-          theme={`#${activeLink}` === link.href ? 'primary' : 'secondary'}
+          theme={`#${activeLink}` === link.href ? 'primary' : 'subtle'}
           label={link.title}
           size='medium'
           className='header-link'
