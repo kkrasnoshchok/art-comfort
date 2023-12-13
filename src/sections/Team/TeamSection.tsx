@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
@@ -22,6 +22,7 @@ import team7 from '@/assets/Team_7.jpeg';
 import team8 from '@/assets/Team_8.jpeg';
 import team9 from '@/assets/Team_9.jpeg';
 import { Button } from '@/ui/Button';
+import { Modal } from '@/ui/Modal';
 import { clsxm, useBreakpoint } from '@/utils';
 
 const teamMock = [
@@ -271,6 +272,8 @@ export const TeamSection = () => {
   const swiperRef = useRef<SwiperRef>(null);
   const { is2xl } = useBreakpoint('2xl');
   const { isMd } = useBreakpoint('md');
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [selectedUser, setSelectedUser] = useState<any>(null); // Change 'any' to the actual type of your user object
 
   const getSlidesPerView = () => {
     if (is2xl) {
@@ -282,9 +285,24 @@ export const TeamSection = () => {
     return 2;
   };
 
+  const sectionVariants: Variants = {
+    hidden: { opacity: 0, y: 120 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
+    },
+  };
+
   return (
     <SectionWrapper sectionProps={{ id: 'team' }} className='pb-0'>
-      <motion.div className='flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-lg'>
+      <motion.div
+        variants={sectionVariants}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ amount: 0.4, once: true }}
+        className='flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-lg'
+      >
         <h1 className='h1 text-primary-defaultStrong'>Наша команда</h1>
         <div className='mt-8 flex h-full w-full flex-col gap-12 lg:flex-row'>
           <Swiper
@@ -299,7 +317,17 @@ export const TeamSection = () => {
           >
             {teamMock.map((user, index) => (
               <SwiperSlide key={index}>
-                <div className='team-element group relative flex h-full w-full flex-col items-center justify-center'>
+                <div
+                  className={clsxm(
+                    'team-element group relative',
+                    'flex h-full w-full flex-col items-center justify-center',
+                    'transition-all hover:scale-[0.98] active:scale-[0.95]'
+                  )}
+                  onClick={() => {
+                    setModalOpen(true);
+                    setSelectedUser(user);
+                  }}
+                >
                   <div
                     className={clsxm([
                       'bg-primary-defaultStrong aspect-square w-full rounded-2xl',
@@ -347,6 +375,66 @@ export const TeamSection = () => {
           </Swiper>
         </div>
       </motion.div>
+      {/* Modal */}
+      <Modal
+        isOpen={modalOpen}
+        onClose={() => {
+          setSelectedUser(null);
+          setModalOpen(false);
+        }}
+      >
+        {selectedUser && (
+          <>
+            <div className='bg-primary-defaultStrong mb-4 aspect-square w-full rounded-2xl'>
+              <Image
+                src={selectedUser.url}
+                alt='alt'
+                className='aspect-square h-full w-full rounded-xl opacity-60 transition-opacity group-hover:opacity-10'
+              />
+            </div>
+            <div className='flex flex-row items-center'>
+              <h4 className='text-primary-defaultStrong h4'>
+                {selectedUser.name}
+              </h4>
+              <p className='p ml-2'> / CEO</p>
+            </div>
+            <div className='flex flex-row items-center'>
+              <Button
+                theme='ghost'
+                href={`tel:${selectedUser.phone}`}
+                className='text-primary-defaultStrong h4'
+                label={selectedUser.phone}
+              />
+            </div>
+            <div className='flex flex-row items-center'>
+              <Button
+                theme='ghost'
+                href={`mailto:${selectedUser.email}`}
+                className='text-primary-defaultStrong h4'
+                label={selectedUser.email}
+              />
+            </div>
+            <div className='mt-8 flex w-full flex-row justify-start'>
+              <div className='flex flex-row items-center'>
+                <Button
+                  theme='primary'
+                  href={`tel:${selectedUser.phone}`}
+                  className='text-primary-defaultStrong h4'
+                  label='Подзвонити'
+                />
+              </div>
+              <div className='ml-4 flex flex-row items-center'>
+                <Button
+                  theme='secondary'
+                  href={`mailto:${selectedUser.email}`}
+                  className='text-primary-defaultStrong h4'
+                  label='Написати лист'
+                />
+              </div>
+            </div>
+          </>
+        )}
+      </Modal>
     </SectionWrapper>
   );
 };

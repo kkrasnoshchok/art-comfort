@@ -1,21 +1,21 @@
 import { Formik } from 'formik';
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { ChangeEvent, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
-import { SectionWrapper } from '@/components/sectionWrapper';
+import { Layout } from '@/components/layout';
 
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
 import { useI18n } from '@/utils';
+import { vacancies } from '@/utils/dataset/vacancies.dataset';
 
-import { GoogleMap } from './components/GoogleMap';
+const VacancyPage = () => {
+  const router = useRouter();
 
-export const ContactsSection = () => {
-  const { locale } = useRouter();
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<FileList | never[]>([]);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -28,11 +28,20 @@ export const ContactsSection = () => {
 
   const { t } = useI18n();
   const getRequiredError = (field: string) => {
-    if (locale === 'ua') {
+    if (router.locale === 'ua') {
       return t.contacts.inputError;
     }
     `${field}${t.contacts.inputError}`;
   };
+  if (!router.query.slug) {
+    return null;
+  }
+  const vacancyId = (router.query.slug as string).split('-')[0];
+
+  const vacancy = vacancies.find((vacancy) => vacancy.id === vacancyId);
+  if (!vacancy) {
+    return null;
+  }
 
   const ContactsForm = z
     .object({
@@ -46,27 +55,22 @@ export const ContactsSection = () => {
     })
     .required();
 
-  const sectionVariants: Variants = {
-    hidden: { opacity: 0, y: 120 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
-    },
-  };
-
   return (
-    <SectionWrapper sectionProps={{ id: 'contacts' }}>
-      <motion.div
-        variants={sectionVariants}
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ amount: 0.4, once: true }}
-        className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-md lg:flex-row'
-      >
-        <div className='flex w-full flex-col items-center lg:w-1/3 lg:items-start'>
-          <h1>{t.contacts.title}</h1>
-          <div className='mt-6 flex w-full flex-col items-center lg:items-start'>
+    <Layout>
+      <motion.div className='from-primary-bg to-secondary-bg flex w-full flex-col items-center bg-gradient-to-b px-16 pb-24 pt-12'>
+        <div className='border-primary-bgStrong w-1/2 rounded-3xl border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-lg'>
+          <motion.div>
+            <Button label='Back' onClick={router.back} />
+          </motion.div>
+          <motion.h1 className='text-primary-defaultStrong mt-8'>
+            {vacancy.jobTitle}
+          </motion.h1>
+          {/* Long Details */}
+          <motion.p className='text-primary-defaultWeak mt-8'>
+            {vacancy.longDescription}
+          </motion.p>
+          {/* Form */}
+          <motion.div>
             {/* Form */}
             <Formik
               validateOnBlur={hasSubmitted}
@@ -121,7 +125,9 @@ export const ContactsSection = () => {
                 errors,
               }) => (
                 <>
-                  <p className='text-lg font-semibold'>{t.contacts.subtitle}</p>
+                  <p className='text-primary-defaultWeak mt-8 text-lg font-semibold'>
+                    {t.contacts.subtitle}
+                  </p>
                   <div className='mt-6 flex w-full flex-col gap-4'>
                     <Input
                       label='Name'
@@ -203,11 +209,11 @@ export const ContactsSection = () => {
                 </>
               )}
             </Formik>
-          </div>
+          </motion.div>
         </div>
-        {/* Map */}
-        <GoogleMap />
       </motion.div>
-    </SectionWrapper>
+    </Layout>
   );
 };
+
+export default VacancyPage;

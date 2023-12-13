@@ -10,13 +10,13 @@ import { clsxm, useI18n } from '@/utils';
 export const Hrefs = {
   about: '#about',
   services: '#services',
-  projects: '#projects',
+  projects: '/projects',
   team: '#team',
   jobs: '#jobs',
   cerfitications: '#certifications',
   contacts: '#contacts',
   vacancies: '/vacancies',
-  news: '#news',
+  news: '/news',
 } as const;
 
 export type Href = (typeof Hrefs)[keyof typeof Hrefs];
@@ -55,7 +55,7 @@ export const Header = () => {
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.5, // 50% of the section needs to be visible
+      threshold: 0.8, // 50% of the section needs to be visible
     };
 
     // Callback function when the section is intersecting
@@ -85,12 +85,16 @@ export const Header = () => {
 
   return (
     <motion.header
-      initial={{ translateY: -20 }}
-      animate={{ translateY: 0 }}
+      initial={{ translateY: 120, opacity: 0 }}
+      animate={{
+        translateY: 0,
+        opacity: 1,
+        transition: { delay: 1, duration: 0.8, type: 'spring' },
+      }}
       exit={{ opacity: 0 }}
       className='fixed bottom-4 z-50 flex w-full items-center justify-center'
     >
-      <motion.div className='bg-primary-bgStrong relative flex items-center justify-center rounded-2xl px-4 py-2 backdrop-blur-3xl'>
+      <motion.div className='bg-primary-bg relative flex items-center justify-center rounded-2xl p-4 backdrop-blur-3xl'>
         <div className={clsxm(['flex items-center gap-4'])}>
           {/* Nav */}
           <nav className='hidden items-center gap-8 xl:flex'>
@@ -103,14 +107,15 @@ export const Header = () => {
             />
           </nav>
           {/* Language Select */}
-          <div className='flex flex-row items-center'>
+          <div className='ml-12 flex flex-row items-center'>
             <Button
               labelClassName={clsxm(
-                'text-sm text-primary-bg',
-                router.locale === 'ua' && 'text-grayscale-header'
+                'text-sm text-primary-defaultWeak',
+                router.locale === 'ua' && 'text-primary-defaultStrong'
               )}
+              className='header-language-select p-1'
               label='UA'
-              theme='ghost'
+              theme={router.locale === 'ua' ? 'secondary' : 'ghost'}
               onClick={() => {
                 if (router.locale === 'en') {
                   onLocaleChange('ua');
@@ -120,11 +125,12 @@ export const Header = () => {
             <div className='text-grayscale-headerWeak mx-1 text-sm'>/</div>
             <Button
               labelClassName={clsxm(
-                'text-sm text-primary-bg',
-                router.locale === 'en' && 'text-grayscale-header'
+                'text-sm text-primary-defaultWeak',
+                router.locale === 'en' && 'text-primary-defaultStrong'
               )}
+              className='header-language-select p-1'
               label='EN'
-              theme='ghost'
+              theme={router.locale === 'en' ? 'secondary' : 'ghost'}
               onClick={() => {
                 if (router.locale === 'ua') {
                   onLocaleChange('en');
@@ -137,27 +143,27 @@ export const Header = () => {
             onClick={() => setMenuOpened((prev) => !prev)}
             theme='ghost'
             className={clsxm(
-              'border-primary-bg hover:border-primary-bgStrong group flex h-7 w-7 flex-col items-center justify-center gap-0.5 rounded-full border-2 transition-all',
+              'header-burger-menu border-primary-defaultStrong hover:border-primary-bgStrong group flex h-7 w-7 flex-col items-center justify-center gap-0.5 rounded-full border-2 transition-all',
               menuOpened && 'bg-primary-default'
             )}
             Icon={
               <>
                 <div
                   className={clsxm([
-                    'bg-primary-bg group-hover:bg-primary-bgStrong h-0.5 w-3 rounded-xl transition-all',
+                    'bg-primary-defaultStrong group-hover:bg-primary-bgStrong h-0.5 w-3 rounded-xl transition-all',
                     menuOpened &&
                       't-2/4 l-2/4 bg-primary-bg group-hover:bg-primary-bg absolute rotate-45',
                   ])}
                 />
                 <div
                   className={clsxm([
-                    'bg-primary-bg group-hover:bg-primary-bgStrong h-0.5 w-3 rounded-xl transition-all',
+                    'bg-primary-defaultStrong group-hover:bg-primary-bgStrong h-0.5 w-3 rounded-xl transition-all',
                     menuOpened && 'hidden',
                   ])}
                 />
                 <div
                   className={clsxm([
-                    'bg-primary-bg group-hover:bg-primary-bgStrong h-0.5 w-3 rounded-xl transition-all',
+                    'bg-primary-defaultStrong group-hover:bg-primary-bgStrong h-0.5 w-3 rounded-xl transition-all',
                     menuOpened &&
                       't-2/4 l-2/4 bg-primary-bg group-hover:bg-primary-bg absolute -rotate-45',
                   ])}
@@ -166,20 +172,26 @@ export const Header = () => {
             }
           />
         </div>
-        {menuOpened && (
-          <motion.nav
-            animate={{ translateX: menuOpened ? 0 : 120 }}
-            className='bg-primary-defaultWeak absolute bottom-16 right-0 z-50 flex w-full flex-col items-center justify-start gap-4 rounded-lg p-6 sm:w-72 sm:items-end'
-          >
-            <NavigationList
-              nav={{ links: advancedLinks, contacts }}
-              contactsClassName='mt-4 w-2/3 ml-0 sm:w-full justify-center items-center text-center'
-              headerLinkClassName='text-xl'
-              onLinkClick={() => setMenuOpened(false)}
-              activeLink={activeLink}
-            />
-          </motion.nav>
-        )}
+        <motion.nav
+          className={clsxm(
+            'absolute bottom-[96px] right-0 z-50',
+            'flex w-full flex-col items-center justify-start sm:w-72 sm:items-end',
+            'gap-4 rounded-3xl p-6',
+            'bg-primary-bg',
+            menuOpened
+              ? 'pointer-events-auto opacity-100'
+              : 'pointer-events-none opacity-0',
+            'transition-opacity'
+          )}
+        >
+          <NavigationList
+            nav={{ links: advancedLinks, contacts }}
+            contactsClassName='w-2/3 ml-0 sm:w-full justify-center items-center text-center'
+            headerLinkClassName='text-xl'
+            onLinkClick={() => setMenuOpened(false)}
+            activeLink={activeLink}
+          />
+        </motion.nav>
       </motion.div>
     </motion.header>
   );
