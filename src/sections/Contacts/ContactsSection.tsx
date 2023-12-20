@@ -10,7 +10,7 @@ import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
-import { useI18n } from '@/utils';
+import { clsxm, useI18n } from '@/utils';
 
 import { GoogleMap } from './components/GoogleMap';
 
@@ -34,17 +34,14 @@ export const ContactsSection = () => {
     `${field}${t.contacts.inputError}`;
   };
 
-  const ContactsForm = z
-    .object({
-      name: z.string().min(1, getRequiredError('Name')),
-      email: z
-        .string()
-        .email(t.contacts.emailInputError)
-        .min(1, getRequiredError('Email')),
-      phone: z.string().min(1, getRequiredError('Phone')),
-      message: z.string(),
-    })
-    .required();
+  const ContactsForm = z.object({
+    name: z.string().min(1, getRequiredError('Name')),
+    email: z
+      .string()
+      .email(t.contacts.emailInputError)
+      .min(1, getRequiredError('Email')),
+    phone: z.string().min(1, getRequiredError('Phone')),
+  });
 
   const sectionVariants: Variants = {
     hidden: { opacity: 0, y: 120 },
@@ -62,7 +59,10 @@ export const ContactsSection = () => {
         initial='hidden'
         whileInView='visible'
         viewport={{ amount: 0.4, once: true }}
-        className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-md lg:flex-row'
+        className={clsxm(
+          'flex w-11/12 flex-col p-8 lg:flex-row'
+          // 'border-primary-bg rounded-[36px] border-2 bg-gray-50 shadow-lg backdrop-blur-md bg-opacity-25'
+        )}
       >
         <div className='flex w-full flex-col items-center lg:w-1/3 lg:items-start'>
           <h1>{t.contacts.title}</h1>
@@ -192,7 +192,9 @@ export const ContactsSection = () => {
                     </div>
                     <div>
                       <Button
-                        onClick={() => handleSubmit()}
+                        onClick={() => {
+                          handleSubmit();
+                        }}
                         label='Надіслати'
                         size='medium'
                         theme='primary'

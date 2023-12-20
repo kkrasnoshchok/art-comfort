@@ -75,7 +75,7 @@ export const PartnersSection = () => {
 
   const getSlidesPerView = () => {
     if (isXl) {
-      return 6;
+      return 7;
     }
     if (isLg) {
       return 5;
@@ -101,7 +101,8 @@ export const PartnersSection = () => {
         spaceBetween={24}
         autoplay={{ delay: 3000 }}
         className={clsxm([
-          'border-primary-bg flex h-full w-11/12 items-center justify-center rounded-2xl border-2 bg-gray-50 bg-opacity-25 shadow-lg',
+          'flex h-full w-full items-center justify-center',
+          // 'border-primary-bg rounded-2xl border-2 bg-gray-50 bg-opacity-25 shadow-lg',
         ])}
       >
         {mockPartners.map((Element, idx) => (

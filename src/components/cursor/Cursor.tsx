@@ -85,7 +85,8 @@ export const Cursor = () => (
         target: '.base-input',
         innerScale: 1.5,
         innerStyle: {
-          backgroundColor: 'rgba(196, 12, 82, 1)',
+          backgroundColor: 'rgba(196, 12, 82, 0.4)',
+          border: '2px solid rgba(20, 20, 43, 1)',
         },
       },
       {

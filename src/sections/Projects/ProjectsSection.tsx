@@ -57,7 +57,10 @@ export const ProjectsSection = () => {
         initial='hidden'
         whileInView='visible'
         viewport={{ amount: 0.1, once: true }}
-        className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-xl backdrop-blur-2xl'
+        className={clsxm(
+          'flex w-11/12 flex-col p-8'
+          // 'border-primary-bg rounded-[36px] border-2 bg-gray-50 bg-opacity-25 shadow-xl backdrop-blur-2xl'
+        )}
       >
         <motion.h1 className='h1 text-primary-default'>
           Знакові Проєкти

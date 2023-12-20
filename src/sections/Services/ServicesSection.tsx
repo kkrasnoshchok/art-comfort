@@ -111,8 +111,8 @@ export const ServicesSection = () => {
         whileInView='visible'
         viewport={{ amount: 0.1, once: true }}
         className={clsxm(
-          'grid w-11/12 grid-cols-2 overflow-hidden',
-          'border-primary-bg rounded-[36px] border-2 bg-gray-50 bg-opacity-25 shadow-xl backdrop-blur-2xl'
+          'grid w-11/12 grid-cols-2 overflow-hidden'
+          // 'bg-gray-50 bg-opacity-25 shadow-xl backdrop-blur-2xl border-primary-bg rounded-[36px] border-2',
         )}
       >
         {/* Left */}
