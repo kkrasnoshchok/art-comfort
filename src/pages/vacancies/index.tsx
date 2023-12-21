@@ -84,7 +84,8 @@ const VacanciesPage = () => {
     <Layout>
       <motion.section
         className={clsxm(
-          'from-primary-bg to-secondary-bg flex min-h-screen flex-col bg-gradient-to-b px-16 py-12'
+          'flex min-h-screen flex-col bg-gradient-to-b px-16 py-12'
+          // 'from-primary-bg to-secondary-bg'
         )}
       >
         <motion.div>

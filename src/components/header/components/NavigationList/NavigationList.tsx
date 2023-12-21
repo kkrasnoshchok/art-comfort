@@ -16,7 +16,7 @@ type NavigationListProps = {
   headerLinkClassName?: string;
   contactsClassName?: string;
   onLinkClick?: () => void;
-  activeLink: Href;
+  activeLink: Href | null;
 };
 
 export const NavigationList = (props: NavigationListProps) => {

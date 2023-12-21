@@ -8,7 +8,7 @@ import { Button } from '@/ui/Button';
 import { clsxm, useI18n } from '@/utils';
 
 export const Hrefs = {
-  about: '#about',
+  about: '/about',
   services: '#services',
   projects: '/projects',
   team: '#team',
@@ -22,7 +22,7 @@ export const Hrefs = {
 export type Href = (typeof Hrefs)[keyof typeof Hrefs];
 
 export const Header = () => {
-  const [activeLink, setActiveLink] = useState<Href>('#about');
+  const [activeLink, setActiveLink] = useState<Href | null>(null);
   const router = useRouter();
   const [menuOpened, setMenuOpened] = useState(false);
 
@@ -37,15 +37,12 @@ export const Header = () => {
       { href: Hrefs.services, title: t.header.servicesLabel },
       { href: Hrefs.projects, title: t.header.projectsLabel },
       { href: Hrefs.team, title: t.header.teamLabel },
+      { href: Hrefs.vacancies, title: t.header.vacanciesLabel },
     ],
     [t]
   );
   const advancedLinks = useMemo(
-    () => [
-      ...baseLinks,
-      { href: Hrefs.news, title: t.header.newsLabel },
-      { href: Hrefs.vacancies, title: t.header.vacanciesLabel },
-    ],
+    () => [...baseLinks, { href: Hrefs.news, title: t.header.newsLabel }],
     [baseLinks, t]
   );
   const contacts = { href: Hrefs.contacts, title: t.header.contactsLabel };
@@ -53,9 +50,7 @@ export const Header = () => {
   useEffect(() => {
     // Intersection Observer configuration
     const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.8, // 50% of the section needs to be visible
+      threshold: 0.2,
     };
 
     // Callback function when the section is intersecting

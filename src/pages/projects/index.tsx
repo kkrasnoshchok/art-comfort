@@ -1,6 +1,5 @@
 import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { Layout } from '@/components/layout';
@@ -9,8 +8,6 @@ import { Button } from '@/ui/Button';
 import { clsxm } from '@/utils';
 import { projects } from '@/utils/dataset/projects.dataset';
 import { slugify } from '@/utils/slugify';
-
-const MotionLink = motion(Link);
 
 const ProjectPage = () => {
   const router = useRouter();
