@@ -19,8 +19,18 @@ const ProjectPage = () => {
   }
   return (
     <Layout>
-      <motion.div className='from-primary-bg to-secondary-bg flex w-full flex-col items-start bg-gradient-to-b px-16 pb-24 pt-12'>
-        <div className='border-primary-bgStrong w-full rounded-3xl border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-lg'>
+      <motion.div
+        className={clsxm(
+          'flex w-full flex-col items-start px-16 pb-24 pt-12'
+          // 'from-primary-bg to-secondary-bg bg-gradient-to-b'
+        )}
+      >
+        <div
+          className={clsxm(
+            'w-full p-8'
+            // 'border-primary-bgStrong bg-gray-50 bg-opacity-25 shadow-lg backdrop-blur-lg rounded-3xl border-2'
+          )}
+        >
           <motion.div>
             <Button label='Back' onClick={router.back} />
           </motion.div>
@@ -29,6 +39,10 @@ const ProjectPage = () => {
           </motion.h1>
           <motion.p className='text-primary-defaultWeak italic'>
             {project.year}
+          </motion.p>
+          {/* Long Details */}
+          <motion.p className='text-primary-defaultWeak mt-8'>
+            {project.longDetails}
           </motion.p>
           {/* Images Grid */}
           <motion.div className='grid-row mt-8 grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4'>
@@ -53,10 +67,6 @@ const ProjectPage = () => {
                 </motion.div>
               ))}
           </motion.div>
-          {/* Long Details */}
-          <motion.p className='text-primary-defaultWeak mt-8'>
-            {project.longDetails}
-          </motion.p>
         </div>
       </motion.div>
     </Layout>

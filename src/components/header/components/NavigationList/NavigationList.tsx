@@ -16,11 +16,10 @@ type NavigationListProps = {
   headerLinkClassName?: string;
   contactsClassName?: string;
   onLinkClick?: () => void;
-  activeLink: Href | null;
 };
 
 export const NavigationList = (props: NavigationListProps) => {
-  const { nav, contactsClassName, onLinkClick, activeLink } = props;
+  const { nav, contactsClassName, onLinkClick } = props;
 
   return (
     <>
@@ -31,7 +30,7 @@ export const NavigationList = (props: NavigationListProps) => {
           onClick={() => {
             onLinkClick && onLinkClick();
           }}
-          theme={`#${activeLink}` === link.href ? 'primary' : 'secondary'}
+          // theme={`#${activeLink}` === link.href ? 'primary' : 'secondary'}
           label={link.title}
           size='medium'
           className='header-link'
@@ -44,7 +43,7 @@ export const NavigationList = (props: NavigationListProps) => {
         onClick={() => {
           onLinkClick && onLinkClick();
         }}
-        theme={`#${activeLink}` === nav.contacts.href ? 'primary' : 'ghost'}
+        // theme={`#${activeLink}` === nav.contacts.href ? 'primary' : 'ghost'}
         size='medium'
         label={nav.contacts.title}
         className={clsxm(['header-link', contactsClassName])}

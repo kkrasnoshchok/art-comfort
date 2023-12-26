@@ -14,16 +14,19 @@ export const Cursor = () => (
     clickables={[
       {
         target: '.header-logo',
-        innerScale: 3.5,
+        innerScale: 2,
         innerStyle: {
-          border: '4px solid rgba(196, 12, 82, 1)',
-          backgroundColor: 'rgba(52, 76, 114, 0.8)',
+          border: '2px solid rgba(196, 12, 82, 1)',
+          backgroundColor: 'rgba(52, 76, 114, 0.1)',
         },
-        children: (
-          <p className='text-primary-bg text-center text-xs font-semibold'>
-            На головну сторінку
-          </p>
-        ),
+      },
+      {
+        target: '.header-call-button',
+        innerScale: 1.5,
+        innerStyle: {
+          border: '2px solid rgba(234, 249, 222, 1)',
+          backgroundColor: 'rgba(52, 76, 114, 0.2)',
+        },
       },
       {
         target: '.header-link',
@@ -43,7 +46,7 @@ export const Cursor = () => (
       },
       {
         target: '.header-burger-menu',
-        innerScale: 1.5,
+        innerScale: 0.75,
         innerStyle: {
           border: '2px solid rgba(196, 12, 82, 1)',
           backgroundColor: 'rgba(52, 76, 114, 0.4)',

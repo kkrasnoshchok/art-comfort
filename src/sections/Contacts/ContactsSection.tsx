@@ -60,7 +60,8 @@ export const ContactsSection = () => {
         whileInView='visible'
         viewport={{ amount: 0.4, once: true }}
         className={clsxm(
-          'flex w-11/12 flex-col p-8 lg:flex-row'
+          'flex w-11/12 flex-col p-8 lg:flex-row',
+          'bg-primary-bg rounded-3xl'
           // 'border-primary-bg rounded-[36px] border-2 bg-gray-50 shadow-lg backdrop-blur-md bg-opacity-25'
         )}
       >

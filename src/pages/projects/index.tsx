@@ -21,7 +21,12 @@ const ProjectPage = () => {
   };
   return (
     <Layout>
-      <motion.div className='from-primary-bg to-secondary-bg flex w-full items-center justify-center bg-gradient-to-b'>
+      <motion.div
+        className={clsxm(
+          // 'from-primary-bg to-secondary-bg bg-gradient-to-b',
+          'flex w-full items-center justify-center'
+        )}
+      >
         <motion.div className='w-11/12 rounded-lg pt-12'>
           <motion.div>
             <Button
