@@ -31,8 +31,8 @@ export const WelcomeSection = () => {
         </p>
         <p className='text-primary-defaultStrong border-primary-bg mt-4 w-1/2 rounded-xl border bg-slate-50 bg-opacity-20 p-3 shadow-lg backdrop-blur-2xl'>
           Наша команда кваліфікованих професіоналів прагне надавати
-          індивідуальні рішення, які надають пріоритет ефективності, сталості
-          та, прежде всього, вашому абсолютному комфорту.
+          індивідуальні рішення, які надають пріоритет ефективності, сталості та
+          передусім, вашому абсолютному комфорту.
         </p>
         <p className='text-primary-defaultStrong border-primary-bg mt-4 w-1/2 rounded-xl border bg-slate-50 bg-opacity-20 p-3 shadow-lg backdrop-blur-2xl'>
           Відкрийте нову еру кліматичного контролю з Art-Comfort, де кожен

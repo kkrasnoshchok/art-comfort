@@ -1,4 +1,6 @@
 import AnimatedCursor from 'react-animated-cursor';
+import { FaPhone } from 'react-icons/fa';
+import { IoMdMail } from 'react-icons/io';
 
 export const Cursor = () => (
   <AnimatedCursor
@@ -52,17 +54,17 @@ export const Cursor = () => (
           backgroundColor: 'rgba(52, 76, 114, 0.4)',
         },
       },
-      {
-        target: 'a',
-        innerScale: 2.5,
-        innerStyle: {
-          backgroundColor: 'rgba(196, 12, 82, 1)',
-          border: '4px solid rgba(196, 12, 82, 1)',
-        },
-        children: (
-          <p className='text-primary-bg text-xs font-semibold'>Натиснути</p>
-        ),
-      },
+      // {
+      //   target: 'a',
+      //   innerScale: 2.5,
+      //   innerStyle: {
+      //     backgroundColor: 'rgba(196, 12, 82, 1)',
+      //     border: '4px solid rgba(196, 12, 82, 1)',
+      //   },
+      //   children: (
+      //     <p className='text-primary-bg text-xs font-semibold'>Натиснути</p>
+      //   ),
+      // },
       {
         target: '.services-card',
         innerScale: 2,
@@ -123,6 +125,22 @@ export const Cursor = () => (
             Податись на вакансію
           </p>
         ),
+      },
+      {
+        target: '.contacts-section__button-phone',
+        innerScale: 0.8,
+        innerStyle: {
+          backgroundColor: 'rgba(196, 12, 82, 1)',
+        },
+        children: <FaPhone color='white' size={12} />,
+      },
+      {
+        target: '.contacts-section__button-mail',
+        innerScale: 0.8,
+        innerStyle: {
+          backgroundColor: 'rgba(196, 12, 82, 1)',
+        },
+        children: <IoMdMail color='white' size={12} />,
       },
     ]}
   />

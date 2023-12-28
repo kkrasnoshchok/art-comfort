@@ -147,7 +147,7 @@ export const Header = () => {
         exit={{ opacity: 0 }}
         className='fixed bottom-2 z-50 flex w-full items-center justify-center'
       >
-        <motion.div className='bg-primary-bg border-primary-defaultWeak relative flex items-center justify-center rounded-xl border-2 p-4 backdrop-blur-3xl'>
+        <motion.div className='elative border-primary-bgStrong flex items-center justify-center rounded-3xl border-2 bg-white px-12 py-2'>
           <div className={clsxm(['flex items-center gap-4'])}>
             {/* Nav */}
             <nav className='hidden items-center gap-8 xl:flex'>

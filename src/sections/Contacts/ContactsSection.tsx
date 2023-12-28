@@ -68,6 +68,65 @@ export const ContactsSection = () => {
         <div className='flex w-full flex-col items-center lg:w-1/3 lg:items-start'>
           <h1>{t.contacts.title}</h1>
           <div className='mt-6 flex w-full flex-col items-center lg:items-start'>
+            <p className='text-lg font-semibold'>Звʼязатись напряму</p>
+            <div className='bg-grayscale-bg mt-2  w-10/12 rounded-xl p-2'>
+              <div className='flex flex-row gap-1'>
+                <p className='text-primary-defaultWeak'>Lifecell: </p>
+                <Button
+                  className='contacts-section__button-phone'
+                  theme='ghost'
+                  label='+380931231231232'
+                  href='tel:+380931231231232'
+                />
+              </div>
+              <div className='flex flex-row gap-1'>
+                <p className='text-primary-defaultWeak'>Vodafone: </p>
+                <Button
+                  className='contacts-section__button-phone'
+                  theme='ghost'
+                  label='+380971231231232'
+                  href='tel:+380971231231232'
+                />
+              </div>
+              <div className='flex flex-row gap-1'>
+                <p className='text-primary-defaultWeak'>Kyivstar: </p>
+                <Button
+                  className='contacts-section__button-phone'
+                  theme='ghost'
+                  label='+380961231231232'
+                  href='tel:+380961231231232'
+                />
+              </div>
+            </div>
+            <div className='bg-grayscale-bg mt-2  w-10/12 rounded-xl p-2'>
+              <div className='flex flex-row gap-1'>
+                <p className='text-primary-defaultWeak'>CEO: </p>
+                <Button
+                  className='contacts-section__button-mail'
+                  theme='ghost'
+                  label='oleg@art-comfort.com'
+                  href='mailto:oleg@art-comfort.com'
+                />
+              </div>
+              <div className='flex flex-row gap-1'>
+                <p className='text-primary-defaultWeak'>Projects Lead:</p>
+                <Button
+                  className='contacts-section__button-mail'
+                  theme='ghost'
+                  label='natalia@art-comfort.com'
+                  href='mailto:natalia@art-comfort.com'
+                />
+              </div>
+              <div className='flex flex-row gap-1'>
+                <p className='text-primary-defaultWeak'>HR: </p>
+                <Button
+                  className='contacts-section__button-mail'
+                  theme='ghost'
+                  label='kateryna@art-comfort.com'
+                  href='mailto:kateryna@art-comfort.com'
+                />
+              </div>
+            </div>
             {/* Form */}
             <Formik
               validateOnBlur={hasSubmitted}
@@ -122,7 +181,9 @@ export const ContactsSection = () => {
                 errors,
               }) => (
                 <>
-                  <p className='text-lg font-semibold'>{t.contacts.subtitle}</p>
+                  <p className='mt-4 text-lg font-semibold'>
+                    {t.contacts.subtitle}
+                  </p>
                   <div className='mt-6 flex w-full flex-col gap-4'>
                     <Input
                       label='Name'
