@@ -56,14 +56,15 @@ export const Header = () => {
 
   return (
     <>
+      {/* Call Button */}
       <Button
         className={clsxm(
           'header-call-button',
-          'fixed bottom-4 right-4 z-[51]',
+          'fixed bottom-4 right-8 z-[51]',
           'flex items-center',
-          'bg-success-bgStrong border-success-defaultStrong  rounded-full border-2 p-4 shadow-xl hover:scale-95'
+          'bg-success-bgStrong border-success-defaultStrong  rounded-full border p-3 shadow-xl hover:scale-95'
         )}
-        Icon={<FaPhone size={24} className='text-success-defaultStrong' />}
+        Icon={<FaPhone size={16} className='text-success-defaultStrong' />}
         theme='secondary'
         href='tel:+436609411059'
       />
@@ -73,43 +74,38 @@ export const Header = () => {
         theme='ghost'
         className={clsxm(
           'header-burger-menu group rounded-full transition-all',
-          'fixed bottom-4 left-4 z-[51] p-4',
-          'flex flex-col items-center justify-center gap-0.5',
-          'border-secondary-defaultStrong hover:border-primary-defaultStrong border-2',
-          'bg-secondary-bg',
-          menuOpened && 'bg-secondary-defaultStrong'
+          'fixed bottom-4 left-8 z-[51] p-3',
+          'flex flex-col items-center justify-center',
+          'border-primary-defaultStrong border',
+          'bg-primary-bg',
+          menuOpened && 'bg-secondary-bgStrong border-secondary-defaultStrong'
         )}
         Icon={
-          <div className='flex h-6 w-6 flex-col justify-center gap-1'>
-            <div
-              className={clsxm([
-                'bg-secondary-defaultStrong group-hover:bg-primary-defaultStrong h-1 w-6 rounded-xl transition-all',
-                menuOpened &&
-                  't-2/4 l-2/4 bg-primary-bg group-hover:bg-primary-bg absolute rotate-45',
-              ])}
-            />
-            <div
-              className={clsxm([
-                'bg-primary-defaultStrong group-hover:bg-secondary-defaultStrong h-1 w-6 rounded-xl transition-all',
-                menuOpened && 'hidden',
-              ])}
-            />
-            <div
-              className={clsxm([
-                'bg-secondary-defaultStrong group-hover:bg-primary-defaultStrong h-1 w-6 rounded-xl transition-all',
-                menuOpened &&
-                  't-2/4 l-2/4 bg-primary-bg group-hover:bg-primary-bg absolute -rotate-45',
-              ])}
-            />
+          <div className='flex h-4 w-4 flex-col justify-center gap-1'>
+            {Array(3)
+              .fill(0)
+              .map((_, index) => (
+                <div
+                  key={index}
+                  className={clsxm([
+                    'bg-primary-defaultStrong h-0.5 w-4 rounded-xl transition-all',
+                    menuOpened &&
+                      index !== 1 &&
+                      't-2/4 l-2/4 bg-secondary-defaultStrong absolute rotate-45',
+                    menuOpened && index === 1 && 'hidden',
+                    menuOpened && index === 2 && '-rotate-45',
+                  ])}
+                />
+              ))}
           </div>
         }
       />
       <motion.nav
         className={clsxm(
-          'fixed bottom-[108px] left-4 z-[51]',
+          'fixed bottom-20 left-4 z-[51]',
           'flex w-full flex-col items-start justify-start sm:w-72',
-          'gap-4 rounded-xl p-6',
-          'bg-primary-bg border-primary-defaultStrong border-2',
+          'gap-4 rounded-[36px] p-6',
+          'bg-primary-bg border-primary-defaultWeak border',
           menuOpened
             ? 'pointer-events-auto opacity-100'
             : 'pointer-events-none opacity-0',
@@ -147,7 +143,7 @@ export const Header = () => {
         exit={{ opacity: 0 }}
         className='fixed bottom-2 z-50 flex w-full items-center justify-center'
       >
-        <motion.div className='elative border-primary-bgStrong flex items-center justify-center rounded-3xl border-2 bg-white px-12 py-2'>
+        <motion.div className='elative border-primary-defaultWeak bg-primary-bg flex items-center justify-center rounded-3xl border p-2'>
           <div className={clsxm(['flex items-center gap-4'])}>
             {/* Nav */}
             <nav className='hidden items-center gap-8 xl:flex'>

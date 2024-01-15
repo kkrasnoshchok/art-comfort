@@ -61,8 +61,7 @@ export const ContactsSection = () => {
         viewport={{ amount: 0.4, once: true }}
         className={clsxm(
           'flex w-11/12 flex-col p-8 lg:flex-row',
-          'bg-primary-bg rounded-3xl'
-          // 'border-primary-bg rounded-[36px] border-2 bg-gray-50 shadow-lg backdrop-blur-md bg-opacity-25'
+          'border-primary-defaultStrong rounded-[48px] border shadow-md'
         )}
       >
         <div className='flex w-full flex-col items-center lg:w-1/3 lg:items-start'>

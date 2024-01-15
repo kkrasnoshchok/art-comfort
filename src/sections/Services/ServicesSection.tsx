@@ -110,13 +110,10 @@ export const ServicesSection = () => {
         initial='hidden'
         whileInView='visible'
         viewport={{ amount: 0.1, once: true }}
-        className={clsxm(
-          'grid w-11/12 grid-cols-2 overflow-hidden'
-          // 'bg-gray-50 bg-opacity-25 shadow-xl backdrop-blur-2xl border-primary-bg rounded-[36px] border-2',
-        )}
+        className={clsxm('grid w-11/12 grid-cols-2 overflow-hidden')}
       >
         {/* Left */}
-        <motion.div className='p-8'>
+        <motion.div className='py-8 pr-8'>
           <motion.h1 className='h1 text-primary-default'>Послуги</motion.h1>
           <motion.div className='mt-4 flex flex-col'>
             {services.slice(0, 5).map((service, index) => {
@@ -134,7 +131,7 @@ export const ServicesSection = () => {
                   <div
                     className={clsxm(
                       'flex cursor-pointer flex-row items-center justify-between',
-                      'border-primary-default rounded-2xl border-2 p-4 transition duration-500',
+                      'border-primary-default rounded-2xl border p-4 transition duration-500',
                       'hover:shadow-primary-default hover:scale-[1.01] hover:shadow-sm',
                       'active:scale-[0.99]',
                       isActive &&
