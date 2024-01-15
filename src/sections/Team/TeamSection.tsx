@@ -49,10 +49,7 @@ export const TeamSection = () => {
         initial='hidden'
         whileInView='visible'
         viewport={{ amount: 0.4, once: true }}
-        className={clsxm(
-          'flex w-11/12 flex-col p-8'
-          // 'rounded-[36px] border-2 bg-gray-50 bg-opacity-25 shadow-lg backdrop-blur-lg'
-        )}
+        className={clsxm('flex w-11/12 flex-col py-8')}
       >
         <h1 className='h1 text-primary-defaultStrong'>Наша команда</h1>
         <div className='mt-8 flex h-full w-full flex-col gap-12 lg:flex-row'>

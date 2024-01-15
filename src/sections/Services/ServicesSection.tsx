@@ -1,74 +1,13 @@
 import { motion, useAnimationControls, Variants } from 'framer-motion';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { useMemo, useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import equipmentSale from '@/assets/Climate_Control_Equipment_Sale.png';
-import airConditioningDesign from '@/assets/Design_Of_Air_Conditioning_and_Ventilation_Systems.jpg';
-import selectionAndDelivery from '@/assets/Selection_And_Delivery.jpg';
 import { Button } from '@/ui/Button';
 import { clsxm } from '@/utils';
-
-type Service = {
-  title: string;
-  description: string;
-  url: StaticImageData;
-};
-
-const services: Service[] = [
-  {
-    title: 'Продаж кліматичного обладнання',
-    description:
-      'Кондиціонери, прецизійні кондиціонери, чиллери, вентиляція, теплові завіси, повітряні завіси, промислові зволожувачі, осушувачі та очищувачі повітря. Та ще пару речень опису послуги, як і для всіх інших',
-    url: equipmentSale,
-  },
-  {
-    title: 'Проектування систем кондиціонування та вентиляції',
-    description:
-      'Правильно розроблений проект значно заощадить Ваш бюджет і продовжить термін експлуатації.',
-    url: airConditioningDesign,
-  },
-  {
-    title: 'Підбір і доставка кондиціонерів і кліматичного обладнання',
-    description: 'Здійснюється професійно і абсолютно безкоштовно.',
-    url: selectionAndDelivery,
-  },
-  {
-    title: 'Демонтажні роботи',
-    description: 'Виконуємо якісно демонтажні роботи.',
-    url: airConditioningDesign,
-  },
-  {
-    title: 'Сервісне обслуговування систем кондиціонування і вентиляції',
-    description:
-      'Полягає в перевірці обладнання у всіх робочих режимах, контролі тиску, чищенні та змащенні деталей, теплообмінників і фільтрів.',
-    url: selectionAndDelivery,
-  },
-  {
-    title: 'Консультації фахівців',
-    description: 'з усіх питань, що цікавлять у виборі обладнання',
-    url: airConditioningDesign,
-  },
-  {
-    title: "Виїзд фахівця на об'єкт",
-    description:
-      "Безпосередньо на об'єкті легше побачити і визначити, що потрібно саме Вам, обговорити варіанти монтажу. Виїзд фахівця на об'єкт безкоштовний.",
-    url: selectionAndDelivery,
-  },
-  {
-    title: 'Монтажні та пуско-налагоджувальні роботи',
-    description:
-      'Фахівці швидко і якісно виконують монтаж, використовуючи тільки професійний сертифікований інструмент.',
-    url: airConditioningDesign,
-  },
-  {
-    title: 'Гарантійний і післягарантійний ремонт',
-    description: 'Висока якість виконуваних робіт.',
-    url: selectionAndDelivery,
-  },
-];
+import { Service, services } from '@/utils/dataset/services.dataset';
 
 export const ServicesSection = () => {
   const [activeService, setActiveService] = useState<Service>(services[0]);
@@ -113,7 +52,7 @@ export const ServicesSection = () => {
         className={clsxm('grid w-11/12 grid-cols-2 overflow-hidden')}
       >
         {/* Left */}
-        <motion.div className='py-8 pr-8'>
+        <motion.div className='pr-8 pt-8'>
           <motion.h1 className='h1 text-primary-default'>Послуги</motion.h1>
           <motion.div className='mt-4 flex flex-col'>
             {services.slice(0, 5).map((service, index) => {
@@ -132,7 +71,7 @@ export const ServicesSection = () => {
                     className={clsxm(
                       'flex cursor-pointer flex-row items-center justify-between',
                       'border-primary-default rounded-2xl border p-4 transition duration-500',
-                      'hover:shadow-primary-default hover:scale-[1.01] hover:shadow-sm',
+                      'hover:shadow-primary-default hover:shadow-sm',
                       'active:scale-[0.99]',
                       isActive &&
                         'bg-primary-default border-primary-bg services-card--active'
@@ -142,7 +81,7 @@ export const ServicesSection = () => {
                       setTimeout(() => {
                         setActiveService(service);
                         controls.start('visible');
-                      }, 300);
+                      }, 200);
                     }}
                   >
                     <p
@@ -178,11 +117,12 @@ export const ServicesSection = () => {
               );
             })}
           </motion.div>
+          <Button label='Show all services' className='mt-8' href='services' />
         </motion.div>
         {/* Right */}
         <motion.div className='bg-primary-defaultStrong relative z-10 flex flex-1 flex-col justify-between rounded-[36px] p-8'>
           <motion.div
-            className='flex h-full flex-col justify-between'
+            className='flex h-full flex-col'
             variants={contentVariants}
             initial='visible'
             animate={controls}
@@ -190,9 +130,15 @@ export const ServicesSection = () => {
             <motion.h2 className='h2 text-primary-bg'>
               {activeService.title}
             </motion.h2>
-            <p className='text-primary-bg self-end justify-self-end'>
-              {activeService.description}
-            </p>
+            <p className='text-primary-bg mt-4'>{activeService.description}</p>
+            <div className='flex flex-1 flex-col items-end justify-end'>
+              <Button
+                href={`services/${activeService.id}`}
+                theme='subtle'
+                className='inline-flex'
+                label='Дізнатись детальніше'
+              />
+            </div>
             <motion.div className='absolute left-0 top-0 -z-10 h-full w-full'>
               <Image
                 src={activeService.url}
