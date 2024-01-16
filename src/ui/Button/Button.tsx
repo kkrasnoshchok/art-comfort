@@ -59,9 +59,9 @@ export const Button = (props: Props) => {
       case 'primary':
         return 'bg-primary-default hover:bg-primary-defaultStrong active:bg-grayscale-header active:border-primary-bgStrong border-2 border-transparent';
       case 'secondary':
-        return 'border-2 border-primary-default hover:border-primary-defaultStrong active:border-primary-bg active:border-primary-bgStrong';
+        return 'border border-primary-default hover:border-primary-defaultStrong active:border-primary-bg active:border-primary-bgStrong';
       case 'subtle':
-        return 'border-2 border-grayscale-line';
+        return 'border border-grayscale-line';
       case 'ghost':
         return 'p-0';
     }

@@ -14,14 +14,14 @@ import { SectionWrapper } from '@/components/sectionWrapper';
 import { Button } from '@/ui/Button';
 import { Modal } from '@/ui/Modal';
 import { clsxm, useBreakpoint } from '@/utils';
-import { team } from '@/utils/dataset/team.dataset';
+import { team, TeamMember } from '@/utils/dataset/team.dataset';
 
 export const TeamSection = () => {
   const swiperRef = useRef<SwiperRef>(null);
   const { is2xl } = useBreakpoint('2xl');
   const { isMd } = useBreakpoint('md');
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [selectedUser, setSelectedUser] = useState<any>(null); // Change 'any' to the actual type of your user object
+  const [selectedUser, setSelectedUser] = useState<TeamMember | null>(null); // Change 'any' to the actual type of your user object
 
   const getSlidesPerView = () => {
     if (is2xl) {

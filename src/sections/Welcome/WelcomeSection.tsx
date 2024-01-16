@@ -1,18 +1,9 @@
-import { useEffect, useRef } from 'react';
-
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { AnimatedBackground } from '@/sections/Welcome/AnimatedBackground';
 import { Button } from '@/ui/Button';
 
 export const WelcomeSection = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.loop = true;
-      videoRef.current?.play();
-    }
-  }, [videoRef.current]);
   return (
     <SectionWrapper
       sectionProps={{ id: 'about' }}
