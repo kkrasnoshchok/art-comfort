@@ -16,7 +16,6 @@ export const SectionWrapper = (props: Props) => {
     <motion.section
       className={clsxm(
         'relative flex w-screen items-center justify-center pb-24 pt-12',
-        "bg-[url('https://grainy-gradients.vercel.app/noise.svg')]",
         className
       )}
       {...sectionProps}
@@ -24,7 +23,7 @@ export const SectionWrapper = (props: Props) => {
       <motion.div
         className={clsxm(
           'absolute left-0 top-0 -z-10 flex h-full w-full',
-          'from-primary-bgStrong to-secondary-bgStrong bg-gradient-to-t',
+          // 'from-primary-bgStrong to-secondary-bgStrong bg-gradient-to-t',
           innerClassName
         )}
       />

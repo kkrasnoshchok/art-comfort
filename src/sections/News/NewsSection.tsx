@@ -37,7 +37,7 @@ export const NewsSection = () => {
         initial='hidden'
         whileInView='visible'
         viewport={{ amount: 0.1, once: true }}
-        className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-xl backdrop-blur-2xl'
+        className={clsxm('flex w-11/12 flex-col bg-opacity-25 py-8')}
       >
         <h1 className='h1 text-primary-defaultStrong'>Новини</h1>
         {/* News Container */}
@@ -47,7 +47,7 @@ export const NewsSection = () => {
               key={index}
               className={clsxm(
                 'group mt-4 flex flex-row rounded-3xl p-4',
-                'border-primary-defaultWeak border-2 bg-gray-50 bg-opacity-50'
+                'border-primary-defaultWeak border bg-gray-50 bg-opacity-50'
               )}
               variants={itemVariants}
               initial='hidden'

@@ -41,9 +41,9 @@ export const ProjectsSection = () => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: -20 },
-    visible: { opacity: 1, y: 0 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 1 } },
   };
 
   return (
@@ -57,7 +57,7 @@ export const ProjectsSection = () => {
         initial='hidden'
         whileInView='visible'
         viewport={{ amount: 0.1, once: true }}
-        className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-xl backdrop-blur-2xl'
+        className={clsxm('flex w-11/12 flex-col py-8')}
       >
         <motion.h1 className='h1 text-primary-default'>
           Знакові Проєкти
@@ -91,7 +91,6 @@ export const ProjectsSection = () => {
                   transition: { duration: 0.3, type: 'spring' },
                 }}
                 viewport={{ amount: 0.1, once: true }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
               >
                 {/* Project Image */}
                 <div
@@ -103,7 +102,7 @@ export const ProjectsSection = () => {
                     src={project.url}
                     className={clsxm(
                       'aspect-square h-full w-full object-cover',
-                      'opacity-20 transition-all group-hover:scale-110 group-hover:opacity-10'
+                      'opacity-20 transition-all duration-500 group-hover:scale-110 group-hover:opacity-5'
                     )}
                     alt={project.title}
                   />

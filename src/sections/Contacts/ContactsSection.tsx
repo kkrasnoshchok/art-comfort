@@ -10,7 +10,7 @@ import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
-import { useI18n } from '@/utils';
+import { clsxm, useI18n } from '@/utils';
 
 import { GoogleMap } from './components/GoogleMap';
 
@@ -34,17 +34,14 @@ export const ContactsSection = () => {
     `${field}${t.contacts.inputError}`;
   };
 
-  const ContactsForm = z
-    .object({
-      name: z.string().min(1, getRequiredError('Name')),
-      email: z
-        .string()
-        .email(t.contacts.emailInputError)
-        .min(1, getRequiredError('Email')),
-      phone: z.string().min(1, getRequiredError('Phone')),
-      message: z.string(),
-    })
-    .required();
+  const ContactsForm = z.object({
+    name: z.string().min(1, getRequiredError('Name')),
+    email: z
+      .string()
+      .email(t.contacts.emailInputError)
+      .min(1, getRequiredError('Email')),
+    phone: z.string().min(1, getRequiredError('Phone')),
+  });
 
   const sectionVariants: Variants = {
     hidden: { opacity: 0, y: 120 },
@@ -62,11 +59,73 @@ export const ContactsSection = () => {
         initial='hidden'
         whileInView='visible'
         viewport={{ amount: 0.4, once: true }}
-        className='border-primary-bg flex w-11/12 flex-col rounded-[36px] border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-md lg:flex-row'
+        className={clsxm(
+          'flex w-11/12 flex-col p-8 lg:flex-row',
+          'border-primary-defaultStrong rounded-[48px] border shadow-md'
+        )}
       >
         <div className='flex w-full flex-col items-center lg:w-1/3 lg:items-start'>
           <h1>{t.contacts.title}</h1>
           <div className='mt-6 flex w-full flex-col items-center lg:items-start'>
+            <p className='text-lg font-semibold'>Звʼязатись напряму</p>
+            <div className='bg-grayscale-bg mt-2  w-10/12 rounded-xl p-2'>
+              <div className='flex flex-row gap-1'>
+                <p className='text-primary-defaultWeak'>Lifecell: </p>
+                <Button
+                  className='contacts-section__button-phone'
+                  theme='ghost'
+                  label='+380931231231232'
+                  href='tel:+380931231231232'
+                />
+              </div>
+              <div className='flex flex-row gap-1'>
+                <p className='text-primary-defaultWeak'>Vodafone: </p>
+                <Button
+                  className='contacts-section__button-phone'
+                  theme='ghost'
+                  label='+380971231231232'
+                  href='tel:+380971231231232'
+                />
+              </div>
+              <div className='flex flex-row gap-1'>
+                <p className='text-primary-defaultWeak'>Kyivstar: </p>
+                <Button
+                  className='contacts-section__button-phone'
+                  theme='ghost'
+                  label='+380961231231232'
+                  href='tel:+380961231231232'
+                />
+              </div>
+            </div>
+            <div className='bg-grayscale-bg mt-2  w-10/12 rounded-xl p-2'>
+              <div className='flex flex-row gap-1'>
+                <p className='text-primary-defaultWeak'>CEO: </p>
+                <Button
+                  className='contacts-section__button-mail'
+                  theme='ghost'
+                  label='oleg@art-comfort.com'
+                  href='mailto:oleg@art-comfort.com'
+                />
+              </div>
+              <div className='flex flex-row gap-1'>
+                <p className='text-primary-defaultWeak'>Projects Lead:</p>
+                <Button
+                  className='contacts-section__button-mail'
+                  theme='ghost'
+                  label='natalia@art-comfort.com'
+                  href='mailto:natalia@art-comfort.com'
+                />
+              </div>
+              <div className='flex flex-row gap-1'>
+                <p className='text-primary-defaultWeak'>HR: </p>
+                <Button
+                  className='contacts-section__button-mail'
+                  theme='ghost'
+                  label='kateryna@art-comfort.com'
+                  href='mailto:kateryna@art-comfort.com'
+                />
+              </div>
+            </div>
             {/* Form */}
             <Formik
               validateOnBlur={hasSubmitted}
@@ -121,7 +180,9 @@ export const ContactsSection = () => {
                 errors,
               }) => (
                 <>
-                  <p className='text-lg font-semibold'>{t.contacts.subtitle}</p>
+                  <p className='mt-4 text-lg font-semibold'>
+                    {t.contacts.subtitle}
+                  </p>
                   <div className='mt-6 flex w-full flex-col gap-4'>
                     <Input
                       label='Name'
@@ -192,7 +253,9 @@ export const ContactsSection = () => {
                     </div>
                     <div>
                       <Button
-                        onClick={() => handleSubmit()}
+                        onClick={() => {
+                          handleSubmit();
+                        }}
                         label='Надіслати'
                         size='medium'
                         theme='primary'

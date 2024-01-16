@@ -1,24 +1,20 @@
 import { motion } from 'framer-motion';
 import { ReactNode, useCallback } from 'react';
-import { O } from 'ts-toolbelt';
 
 import { ButtonSize, ButtonTheme } from '@/ui/Button/types';
 import { clsxm } from '@/utils';
 
-type Props = O.Either<
-  {
-    className?: string;
-    labelClassName?: string;
-    disabled?: boolean;
-    size?: ButtonSize;
-    theme?: ButtonTheme;
-    href?: string;
-    onClick?: () => void;
-    label: string;
-    Icon: ReactNode;
-  },
-  'Icon' | 'label'
->;
+type Props = {
+  className?: string;
+  labelClassName?: string;
+  disabled?: boolean;
+  size?: ButtonSize;
+  theme?: ButtonTheme;
+  href?: string;
+  onClick?: () => void;
+  label?: string;
+  Icon?: ReactNode;
+};
 
 const buttonBaseStyles =
   'inline-flex cursor-pointer rounded-2xl transition-all hover:scale-95 active:scale-90';

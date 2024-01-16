@@ -6,10 +6,9 @@ import { Layout } from '@/components/layout';
 
 import { Button } from '@/ui/Button';
 import { clsxm } from '@/utils';
-import { projects } from '@/utils/dataset/projects.dataset';
-import { slugify } from '@/utils/slugify';
+import { services } from '@/utils/dataset/services.dataset';
 
-const ProjectPage = () => {
+const ServicesPage = () => {
   const router = useRouter();
   const itemVariants: Variants = {
     hidden: { opacity: 0 },
@@ -21,12 +20,7 @@ const ProjectPage = () => {
   };
   return (
     <Layout>
-      <motion.div
-        className={clsxm(
-          // 'from-primary-bg to-secondary-bg bg-gradient-to-b',
-          'flex w-full items-center justify-center'
-        )}
-      >
+      <motion.div className={clsxm('flex w-full items-center justify-center')}>
         <motion.div className='w-11/12 rounded-lg pt-12'>
           <motion.div>
             <Button
@@ -35,13 +29,13 @@ const ProjectPage = () => {
             />
           </motion.div>
           <motion.h1 className='h1 text-primary-defaultStrong mt-8'>
-            Список проєктів
+            Список послуг
           </motion.h1>
           <motion.div className='mt-8 pb-32'>
-            {projects.map((project) => (
+            {services.map((service) => (
               <motion.div
-                className='border-primary-defaultStrong mt-4 flex items-center rounded-3xl border-2 p-4 backdrop-blur-lg'
-                key={project.title}
+                className='border-primary-defaultStrong mt-4 flex items-center rounded-3xl border p-4 backdrop-blur-lg'
+                key={service.title}
                 variants={itemVariants}
                 initial='hidden'
                 whileInView='visible'
@@ -50,15 +44,12 @@ const ProjectPage = () => {
               >
                 <motion.div className='flex-1'>
                   <motion.h3 className='text-primary-defaultStrong'>
-                    {project.title}
+                    {service.title}
                   </motion.h3>
-                  <p className='text-primary-defaultWeak mb-2 italic'>
-                    {project.year}
-                  </p>
-                  <motion.p>{project.details}</motion.p>
+                  <motion.p>{service.description}</motion.p>
                   <motion.div className='mt-4'>
                     <Button
-                      href={`projects/${slugify(project.title)}`}
+                      href={`projects/${service.id}`}
                       label='Детальніше'
                     />
                   </motion.div>
@@ -69,9 +60,9 @@ const ProjectPage = () => {
                   )}
                 >
                   <Image
-                    src={project.url}
+                    src={service.url}
                     className='aspect-video h-full w-full object-cover opacity-40 transition-all group-hover:opacity-100'
-                    alt={project.title}
+                    alt={service.title}
                   />
                 </div>
               </motion.div>
@@ -83,4 +74,4 @@ const ProjectPage = () => {
   );
 };
 
-export default ProjectPage;
+export default ServicesPage;

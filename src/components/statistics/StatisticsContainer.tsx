@@ -27,7 +27,7 @@ export const StatisticsContainer = () => (
     {statistics.map((statistic, index) => (
       <div
         key={index}
-        className='border-primary-bg flex flex-col items-center justify-center rounded-2xl border-2 bg-slate-100 bg-opacity-25 p-4 shadow-md'
+        className='border-primary-bg flex flex-col items-center justify-center rounded-2xl border bg-slate-100 bg-opacity-25 p-4 shadow-sm'
       >
         <CountUp useEasing start={0} end={statistic.value} duration={2.5}>
           {({ countUpRef, start }) => (
