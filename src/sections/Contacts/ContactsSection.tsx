@@ -143,6 +143,8 @@ export const ContactsSection = () => {
                   );
                 }
 
+                formData.append('to', 'krasnoshchokvadim@gmail.com');
+
                 try {
                   const response = await fetch('/api/upload', {
                     method: 'POST',

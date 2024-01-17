@@ -29,6 +29,7 @@ type FormFields = {
   email: string;
   phone: string;
   message: string;
+  to: string;
 };
 // #endregion general types
 
@@ -170,7 +171,7 @@ const upload = async (req: NextApiRequest, res: NextApiResponse) => {
     // Sending an email
     const data = await resend.emails.send({
       from: 'Art-Comfort Website <email@art-comfort.com>',
-      to: 'krasnoshchokvadim@gmail.com',
+      to: formData.fields.to,
       subject: 'Заявка з сайту Art-Comfort',
       attachments: withoutFiles ? [] : formData.files,
       react: EmailTemplate({
