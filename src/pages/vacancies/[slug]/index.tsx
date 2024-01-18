@@ -6,6 +6,8 @@ import { toast } from 'react-toastify';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
+import 'react-toastify/dist/ReactToastify.min.css';
+
 import { Layout } from '@/components/layout';
 
 import { Button } from '@/ui/Button';
@@ -57,7 +59,7 @@ const VacancyPage = () => {
 
   return (
     <Layout>
-      <motion.div className='from-primary-bg to-secondary-bg flex w-full flex-col items-center bg-gradient-to-b px-16 pb-24 pt-12'>
+      <motion.div className=' from-primary-bg to-secondary-bg flex min-h-screen w-full flex-col items-center bg-gradient-to-b px-16 pb-24 pt-12'>
         <div className='border-primary-bgStrong w-1/2 rounded-3xl border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-lg'>
           <motion.div>
             <Button label='Back' onClick={router.back} />
@@ -87,6 +89,8 @@ const VacancyPage = () => {
                     values[valueKey as keyof typeof values]
                   );
                 }
+
+                formData.append('to', 'krasnoshchok4work@gmail.com');
 
                 try {
                   const response = await fetch('/api/upload', {
@@ -169,7 +173,7 @@ const VacancyPage = () => {
                       }
                     />
                     <Input
-                      label='Message'
+                      label='Чому я хочу працювати в Арт-Комфорт?'
                       name='message'
                       disabled={isSubmitting}
                       type='textarea'
