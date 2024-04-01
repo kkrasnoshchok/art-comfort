@@ -1,5 +1,4 @@
 import { motion, Variants } from 'framer-motion';
-import Image from 'next/image';
 import { useRef, useState } from 'react';
 import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
@@ -21,7 +20,7 @@ export const TeamSection = () => {
   const { is2xl } = useBreakpoint('2xl');
   const { isMd } = useBreakpoint('md');
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [selectedUser, setSelectedUser] = useState<TeamMember | null>(null); // Change 'any' to the actual type of your user object
+  const [selectedUser, setSelectedUser] = useState<TeamMember | null>(null);
 
   const getSlidesPerView = () => {
     if (is2xl) {
@@ -45,10 +44,10 @@ export const TeamSection = () => {
   return (
     <SectionWrapper sectionProps={{ id: 'team' }} className='pb-0'>
       <motion.div
-        variants={sectionVariants}
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ amount: 0.4, once: true }}
+        // variants={sectionVariants}
+        // initial='hidden'
+        // whileInView='visible'
+        // viewport={{ amount: 0.4, once: true }}
         className={clsxm('flex w-11/12 flex-col py-8')}
       >
         <h1 className='h1 text-primary-defaultStrong'>Наша команда</h1>
@@ -76,7 +75,7 @@ export const TeamSection = () => {
                     setSelectedUser(user);
                   }}
                 >
-                  <div
+                  {/* <div
                     className={clsxm([
                       'bg-primary-defaultStrong aspect-square w-full rounded-2xl',
                     ])}
@@ -86,7 +85,7 @@ export const TeamSection = () => {
                       alt='alt'
                       className='aspect-square h-full w-full rounded-xl opacity-60 transition-opacity group-hover:opacity-10'
                     />
-                  </div>
+                  </div> */}
                   <div
                     className={clsxm(
                       'absolute bottom-4 w-11/12',
@@ -94,19 +93,29 @@ export const TeamSection = () => {
                       'bg-primary-bg rounded-lg p-2'
                     )}
                   >
+                    <h4 className='text-primary-defaultStrong h4'>
+                      {user.name}
+                    </h4>
+                    <p className='p'>{user.role}</p>
                     <div className='flex flex-row items-center'>
-                      <h4 className='text-primary-defaultStrong h4'>
-                        {user.name}
-                      </h4>
-                      <p className='p ml-2'> / CEO</p>
-                    </div>
-                    <div className='flex flex-row items-center'>
-                      <Button
-                        theme='ghost'
-                        href={`tel:${user.phone}`}
-                        className='text-primary-defaultStrong h4'
-                        label={user.phone}
-                      />
+                      {Array.isArray(user.phone) ? (
+                        user.phone.map((phone) => (
+                          <Button
+                            key={phone}
+                            theme='ghost'
+                            href={`tel:${phone}`}
+                            className='text-primary-defaultStrong h4'
+                            label={phone}
+                          />
+                        ))
+                      ) : (
+                        <Button
+                          theme='ghost'
+                          href={`tel:${user.phone}`}
+                          className='text-primary-defaultStrong h4'
+                          label={user.phone}
+                        />
+                      )}
                     </div>
                     <div className='flex flex-row items-center'>
                       <Button
@@ -133,26 +142,36 @@ export const TeamSection = () => {
       >
         {selectedUser && (
           <>
-            <div className='bg-primary-defaultStrong mb-4 aspect-square w-full rounded-2xl'>
+            {/* <div className='bg-primary-defaultStrong mb-4 aspect-square w-full rounded-2xl'>
               <Image
                 src={selectedUser.url}
                 alt='alt'
                 className='aspect-square h-full w-full rounded-xl opacity-60 transition-opacity group-hover:opacity-10'
               />
-            </div>
+            </div> */}
+            <h4 className='text-primary-defaultStrong h4'>
+              {selectedUser.name}
+            </h4>
+            <p className='p'>{selectedUser.role}</p>
             <div className='flex flex-row items-center'>
-              <h4 className='text-primary-defaultStrong h4'>
-                {selectedUser.name}
-              </h4>
-              <p className='p ml-2'> / CEO</p>
-            </div>
-            <div className='flex flex-row items-center'>
-              <Button
-                theme='ghost'
-                href={`tel:${selectedUser.phone}`}
-                className='text-primary-defaultStrong h4'
-                label={selectedUser.phone}
-              />
+              {Array.isArray(selectedUser.phone) ? (
+                selectedUser.phone.map((phone) => (
+                  <Button
+                    key={phone}
+                    theme='ghost'
+                    href={`tel:${phone}`}
+                    className='text-primary-defaultStrong h4'
+                    label={phone}
+                  />
+                ))
+              ) : (
+                <Button
+                  theme='ghost'
+                  href={`tel:${selectedUser.phone}`}
+                  className='text-primary-defaultStrong h4'
+                  label={selectedUser.phone}
+                />
+              )}
             </div>
             <div className='flex flex-row items-center'>
               <Button

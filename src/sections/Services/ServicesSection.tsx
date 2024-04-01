@@ -45,10 +45,10 @@ export const ServicesSection = () => {
   return (
     <SectionWrapper sectionProps={{ id: 'services' }} className='pb-0'>
       <motion.div
-        variants={sectionVariants}
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ amount: 0.1, once: true }}
+        // variants={sectionVariants}
+        // initial='hidden'
+        // whileInView='visible'
+        // viewport={{ amount: 0.1, once: true }}
         className={clsxm('grid w-11/12 grid-cols-2 overflow-hidden')}
       >
         {/* Left */}
@@ -59,10 +59,10 @@ export const ServicesSection = () => {
               const isActive = activeService.title === service.title;
               return (
                 <motion.div
-                  variants={itemVariants}
-                  initial='hidden'
-                  whileInView='visible'
-                  viewport={{ amount: 0.5, once: true }}
+                  // variants={itemVariants}
+                  // initial='hidden'
+                  // whileInView='visible'
+                  // viewport={{ amount: 0.5, once: true }}
                   transition={{ delay: 100 * index }}
                   key={service.title}
                   className='services-card pt-4'

@@ -1,7 +1,7 @@
 export const AnimatedBackground = () => {
   return (
     <svg
-      className='absolute left-0 top-0 z-10 h-screen w-screen'
+      className='fixed left-0 top-0 z-[-1] h-screen w-screen'
       viewBox='0 0 100 100'
       preserveAspectRatio='xMidYMid slice'
     >

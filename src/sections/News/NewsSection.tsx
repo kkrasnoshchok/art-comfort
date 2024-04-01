@@ -33,10 +33,10 @@ export const NewsSection = () => {
       innerClassName='bg-gradient-to-b'
     >
       <motion.div
-        variants={sectionVariants}
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ amount: 0.1, once: true }}
+        // variants={sectionVariants}
+        // initial='hidden'
+        // whileInView='visible'
+        // viewport={{ amount: 0.1, once: true }}
         className={clsxm('flex w-11/12 flex-col bg-opacity-25 py-8')}
       >
         <h1 className='h1 text-primary-defaultStrong'>Новини</h1>
@@ -49,10 +49,10 @@ export const NewsSection = () => {
                 'group mt-4 flex flex-row rounded-3xl p-4',
                 'border-primary-defaultWeak border bg-gray-50 bg-opacity-50'
               )}
-              variants={itemVariants}
-              initial='hidden'
-              whileInView='visible'
-              viewport={{ amount: 0.5, once: true }}
+              // variants={itemVariants}
+              // initial='hidden'
+              // whileInView='visible'
+              // viewport={{ amount: 0.5, once: true }}
               transition={{ delay: 100 * index }}
             >
               {/* News */}

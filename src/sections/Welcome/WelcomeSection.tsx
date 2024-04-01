@@ -8,7 +8,6 @@ export const WelcomeSection = () => {
     <SectionWrapper
       sectionProps={{ id: 'about' }}
       className='relative z-20 flex min-h-screen w-screen flex-col items-center justify-center p-8 pt-24'
-      // innerClassName='rounded-b-[48px] rounded-bl-[48px] shadow-xl'
     >
       <div className='relative z-20 w-11/12'>
         <h1 className='text-primary-default uppercase'>

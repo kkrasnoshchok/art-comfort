@@ -55,74 +55,41 @@ export const ContactsSection = () => {
   return (
     <SectionWrapper sectionProps={{ id: 'contacts' }}>
       <motion.div
-        variants={sectionVariants}
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ amount: 0.4, once: true }}
-        className={clsxm(
-          'flex w-11/12 flex-col p-8 lg:flex-row',
-          'border-primary-defaultStrong rounded-[48px] border shadow-md'
-        )}
+        // variants={sectionVariants}
+        // initial='hidden'
+        // whileInView='visible'
+        // viewport={{ amount: 0.4, once: true }}
+        className={clsxm('flex w-11/12 flex-col lg:flex-row')}
       >
         <div className='flex w-full flex-col items-center lg:w-1/3 lg:items-start'>
-          <h1>{t.contacts.title}</h1>
+          <h1 className='h1 text-primary-defaultStrong'>{t.contacts.title}</h1>
           <div className='mt-6 flex w-full flex-col items-center lg:items-start'>
-            <p className='text-lg font-semibold'>Звʼязатись напряму</p>
             <div className='bg-grayscale-bg mt-2  w-10/12 rounded-xl p-2'>
               <div className='flex flex-row gap-1'>
-                <p className='text-primary-defaultWeak'>Lifecell: </p>
+                <p className='text-primary-defaultWeak'>Локація:</p>
                 <Button
                   className='contacts-section__button-phone'
                   theme='ghost'
-                  label='+380931231231232'
-                  href='tel:+380931231231232'
+                  label='вул. Берковецька 6а, м. Київ'
+                  href='https://maps.app.goo.gl/sSCxtqTTNVne8Y4s5'
                 />
               </div>
               <div className='flex flex-row gap-1'>
-                <p className='text-primary-defaultWeak'>Vodafone: </p>
+                <p className='text-primary-defaultWeak'>E-Mail:</p>
                 <Button
                   className='contacts-section__button-phone'
                   theme='ghost'
-                  label='+380971231231232'
-                  href='tel:+380971231231232'
+                  label='info@art-comfort.com'
+                  href='mailto:info@art-comfort.com'
                 />
               </div>
               <div className='flex flex-row gap-1'>
-                <p className='text-primary-defaultWeak'>Kyivstar: </p>
+                <p className='text-primary-defaultWeak'>Phone:</p>
                 <Button
                   className='contacts-section__button-phone'
                   theme='ghost'
-                  label='+380961231231232'
-                  href='tel:+380961231231232'
-                />
-              </div>
-            </div>
-            <div className='bg-grayscale-bg mt-2  w-10/12 rounded-xl p-2'>
-              <div className='flex flex-row gap-1'>
-                <p className='text-primary-defaultWeak'>CEO: </p>
-                <Button
-                  className='contacts-section__button-mail'
-                  theme='ghost'
-                  label='oleg@art-comfort.com'
-                  href='mailto:oleg@art-comfort.com'
-                />
-              </div>
-              <div className='flex flex-row gap-1'>
-                <p className='text-primary-defaultWeak'>Projects Lead:</p>
-                <Button
-                  className='contacts-section__button-mail'
-                  theme='ghost'
-                  label='natalia@art-comfort.com'
-                  href='mailto:natalia@art-comfort.com'
-                />
-              </div>
-              <div className='flex flex-row gap-1'>
-                <p className='text-primary-defaultWeak'>HR: </p>
-                <Button
-                  className='contacts-section__button-mail'
-                  theme='ghost'
-                  label='kateryna@art-comfort.com'
-                  href='mailto:kateryna@art-comfort.com'
+                  label='+380732792891'
+                  href='tel:+380732792891'
                 />
               </div>
             </div>

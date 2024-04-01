@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { SectionWrapper } from '@/components/sectionWrapper';
 import { StatisticsContainer } from '@/components/statistics';
 
-import { PartnersSection } from '@/sections/Partners';
 import { Button } from '@/ui/Button';
 import { clsxm } from '@/utils';
 import { projects } from '@/utils/dataset/projects.dataset';
@@ -32,15 +31,6 @@ export const ProjectsSection = () => {
     },
   };
 
-  const partnersVariants: Variants = {
-    hidden: { opacity: 0, y: 120 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.3, type: 'spring', delay: 0.2 },
-    },
-  };
-
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 1 } },
@@ -53,10 +43,10 @@ export const ProjectsSection = () => {
       innerClassName='bg-gradient-to-b'
     >
       <motion.div
-        variants={sectionVariants}
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ amount: 0.1, once: true }}
+        // variants={sectionVariants}
+        // initial='hidden'
+        // whileInView='visible'
+        // viewport={{ amount: 0.1, once: true }}
         className={clsxm('flex w-11/12 flex-col py-8')}
       >
         <motion.h1 className='h1 text-primary-default'>
@@ -79,18 +69,18 @@ export const ProjectsSection = () => {
                   'group',
                   index === 0 && 'col-span-2 row-span-2'
                 )}
-                variants={itemVariants}
-                initial='hidden'
-                whileInView='visible'
-                whileHover={{
-                  scale: 1.02,
-                  transition: { duration: 0.3, type: 'spring' },
-                }}
-                whileTap={{
-                  scale: 0.98,
-                  transition: { duration: 0.3, type: 'spring' },
-                }}
-                viewport={{ amount: 0.1, once: true }}
+                // variants={itemVariants}
+                // initial='hidden'
+                // whileInView='visible'
+                // whileHover={{
+                //   scale: 1.02,
+                //   transition: { duration: 0.3, type: 'spring' },
+                // }}
+                // whileTap={{
+                //   scale: 0.98,
+                //   transition: { duration: 0.3, type: 'spring' },
+                // }}
+                // viewport={{ amount: 0.1, once: true }}
               >
                 {/* Project Image */}
                 <div
@@ -122,15 +112,15 @@ export const ProjectsSection = () => {
         </motion.div>
       </motion.div>
       <motion.div
-        variants={statisticsVariants}
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ amount: 1, once: true }}
+        // variants={statisticsVariants}
+        // initial='hidden'
+        // whileInView='visible'
+        // viewport={{ amount: 1, once: true }}
         className='w-11/12'
       >
         <StatisticsContainer />
       </motion.div>
-      <motion.div
+      {/* <motion.div
         variants={partnersVariants}
         initial='hidden'
         whileInView='visible'
@@ -138,7 +128,7 @@ export const ProjectsSection = () => {
         className='mt-12'
       >
         <PartnersSection />
-      </motion.div>
+      </motion.div> */}
     </SectionWrapper>
   );
 };

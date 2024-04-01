@@ -24,7 +24,7 @@ export const Modal = (props: ModalProps) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className='fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-80'
+          className='fixed left-0 top-0 z-[1000000] flex h-full w-full items-center justify-center bg-black bg-opacity-80'
           initial='hidden'
           animate='visible'
           exit='hidden'
