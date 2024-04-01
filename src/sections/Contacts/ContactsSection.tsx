@@ -53,6 +53,34 @@ export const ContactsSection = () => {
     },
   };
 
+  // <div className='flex flex-row gap-1'>
+  //               <p className='text-primary-defaultWeak'>Локація:</p>
+  //               <Button
+  //                 className='contacts-section__button-phone'
+  //                 theme='ghost'
+  //                 label='вул. Берковецька 6а, м. Київ'
+  //                 href='https://maps.app.goo.gl/sSCxtqTTNVne8Y4s5'
+  //               />
+  //             </div>
+  //             <div className='flex flex-row gap-1'>
+  //               <p className='text-primary-defaultWeak'>E-Mail:</p>
+  //               <Button
+  //                 className='contacts-section__button-phone'
+  //                 theme='ghost'
+  //                 label='info@art-comfort.com'
+  //                 href='mailto:info@art-comfort.com'
+  //               />
+  //             </div>
+  //             <div className='flex flex-row gap-1'>
+  //               <p className='text-primary-defaultWeak'>Phone:</p>
+  //               <Button
+  //                 className='contacts-section__button-phone'
+  //                 theme='ghost'
+  //                 label='+380732792891'
+  //                 href='tel:+380732792891'
+  //               />
+  //             </div>
+
   return (
     <SectionWrapper sectionProps={{ id: 'contacts' }}>
       <motion.div

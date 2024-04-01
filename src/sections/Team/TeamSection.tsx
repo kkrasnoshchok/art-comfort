@@ -1,6 +1,6 @@
 import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
@@ -12,17 +12,14 @@ import 'swiper/css/scrollbar';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
-import { Modal } from '@/ui/Modal';
 import { clsxm, useBreakpoint } from '@/utils';
 import { cn } from '@/utils/cn';
-import { team, TeamMember } from '@/utils/dataset/team.dataset';
+import { team } from '@/utils/dataset/team.dataset';
 
 export const TeamSection = () => {
   const swiperRef = useRef<SwiperRef>(null);
   const { is2xl } = useBreakpoint('2xl');
   const { isMd } = useBreakpoint('md');
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [selectedUser, setSelectedUser] = useState<TeamMember | null>(null); // Change 'any' to the actual type of your user object
 
   const getSlidesPerView = () => {
     if (is2xl) {
@@ -72,10 +69,6 @@ export const TeamSection = () => {
                     'flex h-full w-full flex-col items-center justify-center'
                     // 'transition-all hover:scale-[0.98] active:scale-[0.95]'
                   )}
-                  onClick={() => {
-                    setModalOpen(true);
-                    setSelectedUser(user);
-                  }}
                 >
                   <div
                     className={clsxm([
@@ -99,20 +92,10 @@ export const TeamSection = () => {
                       'bg-primary-bg rounded-lg p-2'
                     )}
                   >
-                    <div className='flex flex-row items-center'>
-                      <h4 className='text-primary-defaultStrong h4'>
-                        {user.name}
-                      </h4>
-                      <p className='p ml-2'> / CEO</p>
-                    </div>
-                    <div className='flex flex-row items-center'>
-                      <Button
-                        theme='ghost'
-                        href={`tel:${user.phone}`}
-                        className='text-primary-defaultStrong h4'
-                        label={user.phone}
-                      />
-                    </div>
+                    <h4 className='text-primary-defaultStrong h4'>
+                      {user.name}
+                    </h4>
+                    <p className='p'>{user.role}</p>
                     <div className='flex flex-row items-center'>
                       <Button
                         theme='ghost'
@@ -128,66 +111,6 @@ export const TeamSection = () => {
           </Swiper>
         </div>
       </motion.div>
-      {/* Modal */}
-      <Modal
-        isOpen={modalOpen}
-        onClose={() => {
-          setSelectedUser(null);
-          setModalOpen(false);
-        }}
-      >
-        {selectedUser && (
-          <>
-            <div className='bg-primary-defaultStrong mb-4 aspect-square w-full rounded-2xl'>
-              <Image
-                src={selectedUser.url}
-                alt='alt'
-                className='aspect-square h-full w-full rounded-xl opacity-60 transition-opacity group-hover:opacity-10'
-              />
-            </div>
-            <div className='flex flex-row items-center'>
-              <h4 className='text-primary-defaultStrong h4'>
-                {selectedUser.name}
-              </h4>
-              <p className='p ml-2'> / CEO</p>
-            </div>
-            <div className='flex flex-row items-center'>
-              <Button
-                theme='ghost'
-                href={`tel:${selectedUser.phone}`}
-                className='text-primary-defaultStrong h4'
-                label={selectedUser.phone}
-              />
-            </div>
-            <div className='flex flex-row items-center'>
-              <Button
-                theme='ghost'
-                href={`mailto:${selectedUser.email}`}
-                className='text-primary-defaultStrong h4'
-                label={selectedUser.email}
-              />
-            </div>
-            <div className='mt-8 flex w-full flex-row justify-start'>
-              <div className='flex flex-row items-center'>
-                <Button
-                  theme='primary'
-                  href={`tel:${selectedUser.phone}`}
-                  className='text-primary-defaultStrong h4'
-                  label='Подзвонити'
-                />
-              </div>
-              <div className='ml-4 flex flex-row items-center'>
-                <Button
-                  theme='secondary'
-                  href={`mailto:${selectedUser.email}`}
-                  className='text-primary-defaultStrong h4'
-                  label='Написати лист'
-                />
-              </div>
-            </div>
-          </>
-        )}
-      </Modal>
     </SectionWrapper>
   );
 };

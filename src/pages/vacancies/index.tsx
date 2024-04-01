@@ -21,12 +21,15 @@ const MotionLink = motion(Link);
 
 const VacanciesPage = () => {
   const { back } = useRouter();
-  const [sortedVacancies, setSortedVacancies] = useState<Vacancy[]>(vacancies);
-  const [sortField, setSortField] = useState<keyof Vacancy | null>(null);
+  const [sortedVacancies, setSortedVacancies] =
+    useState<Omit<Vacancy, 'longDescription'>[]>(vacancies);
+  const [sortField, setSortField] = useState<
+    keyof Omit<Vacancy, 'longDescription'> | null
+  >(null);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const handleSort = (field: keyof Vacancy) => {
+  const handleSort = (field: keyof Omit<Vacancy, 'longDescription'>) => {
     if (field === sortField) {
       // Toggle sorting direction if sorting the same field
       const direction = sortDirection === 'asc' ? 'desc' : 'asc';
@@ -95,26 +98,6 @@ const VacanciesPage = () => {
         <p className='p text-primary-defaultWeak mt-2 italic'>
           Щоб відправити заявку, натисніть на обрану вакансію
         </p>
-        {/* <motion.div className='mt-4 flex flex-col'>
-              {vacancies.map((vacancy) => (
-                <motion.div
-                  key={vacancy.id}
-                  className='cursor-pointer rounded-lg'
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ ease: 'easeInOut', duration: 1 }}
-                >
-                  <motion.h2 className='text-xl font-semibold'>
-                    {vacancy.jobTitle}
-                  </motion.h2>
-                  <motion.p className='text-gray-500'>
-                    {vacancy.location}
-                  </motion.p>
-                  <motion.p className='mt-2 text-gray-800'>
-                    {vacancy.shortDescription}
-                  </motion.p>
-                </motion.div>
-              ))}
-            </motion.div> */}
         <div className='mt-6 pb-64'>
           <div className='flex flex-1 justify-end p-2'>
             <Input
@@ -180,7 +163,7 @@ const VacanciesPage = () => {
                 {vacanciesColumns.map((column) => (
                   <motion.div
                     key={column.key}
-                    className='flex-1 p-2 transition-all group-hover:font-semibold'
+                    className='flex-1 p-2 transition-all'
                   >
                     {vacancy[column.key]}
                   </motion.div>

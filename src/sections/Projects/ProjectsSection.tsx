@@ -15,7 +15,6 @@ import { SectionWrapper } from '@/components/sectionWrapper';
 import { StatisticsContainer } from '@/components/statistics';
 import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid';
 
-import { PartnersSection } from '@/sections/Partners';
 import { Button } from '@/ui/Button';
 
 const MotionLink = motion(Link);
@@ -36,15 +35,6 @@ export const ProjectsSection = () => {
       opacity: 1,
       y: 0,
       transition: { duration: 0.3, type: 'spring' },
-    },
-  };
-
-  const partnersVariants: Variants = {
-    hidden: { opacity: 0, y: 120 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.3, type: 'spring', delay: 0.2 },
     },
   };
 
@@ -76,7 +66,7 @@ export const ProjectsSection = () => {
       >
         <StatisticsContainer />
       </motion.div>
-      <motion.div
+      {/* <motion.div
         variants={partnersVariants}
         initial='hidden'
         whileInView='visible'
@@ -84,7 +74,7 @@ export const ProjectsSection = () => {
         className='mt-12'
       >
         <PartnersSection />
-      </motion.div>
+      </motion.div> */}
     </SectionWrapper>
   );
 };

@@ -59,10 +59,10 @@ export const ServicesSection = () => {
               const isActive = activeService.title === service.title;
               return (
                 <motion.div
-                  variants={itemVariants}
-                  initial='hidden'
-                  whileInView='visible'
-                  viewport={{ amount: 0.5, once: true }}
+                  // variants={itemVariants}
+                  // initial='hidden'
+                  // whileInView='visible'
+                  // viewport={{ amount: 0.5, once: true }}
                   transition={{ delay: 100 * index }}
                   key={service.title}
                   className='services-card pt-4'

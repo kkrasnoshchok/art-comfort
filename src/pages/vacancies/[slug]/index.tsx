@@ -60,7 +60,7 @@ const VacancyPage = () => {
   return (
     <Layout>
       <motion.div className=' from-primary-bg to-secondary-bg flex min-h-screen w-full flex-col items-center bg-gradient-to-b px-16 pb-24 pt-12'>
-        <div className='border-primary-bgStrong w-1/2 rounded-3xl border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-lg'>
+        <div className='border-primary-bgStrong'>
           <motion.div>
             <Button label='Back' onClick={router.back} />
           </motion.div>
