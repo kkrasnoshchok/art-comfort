@@ -68,6 +68,7 @@ export const MenuItem = ({
 };
 
 export const Menu = ({
+  active,
   setActive,
   children,
 }: {
@@ -76,8 +77,12 @@ export const Menu = ({
 }) => {
   return (
     <nav
-      onMouseLeave={() => setActive(null)} // resets the state
-      className='relative flex items-center justify-center space-x-8 rounded-full border border-transparent bg-white py-2 shadow-lg dark:border-white/[0.2] dark:bg-black'
+      onMouseLeave={() => {
+        setTimeout(() => {
+          setActive(null);
+        }, 500);
+      }} // resets the state
+      className='relative flex items-center justify-evenly space-x-8 rounded-full border border-transparent bg-white py-2 shadow-lg dark:border-white/[0.2] dark:bg-black'
     >
       {children}
     </nav>
