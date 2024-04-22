@@ -65,7 +65,7 @@ export const Header = () => {
   });
   const [dropdownOpened, setDropdownOpened] = useState(false);
   return (
-    <div className={cn('fixed inset-x-0 top-10 z-50 mx-12')}>
+    <div className={cn('fixed inset-x-0 top-4 z-50 mx-12')}>
       <Menu setActive={setActive}>
         <Link className='pr-24' href='/'>
           <div className='mb-3 flex items-center'>
