@@ -42,18 +42,22 @@ const locales = [
   {
     value: 'ua',
     label: 'Українська',
+    emoji: '🇺🇦',
   },
   {
     value: 'en',
     label: 'English',
+    emoji: '🇬🇧',
   },
   {
     value: 'de',
     label: 'Deutsch',
+    emoji: '🇩🇪',
   },
   {
     value: 'pl',
     label: 'Polska',
+    emoji: '🇵🇱',
   },
 ];
 
@@ -62,12 +66,17 @@ export const Header = () => {
   const [locale, updateLocale] = useLocalStorage('locale', {
     value: 'ua',
     label: 'Українська',
+    emoji: '🇺🇦',
   });
   const [dropdownOpened, setDropdownOpened] = useState(false);
   return (
-    <div className={cn('fixed inset-x-0 top-4 z-50 mx-12')}>
-      <Menu setActive={setActive}>
-        <Link className='pr-24' href='/'>
+    <div
+      className={cn(
+        'fixed left-1/2 top-4 z-50 w-full max-w-7xl -translate-x-1/2 self-center'
+      )}
+    >
+      <Menu setActive={setActive} className={cn('flex items-center px-4')}>
+        <Link className='flex-1 pr-24' href='/'>
           <div className='mb-3 flex items-center'>
             <NextImage src={logo} alt='logo' width={80} height={80} />
           </div>
@@ -154,13 +163,13 @@ export const Header = () => {
         </MenuItem>
         <div>
           <p
-            className='relative rounded-md border px-4 py-2'
+            className='relative rounded-md border px-2 py-1 text-2xl'
             onClick={() => setDropdownOpened((prev) => !prev)}
           >
-            {locale.label}
+            {locale.emoji}
           </p>
           {dropdownOpened && (
-            <div className='absolute right-4 top-20 w-36 flex-col rounded-lg bg-white text-sm'>
+            <div className='absolute right-4 top-20 flex w-36 flex-col gap-1 rounded-lg bg-white text-sm'>
               {locales.map((localeItem, index) => (
                 <motion.p
                   whileHover={{
@@ -179,7 +188,7 @@ export const Header = () => {
                     index === locales.length - 1 && 'rounded-b-lg'
                   )}
                 >
-                  {localeItem.label}
+                  {localeItem.emoji} {localeItem.label}
                 </motion.p>
               ))}
             </div>

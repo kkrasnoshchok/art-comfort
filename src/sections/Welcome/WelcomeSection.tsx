@@ -23,27 +23,27 @@ export const WelcomeSection = () => {
         words={[
           {
             text: 'Досліджуй',
-            className: 'text-blue-900',
+            className: 'text-grayscale-header',
           },
           {
             text: 'справжнє',
-            className: 'text-blue-900',
+            className: 'text-grayscale-header',
           },
           {
             text: 'мистецтво',
-            className: 'text-blue-900',
+            className: 'text-grayscale-header',
           },
           {
             text: 'комфорту',
-            className: 'text-blue-900',
+            className: 'text-grayscale-header',
           },
           {
             text: 'з',
-            className: 'text-blue-900',
+            className: 'text-grayscale-header',
           },
           {
             text: 'Арт-Комфорт',
-            className: 'text-blue-900',
+            className: 'text-grayscale-header',
           },
         ]}
       />

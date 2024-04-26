@@ -14,6 +14,7 @@ import { SectionWrapper } from '@/components/sectionWrapper';
 import { Button } from '@/ui/Button';
 import { Modal } from '@/ui/Modal';
 import { clsxm, useBreakpoint } from '@/utils';
+import { cn } from '@/utils/cn';
 import { team, TeamMember } from '@/utils/dataset/team.dataset';
 
 export const TeamSection = () => {
@@ -25,12 +26,12 @@ export const TeamSection = () => {
 
   const getSlidesPerView = () => {
     if (is2xl) {
-      return 4;
+      return 6;
     }
     if (isMd) {
-      return 3;
+      return 5;
     }
-    return 2;
+    return 4;
   };
 
   const sectionVariants: Variants = {
@@ -49,9 +50,9 @@ export const TeamSection = () => {
         initial='hidden'
         whileInView='visible'
         viewport={{ amount: 0.4, once: true }}
-        className={clsxm('flex w-11/12 flex-col py-8')}
+        className={clsxm('flex w-full max-w-7xl flex-col py-8')}
       >
-        <h1 className='h1 text-primary-defaultStrong'>Наша команда</h1>
+        <h1 className='h2 text-grayscale-headerWeak'>Наша команда</h1>
         <div className='mt-8 flex h-full w-full flex-col gap-12 lg:flex-row'>
           <Swiper
             ref={swiperRef}
@@ -68,8 +69,8 @@ export const TeamSection = () => {
                 <div
                   className={clsxm(
                     'team-element group relative',
-                    'flex h-full w-full flex-col items-center justify-center',
-                    'transition-all hover:scale-[0.98] active:scale-[0.95]'
+                    'flex h-full w-full flex-col items-center justify-center'
+                    // 'transition-all hover:scale-[0.98] active:scale-[0.95]'
                   )}
                   onClick={() => {
                     setModalOpen(true);
@@ -78,19 +79,23 @@ export const TeamSection = () => {
                 >
                   <div
                     className={clsxm([
-                      'bg-primary-defaultStrong aspect-square w-full rounded-2xl',
+                      'bg-grayscale-headerWeak aspect-square w-full rounded-2xl',
                     ])}
                   >
                     <Image
                       src={user.url}
                       alt='alt'
-                      className='aspect-square h-full w-full rounded-xl opacity-60 transition-opacity group-hover:opacity-10'
+                      className={cn(
+                        'aspect-square h-full w-full rounded-xl opacity-60'
+                        // 'transition-opacity group-hover:opacity-10'
+                      )}
                     />
                   </div>
                   <div
                     className={clsxm(
                       'absolute bottom-4 w-11/12',
-                      'pointer-events-none opacity-0 transition-opacity group-hover:pointer-events-auto group-hover:opacity-100',
+                      'pointer-events-none opacity-0 transition-opacity',
+                      // 'group-hover:pointer-events-auto group-hover:opacity-100',
                       'bg-primary-bg rounded-lg p-2'
                     )}
                   >

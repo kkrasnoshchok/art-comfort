@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React from 'react';
 
+import { cn } from '@/utils/cn';
+
 const MotionLink = motion(Link);
 
 const transition = {
@@ -71,9 +73,11 @@ export const Menu = ({
   active,
   setActive,
   children,
+  className,
 }: {
   setActive: (item: string | null) => void;
   children: React.ReactNode;
+  className?: string;
 }) => {
   return (
     <nav
@@ -82,7 +86,10 @@ export const Menu = ({
           setActive(null);
         }, 500);
       }} // resets the state
-      className='relative flex items-center justify-evenly space-x-8 rounded-full border border-transparent bg-white py-2 shadow-lg dark:border-white/[0.2] dark:bg-black'
+      className={cn(
+        'relative space-x-8 rounded-lg border border-transparent bg-white py-2 shadow-lg dark:border-white/[0.2] dark:bg-black',
+        className
+      )}
     >
       {children}
     </nav>

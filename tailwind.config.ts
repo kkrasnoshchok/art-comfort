@@ -18,6 +18,13 @@ export default {
           bgStrong: 'rgba(52, 76, 114, 0.4)',
           bg: 'rgba(235, 237, 241, 1)',
         },
+        secondary: {
+          default: 'rgba(196, 12, 82, 0.8)',
+          defaultStrong: 'rgba(196, 12, 82, 1)',
+          defaultWeak: 'rgba(196, 12, 82, 0.6)',
+          bgStrong: 'rgba(196, 12, 82, 0.2)',
+          bg: 'rgba(249, 231, 238, 1)',
+        },
         grayscale: {
           header: 'rgba(20, 20, 43, 1)',
           headerWeak: 'rgba(38, 35, 56, 1)',
@@ -28,13 +35,6 @@ export default {
           input: 'rgba(239, 240, 246, 1)',
           bgWeak: 'rgba(235, 237, 241, 1)',
           bg: 'rgba(252, 252, 252, 1)',
-        },
-        secondary: {
-          default: 'rgba(196, 12, 82, 0.8)',
-          defaultStrong: 'rgba(196, 12, 82, 1)',
-          defaultWeak: 'rgba(196, 12, 82, 0.6)',
-          bgStrong: 'rgba(196, 12, 82, 0.2)',
-          bg: 'rgba(249, 231, 238, 1)',
         },
         success: {
           default: 'rgba(0, 138, 0, 1)',
