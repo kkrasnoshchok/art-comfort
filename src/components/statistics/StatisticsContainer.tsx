@@ -17,12 +17,12 @@ const statistics: Statistics[] = [
   },
   {
     name: 'Успішно завершених проєктів',
-    value: 500,
+    value: 5000,
     valueSuffix: '+',
   },
   {
     name: 'Постійних клієнтів',
-    value: 100,
+    value: 500,
     valueSuffix: '+',
   },
 ];

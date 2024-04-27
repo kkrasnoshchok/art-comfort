@@ -61,7 +61,7 @@ export const Button = (props: Props) => {
         return cn(
           'bg-grayscale-headerWeak hover:bg-grayscale-header',
           'active:bg-grayscale-header active:border-primary-bgStrong',
-          'border-2 border-transparent'
+          'border border-transparent'
         );
       case 'secondary':
         return cn(
@@ -85,7 +85,7 @@ export const Button = (props: Props) => {
       case 'subtle':
         return 'text-grayscale-line';
       case 'ghost':
-        return 'text-primary-default';
+        return 'text-grayscale-header';
     }
   }, [theme]);
 
@@ -97,7 +97,6 @@ export const Button = (props: Props) => {
         getButtonSizeStyles(),
         getButtonThemeStyles(),
         disabled && 'cursor-not-allowed opacity-60',
-        // 'bg-grayscale-header'
         className
       )}
       {...{ onClick, disabled }}

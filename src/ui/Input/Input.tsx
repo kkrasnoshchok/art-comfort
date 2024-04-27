@@ -60,7 +60,7 @@ export const Input = (props: Props) => {
   const [isInputFocused, setInputFocused] = useState(false);
 
   return (
-    <>
+    <div className='w-full'>
       <div
         className={clsxm(
           'base-input bg-grayscale-bg rounded-2xl border border-transparent px-4 py-3 transition-[border]',
@@ -136,6 +136,6 @@ export const Input = (props: Props) => {
           {error}
         </p>
       )}
-    </>
+    </div>
   );
 };

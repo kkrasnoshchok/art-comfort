@@ -1,7 +1,10 @@
-import { Formik } from 'formik';
+import { Upload, UploadFile } from 'antd';
+import { Button as AntDesignButton } from 'antd';
+import { Formik, FormikHelpers } from 'formik';
 import { motion, Variants } from 'framer-motion';
 import { useRouter } from 'next/router';
-import { ChangeEvent, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import { FaUpload } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
@@ -18,15 +21,7 @@ import { GoogleMap } from './components/GoogleMap';
 export const ContactsSection = () => {
   const { locale } = useRouter();
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  const [selectedFiles, setSelectedFiles] = useState<FileList | never[]>([]);
   const fileRef = useRef<HTMLInputElement>(null);
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setSelectedFiles(e.target.files);
-    }
-  };
-
   const { t } = useI18n();
   const getRequiredError = (field: string) => {
     if (locale === 'ua') {
@@ -42,7 +37,11 @@ export const ContactsSection = () => {
       .email(t.contacts.emailInputError)
       .min(1, getRequiredError('Email')),
     phone: z.string().min(1, getRequiredError('Phone')),
+    message: z.string().optional(),
+    files: z.array(z.object({})).optional(),
   });
+
+  type ContactsFormType = z.infer<typeof ContactsForm>;
 
   const sectionVariants: Variants = {
     hidden: { opacity: 0, y: 120 },
@@ -53,33 +52,54 @@ export const ContactsSection = () => {
     },
   };
 
-  // <div className='flex flex-row gap-1'>
-  //               <p className='text-primary-defaultWeak'>Локація:</p>
-  //               <Button
-  //                 className='contacts-section__button-phone'
-  //                 theme='ghost'
-  //                 label='вул. Берковецька 6а, м. Київ'
-  //                 href='https://maps.app.goo.gl/sSCxtqTTNVne8Y4s5'
-  //               />
-  //             </div>
-  //             <div className='flex flex-row gap-1'>
-  //               <p className='text-primary-defaultWeak'>E-Mail:</p>
-  //               <Button
-  //                 className='contacts-section__button-phone'
-  //                 theme='ghost'
-  //                 label='info@art-comfort.com'
-  //                 href='mailto:info@art-comfort.com'
-  //               />
-  //             </div>
-  //             <div className='flex flex-row gap-1'>
-  //               <p className='text-primary-defaultWeak'>Phone:</p>
-  //               <Button
-  //                 className='contacts-section__button-phone'
-  //                 theme='ghost'
-  //                 label='+380732792891'
-  //                 href='tel:+380732792891'
-  //               />
-  //             </div>
+  const initialValues: ContactsFormType = {
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+    files: [], // Add files field to initialValues
+  };
+
+  const onFormSubmit = async (
+    values: ContactsFormType,
+    helpers: FormikHelpers<ContactsFormType>
+  ) => {
+    setHasSubmitted(true);
+    const formData = new FormData();
+    for (const valueKey in values) {
+      if (valueKey !== 'files') {
+        formData.append(
+          valueKey,
+          values[valueKey as keyof typeof values] as string
+        );
+      }
+    }
+    for (let i = 0; i < (values.files?.length ?? 0); i++) {
+      formData.append('files', values.files?.[i] as string);
+    }
+
+    formData.append('to', 'krasnoshchokvadim@gmail.com');
+
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        toast.success('success');
+        helpers.resetForm();
+        if (fileRef.current?.value) {
+          fileRef.current.value = '';
+        }
+      } else {
+        toast.error('Error uploading files');
+      }
+    } catch (error) {
+      const tError = error as Error;
+      throw new Error(tError.message, { cause: tError.cause });
+    }
+  };
 
   return (
     <SectionWrapper sectionProps={{ id: 'contacts' }}>
@@ -192,46 +212,12 @@ export const ContactsSection = () => {
             validateOnBlur={hasSubmitted}
             validateOnChange={hasSubmitted}
             onSubmit={async (values, helpers) => {
-              setHasSubmitted(true);
-              const formData = new FormData();
-              for (let i = 0; i < selectedFiles.length; i++) {
-                formData.append('files', selectedFiles[i]);
-              }
-              for (const valueKey in values) {
-                formData.append(
-                  valueKey,
-                  values[valueKey as keyof typeof values]
-                );
-              }
-
-              formData.append('to', 'krasnoshchokvadim@gmail.com');
-
-              try {
-                const response = await fetch('/api/upload', {
-                  method: 'POST',
-                  body: formData,
-                });
-
-                if (response.ok) {
-                  toast.success('success');
-                  helpers.resetForm();
-                  if (fileRef.current?.value) {
-                    fileRef.current.value = '';
-                  }
-                } else {
-                  toast.error('Error uploading files');
-                }
-              } catch (error) {
-                const tError = error as Error;
-                throw new Error(tError.message, { cause: tError.cause });
-              }
+              await onFormSubmit(
+                values,
+                helpers as FormikHelpers<ContactsFormType>
+              );
             }}
-            initialValues={{
-              name: '',
-              email: '',
-              phone: '',
-              message: '',
-            }}
+            initialValues={initialValues}
             validationSchema={toFormikValidationSchema(ContactsForm)}
           >
             {({
@@ -247,10 +233,11 @@ export const ContactsSection = () => {
                   {t.contacts.subtitle}
                 </p>
                 <div className='mt-6 flex w-full flex-col gap-4'>
-                  <div className='flex w-full flex-grow gap-4'>
+                  <div className='flex w-full gap-4'>
                     <Input
                       label='Name'
                       name='name'
+                      inputClassName='h-full'
                       onClear={() => setFieldValue('name', '')}
                       value={values.name}
                       onChange={handleChange}
@@ -302,19 +289,32 @@ export const ContactsSection = () => {
                     success={
                       !!(
                         !errors.message &&
-                        values.message.length &&
+                        values.message?.length &&
                         hasSubmitted
                       )
                     }
                   />
                   <div className='mt-2 flex w-10/12 flex-col items-start justify-center'>
-                    <input
-                      ref={fileRef}
-                      type='file'
+                    <Upload
                       multiple
-                      onChange={(e) => handleFileChange(e)}
-                      className='input-file'
-                    />
+                      listType='text'
+                      beforeUpload={() => false}
+                      onChange={(info) => {
+                        if (info.file.status !== 'uploading') {
+                          setFieldValue(
+                            'files',
+                            info.fileList.map((file) => file.originFileObj)
+                          );
+                        }
+                      }}
+                      fileList={values.files as UploadFile[]}
+                      className='upload-list-inline'
+                      accept='.jpg, .jpeg, .png, .pdf'
+                    >
+                      <AntDesignButton icon={<FaUpload />}>
+                        Додати файли
+                      </AntDesignButton>
+                    </Upload>
                   </div>
                   <div>
                     <Button
@@ -325,6 +325,7 @@ export const ContactsSection = () => {
                       size='medium'
                       theme='primary'
                       className='mt-8'
+                      disabled={!!errors}
                     />
                   </div>
                 </div>
@@ -336,3 +337,33 @@ export const ContactsSection = () => {
     </SectionWrapper>
   );
 };
+
+// Real contacts data
+
+// <div className='flex flex-row gap-1'>
+//               <p className='text-primary-defaultWeak'>Локація:</p>
+//               <Button
+//                 className='contacts-section__button-phone'
+//                 theme='ghost'
+//                 label='вул. Берковецька 6а, м. Київ'
+//                 href='https://maps.app.goo.gl/sSCxtqTTNVne8Y4s5'
+//               />
+//             </div>
+//             <div className='flex flex-row gap-1'>
+//               <p className='text-primary-defaultWeak'>E-Mail:</p>
+//               <Button
+//                 className='contacts-section__button-phone'
+//                 theme='ghost'
+//                 label='info@art-comfort.com'
+//                 href='mailto:info@art-comfort.com'
+//               />
+//             </div>
+//             <div className='flex flex-row gap-1'>
+//               <p className='text-primary-defaultWeak'>Phone:</p>
+//               <Button
+//                 className='contacts-section__button-phone'
+//                 theme='ghost'
+//                 label='+380732792891'
+//                 href='tel:+380732792891'
+//               />
+//             </div>

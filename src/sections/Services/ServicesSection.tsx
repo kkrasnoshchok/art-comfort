@@ -119,7 +119,11 @@ export const ServicesSection = () => {
               );
             })}
           </motion.div>
-          <Button label='Show all services' className='mt-8' href='services' />
+          <Button
+            label='Детальніше про послуги'
+            className='mt-8'
+            href='services'
+          />
         </motion.div>
         {/* Right */}
         <motion.div className='bg-grayscale-header relative z-10 flex flex-1 flex-col justify-between rounded-[36px] p-8'>
@@ -133,7 +137,13 @@ export const ServicesSection = () => {
               {activeService.title}
             </motion.h2>
             <p className='text-primary-bg mt-4'>{activeService.description}</p>
-            <div className='flex flex-1 flex-col items-end justify-end'>
+            <div className='flex flex-1 flex-row items-end justify-end gap-4'>
+              <Button
+                href={`services/${activeService.id}`}
+                theme='primary'
+                className='inline-flex'
+                label='Звʼязатись з нами'
+              />
               <Button
                 href={`services/${activeService.id}`}
                 theme='subtle'
