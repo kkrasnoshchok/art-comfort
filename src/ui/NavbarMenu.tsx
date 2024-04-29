@@ -70,7 +70,7 @@ export const MenuItem = ({
 };
 
 export const Menu = ({
-  active,
+  // active,
   setActive,
   children,
   className,

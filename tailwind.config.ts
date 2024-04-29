@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme';
+// @ts-expect-error tailwind css lack of type
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette';
 
 export default {

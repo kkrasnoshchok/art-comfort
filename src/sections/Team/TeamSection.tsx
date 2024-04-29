@@ -1,5 +1,4 @@
 import { motion, Variants } from 'framer-motion';
-import Image from 'next/image';
 import { useRef } from 'react';
 import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
@@ -13,7 +12,6 @@ import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
 import { clsxm, useBreakpoint } from '@/utils';
-import { cn } from '@/utils/cn';
 import { team } from '@/utils/dataset/team.dataset';
 
 export const TeamSection = () => {
@@ -75,14 +73,14 @@ export const TeamSection = () => {
                       'bg-grayscale-headerWeak aspect-square w-full rounded-2xl',
                     ])}
                   >
-                    <Image
+                    {/* <Image
                       src={user.url}
                       alt='alt'
                       className={cn(
                         'aspect-square h-full w-full rounded-xl opacity-60'
                         // 'transition-opacity group-hover:opacity-10'
                       )}
-                    />
+                    /> */}
                   </div>
                   <div
                     className={clsxm(
