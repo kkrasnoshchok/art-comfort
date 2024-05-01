@@ -5,6 +5,7 @@ import { CiDesktopMouse2 } from 'react-icons/ci';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
 import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation';
+import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 
 import { Button } from '@/ui/Button';
 
@@ -18,9 +19,13 @@ export const WelcomeSection = () => {
       <BackgroundGradientAnimation />
       <div className='flex h-full max-w-7xl flex-1 flex-row items-center justify-center gap-4'>
         <div className='flex h-full flex-1 flex-col items-center justify-center'>
-          <h2 className='z-30 w-full text-left'>
+          {/* <h2 className='z-30 w-full text-left'>
             Досліджуй справжнє мистецтво ідеального клімату з Арт-Комфорт
-          </h2>
+          </h2> */}
+          <TextGenerateEffect
+            className='z-30 w-full text-left'
+            words='Досліджуй справжнє мистецтво ідеального клімату з Арт-Комфорт'
+          />
           <motion.div
             initial={{
               opacity: 0,
@@ -29,7 +34,7 @@ export const WelcomeSection = () => {
               opacity: 1,
             }}
             transition={{
-              delay: 1,
+              delay: 3,
             }}
             className='z-30 mt-8 w-full rounded-lg text-left text-base font-medium'
           >
@@ -47,7 +52,7 @@ export const WelcomeSection = () => {
                 opacity: 1,
               }}
               transition={{
-                delay: 2,
+                delay: 4,
               }}
               className=''
             >
@@ -61,7 +66,7 @@ export const WelcomeSection = () => {
                 opacity: 1,
               }}
               transition={{
-                delay: 2,
+                delay: 4,
               }}
               className=''
             >
