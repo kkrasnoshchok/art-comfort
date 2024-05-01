@@ -14,7 +14,7 @@ type VacancyColumn = {
 export const vacanciesColumns: VacancyColumn[] = [
   { key: 'jobTitle', header: 'Назва Вакансії' },
   { key: 'location', header: 'Локація' },
-  { key: 'shortDescription', header: 'Короткий опис' },
+  // { key: 'shortDescription', header: 'Короткий опис' },
 ];
 
 export const vacancies: Vacancy[] = [

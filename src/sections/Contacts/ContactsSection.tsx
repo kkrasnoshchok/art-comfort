@@ -3,7 +3,7 @@ import { Button as AntDesignButton } from 'antd';
 import { Formik, FormikHelpers } from 'formik';
 import { motion, Variants } from 'framer-motion';
 import { useRouter } from 'next/router';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { FaUpload } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { z } from 'zod';
@@ -21,7 +21,6 @@ import { GoogleMap } from './components/GoogleMap';
 export const ContactsSection = () => {
   const { locale } = useRouter();
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  const fileRef = useRef<HTMLInputElement>(null);
   const { t } = useI18n();
   const getRequiredError = (field: string) => {
     if (locale === 'ua') {
@@ -89,9 +88,6 @@ export const ContactsSection = () => {
       if (response.ok) {
         toast.success('success');
         helpers.resetForm();
-        if (fileRef.current?.value) {
-          fileRef.current.value = '';
-        }
       } else {
         toast.error('Error uploading files');
       }

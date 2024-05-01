@@ -138,7 +138,7 @@ export const Header = () => {
             </div>
           </MenuItem>
           <MenuItem
-            href='/contacts'
+            href='#contacts'
             setActive={setActive}
             active={active}
             item='Contacts'

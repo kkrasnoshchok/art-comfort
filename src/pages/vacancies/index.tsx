@@ -6,10 +6,11 @@ import { RxArrowUp } from 'react-icons/rx';
 import { RxCross2 } from 'react-icons/rx';
 
 import { Layout } from '@/components/layout';
+import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
 import { clsxm } from '@/utils';
+import { cn } from '@/utils/cn';
 import {
   vacancies,
   vacanciesColumns,
@@ -85,94 +86,96 @@ const VacanciesPage = () => {
 
   return (
     <Layout>
-      <motion.section
-        className={clsxm(
-          'flex min-h-screen flex-col bg-gradient-to-b px-16 py-12'
-          // 'from-primary-bg to-secondary-bg'
-        )}
-      >
-        <motion.div>
-          <Button label='Повернутись на головну' onClick={back} />
-        </motion.div>
-        <h1 className='h1 text-primary-defaultStrong mt-4'>Вакансії</h1>
-        <p className='p text-primary-defaultWeak mt-2 italic'>
-          Щоб відправити заявку, натисніть на обрану вакансію
-        </p>
-        <div className='mt-6 pb-64'>
-          <div className='flex flex-1 justify-end p-2'>
-            <Input
-              label='Пошук вакансії'
-              value={searchQuery}
-              onChange={(e) => handleSearch(e.target.value)}
-              withClear
-              onClear={() => handleSearch('')}
-              className='border-primary-defaultWeak border-2 bg-transparent'
-            />
+      <SectionWrapper>
+        <section
+          className={clsxm(
+            'flex min-h-screen w-full max-w-7xl flex-col bg-gradient-to-b pt-16'
+          )}
+        >
+          <div className='flex flex-row items-center'>
+            <h2 className='text-grayscale-header flex-1'>Відкриті позиції</h2>
+            <div className='flex'>
+              <Input
+                label='Пошук вакансії'
+                value={searchQuery}
+                onChange={(e) => handleSearch(e.target.value)}
+                withClear
+                onClear={() => handleSearch('')}
+                className='border-grayscale-headerWeak border bg-transparent'
+              />
+            </div>
           </div>
-          <div className='border-primary-defaultStrong flex rounded-xl border-2 p-2 shadow-lg'>
-            {vacanciesColumns.map((column) => (
-              <motion.div
-                key={column.key}
-                layoutId={column.key}
-                onClick={() => handleSort(column.key)}
-                className={clsxm(
-                  'vacancy-list-column flex flex-1 cursor-pointer flex-row items-center border-2 border-transparent p-2',
-                  'text-primary-defaultStrong hover:text-primary-defaultWeak',
-                  sortField === column.key &&
-                    'border-primary-defaultWeak bg-primary-bg rounded-2xl transition-all'
-                )}
+
+          <div className='border-grayscale-headerWeak mt-6 border border-b-0'>
+            <div className='border-grayscale-headerWeak flex border-b-2'>
+              {vacanciesColumns.map((column, index) => (
+                <motion.div
+                  key={column.key}
+                  layoutId={column.key}
+                  onClick={() => handleSort(column.key)}
+                  className={clsxm(
+                    'vacancy-list-column flex min-w-[30%] cursor-pointer flex-row items-center p-2',
+                    'text-grayscale-header hover:text-grayscale-body font-semibold',
+                    sortField === column.key &&
+                      'bg-grayscale-bgWeak transition-all',
+                    index === 0 && 'flex-1'
+                  )}
+                >
+                  {column.header}{' '}
+                  {sortField === column.key && (
+                    <motion.div>
+                      <RxArrowUp
+                        size={16}
+                        className={clsxm(
+                          'ml-4',
+                          sortDirection === 'asc' && 'rotate-180'
+                        )}
+                      />
+                    </motion.div>
+                  )}
+                  {sortField === column.key && (
+                    <motion.div
+                      key='remove-sort'
+                      layoutId='remove-sort'
+                      className='mr-2 flex flex-1 justify-end'
+                    >
+                      <RxCross2
+                        size={16}
+                        onClick={handleRemoveSort}
+                        className='cursor-pointe'
+                      />
+                    </motion.div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+            {sortedVacancies.map((vacancy) => (
+              <MotionLink
+                href={`/vacancies/${slugify(
+                  `${vacancy.id} ${vacancy.jobTitle} ${vacancy.location}`
+                )}`}
+                key={vacancy.id}
+                layoutId={vacancy.id}
+                className='vacancy-list-card block'
               >
-                {column.header}{' '}
-                {sortField === column.key && (
-                  <motion.div>
-                    <RxArrowUp
-                      size={24}
-                      className={clsxm(
-                        'ml-4',
-                        sortDirection === 'asc' && 'rotate-180'
+                <motion.div className='border-grayscale-body hover:bg-grayscale-bgWeak group flex border-b transition-all'>
+                  {vacanciesColumns.map((column, index) => (
+                    <motion.div
+                      key={column.key}
+                      className={cn(
+                        'min-w-[30%] p-2 transition-all',
+                        index === 0 && 'flex-1'
                       )}
-                    />
-                  </motion.div>
-                )}
-                {sortField === column.key && (
-                  <motion.div
-                    key='remove-sort'
-                    layoutId='remove-sort'
-                    className='mr-2 flex flex-1 justify-end'
-                  >
-                    <RxCross2
-                      size={24}
-                      onClick={handleRemoveSort}
-                      className='cursor-pointe'
-                    />
-                  </motion.div>
-                )}
-              </motion.div>
+                    >
+                      {vacancy[column.key]}
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </MotionLink>
             ))}
           </div>
-          {sortedVacancies.map((vacancy) => (
-            <MotionLink
-              href={`/vacancies/${slugify(
-                `${vacancy.id} ${vacancy.jobTitle} ${vacancy.location}`
-              )}`}
-              key={vacancy.id}
-              layoutId={vacancy.id}
-              className='vacancy-list-card block pt-4'
-            >
-              <motion.div className='border-primary-bgStrong group flex rounded-3xl border-2 p-2 transition-all hover:scale-[1.005]'>
-                {vacanciesColumns.map((column) => (
-                  <motion.div
-                    key={column.key}
-                    className='flex-1 p-2 transition-all'
-                  >
-                    {vacancy[column.key]}
-                  </motion.div>
-                ))}
-              </motion.div>
-            </MotionLink>
-          ))}
-        </div>
-      </motion.section>
+        </section>
+      </SectionWrapper>
     </Layout>
   );
 };
