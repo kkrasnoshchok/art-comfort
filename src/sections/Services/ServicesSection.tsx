@@ -139,7 +139,7 @@ export const ServicesSection = () => {
             <p className='text-primary-bg mt-4'>{activeService.description}</p>
             <div className='flex flex-1 flex-row items-end justify-end gap-4'>
               <Button
-                href={`services/${activeService.id}`}
+                href='#contacts'
                 theme='primary'
                 className='inline-flex'
                 label='Звʼязатись з нами'
