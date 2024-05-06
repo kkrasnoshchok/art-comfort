@@ -97,8 +97,7 @@ const ProjectImage = (props: ProjectImageProps) => {
 const items = [
   {
     title: 'Вентиляція',
-    description:
-      'Свіже та здорове повітря цілий рік з нашими експертними рішеннями.',
+    description: 'Свіже повітря цілий рік з нашими експертними рішеннями.',
     header: (
       <ProjectImage
         src={projectsVentilation}
