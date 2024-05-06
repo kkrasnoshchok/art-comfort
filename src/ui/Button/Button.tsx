@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { HTMLMotionProps, motion } from 'framer-motion';
 import { ReactNode, useCallback } from 'react';
 
 import { ButtonSize, ButtonTheme } from '@/ui/Button/types';
@@ -15,7 +15,7 @@ type Props = {
   onClick?: () => void;
   label?: string;
   Icon?: ReactNode;
-};
+} & HTMLMotionProps<'a'>;
 
 const buttonBaseStyles =
   'inline-flex cursor-pointer rounded-md transition-all hover:scale-95 active:scale-90';
@@ -31,6 +31,7 @@ export const Button = (props: Props) => {
     disabled = false,
     className = '',
     labelClassName = '',
+    ...restButtonProps
   } = props;
 
   const getButtonSizeStyles = useCallback(() => {
@@ -100,6 +101,7 @@ export const Button = (props: Props) => {
         className
       )}
       {...{ onClick, disabled }}
+      {...restButtonProps}
     >
       {Icon && Icon}
       {label && (

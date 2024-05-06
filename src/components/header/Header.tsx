@@ -74,7 +74,7 @@ export const Header = () => {
       <motion.div
         initial={{
           opacity: 0,
-          y: -200,
+          y: -80,
         }}
         animate={{
           opacity: 1,
@@ -95,7 +95,7 @@ export const Header = () => {
             href='/about'
             setActive={setActive}
             active={active}
-            item='About'
+            item='Про нас'
           >
             <div className='flex flex-col space-y-4 text-sm'>
               <p className='w-48'>
@@ -116,7 +116,7 @@ export const Header = () => {
             href='/services'
             setActive={setActive}
             active={active}
-            item='Services'
+            item='Послуги'
           >
             <div className='flex flex-col space-y-4 text-sm'>
               <p className='w-48'>
@@ -128,7 +128,7 @@ export const Header = () => {
             href='/projects'
             setActive={setActive}
             active={active}
-            item='Projects'
+            item='Проєкти'
           >
             <div className='flex flex-col space-y-4 text-sm'>
               <p className='w-48'>
@@ -141,7 +141,7 @@ export const Header = () => {
             href='#contacts'
             setActive={setActive}
             active={active}
-            item='Contacts'
+            item='Контакти'
           >
             <div className='flex flex-col space-y-4 text-sm'>
               <p className='w-48'>Here you can discover ways to contact us</p>
@@ -151,7 +151,7 @@ export const Header = () => {
             href='/vacancies'
             setActive={setActive}
             active={active}
-            item='Careers'
+            item='Вакансії'
           >
             <div className='flex flex-col space-y-4 text-sm'>
               <p className='w-48'>
@@ -164,7 +164,7 @@ export const Header = () => {
             href='/news'
             setActive={setActive}
             active={active}
-            item='News'
+            item='Новини'
           >
             <div className='flex flex-col space-y-4 text-sm'>
               <p className='w-48'>
