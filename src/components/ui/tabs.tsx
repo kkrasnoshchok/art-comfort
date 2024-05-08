@@ -9,7 +9,7 @@ import { cn } from '@/utils/cn';
 type Tab = {
   title: string;
   value: string;
-  content?: string | React.ReactNode | any;
+  content?: string | React.ReactNode;
 };
 
 export const Tabs = ({

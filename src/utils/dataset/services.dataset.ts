@@ -45,6 +45,7 @@ export const services: Service[] = [
   },
 ];
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const engLocales = {
   ['design']:
     'Discover tailored HVAC solutions with our Designing Services. Our expert team ensures optimal performance and comfort for your space, using cutting-edge technology and industry best practices. Get in touch to discuss your project today!',

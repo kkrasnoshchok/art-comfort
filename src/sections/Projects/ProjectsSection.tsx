@@ -154,6 +154,7 @@ const items = [
   },
 ];
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const ukrLocales = {
   ['Вентиляція']:
     'Перетворіть свій простір за допомогою наших експертних рішень для вентиляції, забезпечуючи свіже та здорове повітря цілий рік',
@@ -173,6 +174,7 @@ const ukrLocales = {
     'Забезпечте приємне середовище за допомогою наших ефективних послуг з осушення басейну',
 };
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const engLocales = {
   ['Ventilation']:
     'Transform your space with our expert ventilation solutions, ensuring fresh and healthy air all year round',
@@ -191,4 +193,3 @@ const engLocales = {
   ['Pool Dehumidification']:
     'Ensure a pleasant environment with our effective pool dehumidification services.',
 };
-// асейну;

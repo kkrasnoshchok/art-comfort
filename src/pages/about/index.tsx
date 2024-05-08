@@ -1,7 +1,4 @@
-// import { PDFViewer } from '@react-pdf/renderer';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { Layout } from '@/components/layout';
 
@@ -19,8 +16,6 @@ const certificatesArray = [
   DealershipCertificateLG,
   HaierAirCondDealershipCertificate,
 ];
-
-const MotionLink = motion(Link);
 
 const AboutPage = () => {
   return (

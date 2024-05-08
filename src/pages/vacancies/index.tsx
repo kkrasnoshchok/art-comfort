@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { RxArrowUp } from 'react-icons/rx';
 import { RxCross2 } from 'react-icons/rx';
@@ -21,7 +20,6 @@ import { slugify } from '@/utils/slugify';
 const MotionLink = motion(Link);
 
 const VacanciesPage = () => {
-  const { back } = useRouter();
   const [sortedVacancies, setSortedVacancies] =
     useState<Omit<Vacancy, 'longDescription'>[]>(vacancies);
   const [sortField, setSortField] = useState<

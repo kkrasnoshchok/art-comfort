@@ -22,15 +22,6 @@ export const ServicesSection = () => {
     },
   };
 
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 60 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
-    },
-  };
-
   const contentVariants: Variants = useMemo(
     () => ({
       hidden: { opacity: 0 },

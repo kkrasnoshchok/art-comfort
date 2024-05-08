@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
-import React from 'react';
+import Link, { LinkProps } from 'next/link';
+import React, { ReactNode } from 'react';
 
 import { cn } from '@/utils/cn';
 
@@ -96,7 +96,10 @@ export const Menu = ({
   );
 };
 
-export const HoveredLink = ({ children, ...rest }: any) => {
+export const HoveredLink = ({
+  children,
+  ...rest
+}: LinkProps & { children: ReactNode }) => {
   return (
     <Link
       {...rest}
