@@ -15,7 +15,7 @@ export const SectionWrapper = (props: Props) => {
   return (
     <motion.section
       className={clsxm(
-        'relative flex w-screen items-center justify-center pb-24 pt-12',
+        'relative z-20 flex w-screen items-center justify-center pb-24 pt-12',
         className
       )}
       {...sectionProps}

@@ -22,15 +22,6 @@ export const ServicesSection = () => {
     },
   };
 
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 60 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
-    },
-  };
-
   const contentVariants: Variants = useMemo(
     () => ({
       hidden: { opacity: 0 },
@@ -49,20 +40,20 @@ export const ServicesSection = () => {
         initial='hidden'
         whileInView='visible'
         viewport={{ amount: 0.1, once: true }}
-        className={clsxm('grid w-11/12 grid-cols-2 overflow-hidden')}
+        className={clsxm('grid w-full max-w-7xl grid-cols-2 overflow-hidden')}
       >
         {/* Left */}
-        <motion.div className='pr-8 pt-8'>
-          <motion.h1 className='h1 text-primary-default'>Послуги</motion.h1>
+        <motion.div className='pr-8'>
+          <motion.h1 className='h2'>Послуги</motion.h1>
           <motion.div className='mt-4 flex flex-col'>
             {services.slice(0, 5).map((service, index) => {
               const isActive = activeService.title === service.title;
               return (
                 <motion.div
-                  variants={itemVariants}
-                  initial='hidden'
-                  whileInView='visible'
-                  viewport={{ amount: 0.5, once: true }}
+                  // variants={itemVariants}
+                  // initial='hidden'
+                  // whileInView='visible'
+                  // viewport={{ amount: 0.5, once: true }}
                   transition={{ delay: 100 * index }}
                   key={service.title}
                   className='services-card pt-4'
@@ -70,11 +61,12 @@ export const ServicesSection = () => {
                   <div
                     className={clsxm(
                       'flex cursor-pointer flex-row items-center justify-between',
-                      'border-primary-default rounded-2xl border p-4 transition duration-500',
-                      'hover:shadow-primary-default hover:shadow-sm',
+                      // 'border-primary-default border',
+                      ' rounded-2xl p-4 transition duration-500',
+                      // 'hover:shadow-primary-default hover:shadow-sm',
                       'active:scale-[0.99]',
-                      isActive &&
-                        'bg-primary-default border-primary-bg services-card--active'
+                      isActive && 'services-card--active bg-slate-50'
+                      // isActive && 'border-primary-bg'
                     )}
                     onClick={() => {
                       controls.start('hidden');
@@ -86,8 +78,8 @@ export const ServicesSection = () => {
                   >
                     <p
                       className={clsxm(
-                        'p text-primary-defaultStrong transition-colors',
-                        isActive && 'text-primary-bg'
+                        'p text-gray-600 transition-colors'
+                        // isActive && 'text-primary-bg'
                       )}
                     >
                       {service.title}
@@ -97,8 +89,8 @@ export const ServicesSection = () => {
                         <FaArrowRight
                           color={
                             isActive
-                              ? 'rgba(36, 84, 116, 1)' // primary-default
-                              : 'rgba(235, 237, 241, 1)' // primary-bg
+                              ? 'rgba(38, 35, 56, 1)'
+                              : 'rgba(235, 237, 241, 1)'
                           }
                           size={16}
                         />
@@ -106,6 +98,7 @@ export const ServicesSection = () => {
                       size='small'
                       className={clsxm(
                         'rounded-full px-2 py-2',
+                        'bg-gray-400',
                         isActive && 'bg-primary-bg hover:bg-primary-bg'
                       )}
                       onClick={() => {
@@ -117,10 +110,14 @@ export const ServicesSection = () => {
               );
             })}
           </motion.div>
-          <Button label='Show all services' className='mt-8' href='services' />
+          <Button
+            label='Детальніше про послуги'
+            className='mt-8'
+            href='services'
+          />
         </motion.div>
         {/* Right */}
-        <motion.div className='bg-primary-defaultStrong relative z-10 flex flex-1 flex-col justify-between rounded-[36px] p-8'>
+        <motion.div className='bg-grayscale-header relative z-10 flex flex-1 flex-col justify-between rounded-[36px] p-8'>
           <motion.div
             className='flex h-full flex-col'
             variants={contentVariants}
@@ -131,7 +128,13 @@ export const ServicesSection = () => {
               {activeService.title}
             </motion.h2>
             <p className='text-primary-bg mt-4'>{activeService.description}</p>
-            <div className='flex flex-1 flex-col items-end justify-end'>
+            <div className='flex flex-1 flex-row items-end justify-end gap-4'>
+              <Button
+                href='#contacts'
+                theme='primary'
+                className='inline-flex'
+                label='Звʼязатись з нами'
+              />
               <Button
                 href={`services/${activeService.id}`}
                 theme='subtle'

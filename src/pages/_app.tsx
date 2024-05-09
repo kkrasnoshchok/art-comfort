@@ -3,7 +3,7 @@ import { ToastContainer } from 'react-toastify';
 
 import '@/styles/globals.css';
 
-import { Cursor } from '@/components/cursor';
+// import { Cursor } from '@/components/cursor';
 
 /**
  * !STARTERCONF info
@@ -13,7 +13,7 @@ import { Cursor } from '@/components/cursor';
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
-      <Cursor />
+      {/* <Cursor /> */}
       {/* React Toastify Initialistaion */}
       <ToastContainer autoClose={3000} position='bottom-right' />
       <Component {...pageProps} />

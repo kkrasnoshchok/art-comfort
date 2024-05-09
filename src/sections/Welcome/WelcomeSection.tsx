@@ -1,40 +1,91 @@
-import { SectionWrapper } from '@/components/sectionWrapper';
+import { motion } from 'framer-motion';
+// import WelcomeCityBackground from '@/assets/Welcome_City_Background.jpeg';
+// import { LuMouse } from 'react-icons/lu';
+import { CiDesktopMouse2 } from 'react-icons/ci';
 
-import { AnimatedBackground } from '@/sections/Welcome/AnimatedBackground';
+import { SectionWrapper } from '@/components/sectionWrapper';
+import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation';
+import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
+
 import { Button } from '@/ui/Button';
 
 export const WelcomeSection = () => {
   return (
     <SectionWrapper
       sectionProps={{ id: 'about' }}
-      className='relative z-20 flex min-h-screen w-screen flex-col items-center justify-center p-8 pt-24'
-      // innerClassName='rounded-b-[48px] rounded-bl-[48px] shadow-xl'
+      className='relative z-20 min-h-screen w-screen pb-0 pt-0'
+      innerClassName='pt-0'
     >
-      <div className='relative z-20 w-11/12'>
-        <h1 className='text-primary-default uppercase'>
-          Мистецтво створення комфорту
-        </h1>
-        <p className='text-primary-defaultStrong border-primary-bg mt-6 w-1/2 rounded-3xl border bg-slate-50 bg-opacity-20 p-3 shadow-lg backdrop-blur-2xl'>
-          Ласкаво просимо до Art-Comfort, де інновації зустрічають комфорт у
-          сфері HVAC! Як ваш надійний партнер з опалення, вентиляції та
-          кондиціювання повітря, ми пишаємося тим, що пропонуємо безпрецедентні
-          рішення, які переосмислюють ваше відчуття внутрішнього комфорту.
-        </p>
-        <p className='text-primary-defaultStrong border-primary-bg mt-4 w-1/2 rounded-3xl border bg-slate-50 bg-opacity-20 p-3 shadow-lg backdrop-blur-2xl'>
-          Наша команда кваліфікованих професіоналів прагне надавати
-          індивідуальні рішення, які надають пріоритет ефективності, сталості та
-          передусім, вашому абсолютному комфорту.
-        </p>
-        <p className='text-primary-defaultStrong border-primary-bg mt-4 w-1/2 rounded-3xl border bg-slate-50 bg-opacity-20 p-3 shadow-lg backdrop-blur-2xl'>
-          Відкрийте нову еру кліматичного контролю з Art-Comfort, де кожен
-          проект - це шедевр, а ваш комфорт - наше полотно. Ласкаво просимо в
-          світ, де опалення та охолодження стають видом мистецтва - ласкаво
-          просимо до Art-Comfort.
-        </p>
-
-        <Button label='Що ми робимо?' href='#services' className='mt-4' />
+      <BackgroundGradientAnimation />
+      <div className='flex h-full max-w-7xl flex-1 flex-row items-center justify-center gap-4'>
+        <div className='flex h-full flex-1 flex-col items-center justify-center'>
+          {/* <h2 className='z-30 w-full text-left'>
+            Досліджуй справжнє мистецтво ідеального клімату з Арт-Комфорт
+          </h2> */}
+          <TextGenerateEffect
+            className='z-30 w-full text-left'
+            words='Досліджуй справжнє мистецтво ідеального клімату з Арт-Комфорт'
+          />
+          <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            transition={{
+              delay: 3,
+            }}
+            className='z-30 mt-8 w-full rounded-lg text-left text-base font-medium'
+          >
+            <p className='inline-block rounded-lg bg-white bg-opacity-50 px-4 py-2'>
+              Абсолютний лідер в сфері кондиціонування та вентиляції вже більше
+              <strong> 18-ти років</strong>
+            </p>
+          </motion.div>
+          <div className='z-30 mt-8 flex w-full flex-row gap-4'>
+            <motion.div
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              transition={{
+                delay: 4,
+              }}
+              className=''
+            >
+              <Button label='Детальніше про послуги' theme='secondary' />
+            </motion.div>
+            <motion.div
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              transition={{
+                delay: 4,
+              }}
+              className=''
+            >
+              <Button label='Звʼязатись з нами' theme='primary' />
+            </motion.div>
+          </div>
+        </div>
+        {/* <div className='z-30 flex h-full flex-1 flex-col items-center justify-center'>
+          <div className='flex h-1/2 w-full items-center justify-center rounded-xl bg-white bg-opacity-40'>
+            <p>Something inside of box</p>
+          </div>
+        </div> */}
+        <Button
+          className='absolute bottom-4 z-30'
+          Icon={<CiDesktopMouse2 size={36} />}
+          href='#services'
+          theme='ghost'
+        />
       </div>
-      <AnimatedBackground />
     </SectionWrapper>
   );
 };

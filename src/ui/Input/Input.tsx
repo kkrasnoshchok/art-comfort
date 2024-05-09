@@ -60,10 +60,10 @@ export const Input = (props: Props) => {
   const [isInputFocused, setInputFocused] = useState(false);
 
   return (
-    <div>
+    <div className='w-full'>
       <div
         className={clsxm(
-          'base-input bg-grayscale-bg rounded-2xl border-2 border-transparent px-4 py-3 transition-[border]',
+          'base-input bg-grayscale-bg rounded-2xl border border-transparent px-4 py-3 transition-[border]',
           isInputFocused && 'border-grayscale-header',
           disabled && 'cursor-not-allowed opacity-50',
           error && 'border-danger-defaultStrong bg-danger-bg',

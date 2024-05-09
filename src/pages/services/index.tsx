@@ -1,40 +1,30 @@
-import { motion, Variants } from 'framer-motion';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 import { Layout } from '@/components/layout';
+import { SectionWrapper } from '@/components/sectionWrapper';
+import { Tabs } from '@/components/ui/tabs';
 
-import { Button } from '@/ui/Button';
 import { clsxm } from '@/utils';
-import { services } from '@/utils/dataset/services.dataset';
+import { cn } from '@/utils/cn';
+import { Service, services } from '@/utils/dataset/services.dataset';
 
 const ServicesPage = () => {
-  const router = useRouter();
-  const itemVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
-
-  const navigateBackToHome = () => {
-    router.replace('/', undefined, { shallow: true, scroll: false });
-  };
   return (
     <Layout>
-      <motion.div className={clsxm('flex w-full items-center justify-center')}>
-        <motion.div className='w-11/12 rounded-lg pt-12'>
-          <motion.div>
-            <Button
-              label='Повернутись на головну'
-              onClick={navigateBackToHome}
-            />
-          </motion.div>
-          <motion.h1 className='h1 text-primary-defaultStrong mt-8'>
-            Список послуг
-          </motion.h1>
-          <motion.div className='mt-8 pb-32'>
+      <SectionWrapper>
+        <motion.div
+          className={clsxm(
+            'flex w-full max-w-7xl flex-col justify-center pt-12'
+          )}
+        >
+          <h3 className='text-grayscale-header mt-8'>
+            Які послуги ми надаємо?
+          </h3>
+          <TabsDemo />
+          {/* <div className='mt-4'>
             {services.map((service) => (
               <motion.div
-                className='border-primary-defaultStrong mt-4 flex items-center rounded-3xl border p-4 backdrop-blur-lg'
+                className='border-grayscale-body mt-2 flex items-center rounded-xl border p-4 backdrop-blur-lg'
                 key={service.title}
                 variants={itemVariants}
                 initial='hidden'
@@ -43,12 +33,13 @@ const ServicesPage = () => {
                 transition={{ duration: 0.2 }}
               >
                 <motion.div className='flex-1'>
-                  <motion.h3 className='text-primary-defaultStrong'>
-                    {service.title}
-                  </motion.h3>
-                  <motion.p>{service.description}</motion.p>
-                  <motion.div className='mt-4'>
+                  <h4 className='text-grayscale-body'>{service.title}</h4>
+                  <motion.p className='mt-2 text-sm'>
+                    {service.description}
+                  </motion.p>
+                  <motion.div className='mt-2'>
                     <Button
+                      size='small'
                       href={`projects/${service.id}`}
                       label='Детальніше'
                     />
@@ -67,11 +58,36 @@ const ServicesPage = () => {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div> */}
         </motion.div>
-      </motion.div>
+      </SectionWrapper>
     </Layout>
   );
 };
 
 export default ServicesPage;
+
+const getTabsContent = (service: Service): JSX.Element => (
+  <div className='from-grayscale-body to-grayscale-headerWeak relative h-full w-full overflow-hidden rounded-2xl bg-gradient-to-br p-10 text-white'>
+    <p className='text-lg font-bold'>{service.title}</p>
+    <p className='text-md mt-4'>{service.description}</p>
+  </div>
+);
+const servicesTabsWithContent = services.map((service) => ({
+  title: service.title,
+  value: service.id,
+  content: getTabsContent(service),
+}));
+
+export function TabsDemo() {
+  return (
+    <div
+      className={cn(
+        'relative mt-8 h-[20rem] w-full max-w-7xl [perspective:1000px] md:h-[40rem]',
+        'flex flex-col items-start justify-start'
+      )}
+    >
+      <Tabs tabs={servicesTabsWithContent} />
+    </div>
+  );
+}
