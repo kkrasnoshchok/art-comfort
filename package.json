@@ -10,7 +10,7 @@
     "lint:fix": "eslint src --fix && yarn format",
     "lint:strict": "eslint --max-warnings=10 src",
     "typecheck": "tsc --noEmit --incremental false",
-    "precommit": "echo 'running linters :)' && yarn lint && echo 'seems like suceed :))' && echo 'running typecheck!!!' && yarn typecheck && echo 'you are free to commit these changes yung boy'",
+    "precommit": "sh ./precommit.sh",
     "format": "prettier -w .",
     "format:check": "prettier -c .",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
