@@ -1,28 +1,15 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
-import { useLocalStorage } from 'usehooks-ts';
 
 import NextImage from '@/components/NextImage';
 
-import { HoveredLink, Menu, MenuItem } from '@/ui/NavbarMenu';
+import { Menu, MenuItem } from '@/ui/NavbarMenu';
+import { useLocale } from '@/utils';
 import { cn } from '@/utils/cn';
+import { LocaleType, useTranslations } from '@/utils/useLocale';
 
 import logo from '../../assets/logo.png';
-
-export const Hrefs = {
-  about: '/about',
-  services: '#services',
-  projects: '/projects',
-  team: '#team',
-  jobs: '#jobs',
-  cerfitications: '/certifications',
-  contacts: '#contacts',
-  vacancies: '/vacancies',
-  news: '/news',
-} as const;
-
-export type Href = (typeof Hrefs)[keyof typeof Hrefs];
 
 /**
    * Structure:
@@ -38,7 +25,7 @@ export type Href = (typeof Hrefs)[keyof typeof Hrefs];
    * - Secondary Links:
    */
 
-const locales = [
+const locales: LocaleType[] = [
   {
     value: 'ua',
     label: 'Українська',
@@ -63,11 +50,8 @@ const locales = [
 
 export const Header = () => {
   const [active, setActive] = useState<string | null>(null);
-  const [locale, updateLocale] = useLocalStorage('locale', {
-    value: 'ua',
-    label: 'Українська',
-    emoji: '🇺🇦',
-  });
+  const { locale, updateLocale } = useLocale();
+  const { header } = useTranslations();
   const [dropdownOpened, setDropdownOpened] = useState(false);
   return (
     <div className='fixed top-4 z-50 flex w-full items-center justify-center'>
@@ -95,92 +79,71 @@ export const Header = () => {
             href='/about'
             setActive={setActive}
             active={active}
-            item='Про нас'
+            item={header.about}
           >
             <div className='flex flex-col space-y-4 text-sm'>
-              <p className='w-48'>
-                On this page you can read the history of the company,
-                interesting facts and statistics. You can take a look at
-                certficates and licenses as well in case you're interested in
-                this
-              </p>
-              <HoveredLink href='/about#history'>
-                History of the company
-              </HoveredLink>
-              <HoveredLink href='/about#certificates'>
-                Licenses and Certificates
-              </HoveredLink>
+              <p className='w-48'>{header.aboutTooltip}</p>
             </div>
           </MenuItem>
           <MenuItem
             href='/services'
             setActive={setActive}
             active={active}
-            item='Послуги'
+            item={header.services}
           >
             <div className='flex flex-col space-y-4 text-sm'>
-              <p className='w-48'>
-                On this page you can take a look at services we can offer you
-              </p>
+              <p className='w-48'>{header.servicesTooltip}</p>
             </div>
           </MenuItem>
           <MenuItem
             href='/projects'
             setActive={setActive}
             active={active}
-            item='Проєкти'
+            item={header.projects}
           >
             <div className='flex flex-col space-y-4 text-sm'>
-              <p className='w-48'>
-                On this page you can take a look at project types we are
-                proficient at and examples for each
-              </p>
+              <p className='w-48'>{header.projectsTooltip}</p>
             </div>
           </MenuItem>
           <MenuItem
             href='#contacts'
             setActive={setActive}
             active={active}
-            item='Контакти'
+            item={header.contacts}
           >
             <div className='flex flex-col space-y-4 text-sm'>
-              <p className='w-48'>Here you can discover ways to contact us</p>
+              <p className='w-48'>{header.contactsTooltip}</p>
             </div>
           </MenuItem>
           <MenuItem
             href='/vacancies'
             setActive={setActive}
             active={active}
-            item='Вакансії'
+            item={header.careers}
           >
             <div className='flex flex-col space-y-4 text-sm'>
-              <p className='w-48'>
-                Here you can discover ways to begin or continue your
-                professional path at Art-Comfort
-              </p>
+              <p className='w-48'>{header.carrersTooltip}</p>
             </div>
           </MenuItem>
           <MenuItem
             href='/news'
             setActive={setActive}
             active={active}
-            item='Новини'
+            item={header.news}
           >
             <div className='flex flex-col space-y-4 text-sm'>
-              <p className='w-48'>
-                Here you can discover latest news from HVAC industry
-              </p>
+              <p className='w-48'>{header.newsTooltip}</p>
             </div>
           </MenuItem>
           <div>
-            <p
-              className='relative rounded-md border px-2 py-1 text-2xl'
+            <span
               onClick={() => setDropdownOpened((prev) => !prev)}
+              className='relative rounded-md border px-2 py-1 text-2xl'
             >
               {locale.emoji}
-            </p>
+            </span>
             {dropdownOpened && (
-              <div className='absolute right-4 top-20 flex w-36 flex-col gap-1 rounded-lg bg-white text-sm'>
+              <div className='absolute right-4 top-20 flex w-36 flex-col gap-[2px] rounded-lg bg-white text-sm'>
                 {locales.map((localeItem, index) => (
                   <motion.p
                     whileHover={{
