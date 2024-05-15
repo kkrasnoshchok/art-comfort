@@ -11,13 +11,14 @@ import 'swiper/css/scrollbar';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
-import { clsxm, useBreakpoint } from '@/utils';
+import { clsxm, useBreakpoint, useTranslations } from '@/utils';
 import { team } from '@/utils/dataset/team.dataset';
 
 export const TeamSection = () => {
   const swiperRef = useRef<SwiperRef>(null);
   const { is2xl } = useBreakpoint('2xl');
   const { isMd } = useBreakpoint('md');
+  const { team: teamTranslations } = useTranslations();
 
   const getSlidesPerView = () => {
     if (is2xl) {
@@ -47,7 +48,9 @@ export const TeamSection = () => {
         viewport={{ amount: 0.4, once: true }}
         className={clsxm('flex w-full max-w-7xl flex-col py-8')}
       >
-        <h1 className='h2 text-grayscale-headerWeak'>Наша команда</h1>
+        <h1 className='h2 text-grayscale-headerWeak'>
+          {teamTranslations.title}
+        </h1>
         <div className='mt-8 flex h-full w-full flex-col gap-12 lg:flex-row'>
           <Swiper
             ref={swiperRef}

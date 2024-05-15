@@ -50,7 +50,7 @@ export const ua: LocaleKeysSkeleton = {
     exploreServices: 'Детальніше про послуги',
   },
   projects: {
-    title: '',
+    title: 'Проєкти',
     ventilation: {
       title: 'Вентиляція',
       description: 'Свіже повітря цілий рік з нашими експертними рішеннями.',

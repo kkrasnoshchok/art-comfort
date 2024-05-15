@@ -20,7 +20,9 @@ import projectsAirPurifier from '@/assets/Projects_Air-Purifier.jpeg';
 import projectsHeating from '@/assets/Projects_Heating.jpeg';
 import projectsVentilation from '@/assets/Projects_Ventilation.jpg';
 import projectsWaterTreatment from '@/assets/Projects_WaterTreatment.jpeg';
+import { LocaleKeysSkeleton } from '@/locales/types';
 import { Button } from '@/ui/Button';
+import { useTranslations } from '@/utils';
 import { cn } from '@/utils/cn';
 
 export const ProjectsSection = () => {
@@ -32,6 +34,7 @@ export const ProjectsSection = () => {
       transition: { duration: 0.3, type: 'spring' },
     },
   };
+  const { projects } = useTranslations();
 
   return (
     <SectionWrapper
@@ -39,10 +42,12 @@ export const ProjectsSection = () => {
       className='relative mt-16 flex flex-col items-center pb-0'
       innerClassName='bg-gradient-to-b'
     >
-      <motion.h1 className='h2 w-full max-w-7xl text-left'>Проeкти</motion.h1>
+      <motion.h1 className='h2 w-full max-w-7xl text-left'>
+        {projects.title}
+      </motion.h1>
       <BentoGridDemo />
       <motion.div className='mt-4 w-full max-w-7xl'>
-        <Button label='Переглянути всі проєкти' href='projects' />
+        <Button label={projects.showAllProjects} href='projects' />
       </motion.div>
       {/* <OldProjectsSection /> */}
       <motion.div
@@ -59,9 +64,10 @@ export const ProjectsSection = () => {
 };
 
 export function BentoGridDemo() {
+  const { projects } = useTranslations();
   return (
     <BentoGrid className='mt-4'>
-      {items.map((item, i) => (
+      {items(projects).map((item, i) => (
         <BentoGridItem
           key={i}
           title={item.title}
@@ -94,10 +100,10 @@ const ProjectImage = (props: ProjectImageProps) => {
   );
 };
 
-const items = [
+const items = (t: LocaleKeysSkeleton['projects']) => [
   {
-    title: 'Вентиляція',
-    description: 'Свіже повітря цілий рік з нашими експертними рішеннями.',
+    title: t.ventilation.title,
+    description: t.ventilation.description,
     header: (
       <ProjectImage
         src={projectsVentilation}
@@ -107,8 +113,8 @@ const items = [
     icon: <IconAperture className='h-4 w-4 text-neutral-500' />,
   },
   {
-    title: 'Кондиціонування повітря',
-    description: 'Прохолодність цілий рік з нашими експертними рішеннями.',
+    title: t.airConditioning.title,
+    description: t.airConditioning.description,
     header: (
       <ProjectImage
         src={projectsAirConditioning}
@@ -118,24 +124,24 @@ const items = [
     icon: <IconAirConditioning className='h-4 w-4 text-neutral-500' />,
   },
   {
-    title: 'Опалення',
-    description: 'Тепло та комфорт з нашими експертними рішеннями.',
+    title: t.heating.title,
+    description: t.heating.description,
     header: (
       <ProjectImage src={projectsHeating} alt='Heating type of Project' />
     ),
     icon: <IconSun className='h-4 w-4 text-neutral-500' />,
   },
   {
-    title: 'Очищення повітря',
-    description: 'Легше дихання з нашими вдосконаленими системами.',
+    title: t.airPurifying.title,
+    description: t.airPurifying.description,
     header: (
       <ProjectImage src={projectsAirPurifier} alt='Heating type of Project' />
     ),
     icon: <MdAir className='h-4 w-4 text-neutral-500' />,
   },
   {
-    title: 'Очищення води',
-    description: 'Чиста та безпечна вода з нашими ефективними рішеннями.',
+    title: t.waterTreatment.title,
+    description: t.waterTreatment.description,
     header: (
       <ProjectImage
         src={projectsWaterTreatment}
@@ -145,51 +151,11 @@ const items = [
     icon: <FaHandHoldingWater className='h-4 w-4 text-neutral-500' />,
   },
   {
-    title: 'Зволоження повітря',
-    description: 'Ідеальний рівень вологості для максимального комфорту.',
+    title: t.airHumidifying.title,
+    description: t.airHumidifying.description,
     header: (
       <ProjectImage src={projectsAirHumidifier} alt='Heating type of Project' />
     ),
     icon: <WiHumidity className='h-4 w-4 text-neutral-500' />,
   },
 ];
-
-// eslint-disable-next-line unused-imports/no-unused-vars
-const ukrLocales = {
-  ['Вентиляція']:
-    'Перетворіть свій простір за допомогою наших експертних рішень для вентиляції, забезпечуючи свіже та здорове повітря цілий рік',
-  ['Air Conditioning']:
-    'Залишайтеся прохолодними цілий рік з нашими експертними рішеннями для кондиціонування повітря',
-  ['Опалення']:
-    'Відчуйте тепло та комфорт з нашими експертними рішеннями для опалення',
-  ['Очищення повітря']:
-    'Дихайте легше з нашими вдосконаленими системами очищення повітря',
-  ['Очищення води']:
-    'Насолоджуйтеся чистою та безпечною водою з нашими ефективними рішеннями для очищення',
-  ['Сантехніка']:
-    'Забезпечте безперебійну роботу вашої водопровідної системи за допомогою наших професійних послуг',
-  ['Зволоження повітря']:
-    'Підтримуйте ідеальний рівень вологості для максимального комфорту',
-  ['Осушення басейну']:
-    'Забезпечте приємне середовище за допомогою наших ефективних послуг з осушення басейну',
-};
-
-// eslint-disable-next-line unused-imports/no-unused-vars
-const engLocales = {
-  ['Ventilation']:
-    'Transform your space with our expert ventilation solutions, ensuring fresh and healthy air all year round',
-  ['Air Conditioning']:
-    'Stay cool all year round with our expert Air Conditioning solutions.',
-  ['Heating']:
-    'Experience warmth and comfort with our expert heating solutions.',
-  ['Air Purification']:
-    'Breathe easier with our advanced air purification systems.',
-  ['Water Treatment']:
-    'Enjoy clean and safe water with our efficient treatment solutions',
-  ['Plumbing']:
-    'Keep your plumbing systems flowing smoothly with our professional services.',
-  ['Air Humidification']:
-    'Maintain ideal humidity levels for ultimate comfort with our solutions.',
-  ['Pool Dehumidification']:
-    'Ensure a pleasant environment with our effective pool dehumidification services.',
-};

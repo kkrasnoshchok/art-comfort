@@ -11,7 +11,7 @@ import { Button } from '@/ui/Button';
 import { useTranslations } from '@/utils';
 
 export const WelcomeSection = () => {
-  const { welcome } = useTranslations();
+  const { welcome, general } = useTranslations();
   return (
     <SectionWrapper
       sectionProps={{ id: 'about' }}
@@ -70,7 +70,7 @@ export const WelcomeSection = () => {
               }}
               className=''
             >
-              <Button label='Звʼязатись з нами' theme='primary' />
+              <Button label={general.contactUs} theme='primary' />
             </motion.div>
           </div>
         </div>

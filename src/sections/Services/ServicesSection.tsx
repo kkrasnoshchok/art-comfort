@@ -6,11 +6,26 @@ import { FaArrowRight } from 'react-icons/fa';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
-import { clsxm } from '@/utils';
+import { clsxm, useTranslations } from '@/utils';
 import { Service, services } from '@/utils/dataset/services.dataset';
 
 export const ServicesSection = () => {
-  const [activeService, setActiveService] = useState<Service>(services[0]);
+  const { services: servicesTranslations } = useTranslations();
+  const [activeService, setActiveService] = useState<Service | null>(null);
+  const memoizedServices = useMemo(() => {
+    const newServices = services(servicesTranslations);
+    setActiveService((prev) => {
+      if (prev) {
+        const newActiveService = newServices.find(
+          (service) => service.id === prev?.id
+        );
+        return newActiveService || newServices[0];
+      }
+
+      return newServices[0];
+    });
+    return newServices;
+  }, [servicesTranslations]);
   const controls = useAnimationControls();
 
   const sectionVariants: Variants = {
@@ -44,10 +59,10 @@ export const ServicesSection = () => {
       >
         {/* Left */}
         <motion.div className='pr-8'>
-          <motion.h1 className='h2'>Послуги</motion.h1>
+          <motion.h1 className='h2'>{servicesTranslations.title}</motion.h1>
           <motion.div className='mt-4 flex flex-col'>
-            {services.slice(0, 5).map((service, index) => {
-              const isActive = activeService.title === service.title;
+            {memoizedServices.map((service, index) => {
+              const isActive = activeService?.title === service.title;
               return (
                 <motion.div
                   // variants={itemVariants}
@@ -125,9 +140,9 @@ export const ServicesSection = () => {
             animate={controls}
           >
             <motion.h2 className='h2 text-primary-bg'>
-              {activeService.title}
+              {activeService?.title}
             </motion.h2>
-            <p className='text-primary-bg mt-4'>{activeService.description}</p>
+            <p className='text-primary-bg mt-4'>{activeService?.description}</p>
             <div className='flex flex-1 flex-row items-end justify-end gap-4'>
               <Button
                 href='#contacts'
@@ -136,19 +151,21 @@ export const ServicesSection = () => {
                 label='Звʼязатись з нами'
               />
               <Button
-                href={`services/${activeService.id}`}
+                href={`services/${activeService?.id}`}
                 theme='subtle'
                 className='inline-flex'
                 label='Дізнатись детальніше'
               />
             </div>
-            <motion.div className='absolute left-0 top-0 -z-10 h-full w-full'>
-              <Image
-                src={activeService.url}
-                className='h-full w-full rounded-[36px] object-cover opacity-10'
-                alt={activeService.description}
-              />
-            </motion.div>
+            {activeService && (
+              <motion.div className='absolute left-0 top-0 -z-10 h-full w-full'>
+                <Image
+                  src={activeService?.url}
+                  className='h-full w-full rounded-[36px] object-cover opacity-10'
+                  alt={activeService?.description}
+                />
+              </motion.div>
+            )}
           </motion.div>
         </motion.div>
       </motion.div>
