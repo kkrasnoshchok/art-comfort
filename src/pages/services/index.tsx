@@ -4,7 +4,7 @@ import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 import { Tabs } from '@/components/ui/tabs';
 
-import { clsxm } from '@/utils';
+import { clsxm, useTranslations } from '@/utils';
 import { cn } from '@/utils/cn';
 import { Service, services } from '@/utils/dataset/services.dataset';
 
@@ -73,13 +73,16 @@ const getTabsContent = (service: Service): JSX.Element => (
     <p className='text-md mt-4'>{service.description}</p>
   </div>
 );
-const servicesTabsWithContent = services.map((service) => ({
-  title: service.title,
-  value: service.id,
-  content: getTabsContent(service),
-}));
 
 export function TabsDemo() {
+  const { services: servicesTranslations } = useTranslations();
+  const servicesTabsWithContent = services(servicesTranslations).map(
+    (service) => ({
+      title: service.title,
+      value: service.id,
+      content: getTabsContent(service),
+    })
+  );
   return (
     <div
       className={cn(

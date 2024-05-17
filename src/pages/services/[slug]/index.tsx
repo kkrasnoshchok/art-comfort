@@ -5,12 +5,15 @@ import { useRouter } from 'next/router';
 import { Layout } from '@/components/layout';
 
 import { Button } from '@/ui/Button';
-import { clsxm } from '@/utils';
+import { clsxm, useTranslations } from '@/utils';
 import { services } from '@/utils/dataset/services.dataset';
 
 const ServicePage = () => {
   const router = useRouter();
-  const service = services.find((service) => service.id === router.query.slug);
+  const { services: servicesTranslations } = useTranslations();
+  const service = services(servicesTranslations).find(
+    (service) => service.id === router.query.slug
+  );
   if (!service) {
     return null;
   }
