@@ -58,13 +58,15 @@ export const Header = () => {
       <motion.div
         initial={{
           opacity: 0,
-          y: -80,
+          y: -20,
         }}
         animate={{
-          opacity: 1,
           y: 0,
+          opacity: 1,
         }}
         transition={{
+          duration: 0.15,
+          easings: ['easeIn', 'easeOut'],
           delay: 0.2,
         }}
         className='w-full max-w-7xl'

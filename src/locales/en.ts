@@ -20,7 +20,8 @@ export const en: LocaleKeysSkeleton = {
     newsTooltip: '',
   },
   welcome: {
-    title: 'Explore the true art of perfect climate with Art Comfort',
+    title: 'Explore the true art of perfect climate with',
+    titleNaming: 'Art Comfort',
     subtitle:
       'The absolute leader in air conditioning and ventilation for over 18 years',
     servicesLabel: 'More about services',
