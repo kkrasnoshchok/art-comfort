@@ -12,7 +12,7 @@ export const ua: LocaleKeysSkeleton = {
     servicesTooltip: '',
     projects: 'Проєкти',
     projectsTooltip: '',
-    contacts: 'Конткти',
+    contacts: 'Контакти',
     contactsTooltip: '',
     careers: 'Вакансії',
     carrersTooltip: '',

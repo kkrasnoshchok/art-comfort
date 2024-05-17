@@ -26,12 +26,18 @@ import { useTranslations } from '@/utils';
 import { cn } from '@/utils/cn';
 
 export const ProjectsSection = () => {
-  const statisticsVariants: Variants = {
-    hidden: { opacity: 0, y: 120 },
+  const sectionVariants: Variants = {
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
-      transition: { duration: 0.3, type: 'spring' },
+      transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
+    },
+  };
+  const statisticsVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
     },
   };
   const { projects } = useTranslations();
@@ -42,44 +48,43 @@ export const ProjectsSection = () => {
       className='relative mt-16 flex flex-col items-center pb-0'
       innerClassName='bg-gradient-to-b'
     >
-      <motion.h1 className='h2 w-full max-w-7xl text-left'>
-        {projects.title}
-      </motion.h1>
-      <BentoGridDemo />
-      <motion.div className='mt-4 w-full max-w-7xl'>
-        <Button label={projects.showAllProjects} href='projects' />
-      </motion.div>
-      {/* <OldProjectsSection /> */}
       <motion.div
-        variants={statisticsVariants}
+        variants={sectionVariants}
         initial='hidden'
         whileInView='visible'
-        viewport={{ amount: 1, once: true }}
-        className='w-full max-w-7xl'
+        viewport={{ amount: 0.2 }}
       >
-        <StatisticsContainer />
+        <motion.h1 className='h2 w-full max-w-7xl text-left'>
+          {projects.title}
+        </motion.h1>
+        <BentoGrid className='mt-4'>
+          {items(projects).map((item, i) => (
+            <BentoGridItem
+              key={i}
+              title={item.title}
+              description={item.description}
+              header={item.header}
+              icon={item.icon}
+              // className={i === 3 || i === 6 ? 'md:col-span-2' : ''}
+            />
+          ))}
+        </BentoGrid>
+        <motion.div className='mt-4 w-full max-w-7xl'>
+          <Button label={projects.showAllProjects} href='projects' />
+        </motion.div>
+        <motion.div
+          variants={statisticsVariants}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ amount: 1 }}
+          className='w-full max-w-7xl'
+        >
+          <StatisticsContainer />
+        </motion.div>
       </motion.div>
     </SectionWrapper>
   );
 };
-
-export function BentoGridDemo() {
-  const { projects } = useTranslations();
-  return (
-    <BentoGrid className='mt-4'>
-      {items(projects).map((item, i) => (
-        <BentoGridItem
-          key={i}
-          title={item.title}
-          description={item.description}
-          header={item.header}
-          icon={item.icon}
-          // className={i === 3 || i === 6 ? 'md:col-span-2' : ''}
-        />
-      ))}
-    </BentoGrid>
-  );
-}
 
 type ProjectImageProps = {
   src: StaticImageData;

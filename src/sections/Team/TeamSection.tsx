@@ -31,12 +31,16 @@ export const TeamSection = () => {
   };
 
   const sectionVariants: Variants = {
-    hidden: { opacity: 0, y: 120 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
     },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
   };
 
   return (
@@ -45,7 +49,7 @@ export const TeamSection = () => {
         variants={sectionVariants}
         initial='hidden'
         whileInView='visible'
-        viewport={{ amount: 0.4, once: true }}
+        viewport={{ amount: 0.6 }}
         className={clsxm('flex w-full max-w-7xl flex-col py-8')}
       >
         <h1 className='h2 text-grayscale-headerWeak'>
@@ -64,11 +68,19 @@ export const TeamSection = () => {
           >
             {team.map((user, index) => (
               <SwiperSlide key={index}>
-                <div
+                <motion.div
+                  variants={itemVariants}
+                  initial='hidden'
+                  whileInView='visible'
+                  viewport={{ amount: 0.5, once: true }}
+                  transition={{
+                    delay: index * 0.1,
+                    duration: 0.5,
+                    easings: ['easeIn', 'easeOut'],
+                  }}
                   className={clsxm(
                     'team-element group relative',
                     'flex h-full w-full flex-col items-center justify-center'
-                    // 'transition-all hover:scale-[0.98] active:scale-[0.95]'
                   )}
                 >
                   <div
@@ -106,7 +118,7 @@ export const TeamSection = () => {
                       />
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </SwiperSlide>
             ))}
           </Swiper>

@@ -32,12 +32,8 @@ export const ContactsSection = () => {
   type ContactsFormType = z.infer<typeof ContactsForm>;
 
   const sectionVariants: Variants = {
-    hidden: { opacity: 0, y: 120 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
-    },
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
   };
 
   const initialValues: ContactsFormType = {
@@ -92,7 +88,8 @@ export const ContactsSection = () => {
         variants={sectionVariants}
         initial='hidden'
         whileInView='visible'
-        viewport={{ amount: 0.4, once: true }}
+        viewport={{ amount: 0.2 }}
+        transition={{ duration: 0.5, easings: ['easeIn', 'easeOut'] }}
         className={clsxm('w-full max-w-7xl')}
       >
         <h1 className='h2 text-grayscale-headerWeak'>

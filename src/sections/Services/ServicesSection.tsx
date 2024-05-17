@@ -29,10 +29,9 @@ export const ServicesSection = () => {
   const controls = useAnimationControls();
 
   const sectionVariants: Variants = {
-    hidden: { opacity: 0, y: 120 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
     },
   };
@@ -54,7 +53,7 @@ export const ServicesSection = () => {
         variants={sectionVariants}
         initial='hidden'
         whileInView='visible'
-        viewport={{ amount: 0.1, once: true }}
+        viewport={{ amount: 0.1 }}
         className={clsxm('grid w-full max-w-7xl grid-cols-2 overflow-hidden')}
       >
         {/* Left */}
@@ -65,10 +64,6 @@ export const ServicesSection = () => {
               const isActive = activeService?.title === service.title;
               return (
                 <motion.div
-                  // variants={itemVariants}
-                  // initial='hidden'
-                  // whileInView='visible'
-                  // viewport={{ amount: 0.5, once: true }}
                   transition={{ delay: 100 * index }}
                   key={service.title}
                   className='services-card pt-4'
@@ -76,12 +71,9 @@ export const ServicesSection = () => {
                   <div
                     className={clsxm(
                       'flex cursor-pointer flex-row items-center justify-between',
-                      // 'border-primary-default border',
                       ' rounded-2xl p-4 transition duration-500',
-                      // 'hover:shadow-primary-default hover:shadow-sm',
                       'active:scale-[0.99]',
                       isActive && 'services-card--active bg-slate-50'
-                      // isActive && 'border-primary-bg'
                     )}
                     onClick={() => {
                       controls.start('hidden');
@@ -91,12 +83,7 @@ export const ServicesSection = () => {
                       }, 200);
                     }}
                   >
-                    <p
-                      className={clsxm(
-                        'p text-gray-600 transition-colors'
-                        // isActive && 'text-primary-bg'
-                      )}
-                    >
+                    <p className={clsxm('p text-gray-600 transition-colors')}>
                       {service.title}
                     </p>
                     <Button
