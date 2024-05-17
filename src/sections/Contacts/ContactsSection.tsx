@@ -2,7 +2,6 @@ import { Upload, UploadFile } from 'antd';
 import { Button as AntDesignButton } from 'antd';
 import { Formik, FormikHelpers } from 'formik';
 import { motion, Variants } from 'framer-motion';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FaUpload } from 'react-icons/fa';
 import { toast } from 'react-toastify';
@@ -13,29 +12,19 @@ import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
-import { clsxm, useI18n } from '@/utils';
+import { clsxm, useTranslations } from '@/utils';
 import { cn } from '@/utils/cn';
 
 import { GoogleMap } from './components/GoogleMap';
 
 export const ContactsSection = () => {
-  const { locale } = useRouter();
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  const { t } = useI18n();
-  const getRequiredError = (field: string) => {
-    if (locale === 'ua') {
-      return t.contacts.inputError;
-    }
-    `${field}${t.contacts.inputError}`;
-  };
+  const { contacts: contactsTranslations } = useTranslations();
 
   const ContactsForm = z.object({
-    name: z.string().min(1, getRequiredError('Name')),
-    email: z
-      .string()
-      .email(t.contacts.emailInputError)
-      .min(1, getRequiredError('Email')),
-    phone: z.string().min(1, getRequiredError('Phone')),
+    name: z.string().min(1),
+    email: z.string().email().min(1),
+    phone: z.string().min(1),
     message: z.string().optional(),
     files: z.array(z.object({})).optional(),
   });
@@ -106,11 +95,15 @@ export const ContactsSection = () => {
         viewport={{ amount: 0.4, once: true }}
         className={clsxm('w-full max-w-7xl')}
       >
-        <h1 className='h2 text-grayscale-headerWeak'>{t.contacts.title}</h1>
+        <h1 className='h2 text-grayscale-headerWeak'>
+          {contactsTranslations.title}
+        </h1>
         <div className='grid grid-cols-8 gap-8 pt-4'>
           <div className='col-span-4 flex flex-col'>
             <div className='flex w-full flex-col items-center lg:items-start'>
-              <p className='text-lg font-semibold'>Звʼязатись напряму</p>
+              <p className='text-lg font-semibold'>
+                {contactsTranslations.contactUsDirectly}
+              </p>
               <div className='mt-6 flex w-full gap-2'>
                 <div
                   className={cn(
@@ -226,12 +219,12 @@ export const ContactsSection = () => {
             }) => (
               <div className='col-span-4'>
                 <p className='text-grayscale-headerWeak text-lg font-semibold'>
-                  {t.contacts.subtitle}
+                  {contactsTranslations.leaveRequest}
                 </p>
                 <div className='mt-6 flex w-full flex-col gap-4'>
                   <div className='flex w-full gap-4'>
                     <Input
-                      label='Name'
+                      label={contactsTranslations.form.name.label}
                       name='name'
                       inputClassName='h-full'
                       onClear={() => setFieldValue('name', '')}
@@ -245,7 +238,7 @@ export const ContactsSection = () => {
                       }
                     />
                     <Input
-                      label='Email'
+                      label={contactsTranslations.form.email.label}
                       name='email'
                       onClear={() => setFieldValue('email', '')}
                       value={values.email}
@@ -259,7 +252,7 @@ export const ContactsSection = () => {
                     />
                   </div>
                   <Input
-                    label='Phone'
+                    label={contactsTranslations.form.phone.label}
                     name='phone'
                     onClear={() => setFieldValue('phone', '')}
                     value={values.phone}
@@ -272,7 +265,7 @@ export const ContactsSection = () => {
                     }
                   />
                   <Input
-                    label='Message'
+                    label={contactsTranslations.form.message.label}
                     name='message'
                     disabled={isSubmitting}
                     type='textarea'
@@ -308,7 +301,7 @@ export const ContactsSection = () => {
                       accept='.jpg, .jpeg, .png, .pdf'
                     >
                       <AntDesignButton icon={<FaUpload />}>
-                        Додати файли
+                        {contactsTranslations.form.files.label}
                       </AntDesignButton>
                     </Upload>
                   </div>
@@ -317,7 +310,7 @@ export const ContactsSection = () => {
                       onClick={() => {
                         handleSubmit();
                       }}
-                      label='Надіслати'
+                      label={contactsTranslations.form.send}
                       size='medium'
                       theme='primary'
                       className='mt-8'

@@ -8,8 +8,10 @@ import { BackgroundGradientAnimation } from '@/components/ui/background-gradient
 import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 
 import { Button } from '@/ui/Button';
+import { useTranslations } from '@/utils';
 
 export const WelcomeSection = () => {
+  const { welcome, general } = useTranslations();
   return (
     <SectionWrapper
       sectionProps={{ id: 'about' }}
@@ -19,12 +21,9 @@ export const WelcomeSection = () => {
       <BackgroundGradientAnimation />
       <div className='flex h-full max-w-7xl flex-1 flex-row items-center justify-center gap-4'>
         <div className='flex h-full flex-1 flex-col items-center justify-center'>
-          {/* <h2 className='z-30 w-full text-left'>
-            Досліджуй справжнє мистецтво ідеального клімату з Арт-Комфорт
-          </h2> */}
           <TextGenerateEffect
             className='z-30 w-full text-left'
-            words='Досліджуй справжнє мистецтво ідеального клімату з Арт-Комфорт'
+            words={welcome.title}
           />
           <motion.div
             initial={{
@@ -39,8 +38,9 @@ export const WelcomeSection = () => {
             className='z-30 mt-8 w-full rounded-lg text-left text-base font-medium'
           >
             <p className='inline-block rounded-lg bg-white bg-opacity-50 px-4 py-2'>
-              Абсолютний лідер в сфері кондиціонування та вентиляції вже більше
-              <strong> 18-ти років</strong>
+              {/* Абсолютний лідер в сфері кондиціонування та вентиляції вже більше
+              <strong> 18-ти років</strong> */}
+              {welcome.subtitle}
             </p>
           </motion.div>
           <div className='z-30 mt-8 flex w-full flex-row gap-4'>
@@ -56,7 +56,7 @@ export const WelcomeSection = () => {
               }}
               className=''
             >
-              <Button label='Детальніше про послуги' theme='secondary' />
+              <Button label={welcome.servicesLabel} theme='secondary' />
             </motion.div>
             <motion.div
               initial={{
@@ -70,7 +70,7 @@ export const WelcomeSection = () => {
               }}
               className=''
             >
-              <Button label='Звʼязатись з нами' theme='primary' />
+              <Button label={general.contactUs} theme='primary' />
             </motion.div>
           </div>
         </div>

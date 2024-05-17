@@ -3,7 +3,7 @@ import { motion, Variants } from 'framer-motion';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
-import { clsxm } from '@/utils';
+import { clsxm, useTranslations } from '@/utils';
 import { news } from '@/utils/dataset/news.dataset';
 import { slugify } from '@/utils/slugify';
 
@@ -16,6 +16,8 @@ export const NewsSection = () => {
       transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
     },
   };
+
+  const { news: newsTranslations } = useTranslations();
 
   return (
     <SectionWrapper
@@ -30,7 +32,9 @@ export const NewsSection = () => {
         viewport={{ amount: 0.1, once: true }}
         className={clsxm('flex w-full max-w-7xl flex-col bg-opacity-25 py-8')}
       >
-        <h1 className='h2 text-grayscale-headerWeak'>Новини</h1>
+        <h1 className='h2 text-grayscale-headerWeak'>
+          {newsTranslations.title}
+        </h1>
         {/* News Container */}
         <div className='relative flex-1'>
           {news.map((item, index) => (
@@ -76,7 +80,7 @@ export const NewsSection = () => {
           ))}
         </div>
         <motion.div className='mt-8'>
-          <Button label='Подивитись всі новини' href='/news' />
+          <Button label={newsTranslations.showAll} href='/news' />
           {/* <button className='border px-8 py-2 text-lg'>See all news</button> */}
         </motion.div>
       </motion.div>
