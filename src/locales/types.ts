@@ -75,6 +75,7 @@ type Team = {
 
 type Welcome = {
   title: string;
+  titleNaming: string;
   subtitle: string;
   servicesLabel: string;
 };

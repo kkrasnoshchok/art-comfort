@@ -12,7 +12,7 @@ export const ua: LocaleKeysSkeleton = {
     servicesTooltip: '',
     projects: 'Проєкти',
     projectsTooltip: '',
-    contacts: 'Конткти',
+    contacts: 'Контакти',
     contactsTooltip: '',
     careers: 'Вакансії',
     carrersTooltip: '',
@@ -20,7 +20,8 @@ export const ua: LocaleKeysSkeleton = {
     newsTooltip: '',
   },
   welcome: {
-    title: 'Досліджуй справжнє мистецтво ідеального клімату з Арт-Комфорт',
+    title: 'Досліджуй справжнє мистецтво ідеального клімату з',
+    titleNaming: 'Арт-Комфорт',
     subtitle:
       'Абсолютний лідер в сфері кондиціонування та вентиляції вже більше 18-ти років',
     servicesLabel: 'Детальніше про послуги',

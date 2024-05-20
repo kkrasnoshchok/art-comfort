@@ -9,11 +9,13 @@ import { slugify } from '@/utils/slugify';
 
 export const NewsSection = () => {
   const sectionVariants: Variants = {
-    hidden: { opacity: 0, y: 120 },
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+  const itemVariants: Variants = {
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
     },
   };
 
@@ -29,7 +31,8 @@ export const NewsSection = () => {
         variants={sectionVariants}
         initial='hidden'
         whileInView='visible'
-        viewport={{ amount: 0.1, once: true }}
+        viewport={{ amount: 0.1 }}
+        transition={{ duration: 0.5, easings: ['easeIn', 'easeOut'] }}
         className={clsxm('flex w-full max-w-7xl flex-col bg-opacity-25 py-8')}
       >
         <h1 className='h2 text-grayscale-headerWeak'>
@@ -44,11 +47,15 @@ export const NewsSection = () => {
                 'group mt-2 flex flex-row rounded-3xl p-4',
                 'border-primary-defaultWeak border bg-gray-50 bg-opacity-50'
               )}
-              // variants={itemVariants}
-              // initial='hidden'
-              // whileInView='visible'
-              // viewport={{ amount: 0.5, once: true }}
-              transition={{ delay: 100 * index }}
+              variants={itemVariants}
+              initial='hidden'
+              whileInView='visible'
+              viewport={{ amount: 0.5, once: true }}
+              transition={{
+                delay: 0.1 * index,
+                duration: 0.5,
+                easings: ['easeIn', 'easeOut'],
+              }}
             >
               {/* News */}
               <div className='flex flex-1 flex-col'>
