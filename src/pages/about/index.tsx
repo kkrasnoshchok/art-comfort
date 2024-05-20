@@ -1,7 +1,17 @@
-import Image from 'next/image';
+import { motion } from 'framer-motion';
+import Image, { StaticImageData } from 'next/image';
+import { useState } from 'react';
+// @ts-expect-error react-slick types are present, but written really poorly.
+import Slider from 'react-slick';
+
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 import { Layout } from '@/components/layout';
 
+import { Button } from '@/ui/Button';
+import { Modal } from '@/ui/Modal';
+import { cn } from '@/utils/cn';
 import { team } from '@/utils/dataset/team.dataset';
 
 import AuthListPdf from '../../assets/certificates/AuthListArtComfort.png';
@@ -18,12 +28,13 @@ const certificatesArray = [
 ];
 
 const AboutPage = () => {
+  const [selectedCertificate, setSelectedCertificate] = useState<
+    (StaticImageData | StaticImageData[]) | null
+  >(null);
   return (
-    // <div className='flex w-full justify-center bg-white bg-opacity-75 py-24 shadow backdrop-blur-2xl'>
-    //     <div className='max-w-7xl'></div>
     <Layout>
-      <div className='flex w-full flex-col items-center bg-white bg-opacity-75 py-24'>
-        <div className='max-w-7xl'>
+      <div className='flex w-full justify-center bg-white bg-opacity-75 py-24'>
+        <div className='flex max-w-7xl flex-1 flex-col'>
           <p className='mt-8'>
             Інженерна компанія «АРТ-КОМФОРТ» працює на будівельному ринку з 21
             червня 2007 року. Протягом 17 років професійної діяльності компанії
@@ -71,17 +82,56 @@ const AboutPage = () => {
           {/* Team Section Link */}
           <div className='mt-8'>
             <h3>Наша команда</h3>
-            <div className='mt-4 flex flex-1 flex-row flex-wrap gap-3'>
-              {team.slice(0, 5).map((member) => (
-                <div
-                  key={member.name}
-                  className='flex aspect-[9/12] flex-1 items-center justify-center bg-slate-100'
-                >
-                  {member.name}
-                </div>
-              ))}
+            <div className='mt-8'>
+              <Slider
+                {...{
+                  slidesToShow: 4,
+                  slidesToScroll: 2,
+                  arrows: true,
+                  infinite: true,
+                  pauseOnHover: true,
+                  autoplay: true,
+                }}
+              >
+                {team.map((user, index) => (
+                  <motion.div
+                    key={`user-${user.email} -> ${index}`}
+                    className={cn('team-element group relative w-full pr-4')}
+                  >
+                    <div
+                      className={cn([
+                        'bg-grayscale-headerWeak aspect-square w-full rounded-xl',
+                      ])}
+                    >
+                      {/* <Image
+                      src={user.url}
+                      alt='alt'
+                      className={cn(
+                        'aspect-square h-full w-full rounded-xl opacity-60'
+                        // 'transition-opacity group-hover:opacity-10'
+                      )}
+                    /> */}
+                    </div>
+                    <div className={cn('p-2')}>
+                      <h4 className='text-primary-defaultStrong h4'>
+                        {user.name}
+                      </h4>
+                      <p className='p'>{user.role}</p>
+                      <div className='flex flex-row items-center'>
+                        <Button
+                          theme='ghost'
+                          href={`mailto:${user.email}`}
+                          className='text-primary-defaultStrong h4'
+                          label={user.email}
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </Slider>
             </div>
           </div>
+          {/* Slick Slider Example */}
           {/* Licenses & Certificates Link */}
           <div className='mt-8'>
             <h3>Ліцензії та сертифікати</h3>
@@ -89,18 +139,39 @@ const AboutPage = () => {
               {certificatesArray.map((pdfDoc, index) => (
                 <div
                   key={index}
-                  className='flex h-48 flex-1 items-center justify-center rounded-2xl bg-slate-100'
+                  className='flex flex-1 items-center justify-center rounded-2xl bg-slate-100'
+                  onClick={() => {
+                    setSelectedCertificate(pdfDoc);
+                  }}
                 >
                   <Image
                     src={Array.isArray(pdfDoc) ? pdfDoc[0] : pdfDoc}
                     alt='index'
-                    height={100}
-                    width={100}
+                    height={200}
+                    width={200}
+                    className='pointer-events-none'
                   />
                 </div>
               ))}
             </div>
           </div>
+          <Modal
+            isOpen={!!selectedCertificate}
+            onClose={() => setSelectedCertificate(null)}
+          >
+            {selectedCertificate && (
+              <div className='flex flex-1 items-center justify-center rounded-2xl'>
+                <Image
+                  src={
+                    Array.isArray(selectedCertificate)
+                      ? selectedCertificate[0]
+                      : selectedCertificate
+                  }
+                  alt='certificate'
+                />
+              </div>
+            )}
+          </Modal>
         </div>
       </div>
     </Layout>
