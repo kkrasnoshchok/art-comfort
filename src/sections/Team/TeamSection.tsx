@@ -38,11 +38,6 @@ export const TeamSection = () => {
     },
   };
 
-  const itemVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
-
   return (
     <SectionWrapper sectionProps={{ id: 'team' }} className='pb-0'>
       <motion.div
@@ -59,7 +54,6 @@ export const TeamSection = () => {
           <Swiper
             ref={swiperRef}
             grabCursor
-            loop
             autoplay
             slidesPerView={getSlidesPerView()}
             spaceBetween={24}
@@ -69,15 +63,6 @@ export const TeamSection = () => {
             {team.map((user, index) => (
               <SwiperSlide key={index}>
                 <motion.div
-                  variants={itemVariants}
-                  initial='hidden'
-                  whileInView='visible'
-                  viewport={{ amount: 0.5, once: true }}
-                  transition={{
-                    delay: index * 0.1,
-                    duration: 0.5,
-                    easings: ['easeIn', 'easeOut'],
-                  }}
                   className={clsxm(
                     'team-element group relative',
                     'flex h-full w-full flex-col items-center justify-center'
