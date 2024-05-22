@@ -2,6 +2,8 @@ export type LocaleKeysSkeleton = {
   general: {
     contactUs: string;
     exploreDetails: string;
+    backToMain: string;
+    backToList: string;
   };
   header: Header;
   welcome: Welcome;
@@ -11,6 +13,8 @@ export type LocaleKeysSkeleton = {
   team: Team;
   news: News;
   contacts: Contacts;
+  form: Form;
+  vacancies: Vacancies;
 };
 
 type Header = {
@@ -86,7 +90,6 @@ type Contacts = {
   title: string;
   contactUsDirectly: string;
   leaveRequest: string;
-  form: Form;
 };
 
 type Form = {
@@ -94,6 +97,7 @@ type Form = {
   email: FormInput;
   phone: FormInput;
   message: FormInput;
+  motivationMessage: FormInput;
   files: FormInput;
   send: string;
 };
@@ -101,4 +105,11 @@ type Form = {
 type FormInput = {
   label: string;
   error?: string;
+};
+
+type Vacancies = {
+  openPositions: string;
+  searchVacanciesPlaceholder: string;
+  vacancyNamePlaceholder: string;
+  vacancyLocationPlaceholder: string;
 };

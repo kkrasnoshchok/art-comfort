@@ -1,3 +1,5 @@
+import { LocaleKeysSkeleton } from '@/locales/types';
+
 export type Vacancy = {
   id: string;
   jobTitle: string;
@@ -11,10 +13,11 @@ type VacancyColumn = {
   header: string;
 };
 
-export const vacanciesColumns: VacancyColumn[] = [
-  { key: 'jobTitle', header: 'Назва Вакансії' },
-  { key: 'location', header: 'Локація' },
-  // { key: 'shortDescription', header: 'Короткий опис' },
+export const vacanciesColumns = (
+  t: LocaleKeysSkeleton['vacancies']
+): VacancyColumn[] => [
+  { key: 'jobTitle', header: t.vacancyNamePlaceholder },
+  { key: 'location', header: t.vacancyLocationPlaceholder },
 ];
 
 export const vacancies: Vacancy[] = [

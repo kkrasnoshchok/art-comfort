@@ -19,7 +19,7 @@ import { GoogleMap } from './components/GoogleMap';
 
 export const ContactsSection = () => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  const { contacts: contactsTranslations } = useTranslations();
+  const { contacts: contactsTranslations, form } = useTranslations();
 
   const ContactsForm = z.object({
     name: z.string().min(1),
@@ -221,7 +221,7 @@ export const ContactsSection = () => {
                 <div className='mt-6 flex w-full flex-col gap-4'>
                   <div className='flex w-full gap-4'>
                     <Input
-                      label={contactsTranslations.form.name.label}
+                      label={form.name.label}
                       name='name'
                       inputClassName='h-full'
                       onClear={() => setFieldValue('name', '')}
@@ -235,7 +235,7 @@ export const ContactsSection = () => {
                       }
                     />
                     <Input
-                      label={contactsTranslations.form.email.label}
+                      label={form.email.label}
                       name='email'
                       onClear={() => setFieldValue('email', '')}
                       value={values.email}
@@ -249,7 +249,7 @@ export const ContactsSection = () => {
                     />
                   </div>
                   <Input
-                    label={contactsTranslations.form.phone.label}
+                    label={form.phone.label}
                     name='phone'
                     onClear={() => setFieldValue('phone', '')}
                     value={values.phone}
@@ -262,7 +262,7 @@ export const ContactsSection = () => {
                     }
                   />
                   <Input
-                    label={contactsTranslations.form.message.label}
+                    label={form.message.label}
                     name='message'
                     disabled={isSubmitting}
                     type='textarea'
@@ -298,7 +298,7 @@ export const ContactsSection = () => {
                       accept='.jpg, .jpeg, .png, .pdf'
                     >
                       <AntDesignButton icon={<FaUpload />}>
-                        {contactsTranslations.form.files.label}
+                        {form.files.label}
                       </AntDesignButton>
                     </Upload>
                   </div>
@@ -307,7 +307,7 @@ export const ContactsSection = () => {
                       onClick={() => {
                         handleSubmit();
                       }}
-                      label={contactsTranslations.form.send}
+                      label={form.send}
                       size='medium'
                       theme='primary'
                       className='mt-8'

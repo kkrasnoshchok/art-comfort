@@ -15,10 +15,12 @@ import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
+import { useTranslations } from '@/utils';
 import { vacancies } from '@/utils/dataset/vacancies.dataset';
 
 const VacancyPage = () => {
   const router = useRouter();
+  const { form, general } = useTranslations();
 
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -87,7 +89,11 @@ const VacancyPage = () => {
       <SectionWrapper>
         <section className='w-full max-w-7xl pt-16'>
           <motion.div>
-            <Button label='Back' size='small' onClick={router.back} />
+            <Button
+              label={general.backToList}
+              size='small'
+              onClick={router.back}
+            />
           </motion.div>
           <div className='flex flex-row'>
             <div className='pr-4'>
@@ -98,7 +104,6 @@ const VacancyPage = () => {
               </motion.p>
             </div>
             <div className='min-w-[35%]'>
-              {/* Form */}
               <Formik
                 validateOnBlur={hasSubmitted}
                 validateOnChange={hasSubmitted}
@@ -128,7 +133,7 @@ const VacancyPage = () => {
                   <>
                     <div className='mt-6 flex w-full flex-col gap-4'>
                       <Input
-                        label='Name'
+                        label={form.name.label}
                         name='name'
                         onClear={() => setFieldValue('name', '')}
                         value={values.name}
@@ -140,7 +145,7 @@ const VacancyPage = () => {
                         }
                       />
                       <Input
-                        label='Email'
+                        label={form.email.label}
                         name='email'
                         onClear={() => setFieldValue('email', '')}
                         value={values.email}
@@ -156,7 +161,7 @@ const VacancyPage = () => {
                         }
                       />
                       <Input
-                        label='Phone'
+                        label={form.phone.label}
                         name='phone'
                         onClear={() => setFieldValue('phone', '')}
                         value={values.phone}
@@ -172,7 +177,7 @@ const VacancyPage = () => {
                         }
                       />
                       <Input
-                        label='Чому я хочу працювати в Арт-Комфорт?'
+                        label={form.motivationMessage.label}
                         name='message'
                         disabled={isSubmitting}
                         type='textarea'
@@ -207,14 +212,14 @@ const VacancyPage = () => {
                           accept='.jpg, .jpeg, .png, .pdf'
                         >
                           <AntDesignButton icon={<FaUpload />}>
-                            Додати файли
+                            {form.files.label}
                           </AntDesignButton>
                         </Upload>
                       </div>
                       <div>
                         <Button
                           onClick={() => handleSubmit()}
-                          label='Надіслати'
+                          label={form.send}
                           size='medium'
                           theme='primary'
                           className='mt-8'

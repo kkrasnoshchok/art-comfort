@@ -1,74 +1,63 @@
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 
 import { Layout } from '@/components/layout';
+import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
-import { clsxm } from '@/utils';
+import { useTranslations } from '@/utils';
 import { news } from '@/utils/dataset/news.dataset';
 import { slugify } from '@/utils/slugify';
 
-const ProjectPage = () => {
+const NewsPage = () => {
   const router = useRouter();
-  const itemVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
-
-  const navigateBackToHome = () => {
+  const navigateBackToHome = useCallback(() => {
     router.replace('/', undefined, { shallow: true, scroll: false });
-  };
+  }, [router]);
+
+  const { general } = useTranslations();
+
   return (
     <Layout>
-      <motion.div className='from-primary-bg to-secondary-bg flex w-full items-center justify-center bg-gradient-to-b'>
-        <motion.div className='w-11/12 rounded-lg pt-12'>
+      <SectionWrapper>
+        <motion.div className='w-full max-w-7xl gap-4 pt-16'>
           <motion.div>
             <Button
-              label='Повернутись на головну'
+              label={general.backToMain}
               onClick={navigateBackToHome}
+              size='small'
             />
           </motion.div>
-          <motion.h1 className='h1 text-primary-defaultStrong mt-8'>
-            Список новин
-          </motion.h1>
-          <motion.div className='mt-8 pb-32'>
+          <motion.h3 className='mt-8 text-slate-800'>Список новин</motion.h3>
+          <motion.div className='mt-4 grid grid-cols-3 gap-4'>
             {news.map((news) => (
               <motion.div
-                className='border-primary-defaultStrong mt-4 flex items-center rounded-3xl border-2 p-4 backdrop-blur-lg'
+                className='border-primary-defaultStrong flex flex-col items-center rounded-lg border p-4 backdrop-blur-lg'
                 key={news.title}
-                variants={itemVariants}
-                initial='hidden'
-                whileInView='visible'
-                viewport={{ amount: 0.6, once: false }}
-                transition={{ duration: 0.2 }}
               >
-                <motion.div className='flex-1'>
-                  <motion.h3 className='text-primary-defaultStrong'>
-                    {news.title}
-                  </motion.h3>
-                  <p className='text-primary-defaultWeak mb-2 italic'>
-                    {news.date.format('DD.MM.YYYY')}
-                  </p>
-                  <motion.p>{news.description}</motion.p>
-                  <motion.div className='mt-4'>
-                    <Button
-                      href={`news/${slugify(news.title)}`}
-                      label='Детальніше'
-                    />
-                  </motion.div>
+                <motion.p className='text-md font-bold text-slate-700'>
+                  {news.title}
+                </motion.p>
+                <p className='w-full text-left text-xs text-slate-600'>
+                  {news.date.format('DD.MM.YYYY')}
+                </p>
+                <div className='my-2 flex aspect-video w-full rounded-md bg-slate-900' />
+                <motion.p className='mt-2 text-sm'>{news.description}</motion.p>
+                <motion.div className='mt-4 w-full'>
+                  <Button
+                    href={`news/${slugify(news.id)}`}
+                    label={general.exploreDetails}
+                    size='small'
+                  />
                 </motion.div>
-                <div
-                  className={clsxm(
-                    'bg-primary-defaultStrong ml-4 flex aspect-video w-60 rounded-2xl border border-slate-500'
-                  )}
-                ></div>
               </motion.div>
             ))}
           </motion.div>
         </motion.div>
-      </motion.div>
+      </SectionWrapper>
     </Layout>
   );
 };
 
-export default ProjectPage;
+export default NewsPage;

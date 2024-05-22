@@ -13,7 +13,7 @@ const ProjectPage = () => {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
-  const { projects: projectsTranslations } = useTranslations();
+  const { projects: projectsTranslations, general } = useTranslations();
 
   return (
     <Layout>
@@ -41,7 +41,7 @@ const ProjectPage = () => {
               <motion.div className='mt-4'>
                 <Button
                   href={`projects/${slugify(project.id)}`}
-                  label='Детальніше'
+                  label={general.exploreDetails}
                   size='small'
                 />
               </motion.div>

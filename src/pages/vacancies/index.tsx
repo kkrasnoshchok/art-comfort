@@ -8,7 +8,7 @@ import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Input } from '@/ui/Input';
-import { clsxm } from '@/utils';
+import { clsxm, useTranslations } from '@/utils';
 import { cn } from '@/utils/cn';
 import {
   vacancies,
@@ -27,6 +27,7 @@ const VacanciesPage = () => {
   >(null);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const { vacancies: vacanciesTranslations } = useTranslations();
 
   const handleSort = (field: keyof Omit<Vacancy, 'longDescription'>) => {
     if (field === sortField) {
@@ -91,10 +92,12 @@ const VacanciesPage = () => {
           )}
         >
           <div className='flex flex-row items-center'>
-            <h2 className='text-grayscale-header flex-1'>Відкриті позиції</h2>
+            <h2 className='text-grayscale-header flex-1'>
+              {vacanciesTranslations.openPositions}
+            </h2>
             <div className='flex'>
               <Input
-                label='Пошук вакансії'
+                label={vacanciesTranslations.searchVacanciesPlaceholder}
                 value={searchQuery}
                 onChange={(e) => handleSearch(e.target.value)}
                 withClear
@@ -106,7 +109,7 @@ const VacanciesPage = () => {
 
           <div className='border-grayscale-headerWeak mt-6 border border-b-0'>
             <div className='border-grayscale-headerWeak flex border-b-2'>
-              {vacanciesColumns.map((column, index) => (
+              {vacanciesColumns(vacanciesTranslations).map((column, index) => (
                 <motion.div
                   key={column.key}
                   layoutId={column.key}
@@ -157,17 +160,19 @@ const VacanciesPage = () => {
                 className='vacancy-list-card block'
               >
                 <motion.div className='border-grayscale-body hover:bg-grayscale-bgWeak group flex border-b transition-all'>
-                  {vacanciesColumns.map((column, index) => (
-                    <motion.div
-                      key={column.key}
-                      className={cn(
-                        'min-w-[30%] p-2 transition-all',
-                        index === 0 && 'flex-1'
-                      )}
-                    >
-                      {vacancy[column.key]}
-                    </motion.div>
-                  ))}
+                  {vacanciesColumns(vacanciesTranslations).map(
+                    (column, index) => (
+                      <motion.div
+                        key={column.key}
+                        className={cn(
+                          'min-w-[30%] p-2 transition-all',
+                          index === 0 && 'flex-1'
+                        )}
+                      >
+                        {vacancy[column.key]}
+                      </motion.div>
+                    )
+                  )}
                 </motion.div>
               </MotionLink>
             ))}

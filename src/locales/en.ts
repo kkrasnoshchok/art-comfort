@@ -4,6 +4,8 @@ export const en: LocaleKeysSkeleton = {
   general: {
     contactUs: 'Contact us',
     exploreDetails: 'Learn more',
+    backToMain: 'Back to main',
+    backToList: 'Back to list',
   },
   header: {
     about: 'About us',
@@ -98,7 +100,6 @@ export const en: LocaleKeysSkeleton = {
     },
     showAllProjects: 'View all projects',
   },
-
   statistics: {
     experience: 'Years of experience',
     projects: 'Successfully completed projects',
@@ -115,26 +116,35 @@ export const en: LocaleKeysSkeleton = {
     title: 'Contacts',
     contactUsDirectly: 'Contact us directly',
     leaveRequest: 'Leave a request',
-    form: {
-      name: {
-        label: 'Name',
-        error: '',
-      },
-      email: {
-        label: 'Email',
-        error: '',
-      },
-      phone: {
-        label: 'Phone number (+380)',
-        error: '',
-      },
-      message: {
-        label: 'Message',
-      },
-      files: {
-        label: 'Attach files',
-      },
-      send: 'Send',
+  },
+  form: {
+    name: {
+      label: 'Name',
+      error: '',
     },
+    email: {
+      label: 'Email',
+      error: '',
+    },
+    phone: {
+      label: 'Phone number (+380)',
+      error: '',
+    },
+    message: {
+      label: 'Message',
+    },
+    motivationMessage: {
+      label: 'Why do you want to work in Art-Comfort?',
+    },
+    files: {
+      label: 'Attach files',
+    },
+    send: 'Send',
+  },
+  vacancies: {
+    openPositions: 'Open positions',
+    searchVacanciesPlaceholder: 'Search for position',
+    vacancyNamePlaceholder: 'Name of vacancy',
+    vacancyLocationPlaceholder: 'Location',
   },
 };

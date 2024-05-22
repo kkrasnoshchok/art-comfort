@@ -3,7 +3,9 @@ import { LocaleKeysSkeleton } from '@/locales/types';
 export const ua: LocaleKeysSkeleton = {
   general: {
     contactUs: 'Звʼязатись з нами',
-    exploreDetails: 'Дізнатись детальніше',
+    exploreDetails: 'Детальніше',
+    backToMain: 'Повернутись на головну',
+    backToList: 'Повернутись до списку',
   },
   header: {
     about: 'Про нас',
@@ -98,7 +100,6 @@ export const ua: LocaleKeysSkeleton = {
     },
     showAllProjects: 'Переглянути всі проєкти',
   },
-
   statistics: {
     experience: 'Років досвіду',
     projects: 'Успішно завершених проєктів',
@@ -113,28 +114,37 @@ export const ua: LocaleKeysSkeleton = {
   },
   contacts: {
     title: 'Контакти',
-    contactUsDirectly: 'Звʼязатись напряму',
-    leaveRequest: 'Лишити заявку',
-    form: {
-      name: {
-        label: 'Імʼя',
-        error: '',
-      },
-      email: {
-        label: 'Електронна пошта',
-        error: '',
-      },
-      phone: {
-        label: 'Номер телефону (+380)',
-        error: '',
-      },
-      message: {
-        label: 'Повідомлення',
-      },
-      files: {
-        label: 'Прикріпити файли',
-      },
-      send: 'Надіслати',
+    contactUsDirectly: 'Зв’яжіться з нами безпосередньо',
+    leaveRequest: 'Залишити запит',
+  },
+  form: {
+    name: {
+      label: 'Ім’я',
+      error: '',
     },
+    email: {
+      label: 'Ел. пошта',
+      error: '',
+    },
+    phone: {
+      label: 'Номер телефону (+380)',
+      error: '',
+    },
+    message: {
+      label: 'Повідомлення',
+    },
+    motivationMessage: {
+      label: 'Чому ви хочете працювати в Art-Comfort?',
+    },
+    files: {
+      label: 'Прикріпити файли',
+    },
+    send: 'Відправити',
+  },
+  vacancies: {
+    openPositions: 'Відкриті позиції',
+    searchVacanciesPlaceholder: 'Пошук вакансії',
+    vacancyNamePlaceholder: 'Назва вакансії',
+    vacancyLocationPlaceholder: 'Локація',
   },
 };
