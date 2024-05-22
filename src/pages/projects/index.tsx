@@ -1,11 +1,10 @@
 import { motion, Variants } from 'framer-motion';
-import Image from 'next/image';
 
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
-import { clsxm } from '@/utils';
+import { clsxm, useTranslations } from '@/utils';
 import { projects } from '@/utils/dataset/projects.dataset';
 import { slugify } from '@/utils/slugify';
 
@@ -14,12 +13,13 @@ const ProjectPage = () => {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
+  const { projects: projectsTranslations } = useTranslations();
 
   return (
     <Layout>
       <SectionWrapper>
         <motion.div className='grid w-full max-w-7xl grid-cols-3 gap-4 pt-16'>
-          {projects.map((project) => (
+          {projects(projectsTranslations).map((project, index) => (
             <motion.div
               className='rounded-lg border p-4 shadow-md'
               key={project.title}
@@ -27,27 +27,20 @@ const ProjectPage = () => {
               initial='hidden'
               whileInView='visible'
               viewport={{ amount: 0.6, once: false }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.2, delay: index * 0.1 + 0.5 }}
             >
-              <h4 className=''>{project.title}</h4>
-              <p className='text-primary-defaultWeak mb-2 text-sm italic'>
-                {project.year}
-              </p>
-              <motion.p className='text-sm'>{project.details}</motion.p>
+              <h4>{project.title}</h4>
+              <motion.p className='text-[10px]'>{project.description}</motion.p>
               <div
                 className={clsxm(
-                  'bg-primary-defaultStrong mt-4 flex aspect-video overflow-hidden rounded-2xl border border-slate-500'
+                  'mt-2 flex aspect-video overflow-hidden rounded-2xl bg-slate-800'
                 )}
               >
-                <Image
-                  src={project.url}
-                  className='aspect-video h-full w-full object-cover opacity-40 transition-all group-hover:opacity-100'
-                  alt={project.title}
-                />
+                {project.header}
               </div>
-              <motion.div className='mt-2'>
+              <motion.div className='mt-4'>
                 <Button
-                  href={`projects/${slugify(project.title)}`}
+                  href={`projects/${slugify(project.id)}`}
                   label='Детальніше'
                   size='small'
                 />

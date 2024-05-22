@@ -1,29 +1,13 @@
-import {
-  IconAirConditioning,
-  IconAperture,
-  IconSun,
-} from '@tabler/icons-react';
 import { motion, Variants } from 'framer-motion';
-import Image, { StaticImageData } from 'next/image';
 import React from 'react';
-import { FaHandHoldingWater } from 'react-icons/fa';
-import { MdAir } from 'react-icons/md';
-import { WiHumidity } from 'react-icons/wi';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
 import { StatisticsContainer } from '@/components/statistics';
 import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid';
 
-import projectsAirConditioning from '@/assets/Projects_Air-Conditioning.jpeg';
-import projectsAirHumidifier from '@/assets/Projects_Air-Humidifier.jpeg';
-import projectsAirPurifier from '@/assets/Projects_Air-Purifier.jpeg';
-import projectsHeating from '@/assets/Projects_Heating.jpeg';
-import projectsVentilation from '@/assets/Projects_Ventilation.jpg';
-import projectsWaterTreatment from '@/assets/Projects_WaterTreatment.jpeg';
-import { LocaleKeysSkeleton } from '@/locales/types';
 import { Button } from '@/ui/Button';
 import { useTranslations } from '@/utils';
-import { cn } from '@/utils/cn';
+import { projects } from '@/utils/dataset/projects.dataset';
 
 export const ProjectsSection = () => {
   const sectionVariants: Variants = {
@@ -40,7 +24,7 @@ export const ProjectsSection = () => {
       transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
     },
   };
-  const { projects } = useTranslations();
+  const { projects: projectsTranslations } = useTranslations();
 
   return (
     <SectionWrapper
@@ -55,22 +39,24 @@ export const ProjectsSection = () => {
         viewport={{ amount: 0.2 }}
       >
         <motion.h1 className='h2 w-full max-w-7xl text-left'>
-          {projects.title}
+          {projectsTranslations.title}
         </motion.h1>
         <BentoGrid className='mt-4'>
-          {items(projects).map((item, i) => (
+          {projects(projectsTranslations).map((item, i) => (
             <BentoGridItem
               key={i}
               title={item.title}
               description={item.description}
               header={item.header}
               icon={item.icon}
-              // className={i === 3 || i === 6 ? 'md:col-span-2' : ''}
             />
           ))}
         </BentoGrid>
         <motion.div className='mt-4 w-full max-w-7xl'>
-          <Button label={projects.showAllProjects} href='projects' />
+          <Button
+            label={projectsTranslations.showAllProjects}
+            href='projects'
+          />
         </motion.div>
         <motion.div
           variants={statisticsVariants}
@@ -85,82 +71,3 @@ export const ProjectsSection = () => {
     </SectionWrapper>
   );
 };
-
-type ProjectImageProps = {
-  src: StaticImageData;
-  className?: string;
-  alt: string;
-};
-
-const ProjectImage = (props: ProjectImageProps) => {
-  const { alt, src, className } = props;
-  return (
-    <div className='from-grayscale-header to-grayscale-body flex h-full min-h-[6rem] w-full flex-1 rounded-xl bg-gradient-to-br dark:from-neutral-900 dark:to-neutral-800'>
-      <Image
-        alt={alt}
-        src={src}
-        className={cn('bg-contain object-cover opacity-20', className)}
-      />
-    </div>
-  );
-};
-
-const items = (t: LocaleKeysSkeleton['projects']) => [
-  {
-    title: t.ventilation.title,
-    description: t.ventilation.description,
-    header: (
-      <ProjectImage
-        src={projectsVentilation}
-        alt='Ventilation Type of Projects'
-      />
-    ),
-    icon: <IconAperture className='h-4 w-4 text-neutral-500' />,
-  },
-  {
-    title: t.airConditioning.title,
-    description: t.airConditioning.description,
-    header: (
-      <ProjectImage
-        src={projectsAirConditioning}
-        alt='Air Conditioning type of Project'
-      />
-    ),
-    icon: <IconAirConditioning className='h-4 w-4 text-neutral-500' />,
-  },
-  {
-    title: t.heating.title,
-    description: t.heating.description,
-    header: (
-      <ProjectImage src={projectsHeating} alt='Heating type of Project' />
-    ),
-    icon: <IconSun className='h-4 w-4 text-neutral-500' />,
-  },
-  {
-    title: t.airPurifying.title,
-    description: t.airPurifying.description,
-    header: (
-      <ProjectImage src={projectsAirPurifier} alt='Heating type of Project' />
-    ),
-    icon: <MdAir className='h-4 w-4 text-neutral-500' />,
-  },
-  {
-    title: t.waterTreatment.title,
-    description: t.waterTreatment.description,
-    header: (
-      <ProjectImage
-        src={projectsWaterTreatment}
-        alt='Heating type of Project'
-      />
-    ),
-    icon: <FaHandHoldingWater className='h-4 w-4 text-neutral-500' />,
-  },
-  {
-    title: t.airHumidifying.title,
-    description: t.airHumidifying.description,
-    header: (
-      <ProjectImage src={projectsAirHumidifier} alt='Heating type of Project' />
-    ),
-    icon: <WiHumidity className='h-4 w-4 text-neutral-500' />,
-  },
-];

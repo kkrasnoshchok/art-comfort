@@ -47,6 +47,7 @@ type Projects = {
 type ProjectType = {
   title: string;
   description: string;
+  longDescription: string;
 };
 
 type Services = {

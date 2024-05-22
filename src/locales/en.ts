@@ -63,29 +63,42 @@ export const en: LocaleKeysSkeleton = {
     ventilation: {
       title: 'Ventilation',
       description: 'Fresh air all year round with our expert solutions',
+      longDescription:
+        'Our ventilation projects are designed to ensure fresh and clean air in your space throughout the year. We develop and implement high-efficiency ventilation systems that meet the highest standards of quality and performance. Our solutions help reduce air pollution by removing dust, allergens, and other harmful particles. With our advanced technology and professional approach, we create a healthy and comfortable environment for you and your family or staff. Contact us today to discuss your ventilation project.',
     },
     airConditioning: {
-      title: 'Air conditioning',
+      title: 'Air Conditioning',
       description: 'Cool all year round with our expert solutions',
+      longDescription:
+        'Our air conditioning projects aim to provide optimal cooling in your space throughout the year. We offer customized solutions for various types of buildings, considering all aspects such as space and climatic conditions. Our air conditioning systems ensure efficient cooling while minimizing energy consumption and costs. With our professional installers and high-quality equipment, you will receive a reliable and long-lasting air conditioning system that maintains a comfortable temperature even on the hottest days. Contact us today to discuss your air conditioning project.',
     },
     heating: {
       title: 'Heating',
       description: 'Warmth and comfort with our expert solutions',
+      longDescription:
+        'Our heating projects are designed to ensure coziness and warmth in your space throughout the year. We offer innovative heating solutions that provide even and efficient heat distribution in all rooms. Our heating systems help reduce energy costs and improve energy efficiency, making your home or office more environmentally friendly. With our experienced technicians and quality equipment, you can enjoy warmth and comfort even on the coldest days. Contact us today to discuss your heating project.',
     },
     airPurifying: {
       title: 'Air Purification',
       description: 'Breathe easier with our advanced systems',
+      longDescription:
+        'Our air purification projects are designed to create a healthy and clean environment in your space. We use advanced technologies to remove pollutants, allergens, and microorganisms from the air, improving air quality and reducing the risk of respiratory illnesses. Our air purification systems are efficient and energy-saving, providing you with maximum comfort and safety. With our professional approach and high-quality equipment, you can enjoy fresh and clean air in your home or office. Contact us today to discuss your air purification project.',
     },
     waterTreatment: {
-      title: 'Water treatment',
+      title: 'Water Treatment',
       description: 'Clean and safe water with our efficient solutions',
+      longDescription:
+        'Our water treatment projects are designed to provide you with clean and safe water for all your needs. We offer customized water treatment solutions that include removing contaminants, chemical impurities, and microorganisms. Our water treatment systems ensure high-quality and safe water suitable for drinking, cooking, and other household needs. With our experience and advanced technologies, we can provide reliable and efficient water treatment that meets your needs. Contact us today to discuss your water treatment project.',
     },
     airHumidifying: {
       title: 'Humidifying',
       description: 'The perfect humidity level for maximum comfort',
+      longDescription:
+        'Our humidifying projects are designed to ensure the optimal humidity level in your space, helping to improve air quality and create comfortable living and working conditions. We use advanced humidifying systems that evenly distribute moisture throughout all rooms, preventing air dryness and enhancing the overall microclimate. Our solutions are suitable for various types of buildings and ensure energy-efficient resource use. With our professional approach and high-quality equipment, you can enjoy comfort and a healthy environment in your home or office. Contact us today to discuss your humidifying project.',
     },
     showAllProjects: 'View all projects',
   },
+
   statistics: {
     experience: 'Years of experience',
     projects: 'Successfully completed projects',
