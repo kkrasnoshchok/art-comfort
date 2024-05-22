@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useMemo } from 'react';
 
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
@@ -21,44 +23,6 @@ const ServicesPage = () => {
             Які послуги ми надаємо?
           </h3>
           <TabsDemo />
-          {/* <div className='mt-4'>
-            {services.map((service) => (
-              <motion.div
-                className='border-grayscale-body mt-2 flex items-center rounded-xl border p-4 backdrop-blur-lg'
-                key={service.title}
-                variants={itemVariants}
-                initial='hidden'
-                whileInView='visible'
-                viewport={{ amount: 0.6, once: false }}
-                transition={{ duration: 0.2 }}
-              >
-                <motion.div className='flex-1'>
-                  <h4 className='text-grayscale-body'>{service.title}</h4>
-                  <motion.p className='mt-2 text-sm'>
-                    {service.description}
-                  </motion.p>
-                  <motion.div className='mt-2'>
-                    <Button
-                      size='small'
-                      href={`projects/${service.id}`}
-                      label='Детальніше'
-                    />
-                  </motion.div>
-                </motion.div>
-                <div
-                  className={clsxm(
-                    'bg-primary-defaultStrong ml-4 flex aspect-video w-60 rounded-2xl border border-slate-500'
-                  )}
-                >
-                  <Image
-                    src={service.url}
-                    className='aspect-video h-full w-full object-cover opacity-40 transition-all group-hover:opacity-100'
-                    alt={service.title}
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div> */}
         </motion.div>
       </SectionWrapper>
     </Layout>
@@ -69,20 +33,29 @@ export default ServicesPage;
 
 const getTabsContent = (service: Service): JSX.Element => (
   <div className='from-grayscale-body to-grayscale-headerWeak relative h-full w-full overflow-hidden rounded-2xl bg-gradient-to-br p-10 text-white'>
-    <p className='text-lg font-bold'>{service.title}</p>
-    <p className='text-md mt-4'>{service.description}</p>
+    <p className='text-xl font-bold'>{service.title}</p>
+    <div className='mt-8 flex w-full flex-row pb-4'>
+      <p className='text-md mr-4'>{service.longDescription}</p>
+      <Image
+        className='h-full w-1/2 rounded-lg'
+        src={service.url}
+        alt={service.title}
+      />
+    </div>
   </div>
 );
 
 export function TabsDemo() {
   const { services: servicesTranslations } = useTranslations();
-  const servicesTabsWithContent = services(servicesTranslations).map(
-    (service) => ({
-      title: service.title,
-      value: service.id,
-      content: getTabsContent(service),
-    })
+  const memoizedServices = useMemo(
+    () => services(servicesTranslations),
+    [servicesTranslations]
   );
+  const servicesTabsWithContent = memoizedServices.map((service) => ({
+    title: service.title,
+    value: service.id,
+    content: getTabsContent(service),
+  }));
   return (
     <div
       className={cn(

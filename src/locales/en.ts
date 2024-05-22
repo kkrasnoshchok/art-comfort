@@ -32,21 +32,29 @@ export const en: LocaleKeysSkeleton = {
       title: 'Design',
       description:
         'Discover customised HVAC solutions with our design services. Our team of experts will ensure optimum performance and comfort for your space using cutting-edge technology and industry best practices. Contact us to discuss your project today!',
+      longDescription:
+        'Our Design service is dedicated to creating custom HVAC systems tailored to meet the unique needs of your space. We understand that every building is different, which is why our expert team conducts a comprehensive assessment to evaluate your requirements. From residential homes to large commercial complexes, we consider all variables such as square footage, occupancy, and usage patterns to craft a solution that ensures optimal efficiency and comfort. Our state-of-the-art design software enables us to provide detailed blueprints and 3D models, ensuring you have a clear understanding of the proposed system before implementation. With a focus on energy efficiency and sustainability, our designs not only enhance indoor air quality but also help in reducing long-term energy costs.',
     },
     supply: {
       title: 'Supply',
       description:
         'Enjoy an uninterrupted supply of HVAC systems with our supply services. We provide high-quality equipment and materials to ensure the efficiency and longevity of your system. Contact us today to get started!',
+      longDescription:
+        'Our Supply service ensures that you receive top-of-the-line HVAC equipment from leading manufacturers. We have established partnerships with reputable brands, guaranteeing that you have access to the latest and most reliable products in the market. Whether you need furnaces, air conditioners, heat pumps, or ventilation systems, we provide a wide range of options to suit different preferences and budgets. Our team is well-versed in the technical specifications of each product, allowing us to recommend the best solutions for your specific needs. With prompt delivery and competitive pricing, we make the process of acquiring HVAC equipment seamless and efficient, ensuring your project stays on schedule.',
     },
     installation: {
       title: 'Installation',
       description:
         'Get professional HVAC installation with our installation services. Our experienced technicians will ensure an accurate and efficient installation so you can enjoy reliable comfort in your space. Contact us to schedule an installation today!',
+      longDescription:
+        'Our Installation service is designed to provide you with professional and efficient setup of your HVAC systems. Our certified technicians have extensive experience and training, ensuring that every installation is carried out to the highest standards. We follow a meticulous process, from site preparation and equipment placement to system testing and commissioning. Our team ensures that all components are installed correctly, and that the system operates at peak performance from day one. We adhere to all safety regulations and building codes, providing you with peace of mind that your HVAC system is installed safely and effectively. Whether it’s a new installation or an upgrade to an existing system, we guarantee a hassle-free experience and exceptional results.',
     },
     maintenance: {
       title: 'Maintenance',
       description:
         'Keep your HVAC system running smoothly with our maintenance and support services. Our team offers regular maintenance and reliable support to keep your system running efficiently all year round. Contact us to learn more about our maintenance plans!',
+      longDescription:
+        'Our Maintenance service is designed to keep your HVAC systems running smoothly and efficiently throughout the year. Regular maintenance is crucial for preventing unexpected breakdowns and extending the lifespan of your equipment. Our maintenance packages include thorough inspections, cleaning, and tune-ups of all HVAC components. We check for any signs of wear and tear, replace filters, and ensure that all parts are functioning correctly. Our proactive approach helps identify potential issues before they become major problems, saving you time and money in the long run. With flexible scheduling and prompt service, our maintenance plans are tailored to meet your needs, ensuring uninterrupted comfort and peace of mind.',
     },
     exploreServices: 'Learn more about services',
   },

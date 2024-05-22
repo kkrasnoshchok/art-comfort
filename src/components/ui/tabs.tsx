@@ -38,7 +38,7 @@ export const Tabs = ({
     <>
       <div
         className={cn(
-          'no-visible-scrollbar relative flex w-full max-w-full flex-row items-center justify-start overflow-auto [perspective:1000px] sm:overflow-visible',
+          'relative flex w-full max-w-full flex-row items-center justify-start overflow-auto sm:overflow-visible',
           containerClassName
         )}
       >
@@ -51,9 +51,7 @@ export const Tabs = ({
               onClick={() => {
                 moveSelectedTabToTop(idx);
               }}
-              style={{ transformStyle: 'preserve-3d' }}
               className='mr-4'
-              layoutId='clickedbutton'
             />
           </>
         ))}

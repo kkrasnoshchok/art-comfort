@@ -61,6 +61,7 @@ type Services = {
 type ServiceType = {
   title: string;
   description: string;
+  longDescription: string;
 };
 
 type Statistics = {

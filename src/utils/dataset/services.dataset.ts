@@ -12,6 +12,7 @@ export type Service = {
   id: string;
   title: string;
   description: string;
+  longDescription: string;
   url: StaticImageData;
 };
 
@@ -20,24 +21,28 @@ export const services = (t: LocaleKeysSkeleton['services']): Service[] => [
     id: 'design',
     title: t.design.title,
     description: t.design.description,
+    longDescription: t.design.longDescription,
     url: designingBackground,
   },
   {
     id: 'supply',
     title: t.supply.title,
     description: t.supply.description,
+    longDescription: t.supply.longDescription,
     url: supplyBackground,
   },
   {
     id: 'installation',
     title: t.installation.title,
     description: t.installation.description,
+    longDescription: t.installation.longDescription,
     url: installationBackground,
   },
   {
     id: 'maintenance',
     title: t.maintenance.title,
     description: t.maintenance.description,
+    longDescription: t.maintenance.longDescription,
     url: maintenanceBackground,
   },
 ];
