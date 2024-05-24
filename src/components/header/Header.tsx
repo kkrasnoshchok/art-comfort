@@ -137,7 +137,7 @@ export const Header = () => {
               <p className='w-48'>{header.newsTooltip}</p>
             </div>
           </MenuItem>
-          <div>
+          <div className='cursor-pointer'>
             <span
               onClick={() => setDropdownOpened((prev) => !prev)}
               className='relative rounded-md border px-2 py-1 text-2xl'

@@ -116,25 +116,28 @@ export const en: LocaleKeysSkeleton = {
     title: 'Contacts',
     contactUsDirectly: 'Contact us directly',
     leaveRequest: 'Leave a request',
+    locationLabel: 'Berkovetska st. 6A, Kyiv City',
   },
   form: {
     name: {
       label: 'Name',
-      error: '',
+      error: 'Please enter your name',
     },
     email: {
       label: 'Email',
-      error: '',
+      error: 'Please enter your email',
+      invalidError: 'Entered email is not valid',
     },
     phone: {
       label: 'Phone number (+380)',
-      error: '',
+      error: 'Please enter your phone',
     },
     message: {
       label: 'Message',
     },
     motivationMessage: {
       label: 'Why do you want to work in Art-Comfort?',
+      error: 'Please tell us why you want to work with us',
     },
     files: {
       label: 'Attach files',

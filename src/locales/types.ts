@@ -90,6 +90,7 @@ type Contacts = {
   title: string;
   contactUsDirectly: string;
   leaveRequest: string;
+  locationLabel: string;
 };
 
 type Form = {
@@ -105,6 +106,7 @@ type Form = {
 type FormInput = {
   label: string;
   error?: string;
+  invalidError?: string;
 };
 
 type Vacancies = {

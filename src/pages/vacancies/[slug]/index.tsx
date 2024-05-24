@@ -34,15 +34,16 @@ const VacancyPage = () => {
     return null;
   }
 
-  const ContactsForm = z
-    .object({
-      name: z.string().min(1),
-      email: z.string().min(1),
-      phone: z.string().min(1),
-      message: z.string(),
-      files: z.array(z.object({})).optional(),
-    })
-    .required();
+  const ContactsForm = z.object({
+    name: z.string({ required_error: form.name.error }).min(1),
+    email: z
+      .string({ required_error: form.email.error })
+      .email(form.email.invalidError)
+      .min(1),
+    phone: z.string({ required_error: form.phone.error }).min(1),
+    message: z.string({ required_error: form.motivationMessage.error }).min(1),
+    files: z.array(z.object({})).optional(),
+  });
 
   type ContactsFormType = z.infer<typeof ContactsForm>;
 
@@ -50,7 +51,6 @@ const VacancyPage = () => {
     values: ContactsFormType,
     helpers: FormikHelpers<ContactsFormType>
   ) => {
-    setHasSubmitted(true);
     const formData = new FormData();
     for (const valueKey in values) {
       if (valueKey !== 'files') {
@@ -182,6 +182,7 @@ const VacancyPage = () => {
                         disabled={isSubmitting}
                         type='textarea'
                         rows={10}
+                        error={errors.message}
                         onClear={() => setFieldValue('message', '')}
                         inputClassName='w-full resize-none border-transparent focus:border-transparent focus:ring-0'
                         value={values.message}
@@ -218,11 +219,15 @@ const VacancyPage = () => {
                       </div>
                       <div>
                         <Button
-                          onClick={() => handleSubmit()}
+                          onClick={() => {
+                            setHasSubmitted(true);
+                            handleSubmit();
+                          }}
                           label={form.send}
                           size='medium'
                           theme='primary'
                           className='mt-8'
+                          disabled={!!errors}
                         />
                       </div>
                     </div>

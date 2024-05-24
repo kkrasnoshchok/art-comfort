@@ -116,25 +116,28 @@ export const ua: LocaleKeysSkeleton = {
     title: 'Контакти',
     contactUsDirectly: 'Зв’яжіться з нами безпосередньо',
     leaveRequest: 'Залишити запит',
+    locationLabel: 'вул. Берковецька 6а, м. Київ',
   },
   form: {
     name: {
       label: 'Ім’я',
-      error: '',
+      error: "Будь ласка, введіть ваше ім'я",
     },
     email: {
       label: 'Ел. пошта',
-      error: '',
+      error: 'Будь ласка, введіть ваш email',
+      invalidError: 'Йой, здається десь є помилка',
     },
     phone: {
       label: 'Номер телефону (+380)',
-      error: '',
+      error: 'Будь ласка, введіть ваш телефон',
     },
     message: {
       label: 'Повідомлення',
     },
     motivationMessage: {
       label: 'Чому ви хочете працювати в Art-Comfort?',
+      error: 'Будь ласка, розкажіть, чому ви хочете працювати з нами',
     },
     files: {
       label: 'Прикріпити файли',

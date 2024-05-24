@@ -41,7 +41,7 @@ export const MenuItem = ({
       >
         {item}
       </motion.p>
-      {active !== null && (
+      {/* {active !== null && (
         <motion.div
           initial={{ opacity: 0, scale: 0.85, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -64,7 +64,7 @@ export const MenuItem = ({
             </div>
           )}
         </motion.div>
-      )}
+      )} */}
     </MotionLink>
   );
 };
@@ -85,7 +85,7 @@ export const Menu = ({
         setTimeout(() => {
           setActive(null);
         }, 500);
-      }} // resets the state
+      }}
       className={cn(
         'relative space-x-8 rounded-lg border border-transparent bg-white py-2 shadow-lg dark:border-white/[0.2] dark:bg-black',
         className

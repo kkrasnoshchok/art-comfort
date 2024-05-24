@@ -3,7 +3,10 @@ import { Button as AntDesignButton } from 'antd';
 import { Formik, FormikHelpers } from 'formik';
 import { motion, Variants } from 'framer-motion';
 import { useState } from 'react';
+import { AiFillPhone } from 'react-icons/ai';
 import { FaUpload } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
+import { TiLocation } from 'react-icons/ti';
 import { toast } from 'react-toastify';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
@@ -13,7 +16,6 @@ import { SectionWrapper } from '@/components/sectionWrapper';
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
 import { clsxm, useTranslations } from '@/utils';
-import { cn } from '@/utils/cn';
 
 import { GoogleMap } from './components/GoogleMap';
 
@@ -22,9 +24,12 @@ export const ContactsSection = () => {
   const { contacts: contactsTranslations, form } = useTranslations();
 
   const ContactsForm = z.object({
-    name: z.string().min(1),
-    email: z.string().email().min(1),
-    phone: z.string().min(1),
+    name: z.string({ required_error: form.name.error }).min(1),
+    email: z
+      .string({ required_error: form.email.error })
+      .email(form.email.invalidError)
+      .min(1),
+    phone: z.string({ required_error: form.phone.error }).min(1),
     message: z.string().optional(),
     files: z.array(z.object({})).optional(),
   });
@@ -48,7 +53,6 @@ export const ContactsSection = () => {
     values: ContactsFormType,
     helpers: FormikHelpers<ContactsFormType>
   ) => {
-    setHasSubmitted(true);
     const formData = new FormData();
     for (const valueKey in values) {
       if (valueKey !== 'files') {
@@ -101,92 +105,39 @@ export const ContactsSection = () => {
               <p className='text-lg font-semibold'>
                 {contactsTranslations.contactUsDirectly}
               </p>
-              <div className='mt-6 flex w-full gap-2'>
-                <div
-                  className={cn(
-                    'w-full rounded-xl p-2',
-                    'bg-grayscale-bg border-grayscale-headerWeak border'
-                  )}
-                >
-                  {[
-                    {
-                      id: 0,
-                      label: 'Lifecell',
-                      buttonLabel: '+380931231231232',
-                      buttonHref: 'tel:+380931231231232',
-                    },
-                    {
-                      id: 1,
-                      label: 'Vodafone',
-                      buttonLabel: '+380971231231232',
-                      buttonHref: 'tel:+380971231231232',
-                    },
-                    {
-                      id: 2,
-                      label: 'Kyivstar',
-                      buttonLabel: '+380961231231232',
-                      buttonHref: 'tel:+380961231231232',
-                    },
-                  ].map((item) => (
-                    <div
-                      key={item.id}
-                      className='flex flex-row items-center gap-1'
-                    >
-                      <p className='text-primary-defaultWeak text-sm'>
-                        {item.label}:{' '}
-                      </p>
-                      <Button
-                        className='contacts-section__button-phone'
-                        theme='ghost'
-                        size='small'
-                        label={item.buttonLabel}
-                        href={item.buttonHref}
-                      />
-                    </div>
-                  ))}
+              <div className='mt-6 flex w-full flex-col gap-2'>
+                <div className='flex flex-row items-center'>
+                  <Button
+                    Icon={<MdEmail color='#1e293b' size={24} />}
+                    className='contacts-section__button-phone items-center'
+                    theme='ghost'
+                    label='info@art-comfort.com'
+                    labelClassName='ml-2 text-slate-800'
+                    href='mailto:info@art-comfort.com'
+                    size='small'
+                  />
                 </div>
-                <div
-                  className={cn(
-                    'w-full rounded-xl p-2',
-                    'bg-grayscale-bg border-grayscale-headerWeak border'
-                  )}
-                >
-                  {[
-                    {
-                      id: 0,
-                      label: 'CEO',
-                      buttonLabel: 'oleg@art-comfort.com',
-                      buttonHref: 'mailto:oleg@art-comfort.com',
-                    },
-                    {
-                      id: 1,
-                      label: 'Projects Lead',
-                      buttonLabel: 'natalia@art-comfort.com',
-                      buttonHref: 'mailto:natalia@art-comfort.com',
-                    },
-                    {
-                      id: 2,
-                      label: 'HR',
-                      buttonLabel: 'kateryna@art-comfort.com',
-                      buttonHref: 'mailto:kateryna@art-comfort.com',
-                    },
-                  ].map((item) => (
-                    <div
-                      key={item.id}
-                      className='flex flex-row items-center gap-1'
-                    >
-                      <p className='text-primary-defaultWeak text-sm'>
-                        {item.label}:{' '}
-                      </p>
-                      <Button
-                        className='contacts-section__button-phone'
-                        theme='ghost'
-                        size='small'
-                        label={item.buttonLabel}
-                        href={item.buttonHref}
-                      />
-                    </div>
-                  ))}
+                <div className='flex flex-row items-center'>
+                  <Button
+                    Icon={<TiLocation color='#1e293b' size={24} />}
+                    className='contacts-section__button-phone items-center'
+                    theme='ghost'
+                    label={contactsTranslations.locationLabel}
+                    labelClassName='ml-2 text-slate-800'
+                    href='https://maps.app.goo.gl/sSCxtqTTNVne8Y4s5'
+                    size='small'
+                  />
+                </div>
+                <div className='flex flex-row items-center'>
+                  <Button
+                    Icon={<AiFillPhone color='#1e293b' size={24} />}
+                    className='contacts-section__button-phone items-center'
+                    theme='ghost'
+                    label='+380732792891'
+                    labelClassName='ml-2 text-slate-800'
+                    href='tel:+380732792891'
+                    size='small'
+                  />
                 </div>
               </div>
             </div>
@@ -305,6 +256,7 @@ export const ContactsSection = () => {
                   <div>
                     <Button
                       onClick={() => {
+                        setHasSubmitted(true);
                         handleSubmit();
                       }}
                       label={form.send}
@@ -323,33 +275,3 @@ export const ContactsSection = () => {
     </SectionWrapper>
   );
 };
-
-// Real contacts data
-
-// <div className='flex flex-row gap-1'>
-//               <p className='text-primary-defaultWeak'>Локація:</p>
-//               <Button
-//                 className='contacts-section__button-phone'
-//                 theme='ghost'
-//                 label='вул. Берковецька 6а, м. Київ'
-//                 href='https://maps.app.goo.gl/sSCxtqTTNVne8Y4s5'
-//               />
-//             </div>
-//             <div className='flex flex-row gap-1'>
-//               <p className='text-primary-defaultWeak'>E-Mail:</p>
-//               <Button
-//                 className='contacts-section__button-phone'
-//                 theme='ghost'
-//                 label='info@art-comfort.com'
-//                 href='mailto:info@art-comfort.com'
-//               />
-//             </div>
-//             <div className='flex flex-row gap-1'>
-//               <p className='text-primary-defaultWeak'>Phone:</p>
-//               <Button
-//                 className='contacts-section__button-phone'
-//                 theme='ghost'
-//                 label='+380732792891'
-//                 href='tel:+380732792891'
-//               />
-//             </div>
