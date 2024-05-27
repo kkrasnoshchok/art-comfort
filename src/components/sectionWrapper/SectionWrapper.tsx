@@ -5,13 +5,12 @@ import { clsxm } from '@/utils';
 
 type Props = {
   className?: string;
-  innerClassName?: string;
   children: ReactNode;
   sectionProps?: HTMLMotionProps<'section'>;
 };
 
 export const SectionWrapper = (props: Props) => {
-  const { className, innerClassName, children, sectionProps } = props;
+  const { className, children, sectionProps } = props;
   return (
     <motion.section
       className={clsxm(
@@ -20,13 +19,6 @@ export const SectionWrapper = (props: Props) => {
       )}
       {...sectionProps}
     >
-      <motion.div
-        className={clsxm(
-          'absolute left-0 top-0 -z-10 flex h-full w-full',
-          // 'from-primary-bgStrong to-secondary-bgStrong bg-gradient-to-t',
-          innerClassName
-        )}
-      />
       {children}
     </motion.section>
   );

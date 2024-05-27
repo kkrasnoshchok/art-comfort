@@ -3,11 +3,12 @@ import { motion, Variants } from 'framer-motion';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
-import { clsxm, useTranslations } from '@/utils';
+import { clsxm, useBreakpoint, useTranslations } from '@/utils';
 import { news } from '@/utils/dataset/news.dataset';
 import { slugify } from '@/utils/slugify';
 
 export const NewsSection = () => {
+  const { isMd } = useBreakpoint('md');
   const sectionVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -22,25 +23,23 @@ export const NewsSection = () => {
   const { news: newsTranslations } = useTranslations();
 
   return (
-    <SectionWrapper
-      sectionProps={{ id: 'news' }}
-      className='pb-0'
-      innerClassName='bg-gradient-to-b'
-    >
+    <SectionWrapper sectionProps={{ id: 'news' }} className='pb-0'>
       <motion.div
         variants={sectionVariants}
         initial='hidden'
         whileInView='visible'
         viewport={{ amount: 0.1 }}
         transition={{ duration: 0.5, easings: ['easeIn', 'easeOut'] }}
-        className={clsxm('flex w-full max-w-7xl flex-col bg-opacity-25 py-8')}
+        className={clsxm(
+          'mx-4 flex w-full max-w-6xl flex-col bg-opacity-25 py-8'
+        )}
       >
         <h1 className='h2 text-grayscale-headerWeak'>
           {newsTranslations.title}
         </h1>
         {/* News Container */}
         <div className='relative flex-1'>
-          {news.map((item, index) => (
+          {news.slice(0, isMd ? news.length : 2).map((item, index) => (
             <motion.div
               key={index}
               className={clsxm(
@@ -59,13 +58,17 @@ export const NewsSection = () => {
             >
               {/* News */}
               <div className='flex flex-1 flex-col'>
-                <h3 className='h4 text-grayscale-header'>{item.title}</h3>
+                <h3 className='md:h4 text-grayscale-header text-xs'>
+                  {item.title}
+                </h3>
                 <p className='text-grayscale-headerWeak mb-1 italic'>
                   {item.date.format('DD.MM.YYYY')}
                 </p>
-                <p className='text-grayscale-body text-sm'>
-                  {item.description}
-                </p>
+                {isMd && (
+                  <p className='text-grayscale-body text-sm'>
+                    {item.description}
+                  </p>
+                )}
                 <div>
                   <Button
                     label='Дізнатись деталі'

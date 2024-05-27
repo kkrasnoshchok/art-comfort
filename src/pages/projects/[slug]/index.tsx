@@ -21,7 +21,7 @@ const ProjectPage = () => {
   return (
     <Layout>
       <SectionWrapper>
-        <motion.div className='grid w-full max-w-7xl gap-4 pt-16'>
+        <motion.div className='grid w-full max-w-6xl gap-4 pt-16'>
           <div className='w-full'>
             <motion.div>
               <Button size='small' label='Back' onClick={router.back} />

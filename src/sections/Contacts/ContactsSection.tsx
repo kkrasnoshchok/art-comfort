@@ -15,13 +15,14 @@ import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
-import { clsxm, useTranslations } from '@/utils';
+import { clsxm, useBreakpoint, useTranslations } from '@/utils';
 
 import { GoogleMap } from './components/GoogleMap';
 
 export const ContactsSection = () => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const { contacts: contactsTranslations, form } = useTranslations();
+  const { isLg } = useBreakpoint('lg');
 
   const ContactsForm = z.object({
     name: z.string({ required_error: form.name.error }).min(1),
@@ -94,15 +95,15 @@ export const ContactsSection = () => {
         whileInView='visible'
         viewport={{ amount: 0.2 }}
         transition={{ duration: 0.5, easings: ['easeIn', 'easeOut'] }}
-        className={clsxm('w-full max-w-7xl')}
+        className={clsxm('w-full max-w-6xl')}
       >
-        <h1 className='h2 text-grayscale-headerWeak'>
+        <h1 className='h2 text-grayscale-headerWeak mx-4'>
           {contactsTranslations.title}
         </h1>
-        <div className='grid grid-cols-8 gap-8 pt-4'>
-          <div className='col-span-4 flex flex-col'>
+        <div className='flex flex-col-reverse gap-8 pt-4 lg:flex-row'>
+          <div className='mx-4 flex flex-1 flex-col'>
             <div className='flex w-full flex-col items-center lg:items-start'>
-              <p className='text-lg font-semibold'>
+              <p className='w-full text-left text-lg font-semibold'>
                 {contactsTranslations.contactUsDirectly}
               </p>
               <div className='mt-6 flex w-full flex-col gap-2'>
@@ -165,12 +166,12 @@ export const ContactsSection = () => {
               setFieldValue,
               errors,
             }) => (
-              <div className='col-span-4'>
+              <div className='mx-4 flex-1'>
                 <p className='text-grayscale-headerWeak text-lg font-semibold'>
                   {contactsTranslations.leaveRequest}
                 </p>
                 <div className='mt-6 flex w-full flex-col gap-4'>
-                  <div className='flex w-full gap-4'>
+                  <div className='flex w-full flex-col gap-4 sm:flex-row'>
                     <Input
                       label={form.name.label}
                       name='name'
@@ -217,7 +218,7 @@ export const ContactsSection = () => {
                     name='message'
                     disabled={isSubmitting}
                     type='textarea'
-                    rows={10}
+                    rows={isLg ? 10 : 4}
                     onClear={() => setFieldValue('message', '')}
                     inputClassName='w-full resize-none border-transparent focus:border-transparent focus:ring-0'
                     // className='w-10/12'

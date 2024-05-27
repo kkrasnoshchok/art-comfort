@@ -17,7 +17,7 @@ const HomePage = () => {
     <Layout>
       <Seo />
       <motion.div className='flex w-full justify-center'>
-        <motion.main className='flex w-11/12 flex-col items-center justify-center'>
+        <motion.main className='flex flex-col items-center justify-center'>
           <WelcomeSection />
           <ServicesSection />
           <ProjectsSection />

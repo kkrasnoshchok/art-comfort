@@ -16,7 +16,7 @@ const ServicesPage = () => {
       <SectionWrapper>
         <motion.div
           className={clsxm(
-            'flex w-full max-w-7xl flex-col justify-center pt-12'
+            'flex w-full max-w-6xl flex-col justify-center pt-12'
           )}
         >
           <h3 className='text-grayscale-header mt-8'>
@@ -59,7 +59,7 @@ export function TabsDemo() {
   return (
     <div
       className={cn(
-        'relative mt-8 h-[20rem] w-full max-w-7xl [perspective:1000px] md:h-[40rem]',
+        'relative mt-8 h-[20rem] w-full max-w-6xl [perspective:1000px] md:h-[40rem]',
         'flex flex-col items-start justify-start'
       )}
     >

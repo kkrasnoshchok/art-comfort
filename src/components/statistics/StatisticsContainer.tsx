@@ -32,13 +32,12 @@ const statistics = (t: LocaleKeysSkeleton['statistics']): Statistics[] => [
 export const StatisticsContainer = () => {
   const { statistics: statisticsTranslations } = useTranslations();
   return (
-    <motion.div className='mt-12 grid grid-cols-1 gap-4 md:grid-cols-3'>
+    <motion.div className='mx-4 mt-8 grid grid-cols-1 gap-4 md:mt-12 md:grid-cols-3'>
       {statistics(statisticsTranslations).map((statistic, index) => (
         <div
           key={index}
           className={cn(
             'border-primary-bg border',
-            // 'bg-slate-100 bg-opacity-25',
             'flex flex-col items-center justify-center rounded-2xl p-4 shadow-sm'
           )}
         >
@@ -62,7 +61,7 @@ export const StatisticsContainer = () => {
               />
             )}
           </CountUp>
-          <h3 className='text-graysclale-header mt-2 text-xl font-semibold'>
+          <h3 className='text-graysclale-header mt-2 text-sm font-semibold xl:text-xl'>
             {statistic.name}
           </h3>
         </div>

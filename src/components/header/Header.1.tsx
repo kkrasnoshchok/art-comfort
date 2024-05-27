@@ -1,53 +1,14 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
-
 import NextImage from '@/components/NextImage';
-
 import { Button } from '@/ui/Button';
 import { Menu, MenuItem } from '@/ui/NavbarMenu';
 import { useBreakpoint, useLocale } from '@/utils';
 import { cn } from '@/utils/cn';
-import { LocaleType, useTranslations } from '@/utils/useLocale';
-
+import { useTranslations } from '@/utils/useLocale';
 import logo from '../../assets/logo.png';
-
-/**
-   * Structure:
-   * - Call Button
-   * - Burger Button for further menu
-   * - Primary Links:
-   *  - about: '/about',
-      - services: '#services',
-      - projects: '/projects',
-      - contacts: '#contacts',
-      - vacancies: '/vacancies',
-      - news: '/news',
-   * - Secondary Links:
-   */
-
-const locales: LocaleType[] = [
-  {
-    value: 'ua',
-    label: 'Українська',
-    emoji: '🇺🇦',
-  },
-  {
-    value: 'en',
-    label: 'English',
-    emoji: '🇬🇧',
-  },
-  {
-    value: 'de',
-    label: 'Deutsch',
-    emoji: '🇩🇪',
-  },
-  {
-    value: 'pl',
-    label: 'Polska',
-    emoji: '🇵🇱',
-  },
-];
+import { locales } from './Header';
 
 export const Header = () => {
   const [active, setActive] = useState<string | null>(null);
@@ -83,7 +44,8 @@ export const Header = () => {
           className={cn(
             'flex items-center px-4',
             shouldDisplayBurger &&
-              'w-fit items-center self-center rounded-xl bg-opacity-60 px-4 py-0 backdrop-blur-md'
+              'w-fit items-center self-center bg-opacity-60 px-4 py-0'
+            // shouldDisplayBurger && 'rounded-full'
           )}
         >
           <motion.div className='menu flex flex-1 flex-col'>
@@ -109,10 +71,7 @@ export const Header = () => {
                       </div>
                     }
                     onClick={() => {
-                      setBurgerMenuOpened((prev) => {
-                        const newValue = !prev;
-                        return newValue;
-                      });
+                      setBurgerMenuOpened((prev) => !prev);
                     }}
                     theme='ghost'
                   />
@@ -120,61 +79,59 @@ export const Header = () => {
                 </>
               )}
             </div>
-            <motion.div
-              className={cn(
-                'my-2 flex flex-col items-end gap-2',
-                !isBurgerMenuOpened && 'pointer-events-none hidden opacity-0'
-              )}
-            >
-              <MenuItem
-                href='/about'
-                setActive={setActive}
-                active={active}
-                item={header.about}
-              />
-              <MenuItem
-                href='/services'
-                setActive={setActive}
-                active={active}
-                item={header.services}
-              >
-                <div className='flex flex-col space-y-4 text-sm'>
-                  <p className='w-48'>{header.servicesTooltip}</p>
-                </div>
-              </MenuItem>
-              <MenuItem
-                href='/projects'
-                setActive={setActive}
-                active={active}
-                item={header.projects}
-              />
-              <MenuItem
-                href='#contacts'
-                setActive={setActive}
-                active={active}
-                item={header.contacts}
-              />
-              <MenuItem
-                href='/vacancies'
-                setActive={setActive}
-                active={active}
-                item={header.careers}
-              >
-                <div className='flex flex-col space-y-4 text-sm'>
-                  <p className='w-48'>{header.carrersTooltip}</p>
-                </div>
-              </MenuItem>
-              <MenuItem
-                href='/news'
-                setActive={setActive}
-                active={active}
-                item={header.news}
-              >
-                <div className='flex flex-col space-y-4 text-sm'>
-                  <p className='w-48'>{header.newsTooltip}</p>
-                </div>
-              </MenuItem>
-            </motion.div>
+            {isBurgerMenuOpened && (
+              <div className='flex flex-col items-end gap-2'>
+                <MenuItem
+                  href='/about'
+                  setActive={setActive}
+                  active={active}
+                  item={header.about}
+                  className='my-2'
+                />
+                <MenuItem
+                  href='/services'
+                  setActive={setActive}
+                  active={active}
+                  item={header.services}
+                >
+                  <div className='flex flex-col space-y-4 text-sm'>
+                    <p className='w-48'>{header.servicesTooltip}</p>
+                  </div>
+                </MenuItem>
+                <MenuItem
+                  href='/projects'
+                  setActive={setActive}
+                  active={active}
+                  item={header.projects}
+                />
+                <MenuItem
+                  href='#contacts'
+                  setActive={setActive}
+                  active={active}
+                  item={header.contacts}
+                />
+                <MenuItem
+                  href='/vacancies'
+                  setActive={setActive}
+                  active={active}
+                  item={header.careers}
+                >
+                  <div className='flex flex-col space-y-4 text-sm'>
+                    <p className='w-48'>{header.carrersTooltip}</p>
+                  </div>
+                </MenuItem>
+                <MenuItem
+                  href='/news'
+                  setActive={setActive}
+                  active={active}
+                  item={header.news}
+                >
+                  <div className='flex flex-col space-y-4 text-sm'>
+                    <p className='w-48'>{header.newsTooltip}</p>
+                  </div>
+                </MenuItem>
+              </div>
+            )}
           </motion.div>
 
           {isBurgerHidden && (

@@ -88,7 +88,7 @@ const VacanciesPage = () => {
       <SectionWrapper>
         <section
           className={clsxm(
-            'flex min-h-screen w-full max-w-7xl flex-col bg-gradient-to-b pt-16'
+            'flex min-h-screen w-full max-w-6xl flex-col bg-gradient-to-b pt-16'
           )}
         >
           <div className='flex flex-row items-center'>

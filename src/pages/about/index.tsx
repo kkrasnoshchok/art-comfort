@@ -9,7 +9,6 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import { Layout } from '@/components/layout';
 
-import { Button } from '@/ui/Button';
 import { Modal } from '@/ui/Modal';
 import { cn } from '@/utils/cn';
 import { team } from '@/utils/dataset/team.dataset';
@@ -34,7 +33,7 @@ const AboutPage = () => {
   return (
     <Layout>
       <div className='flex w-full justify-center bg-white bg-opacity-75 py-24'>
-        <div className='flex max-w-7xl flex-1 flex-col'>
+        <div className='flex max-w-6xl flex-1 flex-col'>
           <p className='mt-8'>
             Інженерна компанія «АРТ-КОМФОРТ» працює на будівельному ринку з 21
             червня 2007 року. Протягом 17 років професійної діяльності компанії
@@ -102,36 +101,26 @@ const AboutPage = () => {
                       className={cn([
                         'bg-grayscale-headerWeak aspect-square w-full rounded-xl',
                       ])}
-                    >
-                      {/* <Image
-                      src={user.url}
-                      alt='alt'
-                      className={cn(
-                        'aspect-square h-full w-full rounded-xl opacity-60'
-                        // 'transition-opacity group-hover:opacity-10'
-                      )}
-                    /> */}
-                    </div>
+                    ></div>
                     <div className={cn('p-2')}>
                       <h4 className='text-primary-defaultStrong h4'>
                         {user.name}
                       </h4>
                       <p className='p'>{user.role}</p>
-                      <div className='flex flex-row items-center'>
+                      {/* <div className='flex flex-row items-center'>
                         <Button
                           theme='ghost'
                           href={`mailto:${user.email}`}
                           className='text-primary-defaultStrong h4'
                           label={user.email}
                         />
-                      </div>
+                      </div> */}
                     </div>
                   </motion.div>
                 ))}
               </Slider>
             </div>
           </div>
-          {/* Slick Slider Example */}
           {/* Licenses & Certificates Link */}
           <div className='mt-8'>
             <h3>Ліцензії та сертифікати</h3>

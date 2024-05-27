@@ -6,11 +6,13 @@ import { FaArrowRight } from 'react-icons/fa';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
-import { clsxm, useTranslations } from '@/utils';
+import { clsxm, useBreakpoint, useTranslations } from '@/utils';
+import { cn } from '@/utils/cn';
 import { Service, services } from '@/utils/dataset/services.dataset';
 
 export const ServicesSection = () => {
   const { services: servicesTranslations } = useTranslations();
+  const { isXl } = useBreakpoint('xl');
   const [activeService, setActiveService] = useState<Service | null>(null);
   const memoizedServices = useMemo(() => {
     const newServices = services(servicesTranslations);
@@ -54,10 +56,12 @@ export const ServicesSection = () => {
         initial='hidden'
         whileInView='visible'
         viewport={{ amount: 0.1 }}
-        className={clsxm('grid w-full max-w-7xl grid-cols-2 overflow-hidden')}
+        className={clsxm(
+          'mx-4 grid w-full max-w-6xl grid-rows-2 overflow-hidden md:grid-cols-2'
+        )}
       >
         {/* Left */}
-        <motion.div className='pr-8'>
+        <motion.div className='md:pr-8'>
           <motion.h1 className='h2'>{servicesTranslations.title}</motion.h1>
           <motion.div className='mt-4 flex flex-col'>
             {memoizedServices.map((service, index) => {
@@ -71,7 +75,7 @@ export const ServicesSection = () => {
                   <div
                     className={clsxm(
                       'flex cursor-pointer flex-row items-center justify-between',
-                      ' rounded-2xl p-4 transition duration-500',
+                      'rounded-2xl p-2 transition duration-500 md:p-4',
                       'active:scale-[0.99]',
                       isActive && 'services-card--active bg-slate-50'
                     )}
@@ -95,6 +99,7 @@ export const ServicesSection = () => {
                               : 'rgba(235, 237, 241, 1)'
                           }
                           size={16}
+                          className={cn('rotate-90 md:rotate-0')}
                         />
                       }
                       size='small'
@@ -119,7 +124,7 @@ export const ServicesSection = () => {
           />
         </motion.div>
         {/* Right */}
-        <motion.div className='bg-grayscale-header relative z-10 flex flex-1 flex-col justify-between rounded-[36px] p-8'>
+        <motion.div className='bg-grayscale-header relative z-10 mt-8 flex flex-1 flex-col justify-between rounded-[36px] p-8 md:mt-0'>
           <motion.div
             className='flex h-full flex-col'
             variants={contentVariants}
@@ -136,12 +141,14 @@ export const ServicesSection = () => {
                 theme='primary'
                 className='inline-flex'
                 label='Звʼязатись з нами'
+                size='small'
               />
               <Button
                 href={`services/${activeService?.id}`}
                 theme='subtle'
                 className='inline-flex'
                 label='Дізнатись детальніше'
+                size='small'
               />
             </div>
             {activeService && (

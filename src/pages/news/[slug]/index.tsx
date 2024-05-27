@@ -20,7 +20,7 @@ const Page = () => {
   return (
     <Layout>
       <SectionWrapper>
-        <motion.div className='w-full max-w-7xl gap-4 pt-16'>
+        <motion.div className='w-full max-w-6xl gap-4 pt-16'>
           <motion.div>
             <Button label={general.backToList} onClick={back} size='small' />
           </motion.div>

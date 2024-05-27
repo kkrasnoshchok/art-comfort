@@ -26,7 +26,12 @@ type ProjectImageProps = {
 const ProjectImage = (props: ProjectImageProps) => {
   const { alt, src, className } = props;
   return (
-    <div className='from-grayscale-header to-grayscale-body flex h-full min-h-[6rem] w-full flex-1 rounded-xl bg-gradient-to-br dark:from-neutral-900 dark:to-neutral-800'>
+    <div
+      className={cn(
+        'flex aspect-video h-full min-h-[6rem] w-full rounded-xl md:aspect-auto',
+        'from-grayscale-header to-grayscale-body bg-gradient-to-br dark:from-neutral-900 dark:to-neutral-800'
+      )}
+    >
       <Image
         alt={alt}
         src={src}
