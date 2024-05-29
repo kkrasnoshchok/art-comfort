@@ -61,7 +61,7 @@ export const StatisticsContainer = () => {
               />
             )}
           </CountUp>
-          <h3 className='text-graysclale-header mt-2 text-sm font-semibold xl:text-xl'>
+          <h3 className='text-graysclale-header mt-2 text-[0.75rem] font-semibold xl:text-xl'>
             {statistic.name}
           </h3>
         </div>

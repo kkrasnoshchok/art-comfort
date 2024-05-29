@@ -50,14 +50,14 @@ export const ServicesSection = () => {
   );
 
   return (
-    <SectionWrapper sectionProps={{ id: 'services' }} className='pb-0'>
+    <SectionWrapper sectionProps={{ id: 'services' }} className='h-fit pb-0'>
       <motion.div
         variants={sectionVariants}
         initial='hidden'
         whileInView='visible'
         viewport={{ amount: 0.1 }}
         className={clsxm(
-          'mx-4 grid w-full max-w-6xl grid-rows-2 overflow-hidden md:grid-cols-2'
+          'mx-4 grid w-full max-w-6xl grid-rows-2 overflow-hidden md:grid-cols-2 md:grid-rows-none'
         )}
       >
         {/* Left */}
@@ -134,7 +134,9 @@ export const ServicesSection = () => {
             <motion.h2 className='h2 text-primary-bg'>
               {activeService?.title}
             </motion.h2>
-            <p className='text-primary-bg mt-4'>{activeService?.description}</p>
+            <p className='text-primary-bg mt-4 text-xs sm:text-sm'>
+              {activeService?.description}
+            </p>
             <div className='flex flex-1 flex-row items-end justify-end gap-4'>
               <Button
                 href='#contacts'

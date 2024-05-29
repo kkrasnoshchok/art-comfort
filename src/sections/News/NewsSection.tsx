@@ -9,6 +9,7 @@ import { slugify } from '@/utils/slugify';
 
 export const NewsSection = () => {
   const { isMd } = useBreakpoint('md');
+  const { isLg } = useBreakpoint('lg');
   const sectionVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -56,17 +57,19 @@ export const NewsSection = () => {
                 easings: ['easeIn', 'easeOut'],
               }}
             >
-              {/* News */}
               <div className='flex flex-1 flex-col'>
-                <h3 className='md:h4 text-grayscale-header text-xs'>
+                <h3 className='lg:h4 text-grayscale-header text-xs md:text-sm'>
                   {item.title}
                 </h3>
-                <p className='text-grayscale-headerWeak mb-1 italic'>
+                <p className='text-grayscale-headerWeak mb-1 italic md:text-xs'>
                   {item.date.format('DD.MM.YYYY')}
                 </p>
                 {isMd && (
                   <p className='text-grayscale-body text-sm'>
-                    {item.description}
+                    {isLg
+                      ? item.description
+                      : item.description.split(' ').slice(0, 8).join(' ') +
+                        '...'}
                   </p>
                 )}
                 <div>
@@ -79,11 +82,10 @@ export const NewsSection = () => {
                   />
                 </div>
               </div>
-              {/* Image */}
               <div
                 className={clsxm(
                   'bg-grayscale-bgWeak',
-                  'ml-4 flex aspect-video w-60 rounded-2xl'
+                  'ml-4 flex aspect-video w-24 rounded-2xl sm:w-60'
                 )}
               />
             </motion.div>

@@ -16,17 +16,15 @@ const HomePage = () => {
   return (
     <Layout>
       <Seo />
-      <motion.div className='flex w-full justify-center'>
-        <motion.main className='flex flex-col items-center justify-center'>
+      <motion.div className='flex h-full w-full justify-center'>
+        <main className='flex h-full w-full flex-col items-center justify-center'>
           <WelcomeSection />
           <ServicesSection />
           <ProjectsSection />
           <TeamSection />
-          {/* <CertificationsSection /> */}
-          {/* <ContributionSection /> */}
           <NewsSection />
           <ContactsSection />
-        </motion.main>
+        </main>
       </motion.div>
     </Layout>
   );
