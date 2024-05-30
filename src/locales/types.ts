@@ -15,6 +15,10 @@ export type LocaleKeysSkeleton = {
   contacts: Contacts;
   form: Form;
   vacancies: Vacancies;
+  about: {
+    showMoreLabel: string;
+    hideLabel: string;
+  };
 };
 
 type Header = {

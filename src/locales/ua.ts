@@ -150,4 +150,8 @@ export const ua: LocaleKeysSkeleton = {
     vacancyNamePlaceholder: 'Назва вакансії',
     vacancyLocationPlaceholder: 'Локація',
   },
+  about: {
+    showMoreLabel: 'Показати більше',
+    hideLabel: 'Сховати',
+  },
 };

@@ -12,7 +12,7 @@ import { useBreakpoint, useTranslations } from '@/utils';
 
 export const WelcomeSection = () => {
   const { welcome, general } = useTranslations();
-  const { isMd } = useBreakpoint('md');
+  const { isLg } = useBreakpoint('lg');
   const { isSm } = useBreakpoint('sm');
   const titleVariants: Variants = {
     hidden: { opacity: 0 },
@@ -38,8 +38,8 @@ export const WelcomeSection = () => {
             className='z-30 w-full text-left text-xl lg:text-2xl xl:text-3xl'
           >
             {welcome.title}
-            {isSm && <br />}
-            {!isSm && ' '}
+            {isSm && !isLg && <br />}
+            {!isSm && isLg && ' '}
             <Highlight delay={1} duration={1} ease='easeInOut'>
               {welcome.titleNaming}
             </Highlight>
@@ -48,7 +48,7 @@ export const WelcomeSection = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.2, ease: 'easeInOut' }}
-            className='z-30 mt-4 w-full rounded-lg text-left text-base font-medium lg:mt-2'
+            className='z-30 mt-4 w-full rounded-lg text-left text-base font-medium lg:mt-4'
           >
             <p className='inline-block rounded-lg bg-white bg-opacity-50 px-2 py-1 text-xs md:text-sm lg:px-4 lg:py-2'>
               {welcome.subtitle}
@@ -62,13 +62,17 @@ export const WelcomeSection = () => {
           >
             <div>
               <Button
-                size='small'
+                size={isLg ? 'medium' : 'small'}
                 label={welcome.servicesLabel}
                 theme='secondary'
               />
             </div>
             <div>
-              <Button size='small' label={general.contactUs} theme='primary' />
+              <Button
+                size={isLg ? 'medium' : 'small'}
+                label={general.contactUs}
+                theme='primary'
+              />
             </div>
           </motion.div>
         </div>

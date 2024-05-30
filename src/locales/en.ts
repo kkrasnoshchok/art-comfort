@@ -150,4 +150,8 @@ export const en: LocaleKeysSkeleton = {
     vacancyNamePlaceholder: 'Name of vacancy',
     vacancyLocationPlaceholder: 'Location',
   },
+  about: {
+    showMoreLabel: 'Show more',
+    hideLabel: 'Hide',
+  },
 };

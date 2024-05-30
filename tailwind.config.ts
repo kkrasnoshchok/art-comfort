@@ -79,6 +79,12 @@ export default {
             backgroundPosition: '700px 0',
           },
         },
+        // #region infinite moving cards
+        scroll: {
+          to: {
+            transform: 'translate(calc(-50% - 0.5rem))',
+          },
+        },
         // #region gradient bg animation keyframes
         moveHorizontal: {
           '0%': {
@@ -118,6 +124,9 @@ export default {
       animation: {
         flicker: 'flicker 3s linear infinite',
         shimmer: 'shimmer 1.3s linear infinite',
+        // #region infinite moving cards
+        scroll:
+          'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite',
         // #region gradient bg animations
         first: 'moveVertical 30s ease infinite',
         second: 'moveInCircle 20s reverse infinite',

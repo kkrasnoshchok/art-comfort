@@ -1,6 +1,6 @@
 export type TeamMember = {
   role: string;
-  name?: string;
+  name: string;
   phone: string | string[];
   email: string;
 };
@@ -48,9 +48,4 @@ export const team: TeamMember[] = [
     phone: '+380963090322',
     email: 'hr@art-comfort.com',
   },
-  // {
-  //   role: 'Бухгалтерія',
-  //   phone: ['+380732792892', '+380732792894'],
-  //   email: 'chernouz@art-comfort.com',
-  // },
 ];

@@ -32,7 +32,7 @@ export const NewsSection = () => {
         viewport={{ amount: 0.1 }}
         transition={{ duration: 0.5, easings: ['easeIn', 'easeOut'] }}
         className={clsxm(
-          'mx-4 flex w-full max-w-6xl flex-col bg-opacity-25 py-8'
+          'mx-4 flex w-full max-w-6xl flex-col bg-opacity-25 py-4'
         )}
       >
         <h1 className='h2 text-grayscale-headerWeak'>

@@ -1,15 +1,15 @@
-import { motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
 import { useState } from 'react';
-// @ts-expect-error react-slick types are present, but written really poorly.
-import Slider from 'react-slick';
 
+// @ts-expect-error react-slick types are present, but written really poorly.
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import { Layout } from '@/components/layout';
 
+import { Button } from '@/ui/Button';
 import { Modal } from '@/ui/Modal';
+import { useBreakpoint, useTranslations } from '@/utils';
 import { cn } from '@/utils/cn';
 import { team } from '@/utils/dataset/team.dataset';
 
@@ -30,10 +30,13 @@ const AboutPage = () => {
   const [selectedCertificate, setSelectedCertificate] = useState<
     (StaticImageData | StaticImageData[]) | null
   >(null);
+  const { isSm } = useBreakpoint('sm');
+  const [isShownMore, setShownMore] = useState(isSm);
+  const { about } = useTranslations();
   return (
     <Layout>
       <div className='flex w-full justify-center bg-white bg-opacity-75 py-24'>
-        <div className='flex max-w-6xl flex-1 flex-col'>
+        <div className='mx-4 flex max-w-6xl flex-1 flex-col'>
           <p className='mt-8'>
             Інженерна компанія «АРТ-КОМФОРТ» працює на будівельному ринку з 21
             червня 2007 року. Протягом 17 років професійної діяльності компанії
@@ -78,53 +81,48 @@ const AboutPage = () => {
             рівня професійності наданих послуг. Якість, відповідальність та
             професіоналізм – головні складові успішного розвитку компанії!
           </p>
-          {/* Team Section Link */}
           <div className='mt-8'>
             <h3>Наша команда</h3>
-            <div className='mt-8'>
-              <Slider
-                {...{
-                  slidesToShow: 4,
-                  slidesToScroll: 2,
-                  arrows: true,
-                  infinite: true,
-                  pauseOnHover: true,
-                  autoplay: true,
-                }}
-              >
-                {team.map((user, index) => (
-                  <motion.div
+            <div className='mt-2 grid grid-cols-2 gap-1 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4'>
+              {team
+                .slice(0, isShownMore ? team.length : 2)
+                .map((user, index) => (
+                  <div
                     key={`user-${user.email} -> ${index}`}
-                    className={cn('team-element group relative w-full pr-4')}
+                    className={cn('team-element group relative w-full')}
                   >
                     <div
                       className={cn([
-                        'bg-grayscale-headerWeak aspect-square w-full rounded-xl',
+                        'aspect-square flex-1 rounded-xl bg-slate-200',
                       ])}
-                    ></div>
-                    <div className={cn('p-2')}>
-                      <h4 className='text-primary-defaultStrong h4'>
+                    />
+                    <div
+                      className={cn(
+                        'absolute bottom-1 left-1 z-20 flex flex-col gap-[1px]'
+                      )}
+                    >
+                      <p className='p text-[0.6rem] leading-[0.7rem]'>
+                        {user.role}
+                      </p>
+                      <h4 className='text-primary-defaultStrong h4 text-xs'>
                         {user.name}
                       </h4>
-                      <p className='p'>{user.role}</p>
-                      {/* <div className='flex flex-row items-center'>
-                        <Button
-                          theme='ghost'
-                          href={`mailto:${user.email}`}
-                          className='text-primary-defaultStrong h4'
-                          label={user.email}
-                        />
-                      </div> */}
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
-              </Slider>
             </div>
+            <Button
+              label={isShownMore ? about.hideLabel : about.showMoreLabel}
+              onClick={() => {
+                setShownMore((prev) => !prev);
+              }}
+              size='small'
+              className='mt-4'
+            />
           </div>
-          {/* Licenses & Certificates Link */}
           <div className='mt-8'>
             <h3>Ліцензії та сертифікати</h3>
-            <div className='mt-4 flex flex-row justify-between gap-2'>
+            <div className='mt-4 flex flex-col justify-between gap-4 sm:flex-row'>
               {certificatesArray.map((pdfDoc, index) => (
                 <div
                   key={index}
