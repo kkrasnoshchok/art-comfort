@@ -88,14 +88,14 @@ const VacanciesPage = () => {
       <SectionWrapper>
         <section
           className={clsxm(
-            'flex min-h-screen w-full max-w-6xl flex-col bg-gradient-to-b pt-16'
+            'mx-4 flex min-h-screen w-full max-w-6xl flex-col bg-gradient-to-b pt-16'
           )}
         >
-          <div className='flex flex-row items-center'>
-            <h2 className='text-grayscale-header flex-1'>
+          <div className='flex flex-col items-center gap-2 md:flex-row'>
+            <h2 className='text-grayscale-header w-full text-left'>
               {vacanciesTranslations.openPositions}
             </h2>
-            <div className='flex'>
+            <div className='w-full'>
               <Input
                 label={vacanciesTranslations.searchVacanciesPlaceholder}
                 value={searchQuery}
@@ -107,8 +107,8 @@ const VacanciesPage = () => {
             </div>
           </div>
 
-          <div className='border-grayscale-headerWeak mt-6 border border-b-0'>
-            <div className='border-grayscale-headerWeak flex border-b-2'>
+          <div className='border-grayscale-headerWeak mt-6 rounded-md border border-b-0'>
+            <div className='border-grayscale-body flex border-b-2'>
               {vacanciesColumns(vacanciesTranslations).map((column, index) => (
                 <motion.div
                   key={column.key}
@@ -159,7 +159,7 @@ const VacanciesPage = () => {
                 layoutId={vacancy.id}
                 className='vacancy-list-card block'
               >
-                <motion.div className='border-grayscale-body hover:bg-grayscale-bgWeak group flex border-b transition-all'>
+                <motion.div className='border-grayscale-body hover:bg-grayscale-bgWeak group flex rounded-md border-b transition-all'>
                   {vacanciesColumns(vacanciesTranslations).map(
                     (column, index) => (
                       <motion.div

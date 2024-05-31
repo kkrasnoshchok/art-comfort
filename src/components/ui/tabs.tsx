@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 import { Button } from '@/ui/Button';
+import { useBreakpoint } from '@/utils';
 import { cn } from '@/utils/cn';
 
 type Tab = {
@@ -33,12 +34,14 @@ export const Tabs = ({
     setTabs(newTabs);
     setActive(newTabs[0]);
   };
+  const { isMd } = useBreakpoint('md');
+  const { isLg } = useBreakpoint('lg');
 
   return (
     <>
       <div
         className={cn(
-          'relative flex w-full max-w-full flex-row items-center justify-start overflow-auto sm:overflow-visible',
+          'relative grid w-full max-w-full grid-cols-none gap-1 md:grid-cols-2 lg:grid-cols-4',
           containerClassName
         )}
       >
@@ -51,7 +54,8 @@ export const Tabs = ({
               onClick={() => {
                 moveSelectedTabToTop(idx);
               }}
-              className='mr-4'
+              className='active:scale-100'
+              size={isMd && !isLg ? 'medium' : 'small'}
             />
           </>
         ))}

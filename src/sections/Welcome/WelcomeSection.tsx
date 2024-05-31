@@ -39,7 +39,7 @@ export const WelcomeSection = () => {
           >
             {welcome.title}
             {isSm && !isLg && <br />}
-            {!isSm && isLg && ' '}
+            {(!isSm || isLg) && ' '}
             <Highlight delay={1} duration={1} ease='easeInOut'>
               {welcome.titleNaming}
             </Highlight>

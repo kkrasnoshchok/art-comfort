@@ -2,7 +2,6 @@ import { HTMLMotionProps, motion } from 'framer-motion';
 import { ReactNode, useCallback } from 'react';
 
 import { ButtonSize, ButtonTheme } from '@/ui/Button/types';
-import { clsxm } from '@/utils';
 import { cn } from '@/utils/cn';
 
 type Props = {
@@ -93,7 +92,7 @@ export const Button = (props: Props) => {
   return (
     <motion.a
       href={href}
-      className={clsxm(
+      className={cn(
         buttonBaseStyles,
         getButtonSizeStyles(),
         getButtonThemeStyles(),
@@ -106,7 +105,7 @@ export const Button = (props: Props) => {
       {Icon && Icon}
       {label && (
         <p
-          className={clsxm(
+          className={cn(
             'font-semibold',
             getLabelSizeStyles(),
             getLabelThemeStyles(),

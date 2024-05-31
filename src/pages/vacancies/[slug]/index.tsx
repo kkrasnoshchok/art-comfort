@@ -15,11 +15,12 @@ import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
-import { useTranslations } from '@/utils';
+import { useBreakpoint, useTranslations } from '@/utils';
 import { vacancies } from '@/utils/dataset/vacancies.dataset';
 
 const VacancyPage = () => {
   const router = useRouter();
+  const { isLg } = useBreakpoint('lg');
   const { form, general } = useTranslations();
 
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -87,7 +88,7 @@ const VacancyPage = () => {
   return (
     <Layout>
       <SectionWrapper>
-        <section className='w-full max-w-6xl pt-16'>
+        <section className='mx-4 w-full max-w-6xl pt-16'>
           <motion.div>
             <Button
               label={general.backToList}
@@ -95,7 +96,7 @@ const VacancyPage = () => {
               onClick={router.back}
             />
           </motion.div>
-          <div className='flex flex-row'>
+          <div className='flex flex-col lg:flex-row'>
             <div className='pr-4'>
               <h2 className='text-grayscale-header mt-8'>{vacancy.jobTitle}</h2>
               {/* Long Details */}
@@ -182,6 +183,7 @@ const VacancyPage = () => {
                         disabled={isSubmitting}
                         type='textarea'
                         rows={10}
+                        withClear={isLg}
                         error={errors.message}
                         onClear={() => setFieldValue('message', '')}
                         inputClassName='w-full resize-none border-transparent focus:border-transparent focus:ring-0'
