@@ -72,7 +72,8 @@ export const InfiniteMovingCards = ({
       ref={containerRef}
       className={cn(
         'scroller relative z-20  max-w-7xl overflow-hidden',
-        '[mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
+        // shadow
+        // '[mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
         className
       )}
     >
@@ -86,7 +87,7 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item) => (
           <li
-            className='relative w-[250px] max-w-full flex-shrink-0'
+            className='group relative w-[250px] max-w-full flex-shrink-0'
             key={item.name}
           >
             <blockquote>
@@ -96,12 +97,18 @@ export const InfiniteMovingCards = ({
               />
               <div className='relative z-20 aspect-square w-full flex-1 rounded-lg bg-slate-200' />
               <div className='absolute bottom-2 left-1/2 z-20 flex w-11/12 -translate-x-1/2 flex-row items-center rounded-lg bg-slate-300 p-2'>
-                <span className='flex flex-col gap-[1px]'>
-                  <span className='text-[0.6rem] font-normal leading-[0.7rem] text-slate-600'>
-                    {item.role}
-                  </span>
-                  <span className='text-xs font-semibold text-slate-950'>
+                <span className='flex flex-col gap-[2px]'>
+                  <span className='text-[0.6rem] font-semibold leading-[0.7rem] text-slate-950'>
                     {item.name}
+                  </span>
+                  <span
+                    className={cn(
+                      'text-[0.6rem] font-normal leading-[0.7rem] text-slate-600',
+                      'hidden opacity-0',
+                      'group-hover:visible group-hover:block group-hover:opacity-100'
+                    )}
+                  >
+                    {item.role}
                   </span>
                 </span>
               </div>

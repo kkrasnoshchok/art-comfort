@@ -149,7 +149,7 @@ export const Header = () => {
                 item={header.projects}
               />
               <MenuItem
-                href='#contacts'
+                href='/'
                 setActive={setActive}
                 active={active}
                 item={header.contacts}
@@ -210,7 +210,7 @@ export const Header = () => {
                 </div>
               </MenuItem>
               <MenuItem
-                href='#contacts'
+                href='/#contacts'
                 setActive={setActive}
                 active={active}
                 item={header.contacts}

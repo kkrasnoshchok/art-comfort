@@ -98,15 +98,17 @@ const AboutPage = () => {
                     />
                     <div
                       className={cn(
-                        'absolute bottom-1 left-1 z-20 flex flex-col gap-[1px]'
+                        'absolute bottom-2 left-1/2 z-20 w-11/12 -translate-x-1/2',
+                        'flex flex-col gap-[1px] bg-slate-300',
+                        'rounded-lg p-2'
                       )}
                     >
-                      <p className='p text-[0.6rem] leading-[0.7rem]'>
+                      <span className='text-[0.6rem] font-semibold leading-[0.7rem] text-slate-950'>
+                        {user.name}
+                      </span>
+                      <p className='p hidden text-[0.6rem] leading-[0.7rem] group-hover:block group-hover:opacity-100'>
                         {user.role}
                       </p>
-                      <h4 className='text-primary-defaultStrong h4 text-xs'>
-                        {user.name}
-                      </h4>
                     </div>
                   </div>
                 ))}

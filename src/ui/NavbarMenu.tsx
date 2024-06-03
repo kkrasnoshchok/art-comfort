@@ -7,14 +7,14 @@ import { cn } from '@/utils/cn';
 
 const MotionLink = motion(Link);
 
-const transition = {
-  type: 'spring',
-  mass: 0.5,
-  damping: 11.5,
-  stiffness: 100,
-  restDelta: 0.001,
-  restSpeed: 0.001,
-};
+// const transition = {
+//   type: 'spring',
+//   mass: 0.5,
+//   damping: 11.5,
+//   stiffness: 100,
+//   restDelta: 0.001,
+//   restSpeed: 0.001,
+// };
 
 type MenuItemProps = {
   className?: string;
@@ -26,9 +26,10 @@ type MenuItemProps = {
 };
 
 export const MenuItem = (props: MenuItemProps) => {
-  const { setActive, active, item, children, href, className = '' } = props;
+  const { setActive, item, href, className = '' } = props;
   return (
     <MotionLink
+      passHref
       href={href}
       onMouseEnter={() => setActive(item)}
       className={cn(className, 'relative')}
@@ -44,8 +45,6 @@ export const MenuItem = (props: MenuItemProps) => {
 };
 
 export const Menu = ({
-  // active,
-  setActive,
   children,
   className,
 }: {

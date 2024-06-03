@@ -75,7 +75,7 @@ export const NewsSection = () => {
                 <div>
                   <Button
                     label='Дізнатись деталі'
-                    href={`/news/${slugify(item.title)}`}
+                    href={`/news/${slugify(item.id)}`}
                     theme='primary'
                     size='small'
                     className='mt-4'
