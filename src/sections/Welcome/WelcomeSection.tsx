@@ -24,8 +24,8 @@ export const WelcomeSection = () => {
       className='relative z-20 min-h-screen w-screen pb-0 pt-0'
     >
       <BackgroundGradientAnimation />
-      <div className='flex h-full max-w-7xl flex-1 flex-row items-center justify-center gap-4'>
-        <div className='mx-4 flex h-full flex-1 flex-col items-center justify-center'>
+      <div className='flex h-full max-w-7xl flex-1 flex-row items-center justify-start gap-4'>
+        <div className='mx-4 flex h-full w-full flex-col items-start justify-start'>
           <motion.h2
             variants={titleVariants}
             initial='hidden'
@@ -35,11 +35,9 @@ export const WelcomeSection = () => {
               ease: 'easeInOut',
               delay: 0.5,
             }}
-            className='z-30 w-full text-left text-xl lg:text-2xl xl:text-3xl'
+            className='z-30 w-full text-left text-xl sm:w-2/3 lg:text-2xl xl:text-3xl'
           >
-            {welcome.title}
-            {isSm && !isLg && <br />}
-            {(!isSm || isLg) && ' '}
+            {welcome.title}{' '}
             <Highlight delay={1} duration={1} ease='easeInOut'>
               {welcome.titleNaming}
             </Highlight>
@@ -50,7 +48,7 @@ export const WelcomeSection = () => {
             transition={{ delay: 2.2, ease: 'easeInOut' }}
             className='z-30 mt-4 w-full rounded-lg text-left text-base font-medium lg:mt-4'
           >
-            <p className='inline-block rounded-lg bg-white bg-opacity-50 px-2 py-1 text-xs md:text-sm lg:px-4 lg:py-2'>
+            <p className='inline-block rounded-lg text-xs md:bg-white md:bg-opacity-50 md:p-1 md:text-sm md:backdrop-blur-xl'>
               {welcome.subtitle}
             </p>
           </motion.div>
@@ -77,7 +75,7 @@ export const WelcomeSection = () => {
           </motion.div>
         </div>
         <Button
-          className='absolute bottom-4 z-30'
+          className='absolute bottom-4 left-1/2 z-30  -translate-x-1/2'
           Icon={<CiDesktopMouse2 size={36} />}
           href='#services'
           theme='ghost'

@@ -25,7 +25,10 @@ export const ProjectsSection = () => {
     },
   };
   const { projects: projectsTranslations } = useTranslations();
-  const projectsArray = useMemo(() => projects(projectsTranslations), []);
+  const projectsArray = useMemo(
+    () => projects(projectsTranslations),
+    [projectsTranslations]
+  );
   const { isMd } = useBreakpoint('md');
 
   return (
