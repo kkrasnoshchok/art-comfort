@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import NextImage from '@/components/NextImage';
 
-import { Button } from '@/ui/Button';
+import { Button } from '@/ui/button';
 import { Menu, MenuItem } from '@/ui/NavbarMenu';
 import { cn, useBreakpoint } from '@/utils';
 import { menuLanguages, useLocale, useTranslations } from '@/utils/locales';

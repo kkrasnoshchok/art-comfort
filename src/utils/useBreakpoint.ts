@@ -16,9 +16,3 @@ export function useBreakpoint<K extends BreakpointKey>(breakpointKey: K) {
     [`is${capitalizedKey}`]: bool,
   } as Record<Key, boolean>;
 }
-
-// import { theme } from '../../tailwind.config';
-
-// export function getCurrentBreakpoints() {
-//     return Object.keys(theme.screens).find((key) => window.innerWidth > theme.screens[key]);
-// }

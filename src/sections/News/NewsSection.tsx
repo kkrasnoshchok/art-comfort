@@ -2,11 +2,10 @@ import { motion, Variants } from 'framer-motion';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Button } from '@/ui/Button';
+import { Button } from '@/ui/button';
 import { cn, useBreakpoint } from '@/utils';
 import { news } from '@/utils/dataset/news.dataset';
 import { useTranslations } from '@/utils/locales';
-import { slugify } from '@/utils/slugify';
 
 export const NewsSection = () => {
   const { isMd } = useBreakpoint('md');
@@ -74,7 +73,7 @@ export const NewsSection = () => {
                 <div>
                   <Button
                     label='Дізнатись деталі'
-                    href={`/news/${slugify(item.id)}`}
+                    href={`/news/${item.id}`}
                     theme='primary'
                     size='small'
                     className='mt-4'

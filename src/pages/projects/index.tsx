@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Button } from '@/ui/Button';
+import { Button } from '@/ui/button';
+import { cn } from '@/utils';
 import { projects } from '@/utils/dataset/projects.dataset';
-import { cn, useTranslations } from '@/utils/locales';
-import { slugify } from '@/utils/slugify';
+import { useTranslations } from '@/utils/locales';
 
 const ProjectPage = () => {
   const { projects: projectsTranslations, general } = useTranslations();
@@ -33,7 +33,7 @@ const ProjectPage = () => {
               </div>
               <motion.div className='mt-4'>
                 <Button
-                  href={`projects/${slugify(project.id)}`}
+                  href={`projects/${project.id}`}
                   label={general.exploreDetails}
                   size='small'
                 />

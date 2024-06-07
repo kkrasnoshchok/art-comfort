@@ -1,14 +1,14 @@
+import { cn, useBreakpoint } from '@utils';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useMemo } from 'react';
 
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
-import { Tabs } from '@/components/ui/tabs';
 
-import { cn } from '@/utils/cn';
+import { Tabs } from '@/ui/aceternity/tabs';
 import { Service, services } from '@/utils/dataset/services.dataset';
-import { cn, useBreakpoint, useTranslations } from '@/utils/locales';
+import { useTranslations } from '@/utils/locales';
 
 const ServicesPage = () => {
   return (

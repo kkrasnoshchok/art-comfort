@@ -3,8 +3,8 @@ import { useState } from 'react';
 
 import { Layout } from '@/components/layout';
 
-import { Button } from '@/ui/Button';
-import { Modal } from '@/ui/Modal';
+import { Button } from '@/ui/button';
+import { Modal } from '@/ui/modal';
 import { cn, useBreakpoint } from '@/utils';
 import { team } from '@/utils/dataset/team.dataset';
 import { useTranslations } from '@/utils/locales';

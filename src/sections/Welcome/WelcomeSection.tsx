@@ -3,10 +3,10 @@ import { useMemo } from 'react';
 import { CiDesktopMouse2 } from 'react-icons/ci';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
-import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation';
+import { BackgroundGradientAnimation } from '@/ui/aceternity/background-gradient-animation';
 import { Highlight } from '@/components/ui/text-highlight';
 
-import { Button } from '@/ui/Button';
+import { Button } from '@/ui/button';
 import { useBreakpoint } from '@/utils';
 import { useTranslations } from '@/utils/locales';
 

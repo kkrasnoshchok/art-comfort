@@ -7,7 +7,7 @@ import { RxCross2 } from 'react-icons/rx';
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Input } from '@/ui/Input';
+import { Input } from '@/ui/input';
 import { cn } from '@/utils';
 import {
   vacancies,
@@ -15,7 +15,6 @@ import {
   Vacancy,
 } from '@/utils/dataset/vacancies.dataset';
 import { useTranslations } from '@/utils/locales';
-import { slugify } from '@/utils/slugify';
 
 const MotionLink = motion(Link);
 
@@ -152,9 +151,7 @@ const VacanciesPage = () => {
             </div>
             {sortedVacancies.map((vacancy) => (
               <MotionLink
-                href={`/vacancies/${slugify(
-                  `${vacancy.id} ${vacancy.jobTitle} ${vacancy.location}`
-                )}`}
+                href={`/vacancies/${vacancy.id}`}
                 key={vacancy.id}
                 layoutId={vacancy.id}
                 className='vacancy-list-card block'

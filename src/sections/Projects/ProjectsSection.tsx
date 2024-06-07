@@ -3,9 +3,9 @@ import React, { useMemo } from 'react';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
 import { StatisticsContainer } from '@/components/statistics';
-import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid';
+import { BentoGrid, BentoGridItem } from '@/ui/aceternity/bento-grid';
 
-import { Button } from '@/ui/Button';
+import { Button } from '@/ui/button';
 import { useBreakpoint } from '@/utils';
 import { projects } from '@/utils/dataset/projects.dataset';
 import { useTranslations } from '@/utils/locales';
