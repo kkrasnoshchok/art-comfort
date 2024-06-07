@@ -5,8 +5,8 @@ import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
-import { useTranslations } from '@/utils';
 import { projects } from '@/utils/dataset/projects.dataset';
+import { useTranslations } from '@/utils/locales';
 import { slugify } from '@/utils/slugify';
 
 const ProjectPage = () => {

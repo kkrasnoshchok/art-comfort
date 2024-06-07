@@ -1,4 +1,4 @@
-export type LocaleKeysSkeleton = {
+export type TranslationType = {
   general: {
     contactUs: string;
     exploreDetails: string;

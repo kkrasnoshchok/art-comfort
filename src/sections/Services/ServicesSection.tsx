@@ -6,8 +6,9 @@ import { FaArrowRight } from 'react-icons/fa';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
-import { cn, useTranslations } from '@/utils';
+import { cn } from '@/utils';
 import { Service, services } from '@/utils/dataset/services.dataset';
+import { useTranslations } from '@/utils/locales';
 
 export const ServicesSection = () => {
   const { services: servicesTranslations } = useTranslations();

@@ -15,7 +15,8 @@ import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
-import { cn, useBreakpoint, useTranslations } from '@/utils';
+import { cn, useBreakpoint } from '@/utils';
+import { useTranslations } from '@/utils/locales';
 
 import { GoogleMap } from './components/GoogleMap';
 

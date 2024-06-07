@@ -5,8 +5,9 @@ import { useRouter } from 'next/router';
 import { Layout } from '@/components/layout';
 
 import { Button } from '@/ui/Button';
-import { cn, useTranslations } from '@/utils';
+import { cn } from '@/utils';
 import { services } from '@/utils/dataset/services.dataset';
+import { useTranslations } from '@/utils/locales';
 
 const ServicePage = () => {
   const router = useRouter();

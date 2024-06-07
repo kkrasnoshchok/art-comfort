@@ -3,8 +3,9 @@ import { motion, Variants } from 'framer-motion';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
-import { cn, useBreakpoint, useTranslations } from '@/utils';
+import { cn, useBreakpoint } from '@/utils';
 import { news } from '@/utils/dataset/news.dataset';
+import { useTranslations } from '@/utils/locales';
 import { slugify } from '@/utils/slugify';
 
 export const NewsSection = () => {

@@ -6,7 +6,7 @@ import installationBackground from '@/assets/Services_Installation.jpeg';
 import maintenanceBackground from '@/assets/Services_Maintenance.jpg';
 // import selectionAndDelivery from '@/assets/Selection_And_Delivery.jpg';
 import supplyBackground from '@/assets/Services_Supply.jpeg';
-import { LocaleKeysSkeleton } from '@/locales/types';
+import { TranslationType } from '@/locales/types';
 
 export type Service = {
   id: string;
@@ -16,7 +16,7 @@ export type Service = {
   url: StaticImageData;
 };
 
-export const services = (t: LocaleKeysSkeleton['services']): Service[] => [
+export const services = (t: TranslationType['services']): Service[] => [
   {
     id: 'design',
     title: t.design.title,

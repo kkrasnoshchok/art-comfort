@@ -6,8 +6,9 @@ import { StatisticsContainer } from '@/components/statistics';
 import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid';
 
 import { Button } from '@/ui/Button';
-import { useBreakpoint, useTranslations } from '@/utils';
+import { useBreakpoint } from '@/utils';
 import { projects } from '@/utils/dataset/projects.dataset';
+import { useTranslations } from '@/utils/locales';
 
 export const ProjectsSection = () => {
   const sectionVariants: Variants = {

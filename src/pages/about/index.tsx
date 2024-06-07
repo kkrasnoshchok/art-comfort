@@ -5,8 +5,9 @@ import { Layout } from '@/components/layout';
 
 import { Button } from '@/ui/Button';
 import { Modal } from '@/ui/Modal';
-import { cn, useBreakpoint, useTranslations } from '@/utils';
+import { cn, useBreakpoint } from '@/utils';
 import { team } from '@/utils/dataset/team.dataset';
+import { useTranslations } from '@/utils/locales';
 
 import AuthListPdf from '../../assets/certificates/AuthListArtComfort.png';
 import HaierAirCondDealershipCertificate from '../../assets/certificates/HaierDealershipCertificate.png';

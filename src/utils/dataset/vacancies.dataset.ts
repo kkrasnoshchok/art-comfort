@@ -1,4 +1,4 @@
-import { LocaleKeysSkeleton } from '@/locales/types';
+import { TranslationType } from '@/locales/types';
 
 export type Vacancy = {
   id: string;
@@ -14,7 +14,7 @@ type VacancyColumn = {
 };
 
 export const vacanciesColumns = (
-  t: LocaleKeysSkeleton['vacancies']
+  t: TranslationType['vacancies']
 ): VacancyColumn[] => [
   { key: 'jobTitle', header: t.vacancyNamePlaceholder },
   { key: 'location', header: t.vacancyLocationPlaceholder },

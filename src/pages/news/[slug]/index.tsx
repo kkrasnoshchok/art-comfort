@@ -5,14 +5,13 @@ import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
-import { useTranslations } from '@/utils';
 import { news } from '@/utils/dataset/news.dataset';
-import { slugify } from '@/utils/slugify';
+import { useTranslations } from '@/utils/locales';
 
 const Page = () => {
   const { query, back } = useRouter();
   const { general } = useTranslations();
-  const singleNews = news.find((element) => slugify(element.id) === query.slug);
+  const singleNews = news.find((element) => element.id === query.slug);
 
   if (!singleNews) {
     return null;

@@ -6,47 +6,10 @@ import NextImage from '@/components/NextImage';
 
 import { Button } from '@/ui/Button';
 import { Menu, MenuItem } from '@/ui/NavbarMenu';
-import { cn, useBreakpoint, useLocale, useTranslations } from '@/utils';
-import { LocaleType } from '@/utils/useLocale';
+import { cn, useBreakpoint } from '@/utils';
+import { menuLanguages, useLocale, useTranslations } from '@/utils/locales';
 
 import logo from '../../assets/logo.png';
-
-/**
-   * Structure:
-   * - Call Button
-   * - Burger Button for further menu
-   * - Primary Links:
-   *  - about: '/about',
-      - services: '#services',
-      - projects: '/projects',
-      - contacts: '#contacts',
-      - vacancies: '/vacancies',
-      - news: '/news',
-   * - Secondary Links:
-   */
-
-const locales: LocaleType[] = [
-  {
-    value: 'ua',
-    label: 'Українська',
-    emoji: '🇺🇦',
-  },
-  {
-    value: 'en',
-    label: 'English',
-    emoji: '🇬🇧',
-  },
-  {
-    value: 'de',
-    label: 'Deutsch',
-    emoji: '🇩🇪',
-  },
-  {
-    value: 'pl',
-    label: 'Polska',
-    emoji: '🇵🇱',
-  },
-];
 
 export const Header = () => {
   const [active, setActive] = useState<string | null>(null);
@@ -247,7 +210,7 @@ export const Header = () => {
                 </span>
                 {dropdownOpened && (
                   <div className='absolute right-4 top-20 flex w-36 flex-col gap-[2px] rounded-lg bg-white text-sm'>
-                    {locales.map((localeItem, index) => (
+                    {menuLanguages.map((localeItem, index) => (
                       <motion.p
                         whileHover={{
                           borderColor: 'rgba(0,0,0,1)',
@@ -262,7 +225,7 @@ export const Header = () => {
                           'border border-transparent',
                           locale.value === localeItem.value && 'border-black',
                           index === 0 && 'rounded-t-lg',
-                          index === locales.length - 1 && 'rounded-b-lg'
+                          index === menuLanguages.length - 1 && 'rounded-b-lg'
                         )}
                       >
                         {localeItem.emoji} {localeItem.label}

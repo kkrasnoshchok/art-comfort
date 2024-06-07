@@ -6,9 +6,9 @@ import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 import { Tabs } from '@/components/ui/tabs';
 
-import { cn, useBreakpoint, useTranslations } from '@/utils';
 import { cn } from '@/utils/cn';
 import { Service, services } from '@/utils/dataset/services.dataset';
+import { cn, useBreakpoint, useTranslations } from '@/utils/locales';
 
 const ServicesPage = () => {
   return (

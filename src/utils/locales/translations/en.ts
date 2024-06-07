@@ -1,6 +1,6 @@
-import { LocaleKeysSkeleton } from '@/locales/types';
+import { TranslationType } from '@/locales/types';
 
-export const en: LocaleKeysSkeleton = {
+export const en: TranslationType = {
   general: {
     contactUs: 'Contact us',
     exploreDetails: 'Learn more',

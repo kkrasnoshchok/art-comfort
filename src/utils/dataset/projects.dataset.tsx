@@ -14,7 +14,7 @@ import projectsAirPurifier from '@/assets/Projects_Air-Purifier.jpeg';
 import projectsHeating from '@/assets/Projects_Heating.jpeg';
 import projectsVentilation from '@/assets/Projects_Ventilation.jpg';
 import projectsWaterTreatment from '@/assets/Projects_WaterTreatment.jpeg';
-import { LocaleKeysSkeleton } from '@/locales/types';
+import { TranslationType } from '@/locales/types';
 import { cn } from '@/utils';
 
 type ProjectImageProps = {
@@ -41,7 +41,7 @@ const ProjectImage = (props: ProjectImageProps) => {
   );
 };
 
-export const projects = (t: LocaleKeysSkeleton['projects']) => [
+export const projects = (t: TranslationType['projects']) => [
   {
     id: 'ventilation',
     title: t.ventilation.title,

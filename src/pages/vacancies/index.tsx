@@ -8,13 +8,13 @@ import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Input } from '@/ui/Input';
-import { cn, useTranslations } from '@/utils';
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 import {
   vacancies,
   vacanciesColumns,
   Vacancy,
 } from '@/utils/dataset/vacancies.dataset';
+import { useTranslations } from '@/utils/locales';
 import { slugify } from '@/utils/slugify';
 
 const MotionLink = motion(Link);

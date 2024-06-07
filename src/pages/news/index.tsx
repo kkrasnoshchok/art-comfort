@@ -6,9 +6,8 @@ import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
-import { useTranslations } from '@/utils';
 import { news } from '@/utils/dataset/news.dataset';
-import { slugify } from '@/utils/slugify';
+import { useTranslations } from '@/utils/locales';
 
 const NewsPage = () => {
   const router = useRouter();
@@ -46,7 +45,7 @@ const NewsPage = () => {
                 <motion.p className='mt-2 text-sm'>{news.description}</motion.p>
                 <motion.div className='mt-4 w-full'>
                   <Button
-                    href={`news/${slugify(news.id)}`}
+                    href={`news/${news.id}`}
                     label={general.exploreDetails}
                     size='small'
                   />
