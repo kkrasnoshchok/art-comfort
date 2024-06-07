@@ -8,7 +8,7 @@ import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Input } from '@/ui/Input';
-import { clsxm, useTranslations } from '@/utils';
+import { cn, useTranslations } from '@/utils';
 import { cn } from '@/utils/cn';
 import {
   vacancies,
@@ -87,7 +87,7 @@ const VacanciesPage = () => {
     <Layout>
       <SectionWrapper>
         <section
-          className={clsxm(
+          className={cn(
             'mx-4 flex min-h-screen w-full max-w-6xl flex-col bg-gradient-to-b pt-16'
           )}
         >
@@ -114,7 +114,7 @@ const VacanciesPage = () => {
                   key={column.key}
                   layoutId={column.key}
                   onClick={() => handleSort(column.key)}
-                  className={clsxm(
+                  className={cn(
                     'vacancy-list-column flex min-w-[30%] cursor-pointer flex-row items-center p-2',
                     'text-grayscale-header hover:text-grayscale-body font-semibold',
                     sortField === column.key &&
@@ -127,7 +127,7 @@ const VacanciesPage = () => {
                     <motion.div>
                       <RxArrowUp
                         size={16}
-                        className={clsxm(
+                        className={cn(
                           'ml-4',
                           sortDirection === 'asc' && 'rotate-180'
                         )}

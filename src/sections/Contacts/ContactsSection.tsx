@@ -15,7 +15,7 @@ import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
-import { clsxm, useBreakpoint, useTranslations } from '@/utils';
+import { cn, useBreakpoint, useTranslations } from '@/utils';
 
 import { GoogleMap } from './components/GoogleMap';
 
@@ -95,7 +95,7 @@ export const ContactsSection = () => {
         whileInView='visible'
         viewport={{ amount: 0.2 }}
         transition={{ duration: 0.5, easings: ['easeIn', 'easeOut'] }}
-        className={clsxm('w-full max-w-6xl')}
+        className={cn('w-full max-w-6xl')}
       >
         <h1 className='h2 text-grayscale-headerWeak mx-4'>
           {contactsTranslations.title}

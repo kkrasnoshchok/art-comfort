@@ -4,7 +4,7 @@ import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
-import { clsxm, useTranslations } from '@/utils';
+import { cn, useTranslations } from '@/utils';
 import { projects } from '@/utils/dataset/projects.dataset';
 import { slugify } from '@/utils/slugify';
 
@@ -25,7 +25,7 @@ const ProjectPage = () => {
                 {project.description}
               </motion.p>
               <div
-                className={clsxm(
+                className={cn(
                   'mt-2 flex aspect-video overflow-hidden rounded-2xl bg-slate-800'
                 )}
               >

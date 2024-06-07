@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { FacebookIcon } from '@/assets/svgs/Facebook';
 import { RedditIcon } from '@/assets/svgs/RedditIcon';
-import { clsxm, useBreakpoint } from '@/utils';
+import { cn, useBreakpoint } from '@/utils';
 
 const mockPartners = [
   {
@@ -90,7 +90,7 @@ export const PartnersSection = () => {
   return (
     <article
       id='#partners'
-      className={clsxm(['flex w-screen flex-col items-center justify-center'])}
+      className={cn(['flex w-screen flex-col items-center justify-center'])}
     >
       <Swiper
         grabCursor
@@ -100,7 +100,7 @@ export const PartnersSection = () => {
         centeredSlides
         spaceBetween={24}
         autoplay={{ delay: 3000 }}
-        className={clsxm([
+        className={cn([
           'flex h-full w-full items-center justify-center',
           // 'border-primary-bg rounded-2xl border-2 bg-gray-50 bg-opacity-25 shadow-lg',
         ])}
@@ -108,7 +108,7 @@ export const PartnersSection = () => {
         {mockPartners.map((Element, idx) => (
           <SwiperSlide key={idx}>
             <div
-              className={clsxm([
+              className={cn([
                 'swiper-element flex aspect-video w-full items-center justify-center lg:h-24 lg:w-48 lg:portrait:w-36',
               ])}
             >

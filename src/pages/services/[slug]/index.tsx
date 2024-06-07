@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { Layout } from '@/components/layout';
 
 import { Button } from '@/ui/Button';
-import { clsxm, useTranslations } from '@/utils';
+import { cn, useTranslations } from '@/utils';
 import { services } from '@/utils/dataset/services.dataset';
 
 const ServicePage = () => {
@@ -20,9 +20,9 @@ const ServicePage = () => {
   return (
     <Layout>
       <motion.div
-        className={clsxm('flex w-full flex-col items-start px-16 pb-24 pt-12')}
+        className={cn('flex w-full flex-col items-start px-16 pb-24 pt-12')}
       >
-        <div className={clsxm('w-full p-8')}>
+        <div className={cn('w-full p-8')}>
           <motion.div>
             <Button label='Back' onClick={router.back} />
           </motion.div>
@@ -40,14 +40,14 @@ const ServicePage = () => {
               .map((_, index) => (
                 <motion.div
                   key={`image_${index}`}
-                  className={clsxm([
+                  className={cn([
                     'bg-primary-defaultStrong flex aspect-square h-full w-full overflow-hidden rounded-3xl border-slate-500',
                     index === 2 && 'col-span-2 row-span-2',
                   ])}
                 >
                   <Image
                     src={service.url}
-                    className={clsxm(
+                    className={cn(
                       'aspect-square h-full w-full object-cover',
                       'opacity-20 transition-all group-hover:scale-110 group-hover:opacity-10'
                     )}

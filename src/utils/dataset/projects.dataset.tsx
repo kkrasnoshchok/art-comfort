@@ -15,7 +15,7 @@ import projectsHeating from '@/assets/Projects_Heating.jpeg';
 import projectsVentilation from '@/assets/Projects_Ventilation.jpg';
 import projectsWaterTreatment from '@/assets/Projects_WaterTreatment.jpeg';
 import { LocaleKeysSkeleton } from '@/locales/types';
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 type ProjectImageProps = {
   src: StaticImageData;

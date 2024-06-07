@@ -1,6 +1,6 @@
 import { Easing, motion } from 'framer-motion';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 type Props = {
   children: React.ReactNode;

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 import { TeamMember } from '@/utils/dataset/team.dataset';
 
 export const InfiniteMovingCards = ({

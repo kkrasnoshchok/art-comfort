@@ -6,7 +6,7 @@ import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 import { Tabs } from '@/components/ui/tabs';
 
-import { clsxm, useBreakpoint, useTranslations } from '@/utils';
+import { cn, useBreakpoint, useTranslations } from '@/utils';
 import { cn } from '@/utils/cn';
 import { Service, services } from '@/utils/dataset/services.dataset';
 
@@ -15,7 +15,7 @@ const ServicesPage = () => {
     <Layout>
       <SectionWrapper>
         <motion.div
-          className={clsxm(
+          className={cn(
             'mx-4 flex w-full max-w-6xl flex-col justify-center pt-12'
           )}
         >

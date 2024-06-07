@@ -4,8 +4,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 import { Button } from '@/ui/Button';
-import { useBreakpoint } from '@/utils';
-import { cn } from '@/utils/cn';
+import { cn, useBreakpoint } from '@/utils';
 
 type Tab = {
   title: string;

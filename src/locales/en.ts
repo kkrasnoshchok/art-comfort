@@ -102,7 +102,7 @@ export const en: LocaleKeysSkeleton = {
   },
   statistics: {
     experience: 'Years of experience',
-    projects: 'Successfully completed projects',
+    projects: 'Completed projects',
     clients: 'Regular clients',
   },
   team: {

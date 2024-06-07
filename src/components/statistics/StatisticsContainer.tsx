@@ -3,8 +3,7 @@ import { Ref } from 'react';
 import CountUp from 'react-countup';
 
 import { LocaleKeysSkeleton } from '@/locales/types';
-import { useTranslations } from '@/utils';
-import { cn } from '@/utils/cn';
+import { cn, useTranslations } from '@/utils';
 
 type Statistics = {
   name: string;

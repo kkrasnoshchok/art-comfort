@@ -6,9 +6,8 @@ import NextImage from '@/components/NextImage';
 
 import { Button } from '@/ui/Button';
 import { Menu, MenuItem } from '@/ui/NavbarMenu';
-import { useBreakpoint, useLocale } from '@/utils';
-import { cn } from '@/utils/cn';
-import { LocaleType, useTranslations } from '@/utils/useLocale';
+import { cn, useBreakpoint, useLocale, useTranslations } from '@/utils';
+import { LocaleType } from '@/utils/useLocale';
 
 import logo from '../../assets/logo.png';
 
@@ -86,7 +85,7 @@ export const Header = () => {
               'w-fit items-center self-center rounded-xl bg-opacity-60 px-4 py-0 backdrop-blur-md'
           )}
         >
-          <motion.div className='menu flex flex-1 flex-col'>
+          <div className='menu flex flex-1 flex-col'>
             <div className='flex flex-row items-center gap-8'>
               <Link href='/'>
                 <div className='mb-3 flex items-center'>
@@ -120,7 +119,7 @@ export const Header = () => {
                 </>
               )}
             </div>
-            <motion.div
+            <div
               className={cn(
                 'my-2 flex flex-col items-end gap-2',
                 !isBurgerMenuOpened && 'pointer-events-none hidden opacity-0'
@@ -174,8 +173,8 @@ export const Header = () => {
                   <p className='w-48'>{header.newsTooltip}</p>
                 </div>
               </MenuItem>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {isBurgerHidden && (
             <>

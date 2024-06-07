@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-import { clsxm } from '@/utils';
+import { cn } from '@/utils';
 
 type HeaderLinkProps = {
   href: string;
@@ -14,7 +14,7 @@ type HeaderLinkProps = {
 
 export const Link = ({ title, className, ...props }: HeaderLinkProps) => (
   <motion.a
-    className={clsxm(['border-b-2 border-transparent px-2', className])}
+    className={cn(['border-b-2 border-transparent px-2', className])}
     {...props}
   >
     {title}

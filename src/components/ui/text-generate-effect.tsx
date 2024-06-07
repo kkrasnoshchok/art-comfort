@@ -2,7 +2,7 @@
 import { motion, stagger, useAnimate } from 'framer-motion';
 import { useEffect } from 'react';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 export const TextGenerateEffect = ({
   words,
