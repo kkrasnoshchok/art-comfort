@@ -19,7 +19,7 @@ export const BentoGrid = ({
   );
 };
 
-export const BentoGridItem = ({
+const BentoGridItemComponent = ({
   className,
   title,
   description,
@@ -52,3 +52,5 @@ export const BentoGridItem = ({
     </div>
   );
 };
+
+BentoGrid.Item = BentoGridItemComponent;

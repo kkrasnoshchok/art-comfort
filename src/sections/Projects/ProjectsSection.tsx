@@ -3,8 +3,8 @@ import React, { useMemo } from 'react';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
 import { StatisticsContainer } from '@/components/statistics';
-import { BentoGrid, BentoGridItem } from '@/ui/aceternity/bento-grid';
 
+import { BentoGrid } from '@/ui/aceternity';
 import { Button } from '@/ui/button';
 import { useBreakpoint } from '@/utils';
 import { projects } from '@/utils/dataset/projects.dataset';
@@ -51,7 +51,7 @@ export const ProjectsSection = () => {
           {projectsArray
             .slice(0, isMd ? projectsArray.length : 3)
             .map((item, i) => (
-              <BentoGridItem
+              <BentoGrid.Item
                 key={i}
                 title={item.title}
                 description={item.description}

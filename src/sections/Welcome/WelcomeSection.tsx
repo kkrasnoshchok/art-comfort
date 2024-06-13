@@ -3,9 +3,8 @@ import { useMemo } from 'react';
 import { CiDesktopMouse2 } from 'react-icons/ci';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
-import { BackgroundGradientAnimation } from '@/ui/aceternity/background-gradient-animation';
-import { Highlight } from '@/components/ui/text-highlight';
 
+import { BackgroundGradientAnimation, Highlight } from '@/ui/aceternity';
 import { Button } from '@/ui/button';
 import { useBreakpoint } from '@/utils';
 import { useTranslations } from '@/utils/locales';

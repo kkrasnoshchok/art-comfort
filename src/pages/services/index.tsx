@@ -1,4 +1,3 @@
-import { cn, useBreakpoint } from '@utils';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useMemo } from 'react';
@@ -7,6 +6,7 @@ import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Tabs } from '@/ui/aceternity/tabs';
+import { cn, useBreakpoint } from '@/utils';
 import { Service, services } from '@/utils/dataset/services.dataset';
 import { useTranslations } from '@/utils/locales';
 

@@ -1,8 +1,8 @@
 import { motion, Variants } from 'framer-motion';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
-import { InfiniteMovingCards } from '@/ui/aceternity/infinite-moving-cards';
 
+import { InfiniteMovingCards } from '@/ui/aceternity';
 import { team } from '@/utils/dataset/team.dataset';
 import { useTranslations } from '@/utils/locales';
 

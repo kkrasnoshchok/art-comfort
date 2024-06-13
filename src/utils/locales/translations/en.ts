@@ -1,4 +1,4 @@
-import { TranslationType } from '@/locales/types';
+import { TranslationType } from './types';
 
 export const en: TranslationType = {
   general: {
@@ -35,7 +35,7 @@ export const en: TranslationType = {
       description:
         'Discover customised HVAC solutions with our design services. Our team of experts will ensure optimum performance and comfort for your space using cutting-edge technology and industry best practices. Contact us to discuss your project today!',
       longDescription:
-        'Our Design service is dedicated to creating custom HVAC systems tailored to meet the unique needs of your space. We understand that every building is different, which is why our expert team conducts a comprehensive assessment to evaluate your requirements. From residential homes to large commercial complexes, we consider all variables such as square footage, occupancy, and usage patterns to craft a solution that ensures optimal efficiency and comfort. Our state-of-the-art design software enables us to provide detailed blueprints and 3D models, ensuring you have a clear understanding of the proposed system before implementation. With a focus on energy efficiency and sustainability, our designs not only enhance indoor air quality but also help in reducing long-term energy costs.',
+        "The design of climate systems is a complex, interesting and creative process that has to take into account and coordinate a large number of factors, requirements and wishes of the end user. The design process itself has a clear sequence of certain stages: Development of technical specifications for design; Obtaining, analyzing and collecting initial data; Development and approval of conceptual solutions with the customer; Calculations and selection of equipment that best meets the customer's requirements; Development of the graphic part of the project in 3D or 2D models; Drawing up detailed specifications of equipment, materials, system components and fasteners; Drawing up cost estimates in commercial form or in the software packages AVK-5, Estimate 8;  Negotiation and approval of the project by the customer; Passing a comprehensive state examination and obtaining a positive expert report (if necessary).",
     },
     supply: {
       title: 'Supply',
@@ -81,13 +81,13 @@ export const en: TranslationType = {
         'Our heating projects are designed to ensure coziness and warmth in your space throughout the year. We offer innovative heating solutions that provide even and efficient heat distribution in all rooms. Our heating systems help reduce energy costs and improve energy efficiency, making your home or office more environmentally friendly. With our experienced technicians and quality equipment, you can enjoy warmth and comfort even on the coldest days. Contact us today to discuss your heating project.',
     },
     airPurifying: {
-      title: 'Air Purification',
+      title: 'Air filtration',
       description: 'Breathe easier with our advanced systems',
       longDescription:
         'Our air purification projects are designed to create a healthy and clean environment in your space. We use advanced technologies to remove pollutants, allergens, and microorganisms from the air, improving air quality and reducing the risk of respiratory illnesses. Our air purification systems are efficient and energy-saving, providing you with maximum comfort and safety. With our professional approach and high-quality equipment, you can enjoy fresh and clean air in your home or office. Contact us today to discuss your air purification project.',
     },
     waterTreatment: {
-      title: 'Water Treatment',
+      title: 'Air drying',
       description: 'Clean and safe water with our efficient solutions',
       longDescription:
         'Our water treatment projects are designed to provide you with clean and safe water for all your needs. We offer customized water treatment solutions that include removing contaminants, chemical impurities, and microorganisms. Our water treatment systems ensure high-quality and safe water suitable for drinking, cooking, and other household needs. With our experience and advanced technologies, we can provide reliable and efficient water treatment that meets your needs. Contact us today to discuss your water treatment project.',
