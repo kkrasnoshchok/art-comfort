@@ -1,10 +1,10 @@
 import { motion, Variants } from 'framer-motion';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
-import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards';
 
-import { useTranslations } from '@/utils';
+import { InfiniteMovingCards } from '@/ui/aceternity';
 import { team } from '@/utils/dataset/team.dataset';
+import { useTranslations } from '@/utils/locales';
 
 export const TeamSection = () => {
   const { team: teamTranslations } = useTranslations();

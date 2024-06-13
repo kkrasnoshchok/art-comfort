@@ -7,15 +7,14 @@ import { RxCross2 } from 'react-icons/rx';
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Input } from '@/ui/Input';
-import { clsxm, useTranslations } from '@/utils';
-import { cn } from '@/utils/cn';
+import { Input } from '@/ui/input';
+import { cn } from '@/utils';
 import {
   vacancies,
   vacanciesColumns,
   Vacancy,
 } from '@/utils/dataset/vacancies.dataset';
-import { slugify } from '@/utils/slugify';
+import { useTranslations } from '@/utils/locales';
 
 const MotionLink = motion(Link);
 
@@ -87,7 +86,7 @@ const VacanciesPage = () => {
     <Layout>
       <SectionWrapper>
         <section
-          className={clsxm(
+          className={cn(
             'mx-4 flex min-h-screen w-full max-w-6xl flex-col bg-gradient-to-b pt-16'
           )}
         >
@@ -114,7 +113,7 @@ const VacanciesPage = () => {
                   key={column.key}
                   layoutId={column.key}
                   onClick={() => handleSort(column.key)}
-                  className={clsxm(
+                  className={cn(
                     'vacancy-list-column flex min-w-[30%] cursor-pointer flex-row items-center p-2',
                     'text-grayscale-header hover:text-grayscale-body font-semibold',
                     sortField === column.key &&
@@ -127,7 +126,7 @@ const VacanciesPage = () => {
                     <motion.div>
                       <RxArrowUp
                         size={16}
-                        className={clsxm(
+                        className={cn(
                           'ml-4',
                           sortDirection === 'asc' && 'rotate-180'
                         )}
@@ -152,9 +151,7 @@ const VacanciesPage = () => {
             </div>
             {sortedVacancies.map((vacancy) => (
               <MotionLink
-                href={`/vacancies/${slugify(
-                  `${vacancy.id} ${vacancy.jobTitle} ${vacancy.location}`
-                )}`}
+                href={`/vacancies/${vacancy.id}`}
                 key={vacancy.id}
                 layoutId={vacancy.id}
                 className='vacancy-list-card block'

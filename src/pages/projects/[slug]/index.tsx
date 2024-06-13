@@ -4,16 +4,15 @@ import { useRouter } from 'next/router';
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Button } from '@/ui/Button';
-import { useTranslations } from '@/utils';
+import { Button } from '@/ui/button';
 import { projects } from '@/utils/dataset/projects.dataset';
-import { slugify } from '@/utils/slugify';
+import { useTranslations } from '@/utils/locales';
 
 const ProjectPage = () => {
   const router = useRouter();
   const { projects: projectsTranslations } = useTranslations();
   const project = projects(projectsTranslations).find(
-    (project) => slugify(project.id) === router.query.slug
+    (project) => project.id === router.query.slug
   );
   if (!project) {
     return null;

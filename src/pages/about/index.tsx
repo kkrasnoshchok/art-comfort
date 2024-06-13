@@ -1,17 +1,13 @@
 import Image, { StaticImageData } from 'next/image';
 import { useState } from 'react';
 
-// @ts-expect-error react-slick types are present, but written really poorly.
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
 import { Layout } from '@/components/layout';
 
-import { Button } from '@/ui/Button';
-import { Modal } from '@/ui/Modal';
-import { useBreakpoint, useTranslations } from '@/utils';
-import { cn } from '@/utils/cn';
+import { Button } from '@/ui/button';
+import { Modal } from '@/ui/modal';
+import { cn, useBreakpoint } from '@/utils';
 import { team } from '@/utils/dataset/team.dataset';
+import { useTranslations } from '@/utils/locales';
 
 import AuthListPdf from '../../assets/certificates/AuthListArtComfort.png';
 import HaierAirCondDealershipCertificate from '../../assets/certificates/HaierDealershipCertificate.png';

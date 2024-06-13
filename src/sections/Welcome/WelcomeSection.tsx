@@ -1,23 +1,22 @@
 import { motion, Variants } from 'framer-motion';
-// import WelcomeCityBackground from '@/assets/Welcome_City_Background.jpeg';
-// import { LuMouse } from 'react-icons/lu';
+import { useMemo } from 'react';
 import { CiDesktopMouse2 } from 'react-icons/ci';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
-import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation';
-import { Highlight } from '@/components/ui/text-highlight';
 
-import { Button } from '@/ui/Button';
-import { useBreakpoint, useTranslations } from '@/utils';
+import { BackgroundGradientAnimation, Highlight } from '@/ui/aceternity';
+import { Button } from '@/ui/button';
+import { useBreakpoint } from '@/utils';
+import { useTranslations } from '@/utils/locales';
 
 export const WelcomeSection = () => {
   const { welcome, general } = useTranslations();
   const { isLg } = useBreakpoint('lg');
-  const { isSm } = useBreakpoint('sm');
-  const titleVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
+  const titleVariants: Variants = useMemo(
+    () => ({ hidden: { opacity: 0 }, visible: { opacity: 1 } }),
+    []
+  );
+
   return (
     <SectionWrapper
       sectionProps={{ id: 'about' }}
@@ -30,6 +29,7 @@ export const WelcomeSection = () => {
             variants={titleVariants}
             initial='hidden'
             whileInView='visible'
+            viewport={{ once: true }}
             transition={{
               duration: 0.5,
               ease: 'easeInOut',

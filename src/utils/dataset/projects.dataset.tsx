@@ -14,8 +14,8 @@ import projectsAirPurifier from '@/assets/Projects_Air-Purifier.jpeg';
 import projectsHeating from '@/assets/Projects_Heating.jpeg';
 import projectsVentilation from '@/assets/Projects_Ventilation.jpg';
 import projectsWaterTreatment from '@/assets/Projects_WaterTreatment.jpeg';
-import { LocaleKeysSkeleton } from '@/locales/types';
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
+import { TranslationType } from '@/utils/locales';
 
 type ProjectImageProps = {
   src: StaticImageData;
@@ -41,7 +41,7 @@ const ProjectImage = (props: ProjectImageProps) => {
   );
 };
 
-export const projects = (t: LocaleKeysSkeleton['projects']) => [
+export const projects = (t: TranslationType['projects']) => [
   {
     id: 'ventilation',
     title: t.ventilation.title,
@@ -56,7 +56,7 @@ export const projects = (t: LocaleKeysSkeleton['projects']) => [
     icon: <IconAperture className='h-4 w-4 text-neutral-500' />,
   },
   {
-    id: 'airConditioning',
+    id: 'air-conditioning',
     title: t.airConditioning.title,
     description: t.airConditioning.description,
     longDescription: t.airConditioning.longDescription,
@@ -79,7 +79,7 @@ export const projects = (t: LocaleKeysSkeleton['projects']) => [
     icon: <IconSun className='h-4 w-4 text-neutral-500' />,
   },
   {
-    id: 'airPurifying',
+    id: 'air-purifying',
     title: t.airPurifying.title,
     description: t.airPurifying.description,
     longDescription: t.airPurifying.longDescription,
@@ -89,7 +89,7 @@ export const projects = (t: LocaleKeysSkeleton['projects']) => [
     icon: <MdAir className='h-4 w-4 text-neutral-500' />,
   },
   {
-    id: 'waterTreatment',
+    id: 'water-treatment',
     title: t.waterTreatment.title,
     description: t.waterTreatment.description,
     longDescription: t.waterTreatment.longDescription,
@@ -102,7 +102,7 @@ export const projects = (t: LocaleKeysSkeleton['projects']) => [
     icon: <FaHandHoldingWater className='h-4 w-4 text-neutral-500' />,
   },
   {
-    id: 'airHumidifying',
+    id: 'air-humidifying',
     title: t.airHumidifying.title,
     description: t.airHumidifying.description,
     longDescription: t.airHumidifying.longDescription,

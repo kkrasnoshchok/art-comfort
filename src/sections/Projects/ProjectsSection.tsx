@@ -3,11 +3,12 @@ import React, { useMemo } from 'react';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
 import { StatisticsContainer } from '@/components/statistics';
-import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid';
 
-import { Button } from '@/ui/Button';
-import { useBreakpoint, useTranslations } from '@/utils';
+import { BentoGrid } from '@/ui/aceternity';
+import { Button } from '@/ui/button';
+import { useBreakpoint } from '@/utils';
 import { projects } from '@/utils/dataset/projects.dataset';
+import { useTranslations } from '@/utils/locales';
 
 export const ProjectsSection = () => {
   const sectionVariants: Variants = {
@@ -50,7 +51,7 @@ export const ProjectsSection = () => {
           {projectsArray
             .slice(0, isMd ? projectsArray.length : 3)
             .map((item, i) => (
-              <BentoGridItem
+              <BentoGrid.Item
                 key={i}
                 title={item.title}
                 description={item.description}

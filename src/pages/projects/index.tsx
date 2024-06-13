@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Button } from '@/ui/Button';
-import { clsxm, useTranslations } from '@/utils';
+import { Button } from '@/ui/button';
+import { cn } from '@/utils';
 import { projects } from '@/utils/dataset/projects.dataset';
-import { slugify } from '@/utils/slugify';
+import { useTranslations } from '@/utils/locales';
 
 const ProjectPage = () => {
   const { projects: projectsTranslations, general } = useTranslations();
@@ -15,7 +15,7 @@ const ProjectPage = () => {
     <Layout>
       <SectionWrapper>
         <motion.div className='mx-4 grid w-full max-w-6xl grid-cols-none gap-4 pt-16 sm:grid-cols-2 md:grid-cols-3'>
-          {projects(projectsTranslations).map((project, index) => (
+          {projects(projectsTranslations).map((project) => (
             <motion.div
               className='rounded-lg border p-4 shadow-md'
               key={project.title}
@@ -25,7 +25,7 @@ const ProjectPage = () => {
                 {project.description}
               </motion.p>
               <div
-                className={clsxm(
+                className={cn(
                   'mt-2 flex aspect-video overflow-hidden rounded-2xl bg-slate-800'
                 )}
               >
@@ -33,7 +33,7 @@ const ProjectPage = () => {
               </div>
               <motion.div className='mt-4'>
                 <Button
-                  href={`projects/${slugify(project.id)}`}
+                  href={`projects/${project.id}`}
                   label={general.exploreDetails}
                   size='small'
                 />

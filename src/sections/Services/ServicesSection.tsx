@@ -5,14 +5,13 @@ import { FaArrowRight } from 'react-icons/fa';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Button } from '@/ui/Button';
-import { clsxm, useBreakpoint, useTranslations } from '@/utils';
-import { cn } from '@/utils/cn';
+import { Button } from '@/ui/button';
+import { cn } from '@/utils';
 import { Service, services } from '@/utils/dataset/services.dataset';
+import { useTranslations } from '@/utils/locales';
 
 export const ServicesSection = () => {
   const { services: servicesTranslations } = useTranslations();
-  const { isXl } = useBreakpoint('xl');
   const [activeService, setActiveService] = useState<Service | null>(null);
   const memoizedServices = useMemo(() => {
     const newServices = services(servicesTranslations);
@@ -56,7 +55,7 @@ export const ServicesSection = () => {
         initial='hidden'
         whileInView='visible'
         viewport={{ amount: 0.1 }}
-        className={clsxm(
+        className={cn(
           'mx-4 grid w-full max-w-6xl grid-rows-2 overflow-hidden md:grid-cols-2 md:grid-rows-none'
         )}
       >
@@ -73,7 +72,7 @@ export const ServicesSection = () => {
                   className='services-card pt-4'
                 >
                   <div
-                    className={clsxm(
+                    className={cn(
                       'flex cursor-pointer flex-row items-center justify-between',
                       'rounded-2xl p-2 transition duration-500 md:p-4',
                       'active:scale-[0.99]',
@@ -87,7 +86,7 @@ export const ServicesSection = () => {
                       }, 200);
                     }}
                   >
-                    <p className={clsxm('p text-gray-600 transition-colors')}>
+                    <p className={cn('p text-gray-600 transition-colors')}>
                       {service.title}
                     </p>
                     <Button
@@ -103,7 +102,7 @@ export const ServicesSection = () => {
                         />
                       }
                       size='small'
-                      className={clsxm(
+                      className={cn(
                         'rounded-full px-2 py-2',
                         'bg-gray-400',
                         isActive && 'bg-primary-bg hover:bg-primary-bg'

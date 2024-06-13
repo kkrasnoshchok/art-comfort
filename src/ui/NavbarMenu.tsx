@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Link, { LinkProps } from 'next/link';
 import React, { ReactNode } from 'react';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 const MotionLink = motion(Link);
 

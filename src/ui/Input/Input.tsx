@@ -8,8 +8,8 @@ import {
 } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 
-import { Button } from '@/ui/Button';
-import { clsxm } from '@/utils';
+import { Button } from '@/ui/button';
+import { cn } from '@/utils';
 
 type BaseProps = {
   label: string;
@@ -62,7 +62,7 @@ export const Input = (props: Props) => {
   return (
     <div className='w-full'>
       <div
-        className={clsxm(
+        className={cn(
           'base-input bg-grayscale-bg rounded-2xl border border-transparent px-4 py-3 transition-[border]',
           isInputFocused && 'border-grayscale-header',
           disabled && 'cursor-not-allowed opacity-50',
@@ -75,7 +75,7 @@ export const Input = (props: Props) => {
         {/* Label */}
         {label && (
           <p
-            className={clsxm(
+            className={cn(
               'absolute z-0 transition-all',
               !isInputFocused && inputProps.value && 'opacity-0',
               isInputFocused && 'text-grayscale-label -translate-y-2 text-xs',
@@ -94,7 +94,7 @@ export const Input = (props: Props) => {
               ref={inputRef}
               onFocus={() => setInputFocused(true)}
               onBlur={() => setInputFocused(false)}
-              className={clsxm(
+              className={cn(
                 'flex-1 bg-transparent pr-2 outline-none transition-transform',
                 isInputFocused && 'translate-y-1.5',
                 disabled && 'pointer-events-none cursor-not-allowed',
@@ -107,7 +107,7 @@ export const Input = (props: Props) => {
             <textarea
               onFocus={() => setInputFocused(true)}
               onBlur={() => setInputFocused(false)}
-              className={clsxm(
+              className={cn(
                 'flex-1 bg-transparent pr-2 outline-none transition-transform',
                 isInputFocused && 'translate-y-1.5',
                 inputClassName
@@ -124,7 +124,7 @@ export const Input = (props: Props) => {
               theme='ghost'
               Icon={<RxCross2 size={24} />}
               onClick={onClear}
-              className={clsxm(type === 'textarea' && 'self-start')}
+              className={cn(type === 'textarea' && 'self-start')}
             />
           )}
         </div>

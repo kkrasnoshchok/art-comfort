@@ -2,9 +2,8 @@ import { motion } from 'framer-motion';
 import { Ref } from 'react';
 import CountUp from 'react-countup';
 
-import { LocaleKeysSkeleton } from '@/locales/types';
-import { useTranslations } from '@/utils';
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
+import { TranslationType, useTranslations } from '@/utils/locales';
 
 type Statistics = {
   name: string;
@@ -12,7 +11,7 @@ type Statistics = {
   valueSuffix?: string;
 };
 
-const statistics = (t: LocaleKeysSkeleton['statistics']): Statistics[] => [
+const statistics = (t: TranslationType['statistics']): Statistics[] => [
   {
     name: t.experience,
     value: 17,

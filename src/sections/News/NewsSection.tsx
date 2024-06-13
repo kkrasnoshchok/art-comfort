@@ -2,10 +2,10 @@ import { motion, Variants } from 'framer-motion';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Button } from '@/ui/Button';
-import { clsxm, useBreakpoint, useTranslations } from '@/utils';
+import { Button } from '@/ui/button';
+import { cn, useBreakpoint } from '@/utils';
 import { news } from '@/utils/dataset/news.dataset';
-import { slugify } from '@/utils/slugify';
+import { useTranslations } from '@/utils/locales';
 
 export const NewsSection = () => {
   const { isMd } = useBreakpoint('md');
@@ -31,9 +31,7 @@ export const NewsSection = () => {
         whileInView='visible'
         viewport={{ amount: 0.1 }}
         transition={{ duration: 0.5, easings: ['easeIn', 'easeOut'] }}
-        className={clsxm(
-          'mx-4 flex w-full max-w-6xl flex-col bg-opacity-25 py-4'
-        )}
+        className={cn('mx-4 flex w-full max-w-6xl flex-col bg-opacity-25 py-4')}
       >
         <h1 className='h2 text-grayscale-headerWeak'>
           {newsTranslations.title}
@@ -43,7 +41,7 @@ export const NewsSection = () => {
           {news.slice(0, isMd ? news.length : 2).map((item, index) => (
             <motion.div
               key={index}
-              className={clsxm(
+              className={cn(
                 'group mt-2 flex flex-row rounded-3xl p-4',
                 'border-primary-defaultWeak border bg-gray-50 bg-opacity-50'
               )}
@@ -75,7 +73,7 @@ export const NewsSection = () => {
                 <div>
                   <Button
                     label='Дізнатись деталі'
-                    href={`/news/${slugify(item.id)}`}
+                    href={`/news/${item.id}`}
                     theme='primary'
                     size='small'
                     className='mt-4'
@@ -83,7 +81,7 @@ export const NewsSection = () => {
                 </div>
               </div>
               <div
-                className={clsxm(
+                className={cn(
                   'bg-grayscale-bgWeak',
                   'ml-4 flex aspect-video w-24 rounded-2xl sm:w-60'
                 )}

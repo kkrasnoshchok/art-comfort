@@ -4,18 +4,18 @@ import { useMemo } from 'react';
 
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
-import { Tabs } from '@/components/ui/tabs';
 
-import { clsxm, useBreakpoint, useTranslations } from '@/utils';
-import { cn } from '@/utils/cn';
+import { Tabs } from '@/ui/aceternity/tabs';
+import { cn } from '@/utils';
 import { Service, services } from '@/utils/dataset/services.dataset';
+import { useTranslations } from '@/utils/locales';
 
 const ServicesPage = () => {
   return (
     <Layout>
       <SectionWrapper>
         <motion.div
-          className={clsxm(
+          className={cn(
             'mx-4 flex w-full max-w-6xl flex-col justify-center pt-12'
           )}
         >
@@ -37,7 +37,6 @@ export function TabsDemo() {
     () => services(servicesTranslations),
     [servicesTranslations]
   );
-  const { isMd } = useBreakpoint('md');
 
   const getTabsContent = (service: Service): JSX.Element => (
     <div className='from-grayscale-body to-grayscale-headerWeak relative h-full w-full overflow-hidden rounded-2xl bg-gradient-to-br p-2 text-white'>

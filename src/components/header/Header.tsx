@@ -4,50 +4,12 @@ import { useState } from 'react';
 
 import NextImage from '@/components/NextImage';
 
-import { Button } from '@/ui/Button';
+import { Button } from '@/ui/button';
 import { Menu, MenuItem } from '@/ui/NavbarMenu';
-import { useBreakpoint, useLocale } from '@/utils';
-import { cn } from '@/utils/cn';
-import { LocaleType, useTranslations } from '@/utils/useLocale';
+import { cn, useBreakpoint } from '@/utils';
+import { menuLanguages, useLocale, useTranslations } from '@/utils/locales';
 
 import logo from '../../assets/logo.png';
-
-/**
-   * Structure:
-   * - Call Button
-   * - Burger Button for further menu
-   * - Primary Links:
-   *  - about: '/about',
-      - services: '#services',
-      - projects: '/projects',
-      - contacts: '#contacts',
-      - vacancies: '/vacancies',
-      - news: '/news',
-   * - Secondary Links:
-   */
-
-const locales: LocaleType[] = [
-  {
-    value: 'ua',
-    label: 'Українська',
-    emoji: '🇺🇦',
-  },
-  {
-    value: 'en',
-    label: 'English',
-    emoji: '🇬🇧',
-  },
-  {
-    value: 'de',
-    label: 'Deutsch',
-    emoji: '🇩🇪',
-  },
-  {
-    value: 'pl',
-    label: 'Polska',
-    emoji: '🇵🇱',
-  },
-];
 
 export const Header = () => {
   const [active, setActive] = useState<string | null>(null);
@@ -86,7 +48,7 @@ export const Header = () => {
               'w-fit items-center self-center rounded-xl bg-opacity-60 px-4 py-0 backdrop-blur-md'
           )}
         >
-          <motion.div className='menu flex flex-1 flex-col'>
+          <div className='menu flex flex-1 flex-col'>
             <div className='flex flex-row items-center gap-8'>
               <Link href='/'>
                 <div className='mb-3 flex items-center'>
@@ -120,7 +82,7 @@ export const Header = () => {
                 </>
               )}
             </div>
-            <motion.div
+            <div
               className={cn(
                 'my-2 flex flex-col items-end gap-2',
                 !isBurgerMenuOpened && 'pointer-events-none hidden opacity-0'
@@ -174,8 +136,8 @@ export const Header = () => {
                   <p className='w-48'>{header.newsTooltip}</p>
                 </div>
               </MenuItem>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {isBurgerHidden && (
             <>
@@ -248,7 +210,7 @@ export const Header = () => {
                 </span>
                 {dropdownOpened && (
                   <div className='absolute right-4 top-20 flex w-36 flex-col gap-[2px] rounded-lg bg-white text-sm'>
-                    {locales.map((localeItem, index) => (
+                    {menuLanguages.map((localeItem, index) => (
                       <motion.p
                         whileHover={{
                           borderColor: 'rgba(0,0,0,1)',
@@ -263,7 +225,7 @@ export const Header = () => {
                           'border border-transparent',
                           locale.value === localeItem.value && 'border-black',
                           index === 0 && 'rounded-t-lg',
-                          index === locales.length - 1 && 'rounded-b-lg'
+                          index === menuLanguages.length - 1 && 'rounded-b-lg'
                         )}
                       >
                         {localeItem.emoji} {localeItem.label}
