@@ -6,7 +6,7 @@ import installationBackground from '@/assets/Services_Installation.jpeg';
 import maintenanceBackground from '@/assets/Services_Maintenance.jpg';
 // import selectionAndDelivery from '@/assets/Selection_And_Delivery.jpg';
 import supplyBackground from '@/assets/Services_Supply.jpeg';
-import { TranslationType } from '@/locales/types';
+import { TranslationType } from '@/utils/locales';
 
 export type Service = {
   id: string;

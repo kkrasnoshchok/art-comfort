@@ -1,4 +1,4 @@
-import { TranslationType } from '@/locales/types';
+import { TranslationType } from '@/utils/locales';
 
 export type Vacancy = {
   id: string;

@@ -15,7 +15,7 @@ const ProjectPage = () => {
     <Layout>
       <SectionWrapper>
         <motion.div className='mx-4 grid w-full max-w-6xl grid-cols-none gap-4 pt-16 sm:grid-cols-2 md:grid-cols-3'>
-          {projects(projectsTranslations).map((project, index) => (
+          {projects(projectsTranslations).map((project) => (
             <motion.div
               className='rounded-lg border p-4 shadow-md'
               key={project.title}
