@@ -89,7 +89,7 @@ const VacancyPage = () => {
   return (
     <Layout>
       <SectionWrapper>
-        <section className='mx-4 w-full max-w-6xl pt-16'>
+        <section className='mx-4 w-full max-w-7xl pt-16'>
           <motion.div>
             <Button
               label={general.backToList}

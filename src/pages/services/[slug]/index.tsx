@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
+import Markdown from 'react-markdown';
 
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
@@ -27,14 +28,27 @@ const ServicePage = () => {
           )}
         >
           <motion.div>
-            <Button label={general.backToMain} onClick={router.back} />
+            <Button
+              label={general.backToList}
+              size='small'
+              onClick={router.back}
+            />
           </motion.div>
-          <motion.h1 className='text-primary-defaultStrong mt-8'>
-            {service.title}
-          </motion.h1>
-          <motion.p className='text-primary-defaultWeak mt-8'>
+          <h2 className='text-grayscale-header mt-8'>{service.title}</h2>
+          {/* <motion.p className='text-primary-defaultWeak mt-8'>
             {service.longDescription}
-          </motion.p>
+          </motion.p> */}
+          <Markdown
+            className='mt-4'
+            components={{
+              ul: (props) => (
+                <ul {...props} style={{ listStyleType: 'circle' }} />
+              ),
+              li: (props) => <li {...props} style={{ marginLeft: '2rem' }} />,
+            }}
+          >
+            {service.longDescription}
+          </Markdown>
         </motion.div>
       </SectionWrapper>
     </Layout>

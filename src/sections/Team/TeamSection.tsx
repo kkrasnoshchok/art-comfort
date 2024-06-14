@@ -23,7 +23,7 @@ export const TeamSection = () => {
         variants={sectionVariants}
         initial='hidden'
         whileInView='visible'
-        viewport={{ amount: 0.6 }}
+        viewport={{ amount: 0.6, once: true }}
         className='mx-4 flex w-full max-w-6xl flex-col pt-8'
       >
         <h1 className='h2 text-grayscale-headerWeak ml-4'>
