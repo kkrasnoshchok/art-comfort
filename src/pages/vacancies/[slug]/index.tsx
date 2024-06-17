@@ -2,8 +2,9 @@ import { Button as AntDesignButton, Upload, UploadFile } from 'antd';
 import { Formik, FormikHelpers } from 'formik';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { FaUpload } from 'react-icons/fa';
+import Markdown from 'react-markdown';
 import { toast } from 'react-toastify';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
@@ -22,16 +23,21 @@ import { useTranslations } from '@/utils/locales';
 const VacancyPage = () => {
   const router = useRouter();
   const { isLg } = useBreakpoint('lg');
-  const { form, general } = useTranslations();
+  const { form, general, vacancies: vacanciesTranslations } = useTranslations();
 
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const memoizedVacancies = useMemo(
+    () => vacancies(vacanciesTranslations),
+    [vacanciesTranslations]
+  );
 
   if (!router.query.slug) {
     return null;
   }
-  const vacancyId = (router.query.slug as string).split('-')[0];
 
-  const vacancy = vacancies.find((vacancy) => vacancy.id === vacancyId);
+  const vacancy = memoizedVacancies.find(
+    (vacancy) => vacancy.id === router.query.slug
+  );
   if (!vacancy) {
     return null;
   }
@@ -99,13 +105,84 @@ const VacancyPage = () => {
           </motion.div>
           <div className='flex flex-col lg:flex-row'>
             <div className='pr-4'>
-              <h2 className='text-grayscale-header mt-8'>{vacancy.jobTitle}</h2>
+              <h2 className='text-grayscale-header mt-8'>{vacancy.name}</h2>
               {/* Long Details */}
-              <motion.p className='text-grayscale-body mt-4'>
-                {vacancy.longDescription}
+              <motion.p className='text-grayscale-body mt-2'>
+                {vacanciesTranslations.baseIntroduction}
               </motion.p>
+              <p className='text-grayscale-body mt-2'>{vacancy.introduction}</p>
+              <h4 className='mt-4'>
+                {vacanciesTranslations.importantForUsLabel}
+              </h4>
+              <p className='text-grayscale-body mt-2'>
+                <Markdown
+                  components={{
+                    ul: (props) => (
+                      <ul {...props} style={{ listStyleType: 'circle' }} />
+                    ),
+                    li: (props) => (
+                      <li {...props} style={{ marginLeft: '1.5rem' }} />
+                    ),
+                  }}
+                >
+                  {vacancy.importantForUs}
+                </Markdown>
+              </p>
+              <h4 className='mt-4'>
+                {vacanciesTranslations.requirementsLabel}
+              </h4>
+              <p className='text-grayscale-body mt-2'>
+                <Markdown
+                  components={{
+                    ul: (props) => (
+                      <ul {...props} style={{ listStyleType: 'circle' }} />
+                    ),
+                    li: (props) => (
+                      <li {...props} style={{ marginLeft: '1.5rem' }} />
+                    ),
+                  }}
+                >
+                  {vacancy.requirements}
+                </Markdown>
+              </p>
+              <h4 className='mt-4'>{vacanciesTranslations.weOfferLabel}</h4>
+              <p className='text-grayscale-body mt-2'>
+                <Markdown
+                  components={{
+                    ul: (props) => (
+                      <ul {...props} style={{ listStyleType: 'circle' }} />
+                    ),
+                    li: (props) => (
+                      <li {...props} style={{ marginLeft: '1.5rem' }} />
+                    ),
+                  }}
+                >
+                  {vacancy.weOffer}
+                </Markdown>
+              </p>
+              {vacancy.jobBoardsLinks && (
+                <>
+                  <h4 className='mt-4'>
+                    {vacanciesTranslations.jobBoardsLabel}
+                  </h4>
+                  <p className='text-grayscale-body mt-2'>
+                    <Markdown
+                      components={{
+                        ul: (props) => (
+                          <ul {...props} style={{ listStyleType: 'circle' }} />
+                        ),
+                        li: (props) => (
+                          <li {...props} style={{ marginLeft: '1.5rem' }} />
+                        ),
+                      }}
+                    >
+                      {vacancy.jobBoardsLinks}
+                    </Markdown>
+                  </p>
+                </>
+              )}
             </div>
-            <div className='min-w-[35%]'>
+            <div className='min-w-[35%] lg:sticky lg:right-0 lg:top-24 lg:h-fit'>
               <Formik
                 validateOnBlur={hasSubmitted}
                 validateOnChange={hasSubmitted}

@@ -2,10 +2,12 @@ import { TranslationType } from '@/utils/locales';
 
 export type Vacancy = {
   id: string;
-  jobTitle: string;
-  location: string;
-  shortDescription: string;
-  longDescription: string;
+  name: string;
+  introduction: string;
+  requirements: string;
+  importantForUs: string;
+  weOffer: string;
+  jobBoardsLinks: string;
 };
 
 type VacancyColumn = {
@@ -15,28 +17,52 @@ type VacancyColumn = {
 
 export const vacanciesColumns = (
   t: TranslationType['vacancies']
-): VacancyColumn[] => [
-  { key: 'jobTitle', header: t.vacancyNamePlaceholder },
-  { key: 'location', header: t.vacancyLocationPlaceholder },
-];
+): VacancyColumn[] => [{ key: 'name', header: t.vacancyNamePlaceholder }];
 
-export const vacancies: Vacancy[] = [
+export const vacancies = (t: TranslationType['vacancies']): Vacancy[] => [
   {
-    id: '1a2b3c4d5e',
-    jobTitle: 'Інженер-Проєктувальник систем ОВіК',
-    location: 'Київ, Україна',
-    shortDescription:
-      'Проектування систем вентиляції, кондиціонування, зволоження, осушення повітря, опалення',
-    longDescription:
-      "We're looking for an experienced HVAC Engineer to join our team. In this role, you'll be responsible for designing, installing, and maintaining HVAC systems to ensure optimal performance and efficiency. If you're passionate about HVAC engineering and have the skills to deliver high-quality solutions, we want to hear from you!",
+    id: 'projects-lead',
+    name: t.projectsLeadLabel,
+    introduction: t.projectsLeadIntroduction,
+    importantForUs: t.projectsLeadImportantForUs,
+    requirements: t.projectsLeadRequirements,
+    weOffer: t.projectsLeadWeOffer,
+    jobBoardsLinks: t.projectsLeadJobBoards,
   },
   {
-    id: '1a2b3c4d5eaue',
-    jobTitle: 'Монтажник систем вентиляції та кондиціонування повітря',
-    location: 'Київ, Україна',
-    shortDescription:
-      'Виконання робіт з монтажу систем вентиляції та кондиціонування повітря',
-    longDescription:
-      "We're hiring an Installer of Ventilation and Air Conditioning Systems to join our installation team. If you have experience in HVAC system installation and maintenance and are looking for a new opportunity, we want to hear from you!",
+    id: 'website-marketer',
+    name: t.marketerLabel,
+    introduction: t.marketerIntroduction,
+    importantForUs: t.marketerImportantForUs,
+    requirements: t.marketerRequirements,
+    weOffer: t.marketerWeOffer,
+    jobBoardsLinks: t.marketerJobBoards,
+  },
+  {
+    id: 'customer-service-manager',
+    name: t.csmLabel,
+    introduction: t.csmIntroduction,
+    importantForUs: t.csmImportantForUs,
+    requirements: t.csmRequirements,
+    weOffer: t.csmWeOffer,
+    jobBoardsLinks: t.csmJobBoards,
+  },
+  {
+    id: 'hvac-installer',
+    name: t.installerLabel,
+    introduction: t.installerIntroduction,
+    importantForUs: t.installerImportantForUs,
+    requirements: t.installerRequirements,
+    weOffer: t.installerWeOffer,
+    jobBoardsLinks: t.installerJobBoards,
+  },
+  {
+    id: 'hvac-system-design-engineer',
+    name: t.hdeLabel,
+    introduction: t.hdeIntroduction,
+    importantForUs: t.hdeImportantForUs,
+    requirements: t.hdeRequirements,
+    weOffer: t.hdeWeOffer,
+    jobBoardsLinks: t.hdeJobBoards,
   },
 ];

@@ -1,5 +1,7 @@
 import { TranslationType } from './types';
 
+// #region services markdown descriptions
+
 const designServiceLongDescriptionMarkdown = `Проектування кліматичних систем, це комплексний, цікавий та творчий процес, який має врахувати та узгодити велику кількість факторів, вимог та побажань кінцевого споживача. Сам процес проектування має чітку послідовність певних етапів:
 - Розробка технічного завдання на проектування;
 - Отримання, аналіз та збір вихідних даних;
@@ -40,6 +42,157 @@ const maintenanceServiceLongDescriptionMarkdown = `Регулярне техні
 - Екстрене обслуговування: Надаємо оперативну допомогу у випадку аварійних ситуацій.
 
 Ми обслуговуємо системи HVAC у різних типах об'єктів, від невеликих офісів до великих промислових підприємств, включаючи ядерні станції та фармацевтичні виробництва. Наша команда спеціалістів завжди готова швидко та якісно вирішити будь-які технічні питання.`;
+
+// #endregion
+
+// #region vacancies markdown
+const vacanciesSingleBaseIntroduction = `Компанія «АРТ-КОМФОРТ» є провідним постачальником послуг у сфері інжинірингу. Ми спеціалізуємось на проектуванні, монтажі та обслуговуванні систем вентиляції та кондиціонування повітря для різних типів будівель, включаючи офісні приміщення, торгові центри, готелі, ресторани та промислові комплекси.`;
+
+// #region projects lead vacancy
+const vacanciesProjectsLeadIntroduction = `Ми шукаємо в команду енергійного, мотивованого Керівника проектів, який готовий самостійно впроваджувати нові проекти та успішно супроводжувати існуючі проекти. Якщо ви маєте досвід ефективного планування та, навички ефективної координації замовників, підрядників і команди внутрішніх фахівців — ви наш найкращий кандидат!`;
+const vacanciesProjectsLeadImportantForUs = `
+- Досвід роботи на аналогічній посаді від 2-х років.
+- Вища освіта у сфері інженерії, будівництва або суміжних галузей.
+- Вміння керувати проектами, включаючи планування, організацію ресурсів та контроль якості.
+- Відмінні комунікаційні та лідерські навички.
+- Висока відповідальність та орієнтація на результат.
+`;
+const vacanciesProjectsLeadRequirements = `
+- Керування виконанням проектів від початку до кінця, включаючи планування, організацію ресурсів та контроль якості.
+- Взаємодія з замовниками, підрядниками та командою внутрішніх фахівців для забезпечення успішної реалізації проектів.
+- Забезпечення дотримання термінів виконання, бюджету та вимог замовників.
+- Вирішення конфліктних ситуацій та ризиків, що виникають під час виконання проектів.
+- Забезпечення звітності та документації проектів.
+`;
+const vacanciesProjectsLeadWeOffer = `
+- Участь у цікавих проектах різного рівня складності.
+- Офіційне працевлаштування та гідний рівень фінансової мотивації.
+- Навчання та розвиток у команді однодумців.
+- Можливість професійного зростання в команді.
+- Комфортний офіс (чай, кава, солоденьке).
+`;
+const vacanciesProjectsLeadJobBoards = `
+- [Work UA](https://www.work.ua/employer/my/jobs/view/5267666/)
+`;
+// #endregion projects lead vacancy
+
+// #region marketer vacancy
+const vacanciesMarketerIntroduction = `Запрошуємо у нашу команду Маркетолога.`;
+const vacanciesMarketerImportantForUs = `
+- вища освіта в маркетингу, комунікаціях, або суміжних спеціальностях;
+- досвід роботи у маркетингу від 2-х років;
+- сильні аналітичні здібності та досвід у використанні аналітичних інструментів;
+- вміння працювати з багатоканальними маркетинговими стратегіями;
+- відмінні комунікативні навички та вміння презентувати ідеї, уважність до деталей;
+- успішне володіння програмними продуктами: MS Office (Word, Excel, Paint), графічні редактори (Adobe Photoshop, Adobe Illustrator, інші);
+- відкритість до навчання та інновацій.
+`;
+const vacanciesMarketerRequirements = `
+- розробляти та впроваджувати маркетингові стратегії;
+- аналізувати ринок та конкурентів, визначати ключові сегменти та цільову аудиторію;
+- створювати та імплементувати бренд-комунікаційну стратегію через різноманітні канали;
+- копірайтинг (написання та розміщення рекламних текстів), SMM, PR
+- наповнення та адміністрування корпоративного сайту;
+- управління бюджетом та відстеження ефективності маркетингових кампаній;
+- робота з підрядниками.
+`;
+const vacanciesMarketerWeOffer = `
+- офіційне працевлаштування та гідний рівень фінансової мотивації;
+- навчання та розвиток у команді однодумців;
+- можливість професійного зростання в команді;
+- командоутворюючі заходи;
+- комфортний офіс (чай, кава, солоденьке).
+`;
+const vacanciesMarketerJobBoards = ``;
+// #endregion
+
+// #region customer service manager vacancy
+const vacanciesCsmIntroduction = `У зв’язку із розширенням запрошуємо в нашу команду Менеджера по роботі з клієнтами`;
+const vacanciesCsmImportantForUs = `
+- Успішний досвід роботи в продажах у сфері вентиляції та кондиціонування.
+- Досвід живого ділового спілкування, ведення перемовин.
+- Навички роботи у програмах MS Office.
+- Наполегливість, уважність, відповідальність, комунікабельність.
+- Володіння навичками переконання та здатність будувати довгострокові стосунки з клієнтами.
+- Дружелюбність та порядність.
+-  Наша команда — сім'я, ми працюємо з людьми, тому шукаємо менеджера, який любить людей, вміє знайти підхід до кожного клієнта, чесний та відповідальний.
+`;
+const vacanciesCsmRequirements = `
+- Пошук та залучення нових клієнтів.
+- Консультування клієнтів, вивчення специфіки їх запиту, проведення перемовин.
+- Укладання угод і передача клієнтів профільному спеціалісту (керівнику проектів).
+- Розширення бази контактів, потенційних клієнтів компанії.
+`;
+const vacanciesCsmWeOffer = `
+- Офіційне працевлаштування та гідний рівень фінансової мотивації.
+- Навчання та розвиток у команді однодумців.
+- Можливість професійного зростання в команді.
+- Командоутворюючі заходи.
+- Комфортний офіс (чай, кава, солоденьке).
+`;
+const vacanciesCsmJobBoards = `
+- [Work UA](https://www.work.ua/employer/my/jobs/view/5605179/)`;
+// #endregion
+
+// #region installer vacancy
+const vacanciesInstallerIntroduction = `У зв’язку із розширенням запрошуємо в нашу команду Монтажників систем вентиляції та кондиціонування повітря.`;
+const vacanciesInstallerImportantForUs = `
+ - Досвід роботи з монтажу та сервісного обслуговування.
+ - Напрацьовані навички роботи з системами кондиціонування та вентиляції різного рівня складності.
+ - Клієнтоорієнтованість, гнучкість, професіоналізм.
+ - Відсутність шкідливих звичок.
+ - Орієнтованість на результат.
+`;
+const vacanciesInstallerRequirements = `
+ - Виконання робіт з монтажу систем вентиляції та кондиціонування повітря.
+ - Проведення сервісного та технічного обслуговування систем вентиляції та кондиціонування різного рівня складності.
+`;
+const vacanciesInstallerWeOffer = `
+ - Гідну заробітну плату, виплата регулярно 2 рази на місяць.
+ - Офіційне працевлаштування.
+ - Робота в дружньому колективі професіоналів, корпоративні заходи.
+ - Можливість навчання та підвищення кваліфікації в команді однодумців.
+`;
+const vacanciesInstallerJobBoards = `
+- [Work UA](https://www.work.ua/employer/my/jobs/view/1612211/)
+- [Robota UA](https://robota.ua/my/vacancies/9712329/preview)
+`;
+// #endregion
+
+// #region hvac design-engineer vacancy
+const vacanciesHdeIntroduction = `У зв’язку із розширенням запрошуємо в нашу команду  Інженера-проектувальника систем ОВіК.`;
+const vacanciesHdeImportantForUs = `
+ - Вища освіта в галузі інженерії (електротехніка, теплотехніка, вентиляція та кондиціонування повітря або схожа).
+ - Досвід роботи на аналогічній позиції у сфері кондиціонування, вентиляції, опалення від двох років.
+ - Впевнене володіння програмними продуктами для проектування систем ОВіК (AutoCAD, MagiCAD, Revit і т.д.).
+ - Глибокі знання технічних стандартів та правил в галузі систем ОВіК.
+ - Знання нормативної документації (ДБН, ДСТУ).
+ - Наявність сертифікату інженера проектувальника (СС2, СС3) – буде перевагою.
+ - Активна життєва позиція, відповідальність та порядність, готовність працювати в команді.
+ - Бажання навчатись та підвищувати свій професійний рівень в команді однодумців.
+`;
+const vacanciesHdeRequirements = `
+ - Проектування систем вентиляції, кондиціонування, зволоження, осушення повітря, опалення.
+ - Комплексний підхід до підготовки інженерно-технічних рішень та проектів систем опалення, вентиляції та кондиціонування повітря для об’єктів різного рівня складності.
+ - Підготовка виконавчої документації.
+ - Проведення всіх необхідних розрахунків (повітрообмін, теплотехнічний розрахунок, розрахунок систем кондиціонування).
+ - Погодження проектних рішень з замовником. 
+ - Авторський нагляд.
+`;
+const vacanciesHdeWeOffer = `
+ - Участь у цікавих проектах різного рівня складності.
+ - Офіційне працевлаштування та гідний рівень фінансової мотивації.
+ - Навчання та розвиток у команді однодумців.
+ - Можливість професійного зростання в команді.
+ - Комфортний офіс (чай, кава, солоденьке).
+`;
+const vacanciesHdeJobBoards = `
+- [Work UA](https://www.work.ua/employer/my/jobs/view/3674339/)
+- [Robota UA](https://robota.ua/my/vacancies/9639344/preview)
+`;
+// #endregion
+
+// #endregion
 
 export const ua: TranslationType = {
   general: {
@@ -186,6 +339,46 @@ export const ua: TranslationType = {
     searchVacanciesPlaceholder: 'Пошук вакансії',
     vacancyNamePlaceholder: 'Назва вакансії',
     vacancyLocationPlaceholder: 'Локація',
+    importantForUsLabel: 'Що для нас важливо?',
+    requirementsLabel: 'Обовʼязки',
+    weOfferLabel: 'Що ми пропонуємо найкращому кандидату?',
+    jobBoardsLabel: 'Ми на сайтах пошуку роботи',
+    baseIntroduction: vacanciesSingleBaseIntroduction,
+    // projectsLead
+    projectsLeadLabel: 'Керівник проетків',
+    projectsLeadIntroduction: vacanciesProjectsLeadIntroduction,
+    projectsLeadImportantForUs: vacanciesProjectsLeadImportantForUs,
+    projectsLeadRequirements: vacanciesProjectsLeadRequirements,
+    projectsLeadWeOffer: vacanciesProjectsLeadWeOffer,
+    projectsLeadJobBoards: vacanciesProjectsLeadJobBoards,
+    // marketer
+    marketerLabel: 'Маркетолог на сайт',
+    marketerIntroduction: vacanciesMarketerIntroduction,
+    marketerImportantForUs: vacanciesMarketerImportantForUs,
+    marketerRequirements: vacanciesMarketerRequirements,
+    marketerWeOffer: vacanciesMarketerWeOffer,
+    marketerJobBoards: vacanciesMarketerJobBoards,
+    // customer service manager
+    csmLabel: 'Менеджер по роботі з клієнтами',
+    csmIntroduction: vacanciesCsmIntroduction,
+    csmImportantForUs: vacanciesCsmImportantForUs,
+    csmRequirements: vacanciesCsmRequirements,
+    csmWeOffer: vacanciesCsmWeOffer,
+    csmJobBoards: vacanciesCsmJobBoards,
+    // installer
+    installerLabel: 'Монтажник систем вентиляції та кондиціонування повітря',
+    installerIntroduction: vacanciesInstallerIntroduction,
+    installerImportantForUs: vacanciesInstallerImportantForUs,
+    installerRequirements: vacanciesInstallerRequirements,
+    installerWeOffer: vacanciesInstallerWeOffer,
+    installerJobBoards: vacanciesInstallerJobBoards,
+    // hvac design engineer
+    hdeLabel: 'Інженер-проєктувальник систем ОВіК',
+    hdeIntroduction: vacanciesHdeIntroduction,
+    hdeImportantForUs: vacanciesHdeImportantForUs,
+    hdeRequirements: vacanciesHdeRequirements,
+    hdeWeOffer: vacanciesHdeWeOffer,
+    hdeJobBoards: vacanciesHdeJobBoards,
   },
   about: {
     showMoreLabel: 'Показати більше',

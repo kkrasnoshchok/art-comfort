@@ -118,4 +118,45 @@ type Vacancies = {
   searchVacanciesPlaceholder: string;
   vacancyNamePlaceholder: string;
   vacancyLocationPlaceholder: string;
+  importantForUsLabel: string;
+  requirementsLabel: string;
+  weOfferLabel: string;
+  jobBoardsLabel: string;
+  baseIntroduction: string;
+  // Projects Lead
+
+  projectsLeadLabel: string;
+  projectsLeadIntroduction: string;
+  projectsLeadImportantForUs: string;
+  projectsLeadRequirements: string;
+  projectsLeadWeOffer: string;
+  projectsLeadJobBoards: string;
+  // Marketer
+  marketerLabel: string;
+  marketerIntroduction: string;
+  marketerImportantForUs: string;
+  marketerRequirements: string;
+  marketerWeOffer: string;
+  marketerJobBoards: string;
+  // CSM
+  csmLabel: string;
+  csmIntroduction: string;
+  csmImportantForUs: string;
+  csmRequirements: string;
+  csmWeOffer: string;
+  csmJobBoards: string;
+  // Installer
+  installerLabel: string;
+  installerIntroduction: string;
+  installerImportantForUs: string;
+  installerRequirements: string;
+  installerWeOffer: string;
+  installerJobBoards: string;
+  // HDE
+  hdeLabel: string;
+  hdeIntroduction: string;
+  hdeImportantForUs: string;
+  hdeRequirements: string;
+  hdeWeOffer: string;
+  hdeJobBoards: string;
 };

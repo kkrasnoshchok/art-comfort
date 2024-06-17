@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { RxArrowUp } from 'react-icons/rx';
 import { RxCross2 } from 'react-icons/rx';
 
@@ -19,16 +19,23 @@ import { useTranslations } from '@/utils/locales';
 const MotionLink = motion(Link);
 
 const VacanciesPage = () => {
+  const { vacancies: vacanciesTranslations } = useTranslations();
+  const memoizedVacancies = useMemo(
+    () => vacancies(vacanciesTranslations),
+    [vacanciesTranslations]
+  );
+  useEffect(() => {
+    if (memoizedVacancies) {
+      setSortedVacancies(memoizedVacancies);
+    }
+  }, [memoizedVacancies]);
   const [sortedVacancies, setSortedVacancies] =
-    useState<Omit<Vacancy, 'longDescription'>[]>(vacancies);
-  const [sortField, setSortField] = useState<
-    keyof Omit<Vacancy, 'longDescription'> | null
-  >(null);
+    useState<Vacancy[]>(memoizedVacancies);
+  const [sortField, setSortField] = useState<keyof Vacancy | null>(null);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const { vacancies: vacanciesTranslations } = useTranslations();
 
-  const handleSort = (field: keyof Omit<Vacancy, 'longDescription'>) => {
+  const handleSort = (field: keyof Vacancy) => {
     if (field === sortField) {
       // Toggle sorting direction if sorting the same field
       const direction = sortDirection === 'asc' ? 'desc' : 'asc';
@@ -52,12 +59,12 @@ const VacanciesPage = () => {
     setSearchQuery(query);
 
     const filteredVacancies = query
-      ? vacancies.filter((vacancy) =>
+      ? memoizedVacancies.filter((vacancy) =>
           Object.values(vacancy).some((value) =>
             value.toString().toLowerCase().includes(query.toLowerCase())
           )
         )
-      : vacancies;
+      : memoizedVacancies;
 
     const sorted = [...filteredVacancies].sort((a, b) => {
       if (sortField) {
@@ -114,10 +121,10 @@ const VacanciesPage = () => {
                   layoutId={column.key}
                   onClick={() => handleSort(column.key)}
                   className={cn(
-                    'vacancy-list-column flex min-w-[30%] cursor-pointer flex-row items-center p-2',
+                    'vacancy-list-column flex cursor-pointer flex-row items-center p-2',
                     'text-grayscale-header hover:text-grayscale-body font-semibold',
                     sortField === column.key &&
-                      'bg-grayscale-bgWeak transition-all',
+                      'bg-grayscale-bgWeak rounded-t-lg transition-all',
                     index === 0 && 'flex-1'
                   )}
                 >

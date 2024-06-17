@@ -1,5 +1,6 @@
 import { TranslationType } from './types';
 
+// #region services
 const designServiceLongDescriptionMarkdown = `Designing climate systems is a complex, interesting and creative process that must take into account and reconcile a large number of factors, requirements and wishes of the end user. The design process itself has a clear sequence of certain stages:
 - Development of a design specification;
 - Obtaining, analysing and collecting initial data;
@@ -40,6 +41,159 @@ const maintenanceServiceLongDescriptionMarkdown = `Regular maintenance is the ke
 - Emergency service: We provide prompt assistance in case of emergencies.
 
 We service HVAC systems in various types of facilities, from small offices to large industrial plants, including nuclear power plants and pharmaceutical production facilities. Our team of specialists is always ready to resolve any technical issues quickly and efficiently;`;
+
+// #endregion services
+
+// #region vacancies markdown
+const vacanciesSingleBaseIntroduction = `Art Comfort is a leading provider of engineering services. We specialise in the design, installation and maintenance of ventilation and air conditioning systems for various types of buildings, including office buildings, shopping centres, hotels, restaurants and industrial complexes;`;
+
+// #region projects lead vacancy
+const vacanciesProjectsLeadIntroduction = `We are looking for an energetic, motivated Project Lead who is ready to independently implement new projects and successfully support existing projects. If you have a proven track record of effective planning and the ability to coordinate effectively with clients, contractors and internal teams, you are our best candidate!`;
+
+const vacanciesProjectsLeadImportantForUs = `
+- At least 2 years of experience in a similar position.
+- University degree in engineering, construction or related field.
+- Ability to manage projects, including planning, resource organisation and quality control.
+- Excellent communication and leadership skills.
+- High responsibility and result orientation.
+`;
+
+const vacanciesProjectsLeadRequirements = `
+- Manage projects from start to finish, including planning, resource organisation and quality control.
+- Interact with clients, contractors and internal teams to ensure successful project delivery.
+- Ensure compliance with deadlines, budgets and customer requirements.
+- Resolving conflicts and risks arising during project implementation.
+- Ensure project reporting and documentation.
+`;
+const vacanciesProjectsLeadWeOffer = `
+- Participation in interesting projects of various levels of complexity.
+- Official employment and a decent level of financial motivation.
+- Training and development in a team of like-minded people.
+- Opportunity for professional growth in the team.
+- Comfortable office (tea, coffee, sweets).
+`;
+const vacanciesProjectsLeadJobBoards = `
+- [Work UA](https://www.work.ua/employer/my/jobs/view/5267666/)
+`;
+// #endregion projects lead vacancy
+
+// #region marketer vacancy
+const vacanciesMarketerIntroduction = `We are looking for a Marketer to join our team`;
+const vacanciesMarketerImportantForUs = `
+- higher education in marketing, communications, or related specialities;
+- at least 2 years of experience in marketing;
+- strong analytical skills and experience in using analytical tools;
+- ability to work with multi-channel marketing strategies;
+- excellent communication skills and ability to present ideas, attention to detail;
+- successful proficiency in software products: MS Office (Word, Excel, Paint), graphic editors (Adobe Photoshop, Adobe Illustrator, others);
+- openness to learning and innovation.
+`;
+const vacanciesMarketerRequirements = `
+- Develop and implement marketing strategies;
+- analyse the market and competitors, identify key segments and target audience;
+- create and implement brand communication strategy through various channels;
+- copywriting (writing and placing advertising texts), SMM, PR
+- content and administration of the corporate website;
+- budget management and tracking the effectiveness of marketing campaigns;
+- work with contractors.
+`;
+const vacanciesMarketerWeOffer = `
+- official employment and a decent level of financial motivation;
+- training and development in a team of like-minded people;
+- opportunity for professional growth in the team;
+- team-building activities;
+- comfortable office (tea, coffee, sweets).
+`;
+const vacanciesMarketerJobBoards = ``;
+// #endregion
+
+// #region customer service manager vacancy
+const vacanciesCsmIntroduction = `In connection with the expansion, we invite a Customer Service Manager to join our team`;
+const vacanciesCsmImportantForUs = `
+- Successful experience in sales in the field of ventilation and air conditioning.
+- Experience in live business communication, negotiation.
+- Skills in MS Office applications.
+- Perseverance, attentiveness, responsibility, sociability.
+- Possession of persuasion skills and the ability to build long-term relationships with customers.
+- Friendliness and decency.
+- Our team is a family, we work with people, so we are looking for a manager who loves people, knows how to find an approach to each client, is honest and responsible.
+`;
+const vacanciesCsmRequirements = `
+- Searching for and attracting new clients.
+- Advising clients, studying the specifics of their request, conducting negotiations.
+- Concluding deals and transferring clients to a specialised specialist (project manager).
+- Expanding the company's database of contacts and potential clients.
+`;
+const vacanciesCsmWeOffer = `
+- Official employment and a decent level of financial motivation.
+- Training and development in a team of like-minded people.
+- Opportunity for professional growth in the team.
+- Team-building activities.
+- Comfortable office (tea, coffee, sweets).
+`;
+const vacanciesCsmJobBoards = `
+- [Work UA](https://www.work.ua/employer/my/jobs/view/5605179/)`;
+// #endregion
+
+// #region installer vacancy
+const vacanciesInstallerIntroduction = `In connection with the expansion, we are looking for HVAC Installers to join our team`;
+const vacanciesInstallerImportantForUs = `
+ - Experience in installation and maintenance.
+ - Well-developed skills in working with air conditioning and ventilation systems of various levels of complexity.
+ - Customer focus, flexibility, professionalism.
+ - Absence of bad habits.
+ - Focus on results.
+`;
+const vacanciesInstallerRequirements = `
+ - Installation of ventilation and air conditioning systems.
+ - Carrying out service and maintenance of ventilation and air conditioning systems of various levels of complexity.
+`;
+const vacanciesInstallerWeOffer = `
+ - Decent salary, paid regularly 2 times a month.
+ - Official employment.
+ - Work in a friendly team of professionals, corporate events.
+ - Opportunity for training and professional development in a team of like-minded people.
+`;
+const vacanciesInstallerJobBoards = `
+- [Work UA](https://www.work.ua/employer/my/jobs/view/1612211/)
+- [Robota UA](https://robota.ua/my/vacancies/9712329/preview)
+`;
+// #endregion
+
+// #region hvac design-engineer vacancy
+const vacanciesHdeIntroduction = `In connection with the expansion, we invite a Design Engineer for HVAC systems to join our team`;
+const vacanciesHdeImportantForUs = `
+ - University degree in engineering (electrical, thermal, ventilation and air conditioning or similar).
+ - At least two years of experience in a similar position in the field of air conditioning, ventilation, heating.
+ - Proficient knowledge of software products for designing HVAC systems (AutoCAD, MagiCAD, Revit, etc.).
+ - In-depth knowledge of technical standards and regulations in the field of HVAC systems.
+ - Knowledge of regulatory documents (DBN, DSTU).
+ - A design engineer certificate (CC2, CC3) will be an advantage.
+ - Active life position, responsibility and integrity, willingness to work in a team.
+ - A desire to learn and improve your professional level in a team of like-minded people.
+`;
+const vacanciesHdeRequirements = `
+ - Design of ventilation, air conditioning, humidification, dehumidification, and heating systems.
+ - An integrated approach to the preparation of engineering and technical solutions and projects for heating, ventilation and air conditioning systems for facilities of various levels of complexity.
+ - Preparation of executive documentation.
+ - Carrying out all necessary calculations (air exchange, heat engineering calculation, calculation of air conditioning systems).
+ - Coordination of design solutions with the customer. 
+ - Author's supervision.
+`;
+const vacanciesHdeWeOffer = `
+ - Participation in interesting projects of various levels of complexity.
+ - Official employment and a decent level of financial motivation.
+ - Training and development in a team of like-minded people.
+ - Opportunity for professional growth in the team.
+ - Comfortable office (tea, coffee, sweets).
+`;
+const vacanciesHdeJobBoards = `
+- [Work UA](https://www.work.ua/employer/my/jobs/view/3674339/)
+- [Robota UA](https://robota.ua/my/vacancies/9639344/preview)
+`;
+// #endregion
+
+// #endregion
 
 export const en: TranslationType = {
   general: {
@@ -186,6 +340,46 @@ export const en: TranslationType = {
     searchVacanciesPlaceholder: 'Search for position',
     vacancyNamePlaceholder: 'Name of vacancy',
     vacancyLocationPlaceholder: 'Location',
+    importantForUsLabel: 'What is important to us?',
+    requirementsLabel: 'Responsibilities',
+    weOfferLabel: 'What do we offer the best candidate?',
+    jobBoardsLabel: 'We are on job boards',
+    baseIntroduction: vacanciesSingleBaseIntroduction,
+    // projectsLead
+    projectsLeadLabel: 'Project leader',
+    projectsLeadIntroduction: vacanciesProjectsLeadIntroduction,
+    projectsLeadImportantForUs: vacanciesProjectsLeadImportantForUs,
+    projectsLeadRequirements: vacanciesProjectsLeadRequirements,
+    projectsLeadWeOffer: vacanciesProjectsLeadWeOffer,
+    projectsLeadJobBoards: vacanciesProjectsLeadJobBoards,
+    // marketer
+    marketerLabel: 'Site marketer',
+    marketerIntroduction: vacanciesMarketerIntroduction,
+    marketerImportantForUs: vacanciesMarketerImportantForUs,
+    marketerRequirements: vacanciesMarketerRequirements,
+    marketerWeOffer: vacanciesMarketerWeOffer,
+    marketerJobBoards: vacanciesMarketerJobBoards,
+    // customer service manager
+    csmLabel: 'Customer service manager',
+    csmIntroduction: vacanciesCsmIntroduction,
+    csmImportantForUs: vacanciesCsmImportantForUs,
+    csmRequirements: vacanciesCsmRequirements,
+    csmWeOffer: vacanciesCsmWeOffer,
+    csmJobBoards: vacanciesCsmJobBoards,
+    // installer
+    installerLabel: 'Installer of ventilation and air conditioning systems',
+    installerIntroduction: vacanciesInstallerIntroduction,
+    installerImportantForUs: vacanciesInstallerImportantForUs,
+    installerRequirements: vacanciesInstallerRequirements,
+    installerWeOffer: vacanciesInstallerWeOffer,
+    installerJobBoards: vacanciesInstallerJobBoards,
+    // hvac design engineer
+    hdeLabel: 'HVAC system design engineer',
+    hdeIntroduction: vacanciesHdeIntroduction,
+    hdeImportantForUs: vacanciesHdeImportantForUs,
+    hdeRequirements: vacanciesHdeRequirements,
+    hdeWeOffer: vacanciesHdeWeOffer,
+    hdeJobBoards: vacanciesHdeJobBoards,
   },
   about: {
     showMoreLabel: 'Show more',
