@@ -2,9 +2,17 @@ import { Button as AntDesignButton, Upload, UploadFile } from 'antd';
 import { Formik, FormikHelpers } from 'formik';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import { useMemo, useState } from 'react';
+import {
+  ClassAttributes,
+  HTMLAttributes,
+  LiHTMLAttributes,
+  useMemo,
+  useState,
+} from 'react';
+import { AiFillPhone } from 'react-icons/ai';
 import { FaUpload } from 'react-icons/fa';
-import Markdown from 'react-markdown';
+import { MdEmail } from 'react-icons/md';
+import Markdown, { ExtraProps } from 'react-markdown';
 import { toast } from 'react-toastify';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
@@ -23,7 +31,12 @@ import { useTranslations } from '@/utils/locales';
 const VacancyPage = () => {
   const router = useRouter();
   const { isLg } = useBreakpoint('lg');
-  const { form, general, vacancies: vacanciesTranslations } = useTranslations();
+  const {
+    form,
+    general,
+    contacts,
+    vacancies: vacanciesTranslations,
+  } = useTranslations();
 
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const memoizedVacancies = useMemo(
@@ -31,13 +44,71 @@ const VacancyPage = () => {
     [vacanciesTranslations]
   );
 
+  const baseMarkdownProps = useMemo(
+    () => ({
+      components: {
+        ul: (
+          props: ClassAttributes<HTMLUListElement> &
+            HTMLAttributes<HTMLUListElement> &
+            ExtraProps
+        ) => <ul {...props} style={{ listStyleType: 'circle' }} />,
+        li: (
+          props: ClassAttributes<HTMLLIElement> &
+            LiHTMLAttributes<HTMLLIElement> &
+            ExtraProps
+        ) => <li {...props} style={{ marginLeft: '1.5rem' }} />,
+      },
+    }),
+    []
+  );
+
+  const vacancy = useMemo(
+    () => memoizedVacancies.find((vacancy) => vacancy.id === router.query.slug),
+    [memoizedVacancies, router.query.slug]
+  );
+
+  const MemoizedVacancyDetails = useMemo(() => {
+    if (!vacancy) {
+      return null;
+    }
+    return (
+      <div className='pr-4'>
+        <h2 className='text-grayscale-header mt-8'>{vacancy.name}</h2>
+        {/* Long Details */}
+        <motion.p className='text-grayscale-body mt-2'>
+          {vacanciesTranslations.baseIntroduction}
+        </motion.p>
+        <p className='text-grayscale-body mt-2'>{vacancy.introduction}</p>
+        <h4 className='mt-4'>{vacanciesTranslations.importantForUsLabel}</h4>
+        <p className='text-grayscale-body mt-2'>
+          <Markdown {...baseMarkdownProps}>{vacancy.importantForUs}</Markdown>
+        </p>
+        <h4 className='mt-4'>{vacanciesTranslations.requirementsLabel}</h4>
+        <p className='text-grayscale-body mt-2'>
+          <Markdown {...baseMarkdownProps}>{vacancy.requirements}</Markdown>
+        </p>
+        <h4 className='mt-4'>{vacanciesTranslations.weOfferLabel}</h4>
+        <p className='text-grayscale-body mt-2'>
+          <Markdown {...baseMarkdownProps}>{vacancy.weOffer}</Markdown>
+        </p>
+        {vacancy.jobBoardsLinks && (
+          <>
+            <h4 className='mt-4'>{vacanciesTranslations.jobBoardsLabel}</h4>
+            <p className='text-grayscale-body mt-2'>
+              <Markdown {...baseMarkdownProps}>
+                {vacancy.jobBoardsLinks}
+              </Markdown>
+            </p>
+          </>
+        )}
+      </div>
+    );
+  }, [vacancy, vacanciesTranslations, baseMarkdownProps]);
+
   if (!router.query.slug) {
     return null;
   }
 
-  const vacancy = memoizedVacancies.find(
-    (vacancy) => vacancy.id === router.query.slug
-  );
   if (!vacancy) {
     return null;
   }
@@ -104,85 +175,39 @@ const VacancyPage = () => {
             />
           </motion.div>
           <div className='flex flex-col lg:flex-row'>
-            <div className='pr-4'>
-              <h2 className='text-grayscale-header mt-8'>{vacancy.name}</h2>
-              {/* Long Details */}
-              <motion.p className='text-grayscale-body mt-2'>
-                {vacanciesTranslations.baseIntroduction}
-              </motion.p>
-              <p className='text-grayscale-body mt-2'>{vacancy.introduction}</p>
-              <h4 className='mt-4'>
-                {vacanciesTranslations.importantForUsLabel}
-              </h4>
-              <p className='text-grayscale-body mt-2'>
-                <Markdown
-                  components={{
-                    ul: (props) => (
-                      <ul {...props} style={{ listStyleType: 'circle' }} />
-                    ),
-                    li: (props) => (
-                      <li {...props} style={{ marginLeft: '1.5rem' }} />
-                    ),
-                  }}
-                >
-                  {vacancy.importantForUs}
-                </Markdown>
-              </p>
-              <h4 className='mt-4'>
-                {vacanciesTranslations.requirementsLabel}
-              </h4>
-              <p className='text-grayscale-body mt-2'>
-                <Markdown
-                  components={{
-                    ul: (props) => (
-                      <ul {...props} style={{ listStyleType: 'circle' }} />
-                    ),
-                    li: (props) => (
-                      <li {...props} style={{ marginLeft: '1.5rem' }} />
-                    ),
-                  }}
-                >
-                  {vacancy.requirements}
-                </Markdown>
-              </p>
-              <h4 className='mt-4'>{vacanciesTranslations.weOfferLabel}</h4>
-              <p className='text-grayscale-body mt-2'>
-                <Markdown
-                  components={{
-                    ul: (props) => (
-                      <ul {...props} style={{ listStyleType: 'circle' }} />
-                    ),
-                    li: (props) => (
-                      <li {...props} style={{ marginLeft: '1.5rem' }} />
-                    ),
-                  }}
-                >
-                  {vacancy.weOffer}
-                </Markdown>
-              </p>
-              {vacancy.jobBoardsLinks && (
-                <>
-                  <h4 className='mt-4'>
-                    {vacanciesTranslations.jobBoardsLabel}
-                  </h4>
-                  <p className='text-grayscale-body mt-2'>
-                    <Markdown
-                      components={{
-                        ul: (props) => (
-                          <ul {...props} style={{ listStyleType: 'circle' }} />
-                        ),
-                        li: (props) => (
-                          <li {...props} style={{ marginLeft: '1.5rem' }} />
-                        ),
-                      }}
-                    >
-                      {vacancy.jobBoardsLinks}
-                    </Markdown>
-                  </p>
-                </>
-              )}
-            </div>
+            {MemoizedVacancyDetails}
             <div className='min-w-[35%] lg:sticky lg:right-0 lg:top-24 lg:h-fit'>
+              <p className='text-grayscale-headerWeak text-lg font-semibold'>
+                {contacts.contactUsDirectly}
+              </p>
+              <div className='bg-grayscale-bg mt-2 flex w-full flex-col gap-2 rounded-lg p-2'>
+                <p className='text-sm'>{vacanciesTranslations.hrData}</p>
+                <div className='flex flex-row items-center'>
+                  <Button
+                    Icon={<MdEmail color='#1e293b' size={24} />}
+                    className='contacts-section__button-phone items-center'
+                    theme='ghost'
+                    label='hr@art-comfort.com'
+                    labelClassName='ml-2 text-slate-800'
+                    href='mailto:hr@art-comfort.com'
+                    size='small'
+                  />
+                </div>
+                <div className='flex flex-row items-center'>
+                  <Button
+                    Icon={<AiFillPhone color='#1e293b' size={24} />}
+                    className='contacts-section__button-phone items-center'
+                    theme='ghost'
+                    label='+380963090322'
+                    labelClassName='ml-2 text-slate-800'
+                    href='tel:+380963090322'
+                    size='small'
+                  />
+                </div>
+              </div>
+              <p className='text-grayscale-headerWeak mt-4 text-lg font-semibold'>
+                {contacts.leaveRequest}
+              </p>
               <Formik
                 validateOnBlur={hasSubmitted}
                 validateOnChange={hasSubmitted}

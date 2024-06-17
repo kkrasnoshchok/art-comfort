@@ -340,6 +340,7 @@ export const en: TranslationType = {
     searchVacanciesPlaceholder: 'Search for position',
     vacancyNamePlaceholder: 'Name of vacancy',
     vacancyLocationPlaceholder: 'Location',
+    hrData: 'Tatyana Yaltukhova, Recruitment Manager:',
     importantForUsLabel: 'What is important to us?',
     requirementsLabel: 'Responsibilities',
     weOfferLabel: 'What do we offer the best candidate?',

@@ -304,7 +304,7 @@ export const ua: TranslationType = {
   },
   contacts: {
     title: 'Контакти',
-    contactUsDirectly: 'Зв’яжіться з нами безпосередньо',
+    contactUsDirectly: 'Зв’яжіться з нами напряму',
     leaveRequest: 'Залишити запит',
     locationLabel: 'вул. Берковецька 6а, м. Київ',
   },
@@ -341,6 +341,7 @@ export const ua: TranslationType = {
     vacancyLocationPlaceholder: 'Локація',
     importantForUsLabel: 'Що для нас важливо?',
     requirementsLabel: 'Обовʼязки',
+    hrData: 'Ялтухова Тетяна, менеджер з підбору персоналу:',
     weOfferLabel: 'Що ми пропонуємо найкращому кандидату?',
     jobBoardsLabel: 'Ми на сайтах пошуку роботи',
     baseIntroduction: vacanciesSingleBaseIntroduction,

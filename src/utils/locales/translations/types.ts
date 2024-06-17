@@ -118,6 +118,7 @@ type Vacancies = {
   searchVacanciesPlaceholder: string;
   vacancyNamePlaceholder: string;
   vacancyLocationPlaceholder: string;
+  hrData: string;
   importantForUsLabel: string;
   requirementsLabel: string;
   weOfferLabel: string;
