@@ -195,6 +195,53 @@ const vacanciesHdeJobBoards = `
 
 // #endregion
 
+// #region news markdown
+
+const newsHvacInnovationsTitle = `Exploring the Latest Innovations in HVAC Technology for 2024`;
+const newsHvacInnovationsContent = `
+The HVAC industry is witnessing a remarkable transformation in 2024 with groundbreaking technologies designed to enhance comfort, efficiency, and sustainability. As a leader in the field, ART-COMFORT is excited to share the latest advancements that are shaping the future of heating, ventilation, and air conditioning.
+
+1. **Eco-Friendly Refrigerants.** The shift towards eco-friendly refrigerants is a significant step forward for the HVAC industry. These refrigerants have a lower Global Warming Potential (GWP), making them less harmful to the environment while improving system efficiency. This change is crucial in the fight against climate change and is a positive move for both the industry and the planet​ [The AC Therapist](https://theactherapist.com/blog/hvac-innovations/).
+2. **Smart Thermostats.** Smart thermostats are revolutionizing home comfort by integrating seamlessly with smart home systems like Amazon Echo and Google Home. These devices allow users to control their HVAC systems via mobile apps or voice commands, optimizing energy use and enhancing convenience. Smart thermostats can also learn user preferences and adjust settings automatically to maintain ideal indoor conditions​ [Field Camp](https://www.fieldcamp.com/blog/new-hvac-technology/), [StartUs Insights](https://www.startus-insights.com/innovators-guide/hvac-industry-trends/).
+3. **Enhanced Indoor Air Quality (IAQ) Systems.** With a growing awareness of the importance of indoor air quality, 2024 brings advanced air purification and filtration systems. These systems use HEPA filters, activated carbon, and UV-C light technology to remove pollutants, allergens, and pathogens, providing a healthier living environment. Smart ventilation systems also ensure a constant supply of fresh air while minimizing energy loss [The AC Therapist](https://theactherapist.com/blog/hvac-trends-2024/), [Facilitiesnet](https://www.facilitiesnet.com/iaq/article/2024-HVAC-Trends-Sustainability-Filtration-and-Future-Innovations--20090).
+4. **IoT Integration and Predictive Maintenance.** The integration of IoT in HVAC systems allows for real-time monitoring and predictive maintenance. Sensors and data analytics help detect early signs of potential issues, enabling timely repairs and reducing downtime. This not only extends the lifespan of HVAC systems but also improves efficiency and lowers operational costs [StartUs Insights](https://www.startus-insights.com/innovators-guide/hvac-industry-trends/).
+5. **Innovative Cooling Solutions.** Ice-powered air conditioning is an exciting development in the quest for energy-efficient cooling. These systems freeze water overnight to provide cooling during the day, significantly reducing energy consumption compared to traditional AC units. This innovation is part of a broader trend towards sustainable HVAC solutions.
+
+At ART-COMFORT, we are committed to staying at the forefront of these technological advancements. Our goal is to provide our clients with the most efficient, sustainable, and innovative HVAC solutions available. Stay connected with us for more updates on how we are bringing these innovations to life in your homes and businesses.
+For more detailed insights and updates on HVAC technologies, visit our blog or contact our team of experts.
+
+By keeping abreast of these cutting-edge trends and technologies, ART-COMFORT ensures that we deliver the highest quality service and the most advanced HVAC systems to our valued clients. Together, we can create a more sustainable and comfortable future.
+`;
+
+const newsSeasonalRecommendationsTitle = `Seasonal HVAC Tips: Preparing Your HVAC System for Different Seasons`;
+const newsSeasonalRecommendationsContent = `
+As the seasons change, it's essential to prepare your heating, ventilation, and air conditioning (HVAC) system to ensure its efficient and uninterrupted operation. Timely maintenance helps prevent malfunctions, reduce energy costs, and extend the lifespan of your equipment. ART-COMFORT shares some useful tips for preparing your HVAC system for the summer and winter seasons. 
+
+*Summer Preparation*
+
+1. **Check and Clean Air Filters:** Regularly check and clean or replace filters every 1-2 months. Dirty filters can reduce efficiency and cause the system to overheat.
+2. **Clean Condenser Coils:** Clean the coils from dust and dirt to ensure efficient operation of the air conditioner.
+3. **Inspect the Thermostat:** Make sure the thermostat is working correctly. Consider installing a programmable or smart thermostat for additional energy savings.
+4. **Check Vents:** Ensure vents are not blocked by furniture or other items to maintain proper airflow.
+
+*Winter Preparation*
+
+1. **Clean or Replace Filters:** Clean or replace filters every 1-2 months to ensure efficient operation.
+2. **Check for Duct Leaks:** Ensure ducts are not leaking to prevent heat loss and improve heating efficiency.
+3. **Inspect and Clean Boilers**: Regular boiler maintenance helps prevent malfunctions and ensures efficient operation during the cold season.
+4. **Calibrate the Thermostat:** Check thermostat settings for optimal heating and energy savings.
+
+
+*Benefits of Regular HVAC Maintenance*
+1. **Improved Comfort:** Ensures even temperature distribution in your home.
+2. **Reduced Energy Consumption:** Efficient energy use lowers utility bills.
+3. **Extended System Lifespan:** Regular maintenance prevents major breakdowns and premature equipment failure.
+4. **Better Indoor Air Quality:** Clean filters and proper maintenance contribute to better indoor air quality.
+
+
+For professional assistance and detailed recommendations on preparing your HVAC system for seasonal changes, contact the experts at ART-COMFORT. We guarantee quality service and reliability of your equipment throughout the year.
+`;
+
 export const en: TranslationType = {
   general: {
     contactUs: 'Contact us',
@@ -302,6 +349,13 @@ export const en: TranslationType = {
   news: {
     title: 'News',
     showAll: 'View all news',
+    pageTitle: 'List of news',
+    // innovations
+    newsHvacInnovationsTitle,
+    newsHvacInnovationsContent,
+    // seasonal
+    newsSeasonalRecommendationsTitle,
+    newsSeasonalRecommendationsContent,
   },
   contacts: {
     title: 'Contacts',

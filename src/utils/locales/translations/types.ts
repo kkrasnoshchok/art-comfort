@@ -39,6 +39,13 @@ type Header = {
 type News = {
   title: string;
   showAll: string;
+  pageTitle: string;
+  // innovations
+  newsHvacInnovationsTitle: string;
+  newsHvacInnovationsContent: string;
+  // seasonal
+  newsSeasonalRecommendationsTitle: string;
+  newsSeasonalRecommendationsContent: string;
 };
 
 type Projects = {
@@ -125,7 +132,6 @@ type Vacancies = {
   jobBoardsLabel: string;
   baseIntroduction: string;
   // Projects Lead
-
   projectsLeadLabel: string;
   projectsLeadIntroduction: string;
   projectsLeadImportantForUs: string;

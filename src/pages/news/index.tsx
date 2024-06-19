@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
+import Markdown from 'react-markdown';
 
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
@@ -15,12 +17,16 @@ const NewsPage = () => {
     router.replace('/', undefined, { shallow: true, scroll: false });
   }, [router]);
 
-  const { general } = useTranslations();
+  const { general, news: newsTranslations } = useTranslations();
+  const memoizedNews = useMemo(
+    () => news(newsTranslations),
+    [newsTranslations]
+  );
 
   return (
     <Layout>
       <SectionWrapper>
-        <motion.div className='w-full max-w-6xl gap-4 pt-16'>
+        <motion.div className='w-full max-w-7xl gap-4 pt-16'>
           <motion.div>
             <Button
               label={general.backToMain}
@@ -28,9 +34,11 @@ const NewsPage = () => {
               size='small'
             />
           </motion.div>
-          <motion.h3 className='mt-8 text-slate-800'>Список новин</motion.h3>
+          <motion.h3 className='mt-8 text-slate-800'>
+            {newsTranslations.pageTitle}
+          </motion.h3>
           <motion.div className='mt-4 grid grid-cols-3 gap-4'>
-            {news.map((news) => (
+            {memoizedNews.map((news) => (
               <motion.div
                 className='border-primary-defaultStrong flex flex-col items-center rounded-lg border p-4 backdrop-blur-lg'
                 key={news.title}
@@ -41,8 +49,16 @@ const NewsPage = () => {
                 <p className='w-full text-left text-xs text-slate-600'>
                   {news.date.format('DD.MM.YYYY')}
                 </p>
-                <div className='my-2 flex aspect-video w-full rounded-md bg-slate-900' />
-                <motion.p className='mt-2 text-sm'>{news.description}</motion.p>
+                <div className='my-2 flex w-full overflow-hidden rounded-md bg-slate-900'>
+                  <Image
+                    src={news.url}
+                    alt={news.title}
+                    className='h-full w-full object-cover'
+                  />
+                </div>
+                <Markdown className='mt-2 text-sm'>
+                  {news.description?.split(' ').slice(0, 30).join(' ') + '...'}
+                </Markdown>
                 <motion.div className='mt-4 w-full'>
                   <Button
                     href={`news/${news.id}`}
