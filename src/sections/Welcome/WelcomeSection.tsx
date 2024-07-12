@@ -63,6 +63,7 @@ export const WelcomeSection = () => {
                 size={isLg ? 'medium' : 'small'}
                 label={welcome.servicesLabel}
                 theme='secondary'
+                href='#services'
               />
             </div>
             <div>
@@ -70,6 +71,7 @@ export const WelcomeSection = () => {
                 size={isLg ? 'medium' : 'small'}
                 label={general.contactUs}
                 theme='primary'
+                href='#contacts'
               />
             </div>
           </motion.div>

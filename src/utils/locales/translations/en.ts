@@ -1,5 +1,59 @@
 import { TranslationType } from './types';
 
+// #region about
+
+const aboutUsContentMarkdown = `
+## About us
+
+Since 21 June 2007, ART-COMFORT has been creating comfortable climatic conditions for its customers, both private and business, with passion and dedication. We have already implemented more than 500 projects in the field of ventilation and air conditioning for public institutions and large private companies in Ukraine and Europe. Our goal is to provide modern, efficient and reliable solutions that ensure the optimal microclimate necessary for a comfortable stay of people and efficient technological processes in various premises.
+`;
+
+const missionContentMarkdown = `
+## Our mission
+
+Our mission is to create and maintain comfortable, healthy and efficient environments by providing high quality HVAC services and products. We strive to ensure that each of our implementations is synonymous with reliability, innovation and complete customer satisfaction`;
+
+const visionContentMarkdown = `
+## Our vision.
+
+We want to be the leading HVAC company in Europe, known for its professionalism, innovative solutions and individual approach to each client. We strive to make ART-COMFORT the first choice for anyone looking for complete ventilation and air conditioning solutions`;
+
+const whyWeContentMarkdown = `
+## Why us?
+
+1. **Passion and commitment**: We are passionate about creating comfortable climatic conditions. Each project for us is a challenge that brings satisfaction from a job well done.
+2. **Experience and professionalism**: We have more than 17 years of experience in the HVAC industry, and our team consists of qualified and experienced professionals.
+3. **Innovation**: We are constantly looking for new technologies and solutions that allow us to provide our customers with the highest quality of service.
+4. **Comprehensive services**: We offer a full range of services - from consulting and design to installation, maintenance and repair.
+5. **Customer confidence**: We are trusted by many well-known companies and institutions, which is the greatest recognition for us.
+`;
+
+const servicesContentMarkdown = `
+## Our services.
+
+- **Inspection of ventilation and air conditioning systems**: Accurate inspections to assess the efficiency and technical condition of systems.
+- **System Design**: Creation of advanced ventilation, air conditioning, humidification and dehumidification projects tailored to individual customer needs.
+- **Equipment supply**: Supplying high-quality equipment for ventilation, air conditioning, humidification and dehumidification systems.
+- **Refurbishment and installation**: Comprehensive services for the modernisation, installation and assembly of HVAC systems.
+- **Maintenance**: Regular inspections and maintenance of ventilation, air conditioning, humidification and dehumidification systems to ensure their long-term and trouble-free operation.
+- **Repair**: Quick and efficient troubleshooting of ventilation, air conditioning, humidification and dehumidification systems.
+`;
+
+const teamContentMarkdown = `
+## Our team
+
+The ART-COMFORT team currently consists of 24 people, including experienced and qualified employees: design engineers, project managers and installers of ventilation and air conditioning systems. Our specialists are constantly improving their skills to ensure the highest level of service.
+
+`;
+
+const ourValuesContentMarkdown = `
+## Our values
+
+Quality, responsibility and professionalism are the foundation of our success and development. We are constantly improving our skills and raising our service standards to meet the expectations of our clients. At ART-COMFORT, we believe that a comfortable environment for work and life is the key to the success and satisfaction of our customers. We invite you to cooperate and use our services to create the perfect climate conditions together.
+`;
+
+// #endregion
+
 // #region services
 const designServiceLongDescriptionMarkdown = `Designing climate systems is a complex, interesting and creative process that must take into account and reconcile a large number of factors, requirements and wishes of the end user. The design process itself has a clear sequence of certain stages:
 - Development of a design specification;
@@ -241,6 +295,7 @@ As the seasons change, it's essential to prepare your heating, ventilation, and 
 
 For professional assistance and detailed recommendations on preparing your HVAC system for seasonal changes, contact the experts at ART-COMFORT. We guarantee quality service and reliability of your equipment throughout the year.
 `;
+// #endregion news section
 
 export const en: TranslationType = {
   general: {
@@ -437,7 +492,13 @@ export const en: TranslationType = {
     hdeJobBoards: vacanciesHdeJobBoards,
   },
   about: {
-    showMoreLabel: 'Show more',
-    hideLabel: 'Hide',
+    licensesTitle: 'Licenses and Certificates',
+    aboutUsContent: aboutUsContentMarkdown,
+    missionContent: missionContentMarkdown,
+    visionContent: visionContentMarkdown,
+    whyWeContent: whyWeContentMarkdown,
+    servicesContent: servicesContentMarkdown,
+    teamContent: teamContentMarkdown,
+    ourValuesContent: ourValuesContentMarkdown,
   },
 };

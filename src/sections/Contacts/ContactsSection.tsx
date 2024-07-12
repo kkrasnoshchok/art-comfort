@@ -256,6 +256,7 @@ export const ContactsSection = () => {
                     </Upload>
                   </div>
                   <div>
+                    {JSON.stringify(errors)}
                     <Button
                       onClick={() => {
                         setHasSubmitted(true);

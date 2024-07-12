@@ -16,8 +16,14 @@ export type TranslationType = {
   form: Form;
   vacancies: Vacancies;
   about: {
-    showMoreLabel: string;
-    hideLabel: string;
+    licensesTitle: string;
+    aboutUsContent: string;
+    missionContent: string;
+    visionContent: string;
+    whyWeContent: string;
+    servicesContent: string;
+    teamContent: string;
+    ourValuesContent: string;
   };
 };
 
