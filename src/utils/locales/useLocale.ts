@@ -1,7 +1,7 @@
 import { useLocalStorage } from 'usehooks-ts';
 
 import { LOCALE_DEFAULT_VALUE, LOCALE_KEY } from './constants';
-import { en, ua } from './translations';
+import { en, pl, ua } from './translations';
 import { TranslationType } from './translations/types';
 import { LocaleType } from './types';
 
@@ -21,12 +21,11 @@ export const useTranslations = (): TranslationType => {
   switch (locale.value) {
     case 'en':
       return en;
-    case 'ua':
-      return ua;
+    case 'pl':
+      return pl;
     // case 'de':
     //   return de
-    // case 'pl':
-    //   return pl
+    case 'ua':
     default:
       return ua;
   }

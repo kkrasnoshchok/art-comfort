@@ -47,7 +47,7 @@ const ServicesPage = () => {
                 </motion.p>
                 <motion.div className='mt-auto'>
                   <Button
-                    href={`projects/${service.id}`}
+                    href={`services/${service.id}`}
                     label={general.exploreDetails}
                     size='small'
                   />

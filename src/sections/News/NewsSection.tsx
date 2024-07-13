@@ -12,7 +12,6 @@ import { useTranslations } from '@/utils/locales';
 
 export const NewsSection = () => {
   const { isMd } = useBreakpoint('md');
-  const { isLg } = useBreakpoint('lg');
   const sectionVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },

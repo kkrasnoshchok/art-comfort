@@ -35,9 +35,6 @@ const ServicePage = () => {
             />
           </motion.div>
           <h2 className='text-grayscale-header mt-8'>{service.title}</h2>
-          {/* <motion.p className='text-primary-defaultWeak mt-8'>
-            {service.longDescription}
-          </motion.p> */}
           <Markdown
             className='mt-4'
             components={{

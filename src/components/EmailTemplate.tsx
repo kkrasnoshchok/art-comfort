@@ -30,22 +30,27 @@ export const EmailTemplate = (props: EmailTemplateProps): JSX.Element => {
             label: 'Телефон:',
             value: phone,
           },
-          {
+          message && {
             Icon: <MdMessage size={24} />,
             label: 'Повідомлення:',
             value: message,
           },
-        ].map((row) => (
-          <div key={row.label} className='flex flex-row items-start gap-2'>
-            <div className='flex w-1/2 flex-row items-center gap-1'>
-              {row.Icon}
-              <p className='italic'>{row.label}</p>
+        ].map((row) => {
+          if (!row) {
+            return null;
+          }
+          return (
+            <div key={row.label} className='flex flex-row items-start gap-2'>
+              <div className='flex w-1/2 flex-row items-center gap-1'>
+                {row.Icon}
+                <p className='italic'>{row.label}</p>
+              </div>
+              <p className='flex-1 flex-wrap break-words text-sm font-bold'>
+                {row.value}
+              </p>
             </div>
-            <p className='flex-1 flex-wrap break-words text-sm font-bold'>
-              {row.value}
-            </p>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

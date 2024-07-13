@@ -68,7 +68,7 @@ export const ContactsSection = () => {
       formData.append('files', values.files?.[i] as string);
     }
 
-    formData.append('to', 'krasnoshchokvadim@gmail.com');
+    formData.append('to', 'info@art-comfort.com');
 
     try {
       const response = await fetch('/api/upload', {
@@ -256,7 +256,6 @@ export const ContactsSection = () => {
                     </Upload>
                   </div>
                   <div>
-                    {JSON.stringify(errors)}
                     <Button
                       onClick={() => {
                         setHasSubmitted(true);
@@ -266,7 +265,7 @@ export const ContactsSection = () => {
                       size='medium'
                       theme='primary'
                       className='mt-8'
-                      disabled={!!errors}
+                      disabled={!!(errors.name || errors.email || errors.phone)}
                     />
                   </div>
                 </div>
