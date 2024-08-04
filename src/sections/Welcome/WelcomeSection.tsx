@@ -5,7 +5,7 @@ import { CiDesktopMouse2 } from 'react-icons/ci';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { BackgroundGradientAnimation, Highlight } from '@/ui/aceternity';
-import { Button } from '@/ui/button';
+import { Button } from '@/ui/Button';
 import { useBreakpoint } from '@/utils';
 import { useTranslations } from '@/utils/locales';
 
