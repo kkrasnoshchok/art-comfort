@@ -5,7 +5,7 @@ import Markdown, { Options } from 'react-markdown';
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Modal } from '@/ui/modal';
+import { Modal } from '@/ui/Modal';
 import { cn } from '@/utils';
 import { team } from '@/utils/dataset/team.dataset';
 import { useTranslations } from '@/utils/locales';

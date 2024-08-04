@@ -23,7 +23,7 @@ import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
 import { Button } from '@/ui/Button';
-import { Input } from '@/ui/input';
+import { Input } from '@/ui/Input';
 import { useBreakpoint } from '@/utils';
 import { vacancies } from '@/utils/dataset/vacancies.dataset';
 import { useTranslations } from '@/utils/locales';
