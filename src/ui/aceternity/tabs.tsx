@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-import { Button } from '@/ui/button';
+import { Button } from '@/ui/Button';
 import { cn, useBreakpoint } from '@/utils';
 
 type Tab = {

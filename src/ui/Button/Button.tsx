@@ -1,7 +1,7 @@
 import { HTMLMotionProps, motion } from 'framer-motion';
 import { ReactNode, useCallback } from 'react';
 
-import { ButtonSize, ButtonTheme } from '@/ui/button/types';
+import { ButtonSize, ButtonTheme } from '@/ui/Button/types';
 import { cn } from '@/utils';
 
 type Props = {

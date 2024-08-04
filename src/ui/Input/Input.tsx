@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 
-import { Button } from '@/ui/button';
+import { Button } from '@/ui/Button';
 import { cn } from '@/utils';
 
 type BaseProps = {

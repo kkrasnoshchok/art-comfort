@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ReactNode } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 
-import { Button } from '@/ui/button';
+import { Button } from '@/ui/Button';
 
 type ModalProps = {
   isOpen: boolean;
