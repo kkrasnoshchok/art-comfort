@@ -4,12 +4,12 @@ import { useState } from 'react';
 
 import NextImage from '@/components/NextImage';
 
-import { Button } from '@/ui/button';
 import { Menu, MenuItem } from '@/ui/NavbarMenu';
 import { cn, useBreakpoint } from '@/utils';
 import { menuLanguages, useLocale, useTranslations } from '@/utils/locales';
 
 import logo from '../../assets/logo.png';
+import { Button } from '../../ui/button';
 
 export const Header = () => {
   const [active, setActive] = useState<string | null>(null);
