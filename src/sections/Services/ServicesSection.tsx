@@ -5,28 +5,34 @@ import { FaArrowRight } from 'react-icons/fa';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Button } from '@/ui/Button';
-import { clsxm } from '@/utils';
+import { Button } from '@/ui/button';
+import { cn } from '@/utils';
 import { Service, services } from '@/utils/dataset/services.dataset';
+import { useTranslations } from '@/utils/locales';
 
 export const ServicesSection = () => {
-  const [activeService, setActiveService] = useState<Service>(services[0]);
+  const { services: servicesTranslations } = useTranslations();
+  const [activeService, setActiveService] = useState<Service | null>(null);
+  const memoizedServices = useMemo(() => {
+    const newServices = services(servicesTranslations);
+    setActiveService((prev) => {
+      if (prev) {
+        const newActiveService = newServices.find(
+          (service) => service.id === prev?.id
+        );
+        return newActiveService || newServices[0];
+      }
+
+      return newServices[0];
+    });
+    return newServices;
+  }, [servicesTranslations]);
   const controls = useAnimationControls();
 
   const sectionVariants: Variants = {
-    hidden: { opacity: 0, y: 120 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 60 },
-    visible: {
-      opacity: 1,
-      y: 0,
       transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
     },
   };
@@ -43,38 +49,34 @@ export const ServicesSection = () => {
   );
 
   return (
-    <SectionWrapper sectionProps={{ id: 'services' }} className='pb-0'>
+    <SectionWrapper sectionProps={{ id: 'services' }} className='h-fit pb-0'>
       <motion.div
         variants={sectionVariants}
         initial='hidden'
         whileInView='visible'
-        viewport={{ amount: 0.1, once: true }}
-        className={clsxm('grid w-11/12 grid-cols-2 overflow-hidden')}
+        viewport={{ amount: 0.1 }}
+        className={cn(
+          'mx-4 grid w-full max-w-6xl grid-rows-2 overflow-hidden md:grid-cols-2 md:grid-rows-none'
+        )}
       >
         {/* Left */}
-        <motion.div className='pr-8 pt-8'>
-          <motion.h1 className='h1 text-primary-default'>Послуги</motion.h1>
+        <motion.div className='md:pr-8'>
+          <motion.h1 className='h2'>{servicesTranslations.title}</motion.h1>
           <motion.div className='mt-4 flex flex-col'>
-            {services.slice(0, 5).map((service, index) => {
-              const isActive = activeService.title === service.title;
+            {memoizedServices.map((service, index) => {
+              const isActive = activeService?.title === service.title;
               return (
                 <motion.div
-                  variants={itemVariants}
-                  initial='hidden'
-                  whileInView='visible'
-                  viewport={{ amount: 0.5, once: true }}
                   transition={{ delay: 100 * index }}
                   key={service.title}
                   className='services-card pt-4'
                 >
                   <div
-                    className={clsxm(
+                    className={cn(
                       'flex cursor-pointer flex-row items-center justify-between',
-                      'border-primary-default rounded-2xl border p-4 transition duration-500',
-                      'hover:shadow-primary-default hover:shadow-sm',
+                      'rounded-2xl p-2 transition duration-500 md:p-4',
                       'active:scale-[0.99]',
-                      isActive &&
-                        'bg-primary-default border-primary-bg services-card--active'
+                      isActive && 'services-card--active bg-slate-50'
                     )}
                     onClick={() => {
                       controls.start('hidden');
@@ -84,12 +86,7 @@ export const ServicesSection = () => {
                       }, 200);
                     }}
                   >
-                    <p
-                      className={clsxm(
-                        'p text-primary-defaultStrong transition-colors',
-                        isActive && 'text-primary-bg'
-                      )}
-                    >
+                    <p className={cn('p text-gray-600 transition-colors')}>
                       {service.title}
                     </p>
                     <Button
@@ -97,15 +94,17 @@ export const ServicesSection = () => {
                         <FaArrowRight
                           color={
                             isActive
-                              ? 'rgba(36, 84, 116, 1)' // primary-default
-                              : 'rgba(235, 237, 241, 1)' // primary-bg
+                              ? 'rgba(38, 35, 56, 1)'
+                              : 'rgba(235, 237, 241, 1)'
                           }
                           size={16}
+                          className={cn('rotate-90 md:rotate-0')}
                         />
                       }
                       size='small'
-                      className={clsxm(
+                      className={cn(
                         'rounded-full px-2 py-2',
+                        'bg-gray-400',
                         isActive && 'bg-primary-bg hover:bg-primary-bg'
                       )}
                       onClick={() => {
@@ -117,10 +116,14 @@ export const ServicesSection = () => {
               );
             })}
           </motion.div>
-          <Button label='Show all services' className='mt-8' href='services' />
+          <Button
+            label='Детальніше про послуги'
+            className='mt-8'
+            href='services'
+          />
         </motion.div>
         {/* Right */}
-        <motion.div className='bg-primary-defaultStrong relative z-10 flex flex-1 flex-col justify-between rounded-[36px] p-8'>
+        <motion.div className='bg-grayscale-header relative z-10 mt-8 flex flex-1 flex-col justify-between rounded-[36px] p-8 md:mt-0'>
           <motion.div
             className='flex h-full flex-col'
             variants={contentVariants}
@@ -128,24 +131,36 @@ export const ServicesSection = () => {
             animate={controls}
           >
             <motion.h2 className='h2 text-primary-bg'>
-              {activeService.title}
+              {activeService?.title}
             </motion.h2>
-            <p className='text-primary-bg mt-4'>{activeService.description}</p>
-            <div className='flex flex-1 flex-col items-end justify-end'>
+            <p className='text-primary-bg mt-4 text-xs sm:text-sm'>
+              {activeService?.description}
+            </p>
+            <div className='flex flex-1 flex-row items-end justify-end gap-4'>
               <Button
-                href={`services/${activeService.id}`}
+                href='#contacts'
+                theme='primary'
+                className='inline-flex'
+                label='Звʼязатись з нами'
+                size='small'
+              />
+              <Button
+                href={`services/${activeService?.id}`}
                 theme='subtle'
                 className='inline-flex'
                 label='Дізнатись детальніше'
+                size='small'
               />
             </div>
-            <motion.div className='absolute left-0 top-0 -z-10 h-full w-full'>
-              <Image
-                src={activeService.url}
-                className='h-full w-full rounded-[36px] object-cover opacity-10'
-                alt={activeService.description}
-              />
-            </motion.div>
+            {activeService && (
+              <motion.div className='absolute left-0 top-0 -z-10 h-full w-full'>
+                <Image
+                  src={activeService?.url}
+                  className='h-full w-full rounded-[36px] object-cover opacity-10'
+                  alt={activeService?.description}
+                />
+              </motion.div>
+            )}
           </motion.div>
         </motion.div>
       </motion.div>

@@ -1,14 +1,14 @@
-import { clsxm } from '@/utils';
+import { cn } from '@/utils';
 
 export const ContributionSection = () => {
   return (
     <article
       id='contribution'
-      className={clsxm(['flex w-screen flex-col px-6 py-16 lg:py-24'])}
+      className={cn(['flex w-screen flex-col px-6 py-16 lg:py-24'])}
     >
       <h1>Вклад в перемогу України</h1>
       <div className='h-10/12 mt-12 flex flex-col lg:flex-row portrait:flex-col'>
-        <div className={clsxm(['p flex flex-1 flex-col lg:mr-4'])}>
+        <div className={cn(['p flex flex-1 flex-col lg:mr-4'])}>
           <p className='rounded-lg border-2 p-4'>
             В першу чергу хочу подякувати всім нашим Захисникам та Захисницям,
             які ціною власного життя і здоров`я наближають перемогу України, та
@@ -67,7 +67,7 @@ export const ContributionSection = () => {
           </div>
         </div>
         <div
-          className={clsxm([
+          className={cn([
             'mt-4 flex aspect-square w-full items-center justify-center bg-slate-200 md:aspect-video lg:mt-0 lg:flex-1 portrait:mt-4',
           ])}
         >

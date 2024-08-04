@@ -1,77 +1,104 @@
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { useMemo } from 'react';
 
 import { Layout } from '@/components/layout';
+import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Button } from '@/ui/Button';
-import { clsxm } from '@/utils';
-import { services } from '@/utils/dataset/services.dataset';
+import { Tabs } from '@/ui/aceternity/tabs';
+import { Button } from '@/ui/button';
+import { cn } from '@/utils';
+import { Service, services } from '@/utils/dataset/services.dataset';
+import { useTranslations } from '@/utils/locales';
 
 const ServicesPage = () => {
-  const router = useRouter();
-  const itemVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
-
-  const navigateBackToHome = () => {
-    router.replace('/', undefined, { shallow: true, scroll: false });
-  };
+  const { services: servicesTranslations, general } = useTranslations();
+  const servicesData = useMemo(
+    () => services(servicesTranslations),
+    [servicesTranslations]
+  );
   return (
     <Layout>
-      <motion.div className={clsxm('flex w-full items-center justify-center')}>
-        <motion.div className='w-11/12 rounded-lg pt-12'>
-          <motion.div>
-            <Button
-              label='Повернутись на головну'
-              onClick={navigateBackToHome}
-            />
-          </motion.div>
-          <motion.h1 className='h1 text-primary-defaultStrong mt-8'>
-            Список послуг
-          </motion.h1>
-          <motion.div className='mt-8 pb-32'>
-            {services.map((service) => (
+      <SectionWrapper>
+        <motion.div
+          className={cn(
+            'mx-4 flex w-full max-w-7xl flex-col justify-center pt-12'
+          )}
+        >
+          <h3 className='text-grayscale-header mt-8'>
+            Які послуги ми надаємо?
+          </h3>
+          <motion.div className='grid w-full grid-cols-none gap-4 pt-4 sm:grid-cols-2 md:grid-cols-4'>
+            {servicesData.map((service) => (
               <motion.div
-                className='border-primary-defaultStrong mt-4 flex items-center rounded-3xl border p-4 backdrop-blur-lg'
+                className='flex flex-col rounded-lg border p-4 shadow-md'
                 key={service.title}
-                variants={itemVariants}
-                initial='hidden'
-                whileInView='visible'
-                viewport={{ amount: 0.6, once: false }}
-                transition={{ duration: 0.2 }}
               >
-                <motion.div className='flex-1'>
-                  <motion.h3 className='text-primary-defaultStrong'>
-                    {service.title}
-                  </motion.h3>
-                  <motion.p>{service.description}</motion.p>
-                  <motion.div className='mt-4'>
-                    <Button
-                      href={`projects/${service.id}`}
-                      label='Детальніше'
-                    />
-                  </motion.div>
-                </motion.div>
-                <div
-                  className={clsxm(
-                    'bg-primary-defaultStrong ml-4 flex aspect-video w-60 rounded-2xl border border-slate-500'
-                  )}
-                >
+                <h4 className='leading-[1.25rem]'>{service.title}</h4>
+                <div className='mt-2 rounded-2xl bg-slate-800'>
                   <Image
-                    src={service.url}
-                    className='aspect-video h-full w-full object-cover opacity-40 transition-all group-hover:opacity-100'
                     alt={service.title}
+                    src={service.url}
+                    className='aspect-video overflow-hidden rounded-2xl bg-slate-800 opacity-25'
                   />
                 </div>
+                <motion.p className='mb-2 mt-2 flex-1 text-[0.8rem] leading-[0.9rem]'>
+                  {service.description}
+                </motion.p>
+                <motion.div className='mt-auto'>
+                  <Button
+                    href={`services/${service.id}`}
+                    label={general.exploreDetails}
+                    size='small'
+                  />
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
         </motion.div>
-      </motion.div>
+      </SectionWrapper>
     </Layout>
   );
 };
 
 export default ServicesPage;
+
+export function TabsDemo() {
+  const { services: servicesTranslations } = useTranslations();
+  const memoizedServices = useMemo(
+    () => services(servicesTranslations),
+    [servicesTranslations]
+  );
+
+  const getTabsContent = (service: Service): JSX.Element => (
+    <div className='from-grayscale-body to-grayscale-headerWeak relative h-full w-full overflow-hidden rounded-2xl bg-gradient-to-br p-2 text-white'>
+      <p className='text-sm font-bold md:text-lg'>{service.title}</p>
+      <div className='mt-2 flex w-full flex-col gap-2 md:flex-row-reverse'>
+        <Image
+          className='aspect-video h-full w-full rounded-lg md:w-1/2'
+          src={service.url}
+          alt={service.title}
+        />
+        <p className='text-[0.7rem] leading-[0.7rem] md:text-sm'>
+          {service.longDescription}
+        </p>
+      </div>
+    </div>
+  );
+
+  const servicesTabsWithContent = memoizedServices.map((service) => ({
+    title: service.title,
+    value: service.id,
+    content: getTabsContent(service),
+  }));
+  return (
+    <div
+      className={cn(
+        'relative mb-8 mt-2 h-[38rem] w-full max-w-6xl [perspective:1000px] md:h-[35rem]',
+        'flex flex-col items-start justify-start'
+      )}
+    >
+      <Tabs tabs={servicesTabsWithContent} />
+    </div>
+  );
+}

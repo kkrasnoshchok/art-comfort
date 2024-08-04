@@ -1,55 +1,73 @@
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useMemo } from 'react';
+import Markdown from 'react-markdown';
 
 import { Layout } from '@/components/layout';
+import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Button } from '@/ui/Button';
-import { clsxm } from '@/utils';
+import { Button } from '@/ui/button';
 import { news } from '@/utils/dataset/news.dataset';
-import { slugify } from '@/utils/slugify';
+import { useTranslations } from '@/utils/locales';
 
 const Page = () => {
   const { query, back } = useRouter();
-  const singleNews = news.find(
-    (element) => slugify(element.title) === query.slug
+  const { general, news: newsTranslations } = useTranslations();
+  const memoizedNews = useMemo(
+    () => news(newsTranslations),
+    [newsTranslations]
+  );
+  const memoizedSingleNews = useMemo(
+    () => memoizedNews.find((element) => element.id === query.slug),
+    [memoizedNews, query.slug]
   );
 
-  if (!singleNews) {
+  if (!memoizedSingleNews) {
     return null;
   }
   return (
     <Layout>
-      <motion.div className='from-primary-bg to-secondary-bg flex min-h-screen w-full flex-col items-start bg-gradient-to-b px-16 pb-24 pt-12'>
-        <div className='border-primary-bgStrong w-full rounded-3xl border-2 bg-gray-50 bg-opacity-25 p-8 shadow-lg backdrop-blur-lg'>
+      <SectionWrapper>
+        <motion.div className='w-full max-w-7xl gap-4 pt-16'>
           <motion.div>
-            <Button label='Back' onClick={back} />
+            <Button label={general.backToList} onClick={back} size='small' />
           </motion.div>
-          <motion.h1 className='text-primary-defaultStrong mt-8'>
-            {singleNews.title}
-          </motion.h1>
-          <motion.p className='text-primary-defaultWeak italic'>
-            {singleNews.date.format('DD-MM-YYYY')}
+          <motion.h3 className='mt-4 text-slate-900'>
+            {memoizedSingleNews.title}
+          </motion.h3>
+          <motion.p className='text-sm'>
+            {memoizedSingleNews.date.format('DD.MM.YYYY')}
           </motion.p>
-          <motion.div className='flex'>
-            <motion.div className='mr-4 mt-4 flex-1'>
-              {singleNews.description}
+          <motion.div className='mt-4 flex flex-col'>
+            <motion.div className='flex aspect-square h-[440px] overflow-hidden rounded-lg bg-slate-900'>
+              <Image
+                src={memoizedSingleNews.url}
+                alt={memoizedSingleNews.title}
+                className='h-full w-full object-cover'
+              />
             </motion.div>
-            {/* Images Grid */}
-            <motion.div
-              className={clsxm([
-                'bg-primary-defaultStrong flex aspect-square h-48 w-48 overflow-hidden rounded-3xl border-slate-500',
-              ])}
-            />
-            {/* <motion.div className='grid-row mt-8 grid grid-cols-2 grid-rows-2 gap-8'>
-              {Array(4)
-                .fill(0)
-                .map((_, index) => (
-                  
-                ))}
-            </motion.div> */}
+            <motion.div className='mt-4 flex-1'>
+              <Markdown
+                components={{
+                  ol: (props) => (
+                    <ol
+                      {...props}
+                      style={{
+                        listStyleType: 'decimal',
+                        margin: '1rem 0 0 2rem',
+                      }}
+                    />
+                  ),
+                  p: (props) => <p {...props} style={{ marginTop: '1rem' }} />,
+                }}
+              >
+                {memoizedSingleNews.description}
+              </Markdown>
+            </motion.div>
           </motion.div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </SectionWrapper>
     </Layout>
   );
 };

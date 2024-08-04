@@ -1,3 +1,2 @@
-export { clsxm } from './clsxm';
+export { cn } from './cn';
 export { useBreakpoint } from './useBreakpoint';
-export { useI18n } from './useI18n';

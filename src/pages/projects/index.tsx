@@ -1,84 +1,47 @@
-import { motion, Variants } from 'framer-motion';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 import { Layout } from '@/components/layout';
+import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Button } from '@/ui/Button';
-import { clsxm } from '@/utils';
+import { Button } from '@/ui/button';
+import { cn } from '@/utils';
 import { projects } from '@/utils/dataset/projects.dataset';
-import { slugify } from '@/utils/slugify';
+import { useTranslations } from '@/utils/locales';
 
 const ProjectPage = () => {
-  const router = useRouter();
-  const itemVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
+  const { projects: projectsTranslations, general } = useTranslations();
 
-  const navigateBackToHome = () => {
-    router.replace('/', undefined, { shallow: true, scroll: false });
-  };
   return (
     <Layout>
-      <motion.div
-        className={clsxm(
-          // 'from-primary-bg to-secondary-bg bg-gradient-to-b',
-          'flex w-full items-center justify-center'
-        )}
-      >
-        <motion.div className='w-11/12 rounded-lg pt-12'>
-          <motion.div>
-            <Button
-              label='Повернутись на головну'
-              onClick={navigateBackToHome}
-            />
-          </motion.div>
-          <motion.h1 className='h1 text-primary-defaultStrong mt-8'>
-            Список проєктів
-          </motion.h1>
-          <motion.div className='mt-8 pb-32'>
-            {projects.map((project) => (
-              <motion.div
-                className='border-primary-defaultStrong mt-4 flex items-center rounded-3xl border-2 p-4 backdrop-blur-lg'
-                key={project.title}
-                variants={itemVariants}
-                initial='hidden'
-                whileInView='visible'
-                viewport={{ amount: 0.6, once: false }}
-                transition={{ duration: 0.2 }}
+      <SectionWrapper>
+        <motion.div className='mx-4 grid w-full max-w-6xl grid-cols-none gap-4 pt-16 sm:grid-cols-2 md:grid-cols-3'>
+          {projects(projectsTranslations).map((project) => (
+            <motion.div
+              className='rounded-lg border p-4 shadow-md'
+              key={project.title}
+            >
+              <h4 className='leading-[1.25rem]'>{project.title}</h4>
+              <motion.p className='text-[0.6rem] leading-[0.7rem]'>
+                {project.description}
+              </motion.p>
+              <div
+                className={cn(
+                  'mt-2 flex aspect-video overflow-hidden rounded-2xl bg-slate-800'
+                )}
               >
-                <motion.div className='flex-1'>
-                  <motion.h3 className='text-primary-defaultStrong'>
-                    {project.title}
-                  </motion.h3>
-                  <p className='text-primary-defaultWeak mb-2 italic'>
-                    {project.year}
-                  </p>
-                  <motion.p>{project.details}</motion.p>
-                  <motion.div className='mt-4'>
-                    <Button
-                      href={`projects/${slugify(project.title)}`}
-                      label='Детальніше'
-                    />
-                  </motion.div>
-                </motion.div>
-                <div
-                  className={clsxm(
-                    'bg-primary-defaultStrong ml-4 flex aspect-video w-60 rounded-2xl border border-slate-500'
-                  )}
-                >
-                  <Image
-                    src={project.url}
-                    className='aspect-video h-full w-full object-cover opacity-40 transition-all group-hover:opacity-100'
-                    alt={project.title}
-                  />
-                </div>
+                {project.header}
+              </div>
+              <motion.div className='mt-4'>
+                <Button
+                  href={`projects/${project.id}`}
+                  label={general.exploreDetails}
+                  size='small'
+                />
               </motion.div>
-            ))}
-          </motion.div>
+            </motion.div>
+          ))}
         </motion.div>
-      </motion.div>
+      </SectionWrapper>
     </Layout>
   );
 };

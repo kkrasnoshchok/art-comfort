@@ -2,46 +2,69 @@ import { motion } from 'framer-motion';
 import { Ref } from 'react';
 import CountUp from 'react-countup';
 
+import { cn } from '@/utils';
+import { TranslationType, useTranslations } from '@/utils/locales';
+
 type Statistics = {
   name: string;
   value: number;
+  valueSuffix?: string;
 };
 
-const statistics: Statistics[] = [
+const statistics = (t: TranslationType['statistics']): Statistics[] => [
   {
-    name: 'Років досвіду',
-    value: 16,
+    name: t.experience,
+    value: 17,
   },
   {
-    name: 'Успішно завершених проєктів',
-    value: 50,
+    name: t.projects,
+    value: 5000,
+    valueSuffix: '+',
   },
   {
-    name: 'Постійних клієнтів',
-    value: 100,
+    name: t.clients,
+    value: 500,
+    valueSuffix: '+',
   },
 ];
 
-export const StatisticsContainer = () => (
-  <motion.div className='mt-12 grid grid-cols-1 gap-4 md:grid-cols-3'>
-    {statistics.map((statistic, index) => (
-      <div
-        key={index}
-        className='border-primary-bg flex flex-col items-center justify-center rounded-2xl border bg-slate-100 bg-opacity-25 p-4 shadow-sm'
-      >
-        <CountUp useEasing start={0} end={statistic.value} duration={2.5}>
-          {({ countUpRef, start }) => (
-            <motion.h1
-              ref={countUpRef as Ref<HTMLHeadingElement>}
-              className='text-primary-defaultStrong'
-              onViewportEnter={() => start()}
-            />
+export const StatisticsContainer = () => {
+  const { statistics: statisticsTranslations } = useTranslations();
+  return (
+    <motion.div className='mx-4 mt-8 grid grid-cols-1 gap-4 md:mt-12 md:grid-cols-3'>
+      {statistics(statisticsTranslations).map((statistic, index) => (
+        <div
+          key={index}
+          className={cn(
+            'border-primary-bg border',
+            'flex flex-col items-center justify-center rounded-2xl p-4 shadow-sm'
           )}
-        </CountUp>
-        <h3 className='text-primary-default mt-2 text-xl font-semibold'>
-          {statistic.name}
-        </h3>
-      </div>
-    ))}
-  </motion.div>
-);
+        >
+          <CountUp
+            useEasing
+            start={0}
+            end={statistic.value}
+            formattingFn={(number) => {
+              if (statistic.valueSuffix) {
+                return `${number}${statistic.valueSuffix}`;
+              }
+              return String(number);
+            }}
+            duration={2.5}
+          >
+            {({ countUpRef, start }) => (
+              <motion.h1
+                ref={countUpRef as Ref<HTMLHeadingElement>}
+                className='text-graysclale-headerWeak'
+                onViewportEnter={() => start()}
+              />
+            )}
+          </CountUp>
+          <h3 className='text-graysclale-header mt-2 text-[0.75rem] font-semibold xl:text-xl'>
+            {statistic.name}
+          </h3>
+        </div>
+      ))}
+    </motion.div>
+  );
+};
