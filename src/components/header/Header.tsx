@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import NextImage from '@/components/NextImage';
+import { Quiz } from '@/components/quiz/Quiz';
 
 import { Button } from '@/ui/Button';
 import { Menu, MenuItem } from '@/ui/NavbarMenu';
@@ -19,6 +20,7 @@ export const Header = () => {
   const { isLg: isBurgerHidden } = useBreakpoint('lg');
   const shouldDisplayBurger = !isBurgerHidden;
   const [isBurgerMenuOpened, setBurgerMenuOpened] = useState(false);
+  const [isQuizOpened, setQuizOpened] = useState(false);
   return (
     <div className='fixed top-4 z-50 flex w-full items-center justify-center'>
       <motion.div
@@ -141,6 +143,9 @@ export const Header = () => {
 
           {isBurgerHidden && (
             <>
+              <div className=''>
+                <Button label='open quiz' onClick={() => setQuizOpened(true)} />
+              </div>
               <MenuItem
                 href='/about'
                 setActive={setActive}
@@ -238,6 +243,12 @@ export const Header = () => {
           )}
         </Menu>
       </motion.div>
+      <Quiz
+        isOpen={isQuizOpened}
+        onClose={() => {
+          setQuizOpened(false);
+        }}
+      />
     </div>
   );
 };
