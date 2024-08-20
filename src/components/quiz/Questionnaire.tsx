@@ -7,7 +7,7 @@ interface QuestionnaireProps {
   currentStep: number;
   setCurrentStep: Dispatch<SetStateAction<number>>;
   answers: Answers;
-  updateAnswer: (step: string, value: string | number) => void;
+  updateAnswer: Dispatch<SetStateAction<Answers>>;
 }
 
 export const Questionnaire = ({
@@ -40,11 +40,17 @@ export const Questionnaire = ({
                 name={`step${question.id}`}
                 value={option.value}
                 checked={
-                  answers[`step${question.id}` as keyof Answers] ===
+                  answers[`${question.id}` as keyof Answers]?.value ===
                   option.value
                 }
                 onChange={(e) => {
-                  updateAnswer(`step${question.id}`, e.target.value);
+                  updateAnswer((prev) => ({
+                    ...prev,
+                    [`${question.id}`]: {
+                      label: question.question,
+                      value: e.target.value,
+                    },
+                  }));
                 }}
               />
             )}
@@ -52,24 +58,23 @@ export const Questionnaire = ({
           </label>
           {option.input && (
             <input
-              onFocus={(event) => {
-                updateAnswer(
-                  `step${question.id}`,
-                  answers[
-                    `step${question.id}_extra-${index}` as keyof Answers
-                  ] || ''
-                );
-              }}
               type={option.input}
               value={
-                answers[`step${question.id}_extra-${index}` as keyof Answers] ||
-                ''
+                answers[`${question.id}` as keyof Answers]?.extraValues?.[
+                  index
+                ] || ''
               }
               onChange={(e) =>
-                updateAnswer(
-                  `step${question.id}_extra-${index}`,
-                  e.target.value
-                )
+                updateAnswer((prev) => ({
+                  ...prev,
+                  [`${question.id}`]: {
+                    label: question.question,
+                    extraValues: {
+                      ...prev[`${question.id}`]?.extraValues,
+                      [index]: e.target.value,
+                    },
+                  },
+                }))
               }
             />
           )}

@@ -11,12 +11,17 @@ export interface Question {
   condition?: (answers: Answers) => boolean;
 }
 
-export interface Answers {
-  [key: number]: {
-    value: string | number;
-    extraValues?: { [key: string]: string | number };
-  };
-}
+export type Answer = {
+  label: string;
+  value?: string | number;
+  extraValues?: { [key: string]: string | number };
+};
+
+export type Answers = {
+  [key: string]: Answer;
+};
+
+export type UpdateAnswerFunction = (step: string, value: Answer) => void;
 
 export interface FinalAnswers {
   [key: number]: {

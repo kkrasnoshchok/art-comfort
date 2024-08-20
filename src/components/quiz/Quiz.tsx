@@ -30,20 +30,10 @@ export const Quiz = (props: QuizProps) => {
     setCurrentStep((prev) => prev - 1);
   };
 
-  const updateAnswer = (step: string, value: string | number) => {
-    setAnswers((prev) => ({ ...prev, [step]: value }));
-  };
-
   const isNextEnabled = useMemo(() => {
-    const currentAnswer = answers[`step${currentStep + 1}` as keyof Answers];
-    // const optionChosen = questions[currentStep].options.indexOf
-    const currentExtraAnswer =
-      answers[`step${currentStep + 1}_extra` as keyof Answers];
-    const hasCurrentAnswer =
-      currentAnswer !== undefined && currentAnswer !== '';
-    const hasCurrentExtraAnswer =
-      currentExtraAnswer !== undefined && currentExtraAnswer !== '';
-    return hasCurrentAnswer || hasCurrentExtraAnswer;
+    const currentAnswer = answers[`${currentStep + 1}` as keyof Answers];
+    // return hasCurrentAnswer || hasCurrentExtraAnswer;
+    return true;
   }, [answers, currentStep]);
 
   const handleSubmit = () => {
@@ -62,7 +52,7 @@ export const Quiz = (props: QuizProps) => {
               currentStep={currentStep}
               setCurrentStep={setCurrentStep}
               answers={answers}
-              updateAnswer={updateAnswer}
+              updateAnswer={setAnswers}
             />
             <div className='mt-4 flex justify-between'>
               <button
