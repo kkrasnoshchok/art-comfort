@@ -31,7 +31,7 @@ const statistics = (t: TranslationType['statistics']): Statistics[] => [
 export const StatisticsContainer = () => {
   const { statistics: statisticsTranslations } = useTranslations();
   return (
-    <motion.div className='mx-4 mt-8 grid grid-cols-1 gap-4 md:mt-12 md:grid-cols-3'>
+    <motion.div className='mx-4 mt-8 grid w-full max-w-6xl grid-cols-1 gap-4 md:mt-12 md:grid-cols-3'>
       {statistics(statisticsTranslations).map((statistic, index) => (
         <div
           key={index}

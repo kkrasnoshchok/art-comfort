@@ -4,6 +4,12 @@ import { StaticImageData } from 'next/image';
 import hvacInnovationsURL from '@/assets/News_HVAC-Innovations.png';
 import hvacSeasonalRecommendationsURL from '@/assets/News_Seasonal-Recommendations.png';
 import { TranslationType } from '@/utils/locales';
+import {
+  newsHvacInnovationsContent,
+  newsHvacInnovationsTitle,
+  newsSeasonalRecommendationsContent,
+  newsSeasonalRecommendationsTitle,
+} from '@/utils/locales/translations/pl';
 
 type NewsType = {
   id: string;
@@ -25,6 +31,23 @@ export const news = (t: TranslationType['news']): NewsType[] => [
     id: 'hvac-seasonal-recommendations',
     title: t.newsSeasonalRecommendationsTitle,
     description: t.newsSeasonalRecommendationsContent,
+    date: dayjs().subtract(4, 'weeks'),
+    url: hvacSeasonalRecommendationsURL,
+  },
+];
+
+export const staticNews: NewsType[] = [
+  {
+    id: 'hvac-innovations',
+    title: newsHvacInnovationsTitle,
+    description: newsHvacInnovationsContent,
+    date: dayjs().subtract(2, 'weeks'),
+    url: hvacInnovationsURL,
+  },
+  {
+    id: 'hvac-seasonal-recommendations',
+    title: newsSeasonalRecommendationsTitle,
+    description: newsSeasonalRecommendationsContent,
     date: dayjs().subtract(4, 'weeks'),
     url: hvacSeasonalRecommendationsURL,
   },

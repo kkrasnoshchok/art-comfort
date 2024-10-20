@@ -38,11 +38,6 @@ export const ContactsSection = () => {
 
   type ContactsFormType = z.infer<typeof ContactsForm>;
 
-  const sectionVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
-
   const initialValues: ContactsFormType = {
     name: '',
     email: '',
@@ -90,14 +85,7 @@ export const ContactsSection = () => {
 
   return (
     <SectionWrapper sectionProps={{ id: 'contacts' }}>
-      <motion.div
-        variants={sectionVariants}
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ amount: 0.2 }}
-        transition={{ duration: 0.5, easings: ['easeIn', 'easeOut'] }}
-        className={cn('w-full max-w-6xl')}
-      >
+      <motion.div className={cn('w-full max-w-6xl')}>
         <h1 className='h2 text-grayscale-headerWeak mx-4'>
           {contactsTranslations.title}
         </h1>

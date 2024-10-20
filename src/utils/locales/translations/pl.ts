@@ -253,8 +253,8 @@ const vacanciesHdeJobBoards = `
 
 // #region news markdown
 
-const newsHvacInnovationsTitle = `Zapoznanie się z najnowszymi innowacjami w technologii HVAC na rok 2024`;
-const newsHvacInnovationsContent = `
+export const newsHvacInnovationsTitle = `Zapoznanie się z najnowszymi innowacjami w technologii HVAC na rok 2024`;
+export const newsHvacInnovationsContent = `
 Branża HVAC jest świadkiem niezwykłej transformacji w 2024 roku dzięki przełomowym technologiom zaprojektowanym w celu zwiększenia komfortu, wydajności i zrównoważonego rozwoju. Jako lider w tej dziedzinie, ART-COMFORT z przyjemnością dzieli się najnowszymi osiągnięciami, które kształtują przyszłość ogrzewania, wentylacji i klimatyzacji.
 
 1. **Przejście na ekologiczne czynniki chłodnicze jest znaczącym krokiem naprzód dla branży HVAC. Te czynniki chłodnicze mają niższy potencjał tworzenia efektu cieplarnianego (GWP), dzięki czemu są mniej szkodliwe dla środowiska, a jednocześnie poprawiają wydajność systemu. Zmiana ta ma kluczowe znaczenie w walce ze zmianami klimatycznymi i jest pozytywnym krokiem zarówno dla branży, jak i planety [The AC Therapist](https://theactherapist.com/blog/hvac-innovations/).
@@ -271,8 +271,8 @@ Aby uzyskać bardziej szczegółowe informacje i aktualizacje dotyczące technol
 Będąc na bieżąco z najnowocześniejszymi trendami i technologiami, ART-COMFORT zapewnia naszym cenionym klientom najwyższą jakość usług i najbardziej zaawansowane systemy HVAC. Razem możemy stworzyć bardziej zrównoważoną i komfortową przyszłość.
 `;
 
-const newsSeasonalRecommendationsTitle = `Sezonowe porady HVAC: Przygotowanie systemu HVAC na różne pory roku`;
-const newsSeasonalRecommendationsContent = `
+export const newsSeasonalRecommendationsTitle = `Sezonowe porady HVAC: Przygotowanie systemu HVAC na różne pory roku`;
+export const newsSeasonalRecommendationsContent = `
 Wraz ze zmianą pór roku konieczne jest przygotowanie systemu ogrzewania, wentylacji i klimatyzacji (HVAC), aby zapewnić jego wydajną i nieprzerwaną pracę. Terminowa konserwacja pomaga zapobiegać awariom, obniżać koszty energii i wydłużać żywotność sprzętu. ART-COMFORT dzieli się kilkoma przydatnymi wskazówkami dotyczącymi przygotowania systemu HVAC do sezonu letniego i zimowego. 
 
 *Przygotowanie do lata

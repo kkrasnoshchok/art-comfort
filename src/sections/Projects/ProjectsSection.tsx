@@ -2,7 +2,6 @@ import { motion, Variants } from 'framer-motion';
 import React, { useMemo } from 'react';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
-import { StatisticsContainer } from '@/components/statistics';
 
 import { BentoGrid } from '@/ui/aceternity';
 import { Button } from '@/ui/Button';
@@ -12,13 +11,6 @@ import { useTranslations } from '@/utils/locales';
 
 export const ProjectsSection = () => {
   const sectionVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { duration: 0.5, easings: ['easeIn', 'easeOut'] },
-    },
-  };
-  const statisticsVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -66,15 +58,6 @@ export const ProjectsSection = () => {
             href='projects'
           />
         </motion.div>
-      </motion.div>
-      <motion.div
-        variants={statisticsVariants}
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ amount: 0.1, once: !isMd }}
-        className='w-full max-w-6xl'
-      >
-        <StatisticsContainer />
       </motion.div>
     </SectionWrapper>
   );
