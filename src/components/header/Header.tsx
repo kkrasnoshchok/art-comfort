@@ -87,59 +87,6 @@ export const Header = () => {
                 <p className='w-48'>{header.contactsTooltip}</p>
               </div>
             </MenuItem>
-            {/* <MenuItem
-                href='/vacancies'
-                setActive={setActive}
-                active={active}
-                item={header.careers}
-              >
-                <div className='flex flex-col space-y-4 text-sm'>
-                  <p className='w-48'>{header.carrersTooltip}</p>
-                </div>
-              </MenuItem> */}
-            {/* <MenuItem
-                href='/news'
-                setActive={setActive}
-                active={active}
-                item={header.news}
-              >
-                <div className='flex flex-col space-y-4 text-sm'>
-                  <p className='w-48'>{header.newsTooltip}</p>
-                </div>
-              </MenuItem> */}
-            {/* <div className='cursor-pointer'>
-                <span
-                  onClick={() => setDropdownOpened((prev) => !prev)}
-                  className='relative rounded-md border px-2 py-1 text-2xl'
-                >
-                  {locale.emoji}
-                </span>
-                {dropdownOpened && (
-                  <div className='absolute right-4 top-20 flex w-36 flex-col gap-[2px] rounded-lg bg-white text-sm'>
-                    {menuLanguages.map((localeItem, index) => (
-                      <motion.p
-                        whileHover={{
-                          borderColor: 'rgba(0,0,0,1)',
-                        }}
-                        onClick={() => {
-                          updateLocale(localeItem);
-                          setDropdownOpened(false);
-                        }}
-                        key={localeItem.value}
-                        className={cn(
-                          'px-4 py-2',
-                          'border border-transparent',
-                          locale.value === localeItem.value && 'border-black',
-                          index === 0 && 'rounded-t-lg',
-                          index === menuLanguages.length - 1 && 'rounded-b-lg'
-                        )}
-                      >
-                        {localeItem.emoji} {localeItem.label}
-                      </motion.p>
-                    ))}
-                  </div>
-                )}
-              </div> */}
           </>
         )}
       </Menu>
