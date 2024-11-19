@@ -328,7 +328,7 @@ export const ua: TranslationType = {
     servicesLabel: 'Детальніше про послуги',
   },
   services: {
-    title: 'Послуги',
+    title: 'Послуги HVAC',
     design: {
       title: 'Проектування',
       description:

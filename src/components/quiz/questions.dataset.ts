@@ -74,7 +74,7 @@ export const questions: Question[] = [
     condition: (answers) =>
       answers[1]?.value === 'home' || answers[1]?.value === 'business',
     question: 'If you wish, you can provide more details:',
-    options: [{ value: 'details', label: '', input: 'text' }],
+    options: [{ value: 'details', label: 'Details', input: 'text' }],
   },
   {
     id: 8,
@@ -89,7 +89,7 @@ export const questions: Question[] = [
     id: 9,
     condition: (answers) => answers[1]?.value !== 'other',
     question: 'What locality are the offers to be made?',
-    options: [{ value: 'location', label: '', input: 'text' }],
+    options: [{ value: 'location', label: 'Location', input: 'text' }],
   },
   {
     id: 10,

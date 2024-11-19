@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { Questionnaire } from '@/components/quiz/Questionnaire';
 import { questions } from '@/components/quiz/questions.dataset';
@@ -22,18 +22,20 @@ export const Quiz = (props: QuizProps) => {
   const [answers, setAnswers] = useState<Answers>(initialAnswers);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setCurrentStep((prev) => prev + 1);
-  };
+  }, []);
 
-  const handlePrevious = () => {
+  const handlePrevious = useCallback(() => {
     setCurrentStep((prev) => prev - 1);
-  };
+  }, []);
 
   const isNextEnabled = useMemo(() => {
     const currentAnswer = answers[`${currentStep + 1}` as keyof Answers];
-    // return hasCurrentAnswer || hasCurrentExtraAnswer;
-    return true;
+    const hasCurrentAnswer = !!currentAnswer?.value;
+    const hasCurrentExtraAnswer = !!currentAnswer?.extraValues;
+
+    return hasCurrentAnswer || hasCurrentExtraAnswer;
   }, [answers, currentStep]);
 
   const handleSubmit = () => {
@@ -41,8 +43,15 @@ export const Quiz = (props: QuizProps) => {
     setIsSubmitted(true);
   };
 
+  const closeModal = useCallback(() => {
+    setCurrentStep(0);
+    setAnswers({});
+    setIsSubmitted(false);
+    onClose();
+  }, [onClose]);
+
   return (
-    <Modal {...{ isOpen, onClose }}>
+    <Modal isOpen={isOpen} onClose={closeModal}>
       <div className='p-4'>
         {isSubmitted ? (
           <SuccessScreen />
@@ -55,13 +64,12 @@ export const Quiz = (props: QuizProps) => {
               updateAnswer={setAnswers}
             />
             <div className='mt-4 flex justify-between'>
-              <button
+              <Button
                 onClick={handlePrevious}
                 disabled={currentStep === 0}
                 className='btn btn-secondary'
-              >
-                Previous
-              </button>
+                label='Previous'
+              />
               {currentStep < questions.length - 1 ? (
                 <Button
                   onClick={handleNext}
@@ -70,13 +78,12 @@ export const Quiz = (props: QuizProps) => {
                   label='Next'
                 />
               ) : (
-                <button
+                <Button
                   onClick={handleSubmit}
                   disabled={!isNextEnabled}
                   className='btn btn-primary'
-                >
-                  Submit
-                </button>
+                  label='Submit'
+                />
               )}
             </div>
           </>
