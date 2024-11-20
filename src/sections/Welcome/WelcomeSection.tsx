@@ -4,7 +4,7 @@ import { CiDesktopMouse2 } from 'react-icons/ci';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { BackgroundGradientAnimation, Highlight } from '@/ui/aceternity';
+import { Highlight } from '@/ui/aceternity';
 import { Button } from '@/ui/Button';
 import { useBreakpoint } from '@/utils';
 import { useTranslations } from '@/utils/locales';
@@ -22,7 +22,7 @@ export const WelcomeSection = () => {
       sectionProps={{ id: 'about' }}
       className='relative z-20 min-h-screen w-screen pb-0 pt-0'
     >
-      <BackgroundGradientAnimation />
+      {/* <BackgroundGradientAnimation /> */}
       <div className='flex h-full max-w-7xl flex-1 flex-row items-center justify-start gap-4'>
         <div className='mx-4 flex h-full w-full flex-col items-start justify-start'>
           <motion.h2

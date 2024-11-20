@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import Markdown from 'react-markdown';
 
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
@@ -12,10 +11,8 @@ import { useTranslations } from '@/utils/locales';
 
 const ServicePage = () => {
   const router = useRouter();
-  const { services: servicesTranslations, general } = useTranslations();
-  const service = services(servicesTranslations).find(
-    (service) => service.id === router.query.slug
-  );
+  const { general } = useTranslations();
+  const service = services.find((service) => service.id === router.query.slug);
   if (!service) {
     return null;
   }
@@ -35,7 +32,7 @@ const ServicePage = () => {
             />
           </motion.div>
           <h2 className='text-grayscale-header mt-8'>{service.title}</h2>
-          <Markdown
+          {/* <Markdown
             className='mt-4'
             components={{
               ul: (props) => (
@@ -45,7 +42,7 @@ const ServicePage = () => {
             }}
           >
             {service.longDescription}
-          </Markdown>
+          </Markdown> */}
         </motion.div>
       </SectionWrapper>
     </Layout>
