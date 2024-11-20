@@ -4,7 +4,7 @@ import { ReactNode, useCallback } from 'react';
 import { ButtonSize, ButtonTheme } from '@/ui/Button/types';
 import { cn } from '@/utils';
 
-type Props = {
+type Props = HTMLMotionProps<'a'> & {
   className?: string;
   labelClassName?: string;
   disabled?: boolean;
@@ -14,7 +14,7 @@ type Props = {
   onClick?: () => void;
   label?: string;
   Icon?: ReactNode;
-} & HTMLMotionProps<'a'>;
+};
 
 const buttonBaseStyles =
   'inline-flex cursor-pointer rounded-md transition-all hover:scale-95 active:scale-90';
@@ -99,7 +99,12 @@ export const Button = (props: Props) => {
         disabled && 'cursor-not-allowed opacity-60',
         className
       )}
-      {...{ onClick, disabled }}
+      onClick={() => {
+        if (!disabled) {
+          onClick && onClick();
+        }
+      }}
+      {...{ disabled }}
       {...restButtonProps}
     >
       {Icon && Icon}

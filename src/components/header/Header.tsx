@@ -3,18 +3,18 @@ import { useState } from 'react';
 import { FaPhone } from 'react-icons/fa';
 
 import NextImage from '@/components/NextImage';
+import { Quiz } from '@/components/quiz/Quiz';
 
 import { Button } from '@/ui/Button';
 import { Menu, MenuItem } from '@/ui/NavbarMenu';
 import { cn, useBreakpoint } from '@/utils';
-import { useTranslations } from '@/utils/locales';
 
 import logo from '../../assets/logo.png';
 
 export const Header = () => {
   const [active, setActive] = useState<string | null>(null);
-  const { header } = useTranslations();
   const { isLg: isBurgerHidden } = useBreakpoint('lg');
+  const [isQuizOpened, setQuizOpened] = useState(false);
   return (
     <div className='fixed z-50 flex w-full flex-col items-center justify-center bg-white'>
       {/* Logo & Quote */}
@@ -47,49 +47,42 @@ export const Header = () => {
       >
         {isBurgerHidden && (
           <>
+            <div className=''>
+              <Button label='open quiz' onClick={() => setQuizOpened(true)} />
+            </div>
             <MenuItem
               href='/about'
               setActive={setActive}
               active={active}
-              item={header.about}
-            >
-              <div className='flex flex-col space-y-4 text-sm'>
-                <p className='w-48'>{header.aboutTooltip}</p>
-              </div>
-            </MenuItem>
+              item='O nas'
+            />
             <MenuItem
               href='/services'
               setActive={setActive}
               active={active}
-              item={header.services}
-            >
-              <div className='flex flex-col space-y-4 text-sm'>
-                <p className='w-48'>{header.servicesTooltip}</p>
-              </div>
-            </MenuItem>
+              item='Usługi'
+            />
             <MenuItem
               href='/projects'
               setActive={setActive}
               active={active}
-              item={header.projects}
-            >
-              <div className='flex flex-col space-y-4 text-sm'>
-                <p className='w-48'>{header.projectsTooltip}</p>
-              </div>
-            </MenuItem>
+              item='Projekty'
+            />
             <MenuItem
               href='/#contacts'
               setActive={setActive}
               active={active}
-              item={header.contacts}
-            >
-              <div className='flex flex-col space-y-4 text-sm'>
-                <p className='w-48'>{header.contactsTooltip}</p>
-              </div>
-            </MenuItem>
+              item='Kontakty'
+            />
           </>
         )}
       </Menu>
+      <Quiz
+        isOpen={isQuizOpened}
+        onClose={() => {
+          setQuizOpened(false);
+        }}
+      />
     </div>
   );
 };
