@@ -1,8 +1,8 @@
 const LocaleValues = {
   ua: 'ua',
   en: 'en',
-  de: 'de',
-  pl: 'pl',
+  // de: 'de',
+  // pl: 'pl',
 } as const;
 
 export type LocaleValue = (typeof LocaleValues)[keyof typeof LocaleValues];

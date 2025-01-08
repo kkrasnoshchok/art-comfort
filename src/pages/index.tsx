@@ -8,7 +8,6 @@ import { ContactsSection } from '@/sections/Contacts';
 import { NewsSection } from '@/sections/News';
 import { ProjectsSection } from '@/sections/Projects/ProjectsSection';
 import { ServicesSection } from '@/sections/Services/ServicesSection';
-import { TeamSection } from '@/sections/Team';
 import { WelcomeSection } from '@/sections/Welcome';
 import { Seo } from '@/seo';
 
@@ -21,7 +20,7 @@ const HomePage = () => {
           <WelcomeSection />
           <ServicesSection />
           <ProjectsSection />
-          <TeamSection />
+          {/* <TeamSection /> */}
           <NewsSection />
           <ContactsSection />
         </main>

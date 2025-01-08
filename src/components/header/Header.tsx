@@ -37,21 +37,26 @@ export const Header = () => {
         }}
         className={cn(
           'mx-4 w-full xl:max-w-7xl',
-          shouldDisplayBurger && 'flex items-center justify-center'
+          shouldDisplayBurger && 'flex items-center'
         )}
       >
         <Menu
           setActive={setActive}
           className={cn(
-            'flex items-center px-4',
+            'flex w-full px-4',
             shouldDisplayBurger &&
-              'w-fit items-center self-center rounded-xl bg-opacity-60 px-4 py-0 backdrop-blur-md'
+              'items-center rounded-xl bg-opacity-60 backdrop-blur-md'
           )}
         >
-          <div className='menu flex flex-1 flex-col'>
-            <div className='flex flex-row items-center gap-8'>
+          <div className='menu flex w-full flex-1 flex-col'>
+            <div
+              className={cn(
+                'flex flex-row items-center gap-8',
+                shouldDisplayBurger && 'flex-1 justify-between'
+              )}
+            >
               <Link href='/'>
-                <div className='mb-3 flex items-center'>
+                <div className='flex items-center'>
                   <NextImage src={logo} alt='logo' width={80} height={80} />
                 </div>
               </Link>
@@ -71,20 +76,16 @@ export const Header = () => {
                       </div>
                     }
                     onClick={() => {
-                      setBurgerMenuOpened((prev) => {
-                        const newValue = !prev;
-                        return newValue;
-                      });
+                      setBurgerMenuOpened((prev) => !prev);
                     }}
                     theme='ghost'
                   />
-                  {/* <div className='absolute top-16 h-12 w-12 bg-red-900'></div> */}
                 </>
               )}
             </div>
             <div
               className={cn(
-                'my-2 flex flex-col items-end gap-2',
+                'my-2 flex w-full flex-col items-end gap-2',
                 !isBurgerMenuOpened && 'pointer-events-none hidden opacity-0'
               )}
             >
@@ -99,11 +100,7 @@ export const Header = () => {
                 setActive={setActive}
                 active={active}
                 item={header.services}
-              >
-                <div className='flex flex-col space-y-4 text-sm'>
-                  <p className='w-48'>{header.servicesTooltip}</p>
-                </div>
-              </MenuItem>
+              />
               <MenuItem
                 href='/projects'
                 setActive={setActive}
@@ -121,21 +118,13 @@ export const Header = () => {
                 setActive={setActive}
                 active={active}
                 item={header.careers}
-              >
-                <div className='flex flex-col space-y-4 text-sm'>
-                  <p className='w-48'>{header.carrersTooltip}</p>
-                </div>
-              </MenuItem>
+              />
               <MenuItem
                 href='/news'
                 setActive={setActive}
                 active={active}
                 item={header.news}
-              >
-                <div className='flex flex-col space-y-4 text-sm'>
-                  <p className='w-48'>{header.newsTooltip}</p>
-                </div>
-              </MenuItem>
+              />
             </div>
           </div>
 
@@ -146,61 +135,37 @@ export const Header = () => {
                 setActive={setActive}
                 active={active}
                 item={header.about}
-              >
-                <div className='flex flex-col space-y-4 text-sm'>
-                  <p className='w-48'>{header.aboutTooltip}</p>
-                </div>
-              </MenuItem>
+              />
               <MenuItem
                 href='/services'
                 setActive={setActive}
                 active={active}
                 item={header.services}
-              >
-                <div className='flex flex-col space-y-4 text-sm'>
-                  <p className='w-48'>{header.servicesTooltip}</p>
-                </div>
-              </MenuItem>
+              />
               <MenuItem
                 href='/projects'
                 setActive={setActive}
                 active={active}
                 item={header.projects}
-              >
-                <div className='flex flex-col space-y-4 text-sm'>
-                  <p className='w-48'>{header.projectsTooltip}</p>
-                </div>
-              </MenuItem>
+              />
               <MenuItem
                 href='/#contacts'
                 setActive={setActive}
                 active={active}
                 item={header.contacts}
-              >
-                <div className='flex flex-col space-y-4 text-sm'>
-                  <p className='w-48'>{header.contactsTooltip}</p>
-                </div>
-              </MenuItem>
+              />
               <MenuItem
                 href='/vacancies'
                 setActive={setActive}
                 active={active}
                 item={header.careers}
-              >
-                <div className='flex flex-col space-y-4 text-sm'>
-                  <p className='w-48'>{header.carrersTooltip}</p>
-                </div>
-              </MenuItem>
+              />
               <MenuItem
                 href='/news'
                 setActive={setActive}
                 active={active}
                 item={header.news}
-              >
-                <div className='flex flex-col space-y-4 text-sm'>
-                  <p className='w-48'>{header.newsTooltip}</p>
-                </div>
-              </MenuItem>
+              />
               <div className='cursor-pointer'>
                 <span
                   onClick={() => setDropdownOpened((prev) => !prev)}

@@ -322,7 +322,7 @@ export const en: TranslationType = {
     title: 'Explore the true art of perfect climate with',
     titleNaming: 'Art Comfort',
     subtitle:
-      'The absolute leader in air conditioning and ventilation for over 18 years',
+      'The absolute leader in the field of air conditioning, ventilation and heating.',
     servicesLabel: 'More about services',
   },
   services: {

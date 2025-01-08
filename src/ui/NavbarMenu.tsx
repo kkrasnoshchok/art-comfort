@@ -55,7 +55,7 @@ export const Menu = ({
   return (
     <nav
       className={cn(
-        'relative space-x-8 rounded-lg border border-transparent bg-white py-2 shadow-lg dark:border-white/[0.2] dark:bg-black',
+        'relative rounded-lg border border-transparent bg-white py-2 shadow-lg dark:border-white/[0.2] dark:bg-black',
         className
       )}
     >
