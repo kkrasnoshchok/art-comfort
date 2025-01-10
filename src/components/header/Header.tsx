@@ -129,7 +129,7 @@ export const Header = () => {
           </div>
 
           {isBurgerHidden && (
-            <>
+            <div className='flex flex-row items-center gap-4'>
               <MenuItem
                 href='/about'
                 setActive={setActive}
@@ -199,7 +199,7 @@ export const Header = () => {
                   </div>
                 )}
               </div>
-            </>
+            </div>
           )}
         </Menu>
       </motion.div>

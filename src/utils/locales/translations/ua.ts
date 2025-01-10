@@ -303,7 +303,7 @@ export const ua: TranslationType = {
   general: {
     contactUs: 'Звʼязатись з нами',
     exploreDetails: 'Детальніше',
-    backToMain: 'Повернутись на головну',
+    backToMain: 'Повернутись на головну сторінку',
     backToList: 'Повернутись до списку',
   },
   header: {
