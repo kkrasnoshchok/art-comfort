@@ -7,7 +7,7 @@ import { RxCross2 } from 'react-icons/rx';
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Input } from '@/ui/input';
+import { Input } from '@/ui/Input';
 import { cn } from '@/utils';
 import {
   vacancies,

@@ -5,7 +5,7 @@ import Markdown from 'react-markdown';
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Button } from '@/ui/button';
+import { Button } from '@/ui/Button';
 import { cn } from '@/utils';
 import { services } from '@/utils/dataset/services.dataset';
 import { useTranslations } from '@/utils/locales';

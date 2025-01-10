@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Button } from '@/ui/button';
+import { Button } from '@/ui/Button';
 import { cn } from '@/utils';
 import { projects } from '@/utils/dataset/projects.dataset';
 import { useTranslations } from '@/utils/locales';

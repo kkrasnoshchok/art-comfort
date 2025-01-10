@@ -5,7 +5,7 @@ import { SectionWrapper } from '@/components/sectionWrapper';
 import { StatisticsContainer } from '@/components/statistics';
 
 import { BentoGrid } from '@/ui/aceternity';
-import { Button } from '@/ui/button';
+import { Button } from '@/ui/Button';
 import { useBreakpoint } from '@/utils';
 import { projects } from '@/utils/dataset/projects.dataset';
 import { useTranslations } from '@/utils/locales';

@@ -5,7 +5,7 @@ import { FaArrowRight } from 'react-icons/fa';
 
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Button } from '@/ui/button';
+import { Button } from '@/ui/Button';
 import { cn } from '@/utils';
 import { Service, services } from '@/utils/dataset/services.dataset';
 import { useTranslations } from '@/utils/locales';
