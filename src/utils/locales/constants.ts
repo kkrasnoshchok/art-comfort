@@ -18,14 +18,4 @@ export const DEFAULT_MENU_LANGUAGES: LocaleType[] = [
     label: 'English',
     emoji: '🇬🇧',
   },
-  // {
-  //   value: 'de',
-  //   label: 'Deutsch',
-  //   emoji: '🇩🇪',
-  // },
-  // {
-  //   value: 'pl',
-  //   label: 'Polska',
-  //   emoji: '🇵🇱',
-  // },
 ];

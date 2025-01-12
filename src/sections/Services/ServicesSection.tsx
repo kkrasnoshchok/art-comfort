@@ -107,9 +107,6 @@ export const ServicesSection = () => {
                         'bg-gray-400',
                         isActive && 'bg-primary-bg hover:bg-primary-bg'
                       )}
-                      onClick={() => {
-                        setActiveService(service);
-                      }}
                     />
                   </div>
                 </motion.div>
@@ -131,7 +128,7 @@ export const ServicesSection = () => {
             animate={controls}
           >
             <motion.h2 className='h2 text-primary-bg'>
-              {activeService?.title}
+              {activeService?.subtitle}
             </motion.h2>
             <p className='text-primary-bg mt-4 text-xs sm:text-sm'>
               {activeService?.description}

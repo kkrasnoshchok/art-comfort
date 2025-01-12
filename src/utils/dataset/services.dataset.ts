@@ -11,6 +11,7 @@ import { TranslationType } from '@/utils/locales';
 export type Service = {
   id: string;
   title: string;
+  subtitle: string;
   description: string;
   longDescription: string;
   url: StaticImageData;
@@ -20,6 +21,7 @@ export const services = (t: TranslationType['services']): Service[] => [
   {
     id: 'design',
     title: t.design.title,
+    subtitle: t.design.subtitle,
     description: t.design.description,
     longDescription: t.design.longDescription,
     url: designingBackground,
@@ -27,6 +29,7 @@ export const services = (t: TranslationType['services']): Service[] => [
   {
     id: 'supply',
     title: t.supply.title,
+    subtitle: t.supply.subtitle,
     description: t.supply.description,
     longDescription: t.supply.longDescription,
     url: supplyBackground,
@@ -34,6 +37,7 @@ export const services = (t: TranslationType['services']): Service[] => [
   {
     id: 'installation',
     title: t.installation.title,
+    subtitle: t.installation.subtitle,
     description: t.installation.description,
     longDescription: t.installation.longDescription,
     url: installationBackground,
@@ -41,6 +45,7 @@ export const services = (t: TranslationType['services']): Service[] => [
   {
     id: 'maintenance',
     title: t.maintenance.title,
+    subtitle: t.maintenance.subtitle,
     description: t.maintenance.description,
     longDescription: t.maintenance.longDescription,
     url: maintenanceBackground,
