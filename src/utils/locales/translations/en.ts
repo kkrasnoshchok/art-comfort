@@ -333,7 +333,6 @@ export const en: TranslationType = {
         'Design of HVAC, BMS, security, water supply and electrical systems',
       description:
         'Discover customised HVAC solutions with our design services. Our team of experts will ensure optimum performance and comfort for your space using cutting-edge technology and industry best practices. Contact us to discuss your project today!',
-      longDescription: designServiceLongDescriptionMarkdown,
     },
     supply: {
       title: 'Supply',
@@ -341,21 +340,18 @@ export const en: TranslationType = {
         'Supply of equipment for HVAC, BMS, security and water supply systems',
       description:
         'Enjoy an uninterrupted supply of HVAC systems with our supply services. We provide high-quality equipment and materials to ensure the efficiency and longevity of your system. Contact us today to get started!',
-      longDescription: supplyServiceLongDescriptionMarkdown,
     },
     installation: {
       title: 'Installation',
       subtitle: 'Installation of systems for commercial facilities',
       description:
         'Get professional HVAC installation with our installation services. Our experienced technicians will ensure an accurate and efficient installation so you can enjoy reliable comfort in your space. Contact us to schedule an installation today!',
-      longDescription: installationServiceLongDescriptionMarkdown,
     },
     maintenance: {
       title: 'Maintenance',
       subtitle: 'Maintenance of engineering systems',
       description:
         'Keep your HVAC system running smoothly with our maintenance and support services. Our team offers regular maintenance and reliable support to keep your system running efficiently all year round. Contact us to learn more about our maintenance plans!',
-      longDescription: maintenanceServiceLongDescriptionMarkdown,
     },
     exploreServices: 'Learn more about services',
   },

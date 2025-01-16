@@ -11,7 +11,7 @@ import { Service, services } from '@/utils/dataset/services.dataset';
 import { useTranslations } from '@/utils/locales';
 
 export const ServicesSection = () => {
-  const { services: servicesTranslations } = useTranslations();
+  const { services: servicesTranslations, general } = useTranslations();
   const [activeService, setActiveService] = useState<Service | null>(null);
   const memoizedServices = useMemo(() => {
     const newServices = services(servicesTranslations);
@@ -114,7 +114,7 @@ export const ServicesSection = () => {
             })}
           </motion.div>
           <Button
-            label='Детальніше про послуги'
+            label={servicesTranslations.exploreServices}
             className='mt-8'
             href='services'
           />
@@ -138,14 +138,14 @@ export const ServicesSection = () => {
                 href='#contacts'
                 theme='primary'
                 className='inline-flex'
-                label='Звʼязатись з нами'
+                label={general.contactUs}
                 size='small'
               />
               <Button
                 href={`services/${activeService?.id}`}
                 theme='subtle'
                 className='inline-flex'
-                label='Дізнатись детальніше'
+                label={general.exploreDetails}
                 size='small'
               />
             </div>
