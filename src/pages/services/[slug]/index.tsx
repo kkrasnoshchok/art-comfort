@@ -14,7 +14,7 @@ import {
   InstallationService,
   MaintenanceService,
   SupplyService,
-} from '@/pages/services/[slug]/components';
+} from '@/components/services';
 
 const ServicePage = () => {
   const router = useRouter();
