@@ -5,10 +5,9 @@ import { useMemo } from 'react';
 import { Layout } from '@/components/layout';
 import { SectionWrapper } from '@/components/sectionWrapper';
 
-import { Tabs } from '@/ui/aceternity/tabs';
 import { Button } from '@/ui/Button';
 import { cn } from '@/utils';
-import { Service, services } from '@/utils/dataset/services.dataset';
+import { services } from '@/utils/dataset/services.dataset';
 import { useTranslations } from '@/utils/locales';
 
 const ServicesPage = () => {
