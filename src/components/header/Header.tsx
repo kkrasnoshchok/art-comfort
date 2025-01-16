@@ -101,12 +101,12 @@ export const Header = () => {
                 active={active}
                 item={header.services}
               />
-              <MenuItem
+              {/* <MenuItem
                 href='/projects'
                 setActive={setActive}
                 active={active}
                 item={header.projects}
-              />
+              /> */}
               <MenuItem
                 href='/'
                 setActive={setActive}
@@ -142,12 +142,12 @@ export const Header = () => {
                 active={active}
                 item={header.services}
               />
-              <MenuItem
+              {/* <MenuItem
                 href='/projects'
                 setActive={setActive}
                 active={active}
                 item={header.projects}
-              />
+              /> */}
               <MenuItem
                 href='/#contacts'
                 setActive={setActive}
