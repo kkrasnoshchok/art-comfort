@@ -21,10 +21,6 @@ export const useTranslations = (): TranslationType => {
   switch (locale.value) {
     case 'en':
       return en;
-    // case 'pl':
-    // return pl;
-    // case 'de':
-    //   return de
     case 'ua':
     default:
       return ua;

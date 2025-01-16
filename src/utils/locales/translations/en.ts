@@ -54,50 +54,6 @@ Quality, responsibility and professionalism are the foundation of our success an
 
 // #endregion
 
-// #region services
-const designServiceLongDescriptionMarkdown = `Designing climate systems is a complex, interesting and creative process that must take into account and reconcile a large number of factors, requirements and wishes of the end user. The design process itself has a clear sequence of certain stages:
-- Development of a design specification;
-- Obtaining, analysing and collecting initial data;
-- Development and approval of conceptual solutions with the customer;
-- Calculations and selection of equipment that best meets the customer's requirements;
-- Development of the graphic part of the project in 3D or 2D models;
-- Preparation of detailed specifications for equipment, materials, system components and fasteners;
-- Preparation of estimate documentation in commercial form or in the software packages AVK-5, Estimate 8;
-- Coordination and approval of the project by the customer; Passing a comprehensive state examination and obtaining a positive expert report (if necessary).
-
-Our experience covers both smaller, simpler projects and large, non-standard facilities such as nuclear power plants and pharmaceutical production with different levels of clean rooms. We understand the specific requirements of each type of facility and ensure that our solutions are fully tailored to your needs.
-`;
-
-const supplyServiceLongDescriptionMarkdown = `Supply services include providing our customers with high-quality equipment and materials for heating, ventilation and air conditioning systems. We cooperate with leading manufacturers, which allows us to guarantee the reliability and efficiency of the supplied equipment. Our services include:
-- Selection of equipment in accordance with project requirements: Based on the terms of reference, we select the equipment that best meets the client's needs.
-- Procurement and logistics: We organise the procurement process and delivery of equipment to the facility.
-- Quality control: We check each batch of equipment before shipment to ensure that it meets the project requirements.
-- Support and advice: We provide technical support and advice on the selection and use of equipment.
-
-We have experience in supplying equipment for various types of facilities, from small offices to large industrial plants, including nuclear power plants and pharmaceutical production facilities. Our team ensures reliable and timely delivery so that your projects can start and finish without delay.
-`;
-
-const installationServiceLongDescriptionMarkdown = `Installation of HVAC systems is a key step in creating a comfortable environment in any room. Our experienced specialists provide high-quality installation in compliance with all standards and safety requirements. The main stages of installation work include:
-- Preparation for installation: We analyse the project documentation and prepare the necessary materials and tools.
-- Installation of equipment: We carry out precise installation of all system components, including fans, air conditioners, pipes and fittings.
-- Connection and configuration: We ensure that the system is properly connected to the electrical and water supply networks, and that it is configured for optimal performance.
-- Testing and commissioning: We test the system in all modes, troubleshoot any problems and put it into operation.
-- Staff training: We train customers and their staff in the correct use and maintenance of the system.
-
-We have experience in installing HVAC systems in both small offices and large industrial facilities such as nuclear power plants and pharmaceutical production. Our specialists take into account all the specific requirements of each type of facility, ensuring the safety and efficiency of the installed systems.
-`;
-
-const maintenanceServiceLongDescriptionMarkdown = `Regular maintenance is the key to the longevity and efficiency of HVAC systems. Our maintenance services include:
-- Scheduled maintenance: We carry out regular inspections and preventive maintenance to prevent possible breakdowns.
-- Diagnostics and troubleshooting: We perform detailed diagnostics of the system to identify and resolve any malfunctions.
-- Cleaning and replacement of filters: We provide regular filter cleaning and replacement to maintain high air quality.
-- Software updates: We update the software of automation systems to improve their efficiency.
-- Emergency service: We provide prompt assistance in case of emergencies.
-
-We service HVAC systems in various types of facilities, from small offices to large industrial plants, including nuclear power plants and pharmaceutical production facilities. Our team of specialists is always ready to resolve any technical issues quickly and efficiently;`;
-
-// #endregion services
-
 // #region vacancies markdown
 const vacanciesSingleBaseIntroduction = `Art Comfort is a leading provider of engineering services. We specialise in the design, installation and maintenance of ventilation and air conditioning systems for various types of buildings, including office buildings, shopping centres, hotels, restaurants and industrial complexes;`;
 
@@ -329,27 +285,29 @@ export const en: TranslationType = {
     title: 'Services',
     design: {
       title: 'Design',
+      subtitle:
+        'Design of HVAC, BMS, security, water supply and electrical systems',
       description:
         'Discover customised HVAC solutions with our design services. Our team of experts will ensure optimum performance and comfort for your space using cutting-edge technology and industry best practices. Contact us to discuss your project today!',
-      longDescription: designServiceLongDescriptionMarkdown,
     },
     supply: {
       title: 'Supply',
+      subtitle:
+        'Supply of equipment for HVAC, BMS, security and water supply systems',
       description:
         'Enjoy an uninterrupted supply of HVAC systems with our supply services. We provide high-quality equipment and materials to ensure the efficiency and longevity of your system. Contact us today to get started!',
-      longDescription: supplyServiceLongDescriptionMarkdown,
     },
     installation: {
       title: 'Installation',
+      subtitle: 'Installation of systems for commercial facilities',
       description:
         'Get professional HVAC installation with our installation services. Our experienced technicians will ensure an accurate and efficient installation so you can enjoy reliable comfort in your space. Contact us to schedule an installation today!',
-      longDescription: installationServiceLongDescriptionMarkdown,
     },
     maintenance: {
       title: 'Maintenance',
+      subtitle: 'Maintenance of engineering systems',
       description:
         'Keep your HVAC system running smoothly with our maintenance and support services. Our team offers regular maintenance and reliable support to keep your system running efficiently all year round. Contact us to learn more about our maintenance plans!',
-      longDescription: maintenanceServiceLongDescriptionMarkdown,
     },
     exploreServices: 'Learn more about services',
   },

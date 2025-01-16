@@ -11,7 +11,7 @@ import { Service, services } from '@/utils/dataset/services.dataset';
 import { useTranslations } from '@/utils/locales';
 
 export const ServicesSection = () => {
-  const { services: servicesTranslations } = useTranslations();
+  const { services: servicesTranslations, general } = useTranslations();
   const [activeService, setActiveService] = useState<Service | null>(null);
   const memoizedServices = useMemo(() => {
     const newServices = services(servicesTranslations);
@@ -107,9 +107,6 @@ export const ServicesSection = () => {
                         'bg-gray-400',
                         isActive && 'bg-primary-bg hover:bg-primary-bg'
                       )}
-                      onClick={() => {
-                        setActiveService(service);
-                      }}
                     />
                   </div>
                 </motion.div>
@@ -117,7 +114,7 @@ export const ServicesSection = () => {
             })}
           </motion.div>
           <Button
-            label='Детальніше про послуги'
+            label={servicesTranslations.exploreServices}
             className='mt-8'
             href='services'
           />
@@ -131,7 +128,7 @@ export const ServicesSection = () => {
             animate={controls}
           >
             <motion.h2 className='h2 text-primary-bg'>
-              {activeService?.title}
+              {activeService?.subtitle}
             </motion.h2>
             <p className='text-primary-bg mt-4 text-xs sm:text-sm'>
               {activeService?.description}
@@ -141,14 +138,14 @@ export const ServicesSection = () => {
                 href='#contacts'
                 theme='primary'
                 className='inline-flex'
-                label='Звʼязатись з нами'
+                label={general.contactUs}
                 size='small'
               />
               <Button
                 href={`services/${activeService?.id}`}
                 theme='subtle'
                 className='inline-flex'
-                label='Дізнатись детальніше'
+                label={general.exploreDetails}
                 size='small'
               />
             </div>
