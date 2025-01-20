@@ -20,7 +20,7 @@ export const Header = () => {
   const shouldDisplayBurger = !isBurgerHidden;
   const [isBurgerMenuOpened, setBurgerMenuOpened] = useState(false);
   return (
-    <div className='fixed top-4 z-50 flex w-full items-center justify-center'>
+    <div className='fixed top-4 z-30 flex w-full items-center justify-center'>
       <motion.div
         initial={{
           opacity: 0,

@@ -99,7 +99,13 @@ export const Button = (props: Props) => {
         disabled && 'cursor-not-allowed opacity-60',
         className
       )}
-      {...{ onClick, disabled }}
+      onClick={() => {
+        if (disabled) {
+          return null;
+        }
+        onClick && onClick();
+      }}
+      {...{ disabled }}
       {...restButtonProps}
     >
       {Icon && Icon}
