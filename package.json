@@ -43,8 +43,6 @@
     "zod-formik-adapter": "^1.2.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.3.0",
-    "@commitlint/config-conventional": "^16.2.4",
     "@svgr/webpack": "^6.5.1",
     "@tailwindcss/forms": "^0.5.3",
     "@types/formidable": "^3.4.2",
